@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Hospice — Palliative & End-of-Life Care</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --warm-white: #faf7f2;
+    --sage: #7a9e87;
+    --sage-light: #a8c4b0;
+    --sage-dark: #4d7a5e;
+    --dusty-rose: #c4877a;
+    --dusty-rose-light: #e0b5ac;
+    --lavender: #9b8fb0;
+    --lavender-light: #c4bdd4;
+    --amber: #c4943a;
+    --amber-light: #e8c87a;
+    --charcoal: #2d2a25;
+    --brown: #5c4a35;
+    --text: #3a3228;
+    --text-light: #6b5d4f;
+    --border: rgba(90,70,50,0.15);
+    --shadow: rgba(45,42,37,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* AMBIENT BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(168,196,176,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(196,135,122,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 70% at 50% 50%, rgba(155,143,176,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ——— INTRO SCREEN ——— */
+  #intro-screen {
+    position: fixed; inset: 0;
+    background: linear-gradient(160deg, #2d2a25 0%, #3d3428 40%, #4a3d30 100%);
+    z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  #intro-screen.fade-out { opacity: 0; transform: scale(1.03); pointer-events: none; }
+
+  .intro-content { text-align: center; max-width: 600px; padding: 2rem; }
+
+  .intro-icon {
+    font-size: 4rem; margin-bottom: 1.5rem;
+    animation: gentle-pulse 3s ease-in-out infinite;
+  }
+  @keyframes gentle-pulse {
+    0%,100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.85; }
+  }
+
+  .intro-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--cream);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  .intro-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--sage-light);
+    margin-bottom: 1.5rem;
+  }
+  .intro-desc {
+    color: rgba(245,240,232,0.7);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .intro-btn {
+    background: var(--sage);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .intro-btn::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.1);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .intro-btn:hover { background: var(--sage-dark); transform: translateY(-2px); }
+  .intro-btn:hover::after { opacity: 1; }
+
+  /* ——— HEADER ——— */
+  header {
+    position: relative; z-index: 10;
+    padding: 1.5rem 2rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(245,240,232,0.85);
+    backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  .header-brand {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .brand-icon { font-size: 1.8rem; }
+  .brand-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--brown);
+    line-height: 1;
+  }
+  .brand-text p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-style: italic;
+  }
+
+  .header-stats {
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .stat-chip {
+    display: flex; align-items: center; gap: 0.4rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    box-shadow: 0 1px 4px var(--shadow);
+  }
+  .stat-chip span:first-child { font-size: 1rem; }
+  .stat-value { font-weight: 600; color: var(--sage-dark); font-family: 'DM Mono', monospace; }
+
+  /* ——— ROOM NAV ——— */
+  .room-nav {
+    position: relative; z-index: 10;
+    display: flex; gap: 0;
+    background: rgba(245,240,232,0.6);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .room-nav::-webkit-scrollbar { display: none; }
+
+  .room-btn {
+    flex: 0 0 auto;
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.9rem 1.4rem;
+    background: none; border: none;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.25s;
+    white-space: nowrap;
+  }
+  .room-btn:hover { color: var(--sage-dark); background: rgba(122,158,135,0.07); }
+  .room-btn.active {
+    color: var(--sage-dark);
+    border-bottom-color: var(--sage);
+    font-weight: 600;
+    background: rgba(122,158,135,0.08);
+  }
+
+  /* ——— MAIN LAYOUT ——— */
+  .main-container {
+    position: relative; z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .main-container { grid-template-columns: 1fr; }
+    .sidebar { order: -1; }
+  }
+
+  /* ——— ROOM PANELS ——— */
+  .room-panel { display: none; }
+  .room-panel.active { display: block; }
+
+  /* ——— PATIENT CARD ——— */
+  .patient-scene {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 4px 20px var(--shadow);
+    margin-bottom: 1.5rem;
+    animation: slide-up 0.5s ease both;
+  }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scene-header {
+    padding: 1rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .scene-header-left { display: flex; align-items: center; gap: 0.75rem; }
+  .patient-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    background: var(--cream);
+    border: 2px solid var(--border);
+  }
+  .patient-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--brown);
+  }
+  .patient-meta { font-size: 0.85rem; color: var(--text-light); font-style: italic; }
+  .status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-family: 'DM Mono', monospace;
+  }
+  .status-stable { background: rgba(122,158,135,0.15); color: var(--sage-dark); border: 1px solid rgba(122,158,135,0.3); }
+  .status-concern { background: rgba(196,135,122,0.15); color: #a05a4a; border: 1px solid rgba(196,135,122,0.3); }
+  .status-comfort { background: rgba(155,143,176,0.15); color: #6a5a85; border: 1px solid rgba(155,143,176,0.3); }
+
+  .scene-body { padding: 1.5rem; }
+
+  .scene-description {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text);
+    font-style: italic;
+    border-left: 3px solid var(--sage-light);
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .vitals-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .vital {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.6rem 0.75rem;
+    text-align: center;
+  }
+  .vital-label { font-size: 0.7rem; color: var(--text-light); font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; }
+  .vital-value { font-size: 1.1rem; font-weight: 600; color: var(--charcoal); font-family: 'DM Mono', monospace; }
+  .vital-value.concern { color: var(--dusty-rose); }
+  .vital-value.ok { color: var(--sage-dark); }
+
+  /* ——— ACTION CHOICES ——— */
+  .action-prompt {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--brown);
+    margin-bottom: 1rem;
+  }
+
+  .action-choices {
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+
+  .choice-btn {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    background: var(--warm-white);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.97rem;
+    color: var(--text);
+    text-align: left;
+    transition: all 0.2s;
+    line-height: 1.5;
+  }
+  .choice-btn:hover { border-color: var(--sage); background: rgba(122,158,135,0.06); transform: translateX(3px); }
+  .choice-btn.correct { border-color: var(--sage-dark); background: rgba(122,158,135,0.12); color: var(--sage-dark); }
+  .choice-btn.incorrect { border-color: var(--dusty-rose); background: rgba(196,135,122,0.1); color: #a05a4a; }
+  .choice-btn.revealed { pointer-events: none; }
+  .choice-letter {
+    flex: 0 0 24px; height: 24px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+    font-family: 'DM Mono', monospace;
+    font-weight: 400;
+    color: var(--text-light);
+  }
+  .choice-btn.correct .choice-letter { background: var(--sage); color: white; border-color: var(--sage-dark); }
+  .choice-btn.incorrect .choice-letter { background: var(--dusty-rose); color: white; }
+
+  /* ——— FEEDBACK BOX ——— */
+  .feedback-box {
+    margin-top: 1rem;
+    padding: 1rem 1.2rem;
+    border-radius: 6px;
+    font-size: 0.97rem;
+    line-height: 1.65;
+    display: none;
+    animation: slide-up 0.3s ease;
+  }
+  .feedback-box.correct { background: rgba(122,158,135,0.1); border: 1px solid rgba(122,158,135,0.3); color: var(--sage-dark); }
+  .feedback-box.incorrect { background: rgba(196,135,122,0.1); border: 1px solid rgba(196,135,122,0.3); color: #8a4a3a; }
+  .feedback-title { font-weight: 600; margin-bottom: 0.3rem; font-family: 'Playfair Display', serif; }
+
+  .next-btn {
+    margin-top: 1rem;
+    background: var(--sage);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    transition: all 0.2s;
+    display: none;
+  }
+  .next-btn:hover { background: var(--sage-dark); }
+
+  /* ——— KNOWLEDGE CARDS ——— */
+  .knowledge-section { margin-bottom: 1.5rem; }
+  .knowledge-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--brown);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .flip-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .flip-card {
+    height: 130px;
+    perspective: 800px;
+    cursor: pointer;
+  }
+  .flip-inner {
+    width: 100%; height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(0.4,0.2,0.2,1);
+  }
+  .flip-card:hover .flip-inner, .flip-card.flipped .flip-inner {
+    transform: rotateY(180deg);
+  }
+  .flip-front, .flip-back {
+    position: absolute; inset: 0;
+    backface-visibility: hidden;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    padding: 0.75rem;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  .flip-front {
+    background: white;
+    font-family: 'Playfair Display', serif;
+    color: var(--brown);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .flip-back {
+    background: var(--sage);
+    color: white;
+    transform: rotateY(180deg);
+    font-size: 0.85rem;
+    font-weight: 300;
+  }
+  .flip-card .flip-hint {
+    position: absolute;
+    bottom: 0.4rem; right: 0.5rem;
+    font-size: 0.65rem;
+    color: var(--text-light);
+    font-family: 'DM Mono', monospace;
+    z-index: 1;
+  }
+
+  /* ——— COMPARISON TABLE ——— */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .compare-table th {
+    background: var(--sage);
+    color: white;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-weight: 400;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+  .compare-table td {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .compare-table tr:nth-child(even) td { background: rgba(245,240,232,0.5); }
+  .compare-table tr:hover td { background: rgba(122,158,135,0.07); }
+
+  /* ——— MNEMONIC CARDS ——— */
+  .mnemonic-box {
+    background: linear-gradient(135deg, rgba(155,143,176,0.12) 0%, rgba(122,158,135,0.08) 100%);
+    border: 1px solid var(--lavender-light);
+    border-radius: 8px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .mnemonic-acronym {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--lavender);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+  }
+  .mnemonic-items { display: flex; flex-direction: column; gap: 0.3rem; }
+  .mnemonic-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.95rem; }
+  .mnemonic-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--lavender);
+    font-weight: 600;
+    width: 1.2rem;
+  }
+
+  /* ——— SIDEBAR ——— */
+  .sidebar { display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .sidebar-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px var(--shadow);
+  }
+  .sidebar-card-header {
+    padding: 0.75rem 1rem;
+    background: var(--brown);
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .sidebar-card-body { padding: 1rem; }
+
+  /* Progress tracker */
+  .progress-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .progress-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.88rem;
+    color: var(--text-light);
+    padding: 0.4rem 0.5rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+  .progress-item:hover { background: var(--cream); }
+  .progress-item.done { color: var(--sage-dark); }
+  .progress-item.active-item { background: rgba(122,158,135,0.1); color: var(--sage-dark); font-weight: 600; }
+  .progress-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex: 0 0 10px;
+  }
+  .progress-item.done .progress-dot { background: var(--sage); border-color: var(--sage-dark); }
+  .progress-item.active-item .progress-dot { background: var(--amber); border-color: var(--amber); }
+
+  /* Care notes */
+  .care-note {
+    display: flex; gap: 0.6rem;
+    font-size: 0.88rem;
+    color: var(--text);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+  }
+  .care-note:last-child { border-bottom: none; padding-bottom: 0; }
+  .note-icon { flex: 0 0 auto; margin-top: 1px; }
+
+  /* Score bar */
+  .score-bar-wrap { margin-bottom: 0.5rem; }
+  .score-label { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-light); margin-bottom: 0.3rem; font-family: 'DM Mono', monospace; }
+  .score-bar { height: 6px; background: var(--cream); border-radius: 3px; overflow: hidden; }
+  .score-fill { height: 100%; background: linear-gradient(90deg, var(--sage), var(--sage-dark)); border-radius: 3px; transition: width 0.5s ease; }
+
+  /* ——— STAGES GRIEF ——— */
+  .stages-list { display: flex; flex-direction: column; gap: 0; }
+  .stage-item {
+    display: flex; align-items: stretch; gap: 0;
+    cursor: pointer;
+  }
+  .stage-line-wrap {
+    display: flex; flex-direction: column; align-items: center;
+    width: 32px; flex: 0 0 32px;
+  }
+  .stage-dot-outer {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    background: white;
+    transition: all 0.2s;
+    flex: 0 0 20px;
+    margin-top: 1rem;
+  }
+  .stage-dot-inner {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background 0.2s;
+  }
+  .stage-connector { flex: 1; width: 2px; background: var(--border); margin: 2px 0; }
+  .stage-item:last-child .stage-connector { display: none; }
+
+  .stage-content {
+    flex: 1;
+    padding: 0.75rem 0.75rem 0.75rem 0;
+    border-radius: 6px;
+    margin: 0.3rem 0;
+    transition: background 0.2s;
+  }
+  .stage-item:hover .stage-content { background: rgba(122,158,135,0.06); }
+  .stage-item.open .stage-dot-outer { border-color: var(--sage); }
+  .stage-item.open .stage-dot-inner { background: var(--sage); }
+  .stage-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--brown); }
+  .stage-desc {
+    font-size: 0.85rem; color: var(--text-light);
+    margin-top: 0.3rem;
+    line-height: 1.5;
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .stage-item.open .stage-desc { max-height: 100px; }
+
+  /* ——— SYMPTOM ASSESSMENT ——— */
+  .symptom-slider-group { display: flex; flex-direction: column; gap: 1rem; }
+  .symptom-row { }
+  .symptom-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
+  .symptom-name { font-size: 0.9rem; color: var(--text); }
+  .symptom-val { font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--text-light); }
+  input[type=range] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 4px;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--sage);
+    border: 2px solid white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+  }
+  input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.3); }
+  .symptom-action {
+    margin-top: 0.4rem;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--sage-dark);
+    padding: 0.3rem 0.5rem;
+    background: rgba(122,158,135,0.08);
+    border-radius: 4px;
+    display: none;
+  }
+
+  /* ——— QUIZ MODAL ——— */
+  .quiz-modal {
+    position: fixed; inset: 0;
+    background: rgba(45,42,37,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 50;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .quiz-modal.open { opacity: 1; pointer-events: all; }
+  .quiz-modal-inner {
+    background: var(--warm-white);
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    transform: translateY(20px);
+    transition: transform 0.3s;
+  }
+  .quiz-modal.open .quiz-modal-inner { transform: translateY(0); }
+  .quiz-modal-header {
+    padding: 1.2rem 1.5rem;
+    background: var(--brown);
+    color: var(--cream);
+    display: flex; justify-content: space-between; align-items: center;
+    border-radius: 10px 10px 0 0;
+  }
+  .quiz-modal-header h2 { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+  .quiz-close {
+    background: none; border: none; color: var(--cream);
+    font-size: 1.3rem; cursor: pointer; opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .quiz-close:hover { opacity: 1; }
+  .quiz-modal-body { padding: 1.5rem; }
+
+  /* ——— TOAST ——— */
+  .toast {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    z-index: 200;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    max-width: 300px;
+    line-height: 1.4;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ——— SCROLLBAR ——— */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(90,70,50,0.2); border-radius: 3px; }
+
+  /* XP badge */
+  .xp-badge {
+    position: fixed;
+    top: 5rem; right: 1.5rem;
+    background: var(--amber);
+    color: white;
+    font-family: 'DM Mono', monospace;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    z-index: 30;
+    opacity: 0;
+    transform: translateY(-20px) scale(0.8);
+    transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    pointer-events: none;
+  }
+  .xp-badge.show { opacity: 1; transform: translateY(0) scale(1); }
+</style>
+</head>
+<body>
+
+<!-- INTRO SCREEN -->
+<div id="intro-screen">
+  <div class="intro-content">
+    <div class="intro-icon">🕯️</div>
+    <h1 class="intro-title">Home Hospice</h1>
+    <p class="intro-subtitle">Palliative & End-of-Life Nursing</p>
+    <p class="intro-desc">You are a hospice nurse making your rounds. Step into each patient's home, assess their needs, make care decisions, and deepen your understanding of compassionate end-of-life nursing.</p>
+    <button class="intro-btn" onclick="startApp()">Begin Your Rounds →</button>
+  </div>
+</div>
+
+<!-- XP BADGE -->
+<div class="xp-badge" id="xpBadge">+10 XP</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-brand">
+    <div class="brand-icon">🏠</div>
+    <div class="brand-text">
+      <h1>Home Hospice Rounds</h1>
+      <p>Palliative & End-of-Life Care</p>
+    </div>
+  </div>
+  <div class="header-stats">
+    <div class="stat-chip">✨ <span>XP:</span> <span class="stat-value" id="xpCount">0</span></div>
+    <div class="stat-chip">✅ <span>Correct:</span> <span class="stat-value" id="correctCount">0</span></div>
+    <div class="stat-chip">📋 <span>Rooms:</span> <span class="stat-value" id="roomCount">0/6</span></div>
+  </div>
+</header>
+
+<!-- ROOM NAV -->
+<nav class="room-nav">
+  <button class="room-btn active" onclick="showRoom('room-palliative')">🏥 Palliative Foundations</button>
+  <button class="room-btn" onclick="showRoom('room-hospice')">🕯️ Hospice vs Palliative</button>
+  <button class="room-btn" onclick="showRoom('room-symptoms')">💊 Symptom Management</button>
+  <button class="room-btn" onclick="showRoom('room-grief')">💙 Grief & Loss</button>
+  <button class="room-btn" onclick="showRoom('room-ethics')">⚖️ Ethics & Legal</button>
+  <button class="room-btn" onclick="showRoom('room-postmortem')">🌸 Postmortem & Self-Care</button>
+</nav>
+
+<!-- MAIN -->
+<div class="main-container">
+  <div class="content-area">
+
+    <!-- ROOM 1: PALLIATIVE FOUNDATIONS -->
+    <div id="room-palliative" class="room-panel active">
+      <div class="patient-scene">
+        <div class="scene-header">
+          <div class="scene-header-left">
+            <div class="patient-avatar">👴</div>
+            <div>
+              <div class="patient-name">Mr. Harold, 74</div>
+              <div class="patient-meta">Stage IV Lung Cancer · Home Visit #1</div>
+            </div>
+          </div>
+          <span class="status-badge status-stable">Stable</span>
+        </div>
+        <div class="scene-body">
+          <p class="scene-description">
+            You arrive at Mr. Harold's home. He's sitting in his favorite armchair by the window. His daughter greets you at the door — she looks exhausted. Mr. Harold has been on palliative care for 3 months while continuing chemotherapy. He tells you he feels hopeful but his pain has been a "6/10" all week.
+          </p>
+          <div class="vitals-strip">
+            <div class="vital"><div class="vital-label">Pain</div><div class="vital-value concern">6/10</div></div>
+            <div class="vital"><div class="vital-label">BP</div><div class="vital-value ok">118/74</div></div>
+            <div class="vital"><div class="vital-label">RR</div><div class="vital-value ok">16</div></div>
+            <div class="vital"><div class="vital-label">SpO2</div><div class="vital-value ok">94%</div></div>
+            <div class="vital"><div class="vital-label">Anxiety</div><div class="vital-value concern">Moderate</div></div>
+          </div>
+
+          <p class="action-prompt">❓ Mr. Harold asks: "My doctor said I'm getting palliative care — does that mean they've given up on me?" What is your best response?</p>
+          <div class="action-choices" id="q1-choices">
+            <button class="choice-btn" onclick="answer(this, 'q1', false, 'This dismisses his concern and is not therapeutic. Always acknowledge his feelings first.')">
+              <span class="choice-letter">A</span>
+              "Don't worry, it just means we're managing symptoms."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q1', true, 'Correct! Palliative care begins at diagnosis and CAN run alongside curative treatment. This is a key concept — palliative care is not giving up, it\'s adding a layer of comfort and support. Your response validates his concern and educates accurately.')">
+              <span class="choice-letter">B</span>
+              "Palliative care focuses on your quality of life and can happen at the same time as your chemotherapy — it's about supporting you through this, not giving up."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q1', false, 'This response avoids the question and may increase his anxiety. Address his specific concern directly.')">
+              <span class="choice-letter">C</span>
+              "You should ask your doctor about that at your next appointment."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q1', false, 'Palliative care does NOT wait for end-stage disease — it can begin at diagnosis. This answer perpetuates a dangerous misconception.')">
+              <span class="choice-letter">D</span>
+              "Palliative care is for when treatment has stopped working."
+            </button>
+          </div>
+          <div class="feedback-box" id="q1-feedback"></div>
+          <button class="next-btn" id="q1-next" onclick="loadQ2()">Next scenario →</button>
+        </div>
+      </div>
+
+      <div id="q2-scene" style="display:none">
+        <div class="patient-scene">
+          <div class="scene-header">
+            <div class="scene-header-left">
+              <div class="patient-avatar">👴</div>
+              <div>
+                <div class="patient-name">Mr. Harold, 74</div>
+                <div class="patient-meta">Holistic Assessment</div>
+              </div>
+            </div>
+            <span class="status-badge status-concern">Assessment Needed</span>
+          </div>
+          <div class="scene-body">
+            <p class="scene-description">Mr. Harold mentions he's been snapping at his daughter and feels guilty. He asks if his pain medication will "dull his mind." His daughter privately tells you they're worried about money since he can no longer work.</p>
+            <p class="action-prompt">❓ Using the "Total Pain" model, which domains of suffering are present for Mr. Harold? (Select all that apply — click each that applies)</p>
+            <div class="action-choices" id="q2-choices">
+              <button class="choice-btn" onclick="toggleMulti(this)" data-correct="true">
+                <span class="choice-letter">A</span>Physical — uncontrolled pain rating 6/10
+              </button>
+              <button class="choice-btn" onclick="toggleMulti(this)" data-correct="true">
+                <span class="choice-letter">B</span>Psychological — guilt, worry about medications affecting cognition
+              </button>
+              <button class="choice-btn" onclick="toggleMulti(this)" data-correct="true">
+                <span class="choice-letter">C</span>Social — family stress, financial strain
+              </button>
+              <button class="choice-btn" onclick="toggleMulti(this)" data-correct="true">
+                <span class="choice-letter">D</span>Spiritual — sense of being a burden, meaning of illness
+              </button>
+            </div>
+            <button class="next-btn" style="display:block;margin-top:1rem" onclick="revealTotalPain()">Reveal Assessment ✓</button>
+            <div class="feedback-box" id="q2-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="knowledge-section">
+        <div class="knowledge-title">📚 Key Concepts — Flip to Review</div>
+        <div class="flip-card-grid">
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">What is the PRIMARY focus of palliative care?<span class="flip-hint">hover/tap</span></div>
+              <div class="flip-back">Quality of life — NOT curing disease. It addresses physical, psychological, social, and spiritual suffering.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">When does palliative care begin?</div>
+              <div class="flip-back">At the time of diagnosis! It can run alongside curative treatment at any illness stage.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">What is "Total Pain"?</div>
+              <div class="flip-back">Suffering in 4 domains: Physical, Psychological, Social, Spiritual. Think: PPSS</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">What is the Palliative Performance Scale (PPS)?</div>
+              <div class="flip-back">An assessment tool measuring functional status in palliative patients — mobility, activity, self-care, intake, consciousness.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">What's the nurse's key role in palliative care?</div>
+              <div class="flip-back">Advocate, holistic assessor, symptom manager, care coordinator, family supporter, and cultural bridge — nurses spend the MOST time with patients.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Name 3 tools used in palliative assessment</div>
+              <div class="flip-back">1. Pain scales 2. Palliative Performance Scale (PPS) 3. Edmonton Symptom Assessment System (ESAS)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROOM 2: HOSPICE VS PALLIATIVE -->
+    <div id="room-hospice" class="room-panel">
+      <div class="patient-scene">
+        <div class="scene-header">
+          <div class="scene-header-left">
+            <div class="patient-avatar">👵</div>
+            <div>
+              <div class="patient-name">Mrs. Evelyn, 81</div>
+              <div class="patient-meta">Advanced Heart Failure · Transitioning to Hospice</div>
+            </div>
+          </div>
+          <span class="status-badge status-comfort">Comfort Focus</span>
+        </div>
+        <div class="scene-body">
+          <p class="scene-description">Mrs. Evelyn's cardiologist has estimated she has approximately 4–5 months to live. Her family is considering transitioning from palliative care to hospice. Her son is upset and asks: "Why would we stop her heart medications?"</p>
+          <div class="vitals-strip">
+            <div class="vital"><div class="vital-label">Dyspnea</div><div class="vital-value concern">Severe</div></div>
+            <div class="vital"><div class="vital-label">Edema</div><div class="vital-value concern">3+</div></div>
+            <div class="vital"><div class="vital-label">Pain</div><div class="vital-value concern">4/10</div></div>
+            <div class="vital"><div class="vital-label">Fatigue</div><div class="vital-value concern">Severe</div></div>
+          </div>
+
+          <p class="action-prompt">❓ Mrs. Evelyn's son asks: "Is she eligible for hospice? She just had a cardiology appointment last week." What do you tell him?</p>
+          <div class="action-choices" id="q3-choices">
+            <button class="choice-btn" onclick="answer(this, 'q3', false, 'Hospice eligibility is NOT based on whether curative appointments have stopped — it\'s based on prognosis and physician certification.')">
+              <span class="choice-letter">A</span>
+              "She can't be on hospice if she's still seeing specialists."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q3', false, 'This is only partially true. The 6-month prognosis must be certified by a physician — patient or family preference alone is not enough.')">
+              <span class="choice-letter">B</span>
+              "If she wants to be on hospice, she can enroll anytime."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q3', true, 'Correct! Hospice eligibility requires: a serious progressive illness, physician certification of terminal illness, AND a life expectancy of ≤6 months. Mrs. Evelyn meets these criteria. On hospice, the focus shifts to COMFORT — curative treatments are stopped, but medications for symptom management continue.')">
+              <span class="choice-letter">C</span>
+              "Hospice is available when a physician certifies a prognosis of 6 months or less. Her focus would shift to comfort — some medications may continue for symptom control."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q3', false, 'Hospice does NOT require a 3-month wait period. Enrollment can happen when criteria are met.')">
+              <span class="choice-letter">D</span>
+              "She must wait at least 3 more months before hospice will consider her."
+            </button>
+          </div>
+          <div class="feedback-box" id="q3-feedback"></div>
+          <button class="next-btn" id="q3-next" onclick="document.getElementById('compare-table-section').style.display='block'">See Comparison Chart →</button>
+        </div>
+      </div>
+
+      <div id="compare-table-section" style="display:none" class="knowledge-section">
+        <div class="knowledge-title">📊 Palliative Care vs. Hospice — Side by Side</div>
+        <table class="compare-table">
+          <tr><th>Feature</th><th>🏥 Palliative Care</th><th>🕯️ Hospice Care</th></tr>
+          <tr><td><strong>Focus</strong></td><td>Symptom management + quality of life</td><td>Comfort during the dying process</td></tr>
+          <tr><td><strong>Curative Treatment</strong></td><td>May continue alongside</td><td>Curative treatment is stopped</td></tr>
+          <tr><td><strong>Prognosis Required</strong></td><td>No requirement</td><td>Terminal illness diagnosis</td></tr>
+          <tr><td><strong>Life Expectancy</strong></td><td>Any stage of illness</td><td>Usually ≤ 6 months</td></tr>
+          <tr><td><strong>Setting</strong></td><td>Hospital, clinic, or home</td><td>Home, hospice center, or hospital</td></tr>
+          <tr><td><strong>Goal</strong></td><td>Quality of life alongside treatment</td><td>Dignity, comfort, peaceful death</td></tr>
+        </table>
+        <div class="mnemonic-box">
+          <div class="mnemonic-acronym">🔑 CRITICAL</div>
+          <p style="font-size:0.95rem; line-height:1.6; color:var(--text);">
+            <strong>"All hospice care is palliative care, but not all palliative care is hospice."</strong><br>
+            <span style="color:var(--text-light); font-size:0.9rem; font-style:italic;">This is a guaranteed NCLEX concept. Hospice is a SUBSET of palliative care.</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="knowledge-section">
+        <div class="knowledge-title">💭 Patient Preferences at End of Life</div>
+        <div class="flip-card-grid">
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Most common patient wish at end of life?</div>
+              <div class="flip-back">To die at home, free from pain, with dignity, and without being a burden to family.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Where do most deaths still occur?</div>
+              <div class="flip-back">In hospitals — despite most patients wishing to die at home. Nurses must assess and advocate for patient preferences.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">What must nurses assess at end of life?</div>
+              <div class="flip-back">Goals of care, treatment preferences (DNR, no tube feeding, etc.), AND preferred location for death.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROOM 3: SYMPTOMS -->
+    <div id="room-symptoms" class="room-panel">
+      <div class="patient-scene">
+        <div class="scene-header">
+          <div class="scene-header-left">
+            <div class="patient-avatar">🧓</div>
+            <div>
+              <div class="patient-name">Mr. Thomas, 68</div>
+              <div class="patient-meta">End-Stage COPD · Active Dying</div>
+            </div>
+          </div>
+          <span class="status-badge status-concern">Needs Intervention</span>
+        </div>
+        <div class="scene-body">
+          <p class="scene-description">You enter Mr. Thomas's bedroom. He's in his bed, breathing laboriously. His wife stands close, holding his hand. He is grimacing, restless, and has audible gurgling secretions. His wife is distressed by the breathing sounds.</p>
+          <div class="vitals-strip">
+            <div class="vital"><div class="vital-label">Dyspnea</div><div class="vital-value concern">Severe</div></div>
+            <div class="vital"><div class="vital-label">Secretions</div><div class="vital-value concern">Audible</div></div>
+            <div class="vital"><div class="vital-label">Pain</div><div class="vital-value concern">8/10</div></div>
+            <div class="vital"><div class="vital-label">Delirium</div><div class="vital-value concern">Present</div></div>
+            <div class="vital"><div class="vital-label">Anxiety</div><div class="vital-value concern">High</div></div>
+          </div>
+
+          <div class="knowledge-title" style="margin-bottom:1rem">🎛️ Interactive ESAS — Rate Symptoms & See Interventions</div>
+          <div class="symptom-slider-group">
+            <div class="symptom-row">
+              <div class="symptom-header"><span class="symptom-name">😣 Pain</span><span class="symptom-val" id="pain-val">0</span></div>
+              <input type="range" min="0" max="10" value="0" oninput="updateSymptom('pain', this.value)" style="background: linear-gradient(90deg, var(--sage) 0%, var(--dusty-rose) 100%)">
+              <div class="symptom-action" id="pain-action">▶ Administer opioids (morphine) as prescribed · Reposition for comfort · Apply heat therapy · Relaxation techniques</div>
+            </div>
+            <div class="symptom-row">
+              <div class="symptom-header"><span class="symptom-name">💨 Dyspnea</span><span class="symptom-val" id="dyspnea-val">0</span></div>
+              <input type="range" min="0" max="10" value="0" oninput="updateSymptom('dyspnea', this.value)" style="background: linear-gradient(90deg, var(--sage) 0%, var(--dusty-rose) 100%)">
+              <div class="symptom-action" id="dyspnea-action">▶ Elevate HOB · Fan or cool air to face · Administer opioids if prescribed · Supplemental O₂ · Calm environment</div>
+            </div>
+            <div class="symptom-row">
+              <div class="symptom-header"><span class="symptom-name">😰 Anxiety</span><span class="symptom-val" id="anxiety-val">0</span></div>
+              <input type="range" min="0" max="10" value="0" oninput="updateSymptom('anxiety', this.value)" style="background: linear-gradient(90deg, var(--sage) 0%, var(--dusty-rose) 100%)">
+              <div class="symptom-action" id="anxiety-action">▶ Emotional support and presence · Anti-anxiety medications (lorazepam) · Calm, quiet environment · Family at bedside · Soft music</div>
+            </div>
+            <div class="symptom-row">
+              <div class="symptom-header"><span class="symptom-name">🌀 Delirium</span><span class="symptom-val" id="delirium-val">0</span></div>
+              <input type="range" min="0" max="10" value="0" oninput="updateSymptom('delirium', this.value)" style="background: linear-gradient(90deg, var(--sage) 0%, var(--dusty-rose) 100%)">
+              <div class="symptom-action" id="delirium-action">▶ Reorient gently and frequently · Keep familiar faces present · Minimize sensory overload · Haloperidol if prescribed · Adequate lighting</div>
+            </div>
+          </div>
+
+          <div style="margin-top:1.5rem">
+          <p class="action-prompt">❓ Mr. Thomas's wife is upset by the gurgling breathing sounds ("death rattle"). What is your best response?</p>
+          <div class="action-choices" id="q4-choices">
+            <button class="choice-btn" onclick="answer(this, 'q4', false, 'Suctioning actually increases stimulation and distress — it does NOT effectively clear secretions at end of life and should be avoided.')">
+              <span class="choice-letter">A</span>"I'll suction him right away to clear those secretions."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q4', false, 'This response dismisses her concern and is not therapeutic. Validate feelings before explaining.')">
+              <span class="choice-letter">B</span>"That sound is normal, don't worry about it."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q4', true, 'Correct! The "death rattle" is caused by secretions pooling in the throat as the cough reflex weakens. Repositioning (lateral/semi-prone) helps. Anticholinergics (glycopyrrolate) can reduce secretions. MOST IMPORTANTLY — validate her feelings, educate, and reassure that Thomas is not in distress from the sound itself.')">
+              <span class="choice-letter">C</span>"That sound can be frightening to hear. It\'s caused by secretions — repositioning him may help, and I can speak to the team about a medication to reduce secretions. He is not suffering from the sound itself."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q4', false, 'Increasing fluids at end of life can worsen secretions, edema, and respiratory distress — this is the OPPOSITE of appropriate care.')">
+              <span class="choice-letter">D</span>"He needs more IV fluids to thin those secretions."
+            </button>
+          </div>
+          <div class="feedback-box" id="q4-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="knowledge-section">
+        <div class="mnemonic-box">
+          <div class="mnemonic-acronym">PADAS</div>
+          <p style="font-size:0.8rem; color:var(--text-light); margin-bottom:0.75rem; font-style:italic;">End-of-Life Symptom Priority Mnemonic</p>
+          <div class="mnemonic-items">
+            <div class="mnemonic-item"><span class="mnemonic-letter">P</span>ain</div>
+            <div class="mnemonic-item"><span class="mnemonic-letter">A</span>irway / Dyspnea</div>
+            <div class="mnemonic-item"><span class="mnemonic-letter">D</span>elirium</div>
+            <div class="mnemonic-item"><span class="mnemonic-letter">A</span>nxiety</div>
+            <div class="mnemonic-item"><span class="mnemonic-letter">S</span>ecretions</div>
+          </div>
+        </div>
+
+        <div class="knowledge-title" style="margin-top:1rem">💧 Artificial Hydration at End of Life — NCLEX TRAP</div>
+        <div class="flip-card-grid">
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Is loss of appetite normal at end of life?</div>
+              <div class="flip-back">YES — it is a natural part of the dying process. Do NOT force fluids or nutrition.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">What are complications of artificial hydration at EOL?</div>
+              <div class="flip-back">Fluid overload · Increased secretions · Nausea · Edema · Respiratory distress — MORE harm than good!</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">What SHOULD you do instead of forcing fluids?</div>
+              <div class="flip-back">Oral care · Moisten mouth · Apply lip balm · Small ice chips — comfort measures only.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROOM 4: GRIEF -->
+    <div id="room-grief" class="room-panel">
+      <div class="patient-scene">
+        <div class="scene-header">
+          <div class="scene-header-left">
+            <div class="patient-avatar">👩</div>
+            <div>
+              <div class="patient-name">Sandra, 45</div>
+              <div class="patient-meta">Bereaved Daughter · Post-loss Visit</div>
+            </div>
+          </div>
+          <span class="status-badge status-comfort">Grief Support</span>
+        </div>
+        <div class="scene-body">
+          <p class="scene-description">You return to the home three weeks after Mrs. Evelyn's death. Her daughter Sandra answers the door in pajamas. She says she hasn't been sleeping, feels numb, and cries "at random things." She cancelled her mother's birthday lunch that she had planned — "it felt wrong to celebrate anything." Her sister hasn't called in two weeks.</p>
+
+          <p class="action-prompt">❓ Sandra says: "I think something is wrong with me. I still cry every day and I can't concentrate at work." What do you tell her?</p>
+          <div class="action-choices" id="q5-choices">
+            <button class="choice-btn" onclick="answer(this, 'q5', false, 'Complicated grief involves prolonged, disruptive grief — 3 weeks does not meet criteria. Labeling normal grief as pathological is harmful.')">
+              <span class="choice-letter">A</span>"This sounds like complicated grief — I\'ll refer you to a psychiatrist."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q5', false, 'This is dismissive and uses a non-therapeutic cliché. Avoid "everything happens for a reason" and "you\'ll get over it" type statements.')">
+              <span class="choice-letter">B</span>"Give it time — these feelings will pass."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q5', true, 'Correct! Normal (uncomplicated) grief can include crying, sleep disturbances, cognitive fog, appetite changes, and withdrawal — for weeks to months. Validating these responses and normalizing them is therapeutic. Grief varies widely and does not follow a timeline.')">
+              <span class="choice-letter">C</span>"What you\'re experiencing — the tears, trouble sleeping, difficulty concentrating — are all normal grief responses. Grief affects people differently and there\'s no set timeline. Would you like to tell me more about how you\'ve been feeling?"
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q5', false, 'Grief counseling may be offered, but this response skips validating her feelings first. Therapeutic communication comes BEFORE referrals.')">
+              <span class="choice-letter">D</span>"I\'ll set you up with our grief counselor today."
+            </button>
+          </div>
+          <div class="feedback-box" id="q5-feedback"></div>
+        </div>
+      </div>
+
+      <div class="knowledge-section">
+        <div class="knowledge-title">🌊 Kübler-Ross Stages of Grief</div>
+        <div class="stages-list">
+          <div class="stage-item" onclick="this.classList.toggle('open')">
+            <div class="stage-line-wrap"><div class="stage-dot-outer"><div class="stage-dot-inner"></div></div><div class="stage-connector"></div></div>
+            <div class="stage-content"><div class="stage-title">1. Denial</div><div class="stage-desc">"This can't be real." A protective mechanism that buffers the initial shock. Example: "The test results must be wrong."</div></div>
+          </div>
+          <div class="stage-item" onclick="this.classList.toggle('open')">
+            <div class="stage-line-wrap"><div class="stage-dot-outer"><div class="stage-dot-inner"></div></div><div class="stage-connector"></div></div>
+            <div class="stage-content"><div class="stage-title">2. Anger</div><div class="stage-desc">"Why me? This isn't fair!" Anger may be directed at God, family, medical staff, or the deceased. Nurses should not take it personally.</div></div>
+          </div>
+          <div class="stage-item" onclick="this.classList.toggle('open')">
+            <div class="stage-line-wrap"><div class="stage-dot-outer"><div class="stage-dot-inner"></div></div><div class="stage-connector"></div></div>
+            <div class="stage-content"><div class="stage-title">3. Bargaining</div><div class="stage-desc">"If I get better, I'll change my ways." Often involves "what if" or "if only" thinking. May reflect guilt or spiritual negotiation.</div></div>
+          </div>
+          <div class="stage-item" onclick="this.classList.toggle('open')">
+            <div class="stage-line-wrap"><div class="stage-dot-outer"><div class="stage-dot-inner"></div></div><div class="stage-connector"></div></div>
+            <div class="stage-content"><div class="stage-title">4. Depression</div><div class="stage-desc">Deep sadness, withdrawal, crying. Anticipatory grief is common — patient and family may grieve before death occurs.</div></div>
+          </div>
+          <div class="stage-item" onclick="this.classList.toggle('open')">
+            <div class="stage-line-wrap"><div class="stage-dot-outer"><div class="stage-dot-inner"></div></div><div class="stage-connector"></div></div>
+            <div class="stage-content"><div class="stage-title">5. Acceptance</div><div class="stage-desc">"I'm ready." Not necessarily happy, but at peace. Not everyone reaches this stage, and that's okay.</div></div>
+          </div>
+        </div>
+        <div style="margin-top:0.75rem; padding:0.75rem; background:rgba(196,135,122,0.1); border-radius:6px; font-size:0.88rem; color:#8a4a3a; border:1px solid rgba(196,135,122,0.2);">
+          ⚠️ <strong>NCLEX Alert:</strong> Stages do NOT occur in order · May repeat · Not everyone experiences all stages · Grief has no timeline
+        </div>
+
+        <div class="knowledge-title" style="margin-top:1.5rem">Types of Grief — Flip to Review</div>
+        <div class="flip-card-grid">
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Anticipatory Grief</div>
+              <div class="flip-back">Grief that occurs BEFORE the death, common with terminal illness. Patient and family grieve the expected loss.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Disenfranchised Grief</div>
+              <div class="flip-back">Loss that is not socially recognized. Examples: miscarriage, death of ex-spouse, pet loss, suicide loss.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Complicated Grief</div>
+              <div class="flip-back">Abnormal grief — persists long-term, disrupts daily functioning, may involve severe depression. Requires professional support.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">What to SAY to grieving families</div>
+              <div class="flip-back">"Tell me how you're feeling." · "I'm here with you." · "Would you like to tell me about them?" · Allow silence.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">What NOT to say</div>
+              <div class="flip-back">❌ "Everything happens for a reason" ❌ "You'll get over it" ❌ "They're in a better place" ❌ "At least they lived a long life"</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Physical signs of grief</div>
+              <div class="flip-back">Fatigue · Sleep disturbances · Appetite changes · Physical chest pain · Sighing · Crying · Muscle weakness</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROOM 5: ETHICS & LEGAL -->
+    <div id="room-ethics" class="room-panel">
+      <div class="patient-scene">
+        <div class="scene-header">
+          <div class="scene-header-left">
+            <div class="patient-avatar">👨</div>
+            <div>
+              <div class="patient-name">Mr. James, 59</div>
+              <div class="patient-meta">ALS · Advance Directives Discussion</div>
+            </div>
+          </div>
+          <span class="status-badge status-stable">Planning Visit</span>
+        </div>
+        <div class="scene-body">
+          <p class="scene-description">Mr. James was recently diagnosed with ALS. He is cognitively intact and wants to discuss his wishes "while he still can." He tells you, "I never want to be kept alive by machines." His wife, however, says she "could never agree to that."</p>
+
+          <p class="action-prompt">❓ Mr. James asks you to explain the difference between a Living Will and a Durable Power of Attorney for Healthcare. What do you tell him?</p>
+          <div class="action-choices" id="q6-choices">
+            <button class="choice-btn" onclick="answer(this, 'q6', false, 'A DPOA designates a PERSON — not a facility. And a Living Will specifies treatment wishes, not just DNR status.')">
+              <span class="choice-letter">A</span>"A Living Will is your DNR order, and a DPOA is for a nursing home to make decisions."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q6', false, 'A Living Will specifies what treatments to have OR refuse — not just which ones to receive.')">
+              <span class="choice-letter">B</span>"A Living Will lists all the treatments you want, and a DPOA means your wife has to agree with your doctor."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q6', true, 'Correct! Living Will = written document specifying what treatments you want OR refuse if you cannot communicate (e.g., no mechanical ventilation, no artificial nutrition). DPOA for Healthcare = designates a trusted person to make decisions on your behalf when you are incapacitated. Both are critical advance directives — nurses advocate for these to be completed early.')">
+              <span class="choice-letter">C</span>"A Living Will is a written document where you specify which treatments you want or refuse if you can no longer communicate. A Durable Power of Attorney designates a person you trust to make healthcare decisions for you."
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q6', false, 'These are two separate documents with distinct legal purposes. They work together but are not interchangeable.')">
+              <span class="choice-letter">D</span>"They\'re basically the same thing — you only need one of them."
+            </button>
+          </div>
+          <div class="feedback-box" id="q6-feedback"></div>
+        </div>
+      </div>
+
+      <div class="knowledge-section">
+        <div class="knowledge-title">⚖️ Legal Documents — Flip to Review</div>
+        <div class="flip-card-grid">
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Living Will</div>
+              <div class="flip-back">Written document specifying treatments wanted OR refused when patient cannot communicate. Covers: ventilation, artificial nutrition, CPR.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Durable Power of Attorney for Healthcare</div>
+              <div class="flip-back">Designates a trusted person (healthcare proxy) to make medical decisions when patient is incapacitated.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Dying Patient's Bill of Rights — 3 key ones</div>
+              <div class="flip-back">Right to: be treated as a living human until death · participate in care decisions · die with dignity and free from pain · not die alone.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">When should advance directives be completed?</div>
+              <div class="flip-back">EARLY — ideally before health crises. While patient is cognitively intact and can express their own wishes. Nurses must advocate for this.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="knowledge-title" style="margin-top:1.5rem">🤝 Interprofessional Team in Palliative Care</div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(130px,1fr)); gap:0.6rem; margin-top:0.75rem">
+          <div style="background:white;border:1px solid var(--border);border-radius:6px;padding:0.6rem;text-align:center;font-size:0.85rem">👩‍⚕️<br>Nurse<br><span style="font-size:0.75rem;color:var(--sage-dark)">Care coordinator</span></div>
+          <div style="background:white;border:1px solid var(--border);border-radius:6px;padding:0.6rem;text-align:center;font-size:0.85rem">👨‍⚕️<br>Physician<br><span style="font-size:0.75rem;color:var(--text-light)">Certifies prognosis</span></div>
+          <div style="background:white;border:1px solid var(--border);border-radius:6px;padding:0.6rem;text-align:center;font-size:0.85rem">🧑‍💼<br>Social Worker<br><span style="font-size:0.75rem;color:var(--text-light)">Resources, grief</span></div>
+          <div style="background:white;border:1px solid var(--border);border-radius:6px;padding:0.6rem;text-align:center;font-size:0.85rem">⛪<br>Chaplain<br><span style="font-size:0.75rem;color:var(--text-light)">Spiritual care</span></div>
+          <div style="background:white;border:1px solid var(--border);border-radius:6px;padding:0.6rem;text-align:center;font-size:0.85rem">🧠<br>Psychologist<br><span style="font-size:0.75rem;color:var(--text-light)">Mental health</span></div>
+          <div style="background:white;border:1px solid var(--border);border-radius:6px;padding:0.6rem;text-align:center;font-size:0.85rem">📋<br>Case Mgr<br><span style="font-size:0.75rem;color:var(--text-light)">Coordination</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROOM 6: POSTMORTEM & SELF-CARE -->
+    <div id="room-postmortem" class="room-panel">
+      <div class="patient-scene">
+        <div class="scene-header">
+          <div class="scene-header-left">
+            <div class="patient-avatar">🌸</div>
+            <div>
+              <div class="patient-name">End of Shift</div>
+              <div class="patient-meta">Postmortem Care · Nurse Wellness</div>
+            </div>
+          </div>
+          <span class="status-badge status-comfort">Reflective</span>
+        </div>
+        <div class="scene-body">
+          <p class="scene-description">Mr. Thomas passed away peacefully at 2:14 AM with his wife by his side. You performed postmortem care. As you prepare to leave, you notice you feel emotionally heavy. Your charge nurse checks in: "How are you doing?"</p>
+
+          <p class="action-prompt">❓ After performing postmortem care, which action is MOST appropriate for a nurse experiencing compassion fatigue?</p>
+          <div class="action-choices" id="q7-choices">
+            <button class="choice-btn" onclick="answer(this, 'q7', false, 'Pushing feelings aside and refusing to process them contributes to burnout and worsens compassion fatigue over time.')">
+              <span class="choice-letter">A</span>Continue to the next patient immediately to stay busy and avoid dwelling.
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q7', true, 'Correct! Debriefing with colleagues after patient deaths is a healthy, evidence-based coping strategy. It validates emotions, fosters team support, and is a key protective factor against compassion fatigue and burnout. Nurses who care for the dying MUST have a self-care plan.')">
+              <span class="choice-letter">B</span>Debrief briefly with your charge nurse or colleague to process the experience before moving on.
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q7', false, 'Nurses do not always need a leave of absence — this is an extreme response. Routine debriefing and support are the first line.')">
+              <span class="choice-letter">C</span>Request a leave of absence.
+            </button>
+            <button class="choice-btn" onclick="answer(this, 'q7', false, 'Emotions in hospice care are not a sign of weakness or incompetence — suppressing and hiding them worsens compassion fatigue.')">
+              <span class="choice-letter">D</span>Keep your emotions to yourself so colleagues don't think you can't handle the job.
+            </button>
+          </div>
+          <div class="feedback-box" id="q7-feedback"></div>
+        </div>
+      </div>
+
+      <div class="knowledge-section">
+        <div class="knowledge-title">🌸 Postmortem Care — Nursing Responsibilities</div>
+        <div class="flip-card-grid">
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">First postmortem nursing actions?</div>
+              <div class="flip-back">Confirm death per policy · Provide privacy for family · Remove tubes/lines if allowed · Clean the body.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Postmortem positioning?</div>
+              <div class="flip-back">Close eyes and mouth · Position supine with head slightly elevated · Apply ID tags · Allow family time with the body.</div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-inner">
+              <div class="flip-front">Cultural considerations postmortem</div>
+              <div class="flip-back">Some cultures: require immediate burial · ritual washing by family · family participation in body preparation. Always ask and honor.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="knowledge-title" style="margin-top:1.5rem">💙 Nurse Self-Care — Signs & Strategies</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-top:0.75rem">
+          <div style="background:rgba(196,135,122,0.08); border:1px solid rgba(196,135,122,0.25); border-radius:6px; padding:0.9rem">
+            <div style="font-family:'Playfair Display',serif; font-size:0.95rem; color:#a05a4a; margin-bottom:0.5rem">⚠️ Warning Signs</div>
+            <ul style="font-size:0.85rem; color:var(--text); line-height:1.8; padding-left:1rem">
+              <li>Emotional exhaustion</li>
+              <li>Compassion fatigue</li>
+              <li>Burnout</li>
+              <li>Detachment from patients</li>
+              <li>Dreading work</li>
+            </ul>
+          </div>
+          <div style="background:rgba(122,158,135,0.08); border:1px solid rgba(122,158,135,0.25); border-radius:6px; padding:0.9rem">
+            <div style="font-family:'Playfair Display',serif; font-size:0.95rem; color:var(--sage-dark); margin-bottom:0.5rem">✅ Healthy Coping</div>
+            <ul style="font-size:0.85rem; color:var(--text); line-height:1.8; padding-left:1rem">
+              <li>Debrief with colleagues</li>
+              <li>Seek emotional support</li>
+              <li>Practice self-care rituals</li>
+              <li>Maintain work-life balance</li>
+              <li>Supervision/counseling</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mnemonic-box" style="margin-top:1rem">
+          <div class="mnemonic-acronym" style="font-size:1.3rem; margin-bottom:0.5rem">🏆 High-Yield NCLEX Wrap-Up</div>
+          <div style="font-size:0.9rem; line-height:1.9; color:var(--text)">
+            ✅ Palliative care = quality of life + symptom management<br>
+            ✅ Hospice = terminal illness + ≤6 months prognosis<br>
+            ✅ Loss of appetite during dying = NORMAL<br>
+            ✅ Artificial hydration at EOL = MORE harm<br>
+            ✅ Grief responses vary widely — no set timeline<br>
+            ✅ Therapeutic communication always first<br>
+            ✅ Nurses advocate for dignity, comfort, and patient wishes
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end content-area -->
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">📋 Your Rounds Progress</div>
+      <div class="sidebar-card-body">
+        <div class="progress-list" id="progress-list">
+          <div class="progress-item active-item" data-room="room-palliative"><div class="progress-dot"></div>🏥 Palliative Foundations</div>
+          <div class="progress-item" data-room="room-hospice"><div class="progress-dot"></div>🕯️ Hospice vs Palliative</div>
+          <div class="progress-item" data-room="room-symptoms"><div class="progress-dot"></div>💊 Symptom Management</div>
+          <div class="progress-item" data-room="room-grief"><div class="progress-dot"></div>💙 Grief & Loss</div>
+          <div class="progress-item" data-room="room-ethics"><div class="progress-dot"></div>⚖️ Ethics & Legal</div>
+          <div class="progress-item" data-room="room-postmortem"><div class="progress-dot"></div>🌸 Postmortem & Self-Care</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">📊 Performance</div>
+      <div class="sidebar-card-body">
+        <div class="score-bar-wrap">
+          <div class="score-label"><span>Accuracy</span><span id="accuracy-label">—</span></div>
+          <div class="score-bar"><div class="score-fill" id="accuracy-bar" style="width:0%"></div></div>
+        </div>
+        <div style="margin-top:0.75rem; font-size:0.85rem; color:var(--text-light); text-align:center; font-style:italic">Answer scenarios to track your accuracy</div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">🩺 Care Notes</div>
+      <div class="sidebar-card-body">
+        <div id="care-notes-list">
+          <div class="care-note"><span class="note-icon">📌</span><span>Start your rounds to build care notes for each patient.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">🧠 Quick Mnemonics</div>
+      <div class="sidebar-card-body">
+        <div style="margin-bottom:0.75rem">
+          <div style="font-family:'DM Mono',monospace; font-size:1.1rem; color:var(--lavender); letter-spacing:0.1em; margin-bottom:0.3rem">PPSS</div>
+          <div style="font-size:0.82rem; color:var(--text-light); line-height:1.6">Total Pain Model:<br>Physical · Psychological · Social · Spiritual</div>
+        </div>
+        <div style="border-top:1px solid var(--border); padding-top:0.75rem">
+          <div style="font-family:'DM Mono',monospace; font-size:1.1rem; color:var(--lavender); letter-spacing:0.1em; margin-bottom:0.3rem">PADAS</div>
+          <div style="font-size:0.82rem; color:var(--text-light); line-height:1.6">EOL Priorities:<br>Pain · Airway · Delirium · Anxiety · Secretions</div>
+        </div>
+        <div style="border-top:1px solid var(--border); padding-top:0.75rem; margin-top:0.75rem">
+          <div style="font-size:0.82rem; color:var(--dusty-rose); font-weight:600; margin-bottom:0.3rem">⚠️ NCLEX TRAP</div>
+          <div style="font-size:0.82rem; color:var(--text-light); line-height:1.6">All hospice is palliative — not all palliative is hospice.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  let xp = 0;
+  let correct = 0;
+  let total = 0;
+  let visitedRooms = new Set(['room-palliative']);
+  const careNotes = [];
+
+  function startApp() {
+    const screen = document.getElementById('intro-screen');
+    screen.classList.add('fade-out');
+    setTimeout(() => screen.style.display = 'none', 1000);
+    showToast("Welcome, Nurse! Your first patient is Mr. Harold 🏠");
+  }
+
+  function showRoom(roomId) {
+    document.querySelectorAll('.room-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.room-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(roomId).classList.add('active');
+    const btnIdx = ['room-palliative','room-hospice','room-symptoms','room-grief','room-ethics','room-postmortem'].indexOf(roomId);
+    document.querySelectorAll('.room-btn')[btnIdx].classList.add('active');
+
+    visitedRooms.add(roomId);
+    document.getElementById('roomCount').textContent = visitedRooms.size + '/6';
+    updateProgress(roomId);
+
+    const names = {
+      'room-palliative': 'Entering Mr. Harold\'s home...',
+      'room-hospice': 'Arriving at Mrs. Evelyn\'s home...',
+      'room-symptoms': 'Checking on Mr. Thomas...',
+      'room-grief': 'Visiting Sandra for bereavement support...',
+      'room-ethics': 'Meeting with Mr. James for planning...',
+      'room-postmortem': 'Reflecting after your shift...'
+    };
+    showToast(names[roomId]);
+  }
+
+  function updateProgress(activeRoom) {
+    const items = document.querySelectorAll('.progress-item');
+    items.forEach(item => {
+      item.classList.remove('active-item');
+      if (visitedRooms.has(item.dataset.room) && item.dataset.room !== activeRoom) {
+        item.classList.add('done');
+      }
+      if (item.dataset.room === activeRoom) item.classList.add('active-item');
+    });
+  }
+
+  function answer(btn, qId, isCorrect, feedback) {
+    const choices = document.getElementById(qId + '-choices');
+    choices.querySelectorAll('.choice-btn').forEach(b => b.classList.add('revealed'));
+    btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+
+    const fb = document.getElementById(qId + '-feedback');
+    fb.className = 'feedback-box ' + (isCorrect ? 'correct' : 'incorrect');
+    fb.style.display = 'block';
+    fb.innerHTML = `<div class="feedback-title">${isCorrect ? '✅ Excellent nursing judgment!' : '❌ Not quite — let\'s review:'}</div>${feedback}`;
+
+    total++;
+    if (isCorrect) {
+      correct++;
+      addXP(10);
+      addCareNote(qId, btn.textContent.trim());
+    }
+    updateAccuracy();
+
+    const nextBtn = document.getElementById(qId + '-next');
+    if (nextBtn) nextBtn.style.display = 'inline-block';
+  }
+
+  function toggleMulti(btn) {
+    btn.classList.toggle('correct');
+  }
+
+  function revealTotalPain() {
+    const fb = document.getElementById('q2-feedback');
+    fb.className = 'feedback-box correct';
+    fb.style.display = 'block';
+    fb.innerHTML = '<div class="feedback-title">✅ All 4 domains are present!</div>This is the Total Pain Model — PPSS: Physical (pain 6/10), Psychological (guilt, fear about meds), Social (family tension, financial strain), Spiritual (burden, meaning). A holistic palliative assessment must address ALL four. +10 XP!';
+    addXP(10);
+    correct++; total++;
+    updateAccuracy();
+  }
+
+  function loadQ2() {
+    document.getElementById('q2-scene').style.display = 'block';
+    document.getElementById('q1-next').style.display = 'none';
+    document.getElementById('q2-scene').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function addXP(amount) {
+    xp += amount;
+    document.getElementById('xpCount').textContent = xp;
+    const badge = document.getElementById('xpBadge');
+    badge.textContent = '+' + amount + ' XP';
+    badge.classList.add('show');
+    setTimeout(() => badge.classList.remove('show'), 2000);
+  }
+
+  function updateAccuracy() {
+    document.getElementById('correctCount').textContent = correct;
+    const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+    document.getElementById('accuracy-label').textContent = pct + '%';
+    document.getElementById('accuracy-bar').style.width = pct + '%';
+  }
+
+  function addCareNote(qId, action) {
+    const noteMap = {
+      'q1': '✅ Educated Mr. Harold on palliative care goals',
+      'q3': '✅ Counseled Mrs. Evelyn\'s family on hospice eligibility',
+      'q4': '✅ Addressed death rattle with therapeutic communication',
+      'q5': '✅ Validated Sandra\'s normal grief responses',
+      'q6': '✅ Educated Mr. James on advance directives',
+      'q7': '✅ Practiced healthy debriefing after patient death'
+    };
+    const note = noteMap[qId];
+    if (!note) return;
+    const list = document.getElementById('care-notes-list');
+    if (list.querySelector('[data-placeholder]')) list.innerHTML = '';
+    const div = document.createElement('div');
+    div.className = 'care-note';
+    div.innerHTML = `<span class="note-icon">📝</span><span>${note}</span>`;
+    list.appendChild(div);
+  }
+
+  function updateSymptom(name, val) {
+    document.getElementById(name + '-val').textContent = val + '/10';
+    const action = document.getElementById(name + '-action');
+    if (parseInt(val) >= 4) {
+      action.style.display = 'block';
+    } else {
+      action.style.display = 'none';
+    }
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // Progress items clickable
+  document.querySelectorAll('.progress-item').forEach(item => {
+    item.addEventListener('click', () => showRoom(item.dataset.room));
+  });
+</script>
+</body>
+</html>
