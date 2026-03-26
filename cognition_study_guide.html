@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 Cognition Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0d1f2d;
+  --navy2: #132638;
+  --teal: #1a7a7a;
+  --teal-light: #22a8a8;
+  --teal-glow: rgba(26,122,122,0.18);
+  --gold: #c9941a;
+  --gold-light: #f0b429;
+  --gold-faint: rgba(201,148,26,0.12);
+  --rose: #c0444a;
+  --rose-light: #e8666b;
+  --mint: #3dbf8c;
+  --mint-faint: rgba(61,191,140,0.12);
+  --text: #e8e4dc;
+  --text-dim: #8fa3b0;
+  --surface: #162535;
+  --surface2: #1c2f42;
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.14);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--text);font-family:'Source Sans 3',sans-serif;font-size:15px;line-height:1.65;overflow-x:hidden;}
+
+/* ─── NOISE OVERLAY ─── */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.6;}
+
+/* ─── SPLASH ─── */
+#splash{position:fixed;inset:0;z-index:500;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:24px;transition:opacity .6s,visibility .6s;}
+#splash.gone{opacity:0;visibility:hidden;pointer-events:none;}
+.spl-icon{font-size:4rem;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+.spl-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,7vw,4rem);text-align:center;line-height:1.15;color:var(--text);}
+.spl-title em{color:var(--gold-light);font-style:normal;}
+.spl-sub{color:var(--text-dim);font-size:.95rem;text-align:center;max-width:420px;}
+.spl-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+.spl-tag{background:var(--surface2);border:1px solid var(--border2);border-radius:50px;padding:5px 14px;font-size:.78rem;color:var(--text-dim);}
+.spl-btn{background:linear-gradient(135deg,var(--teal),var(--teal-light));color:#fff;border:none;border-radius:50px;padding:15px 46px;font-family:'Source Sans 3',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:transform .15s,box-shadow .2s;margin-top:6px;letter-spacing:.03em;}
+.spl-btn:hover{transform:scale(1.04);box-shadow:0 8px 28px rgba(26,122,122,.45);}
+
+/* ─── LAYOUT ─── */
+#app{display:none;}
+#app.show{display:block;}
+.shell{display:flex;min-height:100vh;}
+
+/* ─── SIDEBAR ─── */
+.sidebar{width:230px;background:var(--navy2);position:fixed;top:0;left:0;bottom:0;z-index:100;display:flex;flex-direction:column;padding:26px 14px;gap:2px;border-right:1px solid var(--border);}
+.sb-brand{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text);padding:0 8px 20px;border-bottom:1px solid var(--border);margin-bottom:12px;line-height:1.35;}
+.sb-brand em{color:var(--gold-light);font-style:normal;display:block;font-size:.75rem;font-family:'Source Sans 3',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px;}
+.nav-btn{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;color:var(--text-dim);font-weight:600;font-size:.86rem;border:none;background:none;width:100%;text-align:left;font-family:'Source Sans 3',sans-serif;transition:all .15s;position:relative;}
+.nav-btn:hover{background:rgba(255,255,255,.05);color:var(--text);}
+.nav-btn.active{background:var(--teal-glow);color:var(--teal-light);border-left:2px solid var(--teal-light);padding-left:10px;}
+.nav-icon{font-size:1rem;width:20px;text-align:center;}
+.nav-badge{margin-left:auto;background:var(--rose);color:#fff;font-size:.65rem;font-weight:700;padding:2px 6px;border-radius:50px;}
+.sb-section-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);padding:14px 12px 6px;opacity:.6;}
+.sb-foot{margin-top:auto;padding-top:18px;border-top:1px solid var(--border);}
+.sb-xp-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim);margin-bottom:7px;}
+.sb-xp-bar{background:rgba(255,255,255,.08);border-radius:50px;height:5px;overflow:hidden;margin-bottom:5px;}
+.sb-xp-fill{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--teal),var(--mint));transition:width .5s;}
+.sb-xp-nums{font-size:.7rem;color:var(--text-dim);display:flex;justify-content:space-between;}
+
+/* ─── MAIN ─── */
+.main{margin-left:230px;flex:1;padding:36px 32px;max-width:calc(100% - 230px);}
+.page{display:none;animation:fadeUp .3s ease;}
+.page.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.pg-head{margin-bottom:28px;}
+.pg-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;line-height:1.2;color:var(--text);}
+.pg-title span{color:var(--gold-light);}
+.pg-sub{color:var(--text-dim);font-size:.9rem;margin-top:6px;}
+
+/* ─── GENERIC ─── */
+.gold-line{width:48px;height:3px;background:var(--gold);border-radius:2px;margin:12px 0;}
+.card{background:var(--surface);border-radius:16px;border:1px solid var(--border2);padding:22px;}
+.card-teal{border-left:3px solid var(--teal-light);}
+.card-gold{border-left:3px solid var(--gold);}
+.card-rose{border-left:3px solid var(--rose-light);}
+.card-mint{border-left:3px solid var(--mint);}
+.label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:8px;}
+.tag{display:inline-block;border-radius:50px;font-size:.72rem;font-weight:700;padding:3px 10px;margin:2px;}
+.tag-teal{background:rgba(26,122,122,.25);color:#5ecece;}
+.tag-gold{background:rgba(201,148,26,.2);color:var(--gold-light);}
+.tag-rose{background:rgba(192,68,74,.22);color:#e88a8e;}
+.tag-mint{background:rgba(61,191,140,.18);color:#5dd4a4;}
+.tag-dim{background:rgba(255,255,255,.07);color:var(--text-dim);}
+.btn{border:none;border-radius:50px;padding:9px 22px;font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
+.btn-teal{background:var(--teal);color:#fff;}
+.btn-teal:hover{background:var(--teal-light);box-shadow:0 4px 16px rgba(26,122,122,.35);}
+.btn-gold{background:var(--gold);color:var(--navy);}
+.btn-gold:hover{background:var(--gold-light);box-shadow:0 4px 16px rgba(201,148,26,.35);}
+.btn-ghost{background:transparent;border:1.5px solid var(--border2);color:var(--text-dim);}
+.btn-ghost:hover{border-color:var(--teal-light);color:var(--teal-light);}
+.btn-rose{background:var(--rose);color:#fff;}
+.btn-rose:hover{background:var(--rose-light);}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;}
+.section-divider{border:none;border-top:1px solid var(--border);margin:28px 0;}
+
+/* ─── HOME / OVERVIEW ─── */
+.overview-hero{background:linear-gradient(135deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:20px;padding:28px 28px 24px;margin-bottom:24px;position:relative;overflow:hidden;}
+.overview-hero::before{content:'🧠';position:absolute;right:24px;top:16px;font-size:4rem;opacity:.12;}
+.hero-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--gold-light);margin-bottom:8px;}
+.hero-body{font-size:.92rem;color:var(--text-dim);max-width:580px;line-height:1.7;}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.ov-card{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:18px;cursor:pointer;transition:all .2s;}
+.ov-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.3);border-color:var(--teal);}
+.ov-card-icon{font-size:1.8rem;margin-bottom:10px;}
+.ov-card-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:6px;}
+.ov-card-desc{font-size:.83rem;color:var(--text-dim);line-height:1.5;}
+.ov-card-tag{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-top:10px;display:inline-block;padding:3px 8px;border-radius:50px;}
+
+/* ─── BATTLE: DELIRIUM vs DEMENTIA ─── */
+.battle-wrap{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:start;}
+.battle-col{display:flex;flex-direction:column;gap:10px;}
+.battle-header{border-radius:14px;padding:20px;text-align:center;}
+.battle-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;}
+.battle-subtitle{font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
+.bh-delirium{background:linear-gradient(135deg,rgba(192,68,74,.2),rgba(192,68,74,.08));border:1px solid rgba(192,68,74,.3);}
+.bh-dementia{background:linear-gradient(135deg,rgba(26,122,122,.2),rgba(26,122,122,.08));border:1px solid rgba(26,122,122,.3);}
+.battle-vs{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding-top:60px;}
+.vs-text{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--gold-light);}
+.battle-row{background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:13px 16px;}
+.battle-row-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin-bottom:5px;}
+.battle-row-val{font-size:.9rem;font-weight:600;color:var(--text);}
+.battle-row.delirium-row{border-left:3px solid var(--rose-light);}
+.battle-row.dementia-row{border-left:3px solid var(--teal-light);}
+.battle-feature{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);text-align:center;padding:8px;}
+
+/* ─── SORT GAME ─── */
+.sort-intro{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.sort-score-box{text-align:center;}
+.sort-score-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--gold-light);}
+.sort-score-lbl{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim);}
+.sort-arena{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;}
+.sort-zone{background:var(--surface);border:2px dashed var(--border2);border-radius:16px;padding:18px;min-height:200px;transition:border-color .2s,background .2s;}
+.sort-zone.drag-over{border-color:var(--gold);background:var(--gold-faint);}
+.sort-zone-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.sort-dropped{display:flex;flex-direction:column;gap:7px;}
+.sort-card-pool{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.sort-card{background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:10px 16px;cursor:grab;font-size:.87rem;font-weight:600;color:var(--text);transition:all .15s;user-select:none;}
+.sort-card:hover{border-color:var(--teal-light);transform:translateY(-2px);}
+.sort-card:active{cursor:grabbing;}
+.sort-card.placed{border-radius:8px;padding:8px 12px;font-size:.82rem;margin:0;}
+.sort-card.correct-place{background:var(--mint-faint);border-color:var(--mint);color:#5dd4a4;}
+.sort-card.wrong-place{background:rgba(192,68,74,.15);border-color:var(--rose-light);color:#e88a8e;}
+.sort-feedback{text-align:center;padding:16px;border-radius:12px;font-weight:700;font-size:1rem;display:none;}
+.sort-feedback.show{display:block;}
+.sort-feedback.win{background:var(--mint-faint);color:#5dd4a4;border:1px solid var(--mint);}
+.sort-feedback.partial{background:var(--gold-faint);color:var(--gold-light);border:1px solid var(--gold);}
+
+/* ─── STAGES TIMELINE ─── */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{display:flex;gap:20px;align-items:flex-start;padding:0 0 28px;}
+.tl-left{display:flex;flex-direction:column;align-items:center;gap:0;width:56px;flex-shrink:0;}
+.tl-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;border:2px solid;}
+.tl-line{width:2px;flex:1;min-height:24px;}
+.tl-early .tl-dot{background:rgba(61,191,140,.15);border-color:var(--mint);}
+.tl-early .tl-line{background:linear-gradient(to bottom,var(--mint),var(--gold));}
+.tl-mid .tl-dot{background:rgba(201,148,26,.15);border-color:var(--gold);}
+.tl-mid .tl-line{background:linear-gradient(to bottom,var(--gold),var(--rose));}
+.tl-late .tl-dot{background:rgba(192,68,74,.15);border-color:var(--rose-light);}
+.tl-late .tl-line{display:none;}
+.tl-content{flex:1;padding-top:6px;}
+.tl-stage{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:10px;}
+.tl-pills{display:flex;flex-wrap:wrap;gap:6px;}
+
+/* ─── SCENARIO CASES ─── */
+.case-nav{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.case-num-btn{width:38px;height:38px;border-radius:50%;border:2px solid var(--border2);background:var(--surface);color:var(--text-dim);font-weight:700;font-size:.88rem;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;}
+.case-num-btn:hover{border-color:var(--teal-light);color:var(--teal-light);}
+.case-num-btn.active{background:var(--teal);border-color:var(--teal);color:#fff;}
+.case-num-btn.done{background:var(--mint-faint);border-color:var(--mint);color:#5dd4a4;}
+.case-box{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:26px;margin-bottom:16px;}
+.case-patient-bar{background:var(--surface2);border-radius:10px;padding:14px 18px;margin-bottom:18px;display:flex;gap:16px;flex-wrap:wrap;}
+.case-patient-item{display:flex;flex-direction:column;}
+.case-patient-lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);}
+.case-patient-val{font-size:.92rem;font-weight:700;color:var(--text);}
+.case-scenario{font-size:.94rem;line-height:1.75;color:var(--text);margin-bottom:20px;}
+.case-question{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--gold-light);margin-bottom:14px;}
+.case-opts{display:flex;flex-direction:column;gap:8px;}
+.case-opt{background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:12px 16px;cursor:pointer;font-size:.9rem;font-weight:600;color:var(--text);transition:all .15s;text-align:left;font-family:'Source Sans 3',sans-serif;}
+.case-opt:hover:not(:disabled){border-color:var(--teal-light);background:var(--teal-glow);}
+.case-opt.correct-opt{background:var(--mint-faint);border-color:var(--mint);color:#5dd4a4;}
+.case-opt.wrong-opt{background:rgba(192,68,74,.12);border-color:var(--rose-light);color:#e88a8e;}
+.case-opt:disabled{cursor:default;}
+.case-explain{background:var(--surface2);border-radius:10px;padding:14px 18px;margin-top:12px;font-size:.88rem;line-height:1.65;display:none;border-left:3px solid var(--gold);}
+.case-explain.show{display:block;}
+.case-explain strong{color:var(--gold-light);}
+
+/* ─── SPEED ROUND ─── */
+.speed-intro{text-align:center;padding:40px 24px;}
+.speed-countdown{font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:var(--gold-light);line-height:1;}
+.speed-arena{max-width:560px;margin:0 auto;}
+.speed-timer-wrap{background:var(--surface2);border-radius:50px;height:8px;overflow:hidden;margin-bottom:20px;}
+.speed-timer-bar{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--mint),var(--gold));transition:width 1s linear;}
+.speed-q-box{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:26px;margin-bottom:14px;}
+.speed-q-text{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;line-height:1.4;text-align:center;color:var(--text);}
+.speed-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;}
+.speed-opt{background:var(--surface2);border:1.5px solid var(--border2);border-radius:12px;padding:14px;cursor:pointer;font-weight:700;font-size:.9rem;color:var(--text);transition:all .15s;font-family:'Source Sans 3',sans-serif;}
+.speed-opt:hover:not(:disabled){border-color:var(--gold);background:var(--gold-faint);transform:scale(1.02);}
+.speed-opt.s-correct{background:var(--mint-faint);border-color:var(--mint);color:#5dd4a4;}
+.speed-opt.s-wrong{background:rgba(192,68,74,.12);border-color:var(--rose-light);color:#e88a8e;}
+.speed-opt:disabled{cursor:default;}
+.speed-streak{text-align:center;font-size:.85rem;color:var(--text-dim);margin-top:8px;}
+.speed-streak span{color:var(--gold-light);font-weight:700;}
+.speed-result{text-align:center;padding:36px 20px;}
+.speed-result-big{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;color:var(--gold-light);}
+.speed-result-label{font-size:.88rem;color:var(--text-dim);margin-top:6px;}
+.speed-result-emoji{font-size:3rem;margin-bottom:12px;}
+.speed-stars{font-size:1.5rem;margin:10px 0;}
+
+/* ─── MEDS REFERENCE ─── */
+.meds-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.med-card{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:20px;transition:all .2s;}
+.med-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.25);}
+.med-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:4px;}
+.med-class{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;}
+.med-row{display:flex;gap:8px;margin-bottom:7px;font-size:.86rem;}
+.med-lbl{font-weight:700;color:var(--text-dim);min-width:70px;}
+.med-val{color:var(--text);flex:1;}
+.med-alert{background:rgba(192,68,74,.1);border:1px solid rgba(192,68,74,.3);border-radius:8px;padding:8px 12px;font-size:.82rem;color:#e88a8e;margin-top:10px;font-weight:600;}
+
+/* ─── NCLEX TIPS ─── */
+.tips-grid{display:flex;flex-direction:column;gap:10px;}
+.tip-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:16px 20px;display:flex;gap:14px;align-items:flex-start;cursor:pointer;transition:all .15s;}
+.tip-card:hover{border-color:var(--gold);background:var(--gold-faint);}
+.tip-card.revealed{background:var(--gold-faint);border-color:var(--gold);}
+.tip-icon{font-size:1.4rem;flex-shrink:0;padding-top:2px;}
+.tip-content{flex:1;}
+.tip-front{font-weight:700;font-size:.95rem;color:var(--text);}
+.tip-back{font-size:.86rem;color:var(--text-dim);margin-top:6px;line-height:1.6;display:none;}
+.tip-card.revealed .tip-back{display:block;}
+.tip-arrow{font-size:.8rem;color:var(--text-dim);margin-left:auto;transition:transform .25s;}
+.tip-card.revealed .tip-arrow{transform:rotate(180deg);}
+
+/* ─── MOBILE ─── */
+.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--navy2);border-top:1px solid var(--border);padding:7px 4px;z-index:200;justify-content:space-around;}
+.mob-btn{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;padding:5px 8px;border-radius:9px;color:var(--text-dim);font-family:'Source Sans 3',sans-serif;}
+.mob-btn.active{color:var(--teal-light);}
+.mob-icon{font-size:1.2rem;}
+.mob-lbl{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+@media(max-width:800px){
+  .sidebar{display:none;}
+  .mob-nav{display:flex;}
+  .main{margin-left:0;max-width:100%;padding:18px 14px 90px;}
+  .battle-wrap{grid-template-columns:1fr;}
+  .battle-vs{flex-direction:row;padding-top:0;}
+  .sort-arena{grid-template-columns:1fr;}
+  .speed-opts{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="spl-icon">🧠</div>
+  <div class="spl-title">Cognition<br><em>Mastery Guide</em></div>
+  <div class="spl-sub">Dementia · Delirium · Alzheimer's · Pharmacology · NCLEX-Ready</div>
+  <div class="spl-tags">
+    <span class="spl-tag">⚡ Speed Rounds</span>
+    <span class="spl-tag">🎯 Case Studies</span>
+    <span class="spl-tag">⚔️ Battle Mode</span>
+    <span class="spl-tag">🃏 Sort Game</span>
+  </div>
+  <button class="spl-btn" onclick="boot()">Enter Study Mode →</button>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="shell">
+    <nav class="sidebar">
+      <div class="sb-brand"><em>Psych Nursing</em>Cognition Guide</div>
+      <div class="sb-section-label">Learn</div>
+      <button class="nav-btn active" onclick="goTo('home',this)"><span class="nav-icon">🏠</span>Overview</button>
+      <button class="nav-btn" onclick="goTo('battle',this)"><span class="nav-icon">⚔️</span>Delirium vs Dementia</button>
+      <button class="nav-btn" onclick="goTo('stages',this)"><span class="nav-icon">📈</span>AD Stages Timeline</button>
+      <button class="nav-btn" onclick="goTo('meds',this)"><span class="nav-icon">💊</span>Pharmacology</button>
+      <div class="sb-section-label">Practice</div>
+      <button class="nav-btn" onclick="goTo('sort',this)"><span class="nav-icon">🎯</span>Symptom Sorter</button>
+      <button class="nav-btn" onclick="goTo('cases',this)"><span class="nav-icon">🏥</span>Case Studies<span class="nav-badge" id="caseBadge">3</span></button>
+      <button class="nav-btn" onclick="goTo('speed',this)"><span class="nav-icon">⚡</span>Speed Round</button>
+      <button class="nav-btn" onclick="goTo('tips',this)"><span class="nav-icon">⭐</span>NCLEX Goldmine</button>
+      <div class="sb-foot">
+        <div class="sb-xp-label">XP Progress</div>
+        <div class="sb-xp-bar"><div class="sb-xp-fill" id="xpBar" style="width:0%"></div></div>
+        <div class="sb-xp-nums"><span id="xpNum">0</span><span id="xpTotal">/ 500 XP</span></div>
+      </div>
+    </nav>
+
+    <main class="main">
+
+      <!-- HOME -->
+      <div id="pg-home" class="page active">
+        <div class="pg-head">
+          <div class="pg-title">Cognition <span>Overview</span></div>
+          <div class="gold-line"></div>
+          <div class="pg-sub">Mental processes: thinking · memory · learning · judgment · decision-making</div>
+        </div>
+        <div class="overview-hero">
+          <div class="hero-title">Why This Matters in Nursing</div>
+          <div class="hero-body">Cognitive impairment directly affects patient <strong>safety</strong>, <strong>independence</strong>, and <strong>quality of life</strong>. You must distinguish reversible from irreversible conditions quickly — your interventions and priorities differ completely.</div>
+        </div>
+        <div class="overview-grid" id="ovGrid"></div>
+      </div>
+
+      <!-- BATTLE -->
+      <div id="pg-battle" class="page">
+        <div class="pg-head">
+          <div class="pg-title">⚔️ <span>Battle Mode</span></div>
+          <div class="gold-line"></div>
+          <div class="pg-sub">The #1 NCLEX comparison — know this cold</div>
+        </div>
+        <div class="battle-wrap">
+          <div class="battle-col" id="deliriumCol"></div>
+          <div class="battle-vs">
+            <div class="vs-text">VS</div>
+          </div>
+          <div class="battle-col" id="dementiaCol"></div>
+        </div>
+        <hr class="section-divider">
+        <div class="pg-head" style="margin-bottom:16px;"><div class="pg-title" style="font-size:1.3rem;">🧩 Also Know: <span>Pseudodementia</span></div></div>
+        <div class="card card-gold" style="max-width:560px;">
+          <div class="label">Depression Masquerading as Dementia</div>
+          <p style="font-size:.9rem;line-height:1.7;color:var(--text);">When depression causes symptoms that look like dementia — memory loss, fatigue, irritability, sleep/appetite changes. <strong style="color:var(--gold-light);">Critical nursing insight:</strong> Treat the depression → cognitive symptoms improve. Always screen for depression in apparent dementia!</p>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="tag tag-gold">Reversible</span>
+            <span class="tag tag-dim">Treat the depression first</span>
+            <span class="tag tag-teal">Cognitively improves</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGES TIMELINE -->
+      <div id="pg-stages" class="page">
+        <div class="pg-head">
+          <div class="pg-title">Alzheimer's <span>Stages</span></div>
+          <div class="gold-line"></div>
+          <div class="pg-sub">Average disease duration: ~8 years · Usually starts after age 60</div>
+        </div>
+        <div class="timeline" id="timeline"></div>
+        <hr class="section-divider">
+        <div class="pg-head" style="margin-bottom:16px;"><div class="pg-title" style="font-size:1.3rem;">🔍 DSM-5 Criteria</div></div>
+        <div class="card card-teal" style="max-width:540px;">
+          <div class="label">Diagnosis Requires: Memory Impairment + At Least One of:</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;">
+            <span class="tag tag-teal">Aphasia — speech difficulty</span>
+            <span class="tag tag-teal">Apraxia — movement difficulty</span>
+            <span class="tag tag-teal">Agnosia — can't recognize objects</span>
+            <span class="tag tag-teal">Executive dysfunction</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEDS -->
+      <div id="pg-meds" class="page">
+        <div class="pg-head">
+          <div class="pg-title">💊 <span>Pharmacology</span></div>
+          <div class="gold-line"></div>
+          <div class="pg-sub">Two main drug classes — neither is a cure, both only slow progression</div>
+        </div>
+        <div class="meds-grid" id="medsGrid"></div>
+        <hr class="section-divider">
+        <div class="pg-head" style="margin-bottom:16px;"><div class="pg-title" style="font-size:1.3rem;">⚠️ Agitation Meds: Know the Rules</div></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;">
+          <div class="card card-rose">
+            <div class="label">❌ AVOID</div>
+            <div style="font-size:1rem;font-weight:700;color:#e88a8e;">Haloperidol (Haldol)</div>
+            <div style="font-size:.84rem;color:var(--text-dim);margin-top:6px;">↑ Risk of DEATH in elderly dementia patients. Black box warning.</div>
+          </div>
+          <div class="card card-mint">
+            <div class="label">✅ SAFER OPTIONS</div>
+            <div style="font-size:.95rem;font-weight:700;color:#5dd4a4;">Risperidone (Risperdal)</div>
+            <div style="font-size:.95rem;font-weight:700;color:#5dd4a4;margin-top:4px;">Quetiapine (Seroquel)</div>
+            <div style="font-size:.82rem;color:var(--text-dim);margin-top:6px;">Use only when non-pharmacologic fails. Lowest effective dose.</div>
+          </div>
+          <div class="card card-gold">
+            <div class="label">🥇 ALWAYS FIRST</div>
+            <div style="font-size:.95rem;font-weight:700;color:var(--gold-light);">Non-Pharmacologic</div>
+            <div style="font-size:.82rem;color:var(--text-dim);margin-top:6px;">Reduce noise/light · Calm communication · Consistent routine · Address unmet needs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SORT GAME -->
+      <div id="pg-sort" class="page">
+        <div class="pg-head">
+          <div class="pg-title">🎯 <span>Symptom Sorter</span></div>
+          <div class="gold-line"></div>
+          <div class="pg-sub">Drag each symptom/feature to the correct condition · Some may appear in both!</div>
+        </div>
+        <div class="sort-intro">
+          <div>
+            <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">How to Play</div>
+            <div style="font-size:.86rem;color:var(--text-dim);">Drag the cards below into the correct drop zones. Click "Check" when done.</div>
+          </div>
+          <div style="display:flex;gap:16px;">
+            <div class="sort-score-box"><div class="sort-score-num" id="sortScore">0</div><div class="sort-score-lbl">Score</div></div>
+            <div class="sort-score-box"><div class="sort-score-num" id="sortAttempts">0</div><div class="sort-score-lbl">Rounds</div></div>
+          </div>
+          <div class="btn-row"><button class="btn btn-ghost" onclick="resetSort()">🔄 New Round</button><button class="btn btn-gold" onclick="checkSort()">✓ Check Answers</button></div>
+        </div>
+        <div class="sort-arena">
+          <div class="sort-zone" id="zone-delirium" ondragover="ev.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="dropCard(event,'delirium')">
+            <div class="sort-zone-title"><span style="color:var(--rose-light)">🚨</span> DELIRIUM</div>
+            <div class="sort-dropped" id="dropped-delirium"></div>
+          </div>
+          <div class="sort-zone" id="zone-dementia" ondragover="ev.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="dropCard(event,'dementia')">
+            <div class="sort-zone-title"><span style="color:var(--teal-light)">🧠</span> DEMENTIA</div>
+            <div class="sort-dropped" id="dropped-dementia"></div>
+          </div>
+        </div>
+        <div style="margin-bottom:16px;"><div class="label" style="margin-bottom:12px;">Card Pool — Drag these to sort them:</div><div class="sort-card-pool" id="sortPool"></div></div>
+        <div class="sort-feedback" id="sortFeedback"></div>
+      </div>
+
+      <!-- CASES -->
+      <div id="pg-cases" class="page">
+        <div class="pg-head">
+          <div class="pg-title">🏥 <span>Clinical Case Studies</span></div>
+          <div class="gold-line"></div>
+          <div class="pg-sub">Real-world scenarios — apply your knowledge</div>
+        </div>
+        <div class="case-nav" id="caseNav"></div>
+        <div id="caseContent"></div>
+      </div>
+
+      <!-- SPEED ROUND -->
+      <div id="pg-speed" class="page">
+        <div class="pg-head">
+          <div class="pg-title">⚡ <span>Speed Round</span></div>
+          <div class="gold-line"></div>
+          <div class="pg-sub">20 seconds per question · Build your streak · Earn XP</div>
+        </div>
+        <div id="speedArea"></div>
+      </div>
+
+      <!-- NCLEX TIPS -->
+      <div id="pg-tips" class="page">
+        <div class="pg-head">
+          <div class="pg-title">⭐ <span>NCLEX Goldmine</span></div>
+          <div class="gold-line"></div>
+          <div class="pg-sub">Click each card to reveal the full insight · These are exam gold</div>
+        </div>
+        <div class="tips-grid" id="tipsGrid"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <div class="mob-nav">
+    <button class="mob-btn active" onclick="goTo('home',this)"><span class="mob-icon">🏠</span><span class="mob-lbl">Home</span></button>
+    <button class="mob-btn" onclick="goTo('battle',this)"><span class="mob-icon">⚔️</span><span class="mob-lbl">Battle</span></button>
+    <button class="mob-btn" onclick="goTo('sort',this)"><span class="mob-icon">🎯</span><span class="mob-lbl">Sort</span></button>
+    <button class="mob-btn" onclick="goTo('cases',this)"><span class="mob-icon">🏥</span><span class="mob-lbl">Cases</span></button>
+    <button class="mob-btn" onclick="goTo('speed',this)"><span class="mob-icon">⚡</span><span class="mob-lbl">Speed</span></button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// XP SYSTEM
+// ══════════════════════════════════════════
+let xp=0;const MAX_XP=500;
+function addXP(n){xp=Math.min(MAX_XP,xp+n);document.getElementById('xpNum').textContent=xp;document.getElementById('xpBar').style.width=`${(xp/MAX_XP)*100}%`;}
+
+// ══════════════════════════════════════════
+// BOOT
+// ══════════════════════════════════════════
+function boot(){
+  document.getElementById('splash').classList.add('gone');
+  document.getElementById('app').classList.add('show');
+  buildHome();buildBattle();buildStages();buildMeds();buildSort();buildCases();buildSpeed();buildTips();
+}
+
+// ══════════════════════════════════════════
+// NAV
+// ══════════════════════════════════════════
+function goTo(page,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('pg-'+page).classList.add('active');
+  document.querySelectorAll('.nav-btn,.mob-btn').forEach(n=>n.classList.remove('active'));
+  if(el)el.classList.add('active');
+  if(page==='speed')initSpeed();
+}
+
+// ══════════════════════════════════════════
+// HOME
+// ══════════════════════════════════════════
+const OV_CARDS=[
+  {icon:'🚨',title:'Delirium',desc:'Sudden, acute, REVERSIBLE disturbance in cognition. Hours-to-days onset. Medical emergency.',tag:'Reversible',tagClass:'tag-rose',page:'battle'},
+  {icon:'🧠',title:'Dementia',desc:'Chronic, progressive, IRREVERSIBLE decline in memory, thinking, and functioning.',tag:'Irreversible',tagClass:'tag-teal',page:'battle'},
+  {icon:'📈',title:"Alzheimer's",desc:'Most common dementia. Progressive & fatal. 3 stages. Average duration 8 years.',tag:'Most Common',tagClass:'tag-gold',page:'stages'},
+  {icon:'💊',title:'Pharmacology',desc:'Cholinesterase inhibitors + NMDA antagonists. Neither cures — both slow progression.',tag:'Slow Progression',tagClass:'tag-dim',page:'meds'},
+  {icon:'🎭',title:'Pseudodementia',desc:'Depression that looks like dementia. Treat the depression and cognition improves!',tag:'Treatable',tagClass:'tag-mint',page:'battle'},
+  {icon:'🛡️',title:'Nursing Care',desc:'Safety · Dignity · Independence · Non-pharmacologic first · 4 Cs: Calm, Clear, Consistent, Caring',tag:'Priority',tagClass:'tag-gold',page:'tips'},
+];
+function buildHome(){
+  const g=document.getElementById('ovGrid');
+  OV_CARDS.forEach(c=>{
+    const el=document.createElement('div');
+    el.className='ov-card';
+    el.innerHTML=`<div class="ov-card-icon">${c.icon}</div><div class="ov-card-title">${c.title}</div><div class="ov-card-desc">${c.desc}</div><span class="ov-card-tag tag ${c.tagClass}">${c.tag}</span>`;
+    el.onclick=()=>goTo(c.page,document.querySelector(`.nav-btn:nth-child(${['home','battle','stages','meds','battle','tips'].indexOf(c.page)+3})`));
+    g.appendChild(el);
+  });
+}
+
+// ══════════════════════════════════════════
+// BATTLE
+// ══════════════════════════════════════════
+const BATTLE_DATA=[
+  {feat:'Onset',del:'Sudden (hours–days)',dem:'Gradual (months–years)'},
+  {feat:'Duration',del:'Acute — short-lived',dem:'Chronic — progressive'},
+  {feat:'Reversibility',del:'✅ REVERSIBLE',dem:'❌ Irreversible'},
+  {feat:'Cause',del:'Medical condition, meds, withdrawal',dem:'Neurodegenerative disease'},
+  {feat:'Consciousness',del:'Altered / Fluctuating',dem:'Usually clear until late stages'},
+  {feat:'Attention',del:'Severely impaired, fluctuates',dem:'Relatively preserved early'},
+  {feat:'Hallucinations',del:'Common (esp. visual)',dem:'Occur in middle stage'},
+  {feat:'Priority',del:'Find & treat the CAUSE',dem:'Safety + Routine + Dignity'},
+  {feat:'Memory',del:'Short-term affected',dem:'Progressive — all memory lost'},
+  {feat:'Nursing Alert',del:'🚨 Untreated → permanent damage',dem:'🚨 Wandering = top safety risk'},
+];
+function buildBattle(){
+  const dc=document.getElementById('deliriumCol');
+  const dmc=document.getElementById('dementiaCol');
+  dc.innerHTML=`<div class="battle-header bh-delirium"><div class="battle-title" style="color:#e88a8e">Delirium</div><div class="battle-subtitle" style="color:rgba(232,138,142,.6)">Acute Confusion</div></div>`;
+  dmc.innerHTML=`<div class="battle-header bh-dementia"><div class="battle-title" style="color:#5ecece">Dementia</div><div class="battle-subtitle" style="color:rgba(94,206,206,.6)">Neurocognitive Disorder</div></div>`;
+  BATTLE_DATA.forEach(r=>{
+    const dr=document.createElement('div');
+    dr.className='battle-row delirium-row';
+    dr.innerHTML=`<div class="battle-row-label">${r.feat}</div><div class="battle-row-val">${r.del}</div>`;
+    dc.appendChild(dr);
+    const dmr=document.createElement('div');
+    dmr.className='battle-row dementia-row';
+    dmr.innerHTML=`<div class="battle-row-label">${r.feat}</div><div class="battle-row-val">${r.dem}</div>`;
+    dmc.appendChild(dmr);
+  });
+}
+
+// ══════════════════════════════════════════
+// STAGES TIMELINE
+// ══════════════════════════════════════════
+const STAGES=[
+  {cls:'tl-early',dot:'🟢',stage:'Early Stage',title:'Independent — Memory Beginning to Slip',pills:['Memory loss','Disorientation','Trouble learning new info','Personality changes','Still independent','Word-finding difficulty'],color:'var(--mint)',tagCls:'tag-mint'},
+  {cls:'tl-mid',dot:'🟡',stage:'Middle Stage',title:'Dependent — Behavioral & Physical Decline',pills:['Emotional instability','Anger & paranoia','Wandering 🚨','Incontinence','Hallucinations','Cannot do ADLs alone','Sundowning syndrome'],color:'var(--gold-light)',tagCls:'tag-gold'},
+  {cls:'tl-late',dot:'🔴',stage:'End Stage',title:'Total Dependence — End of Life',pills:['Total memory loss','Nonverbal / minimal speech','Bedridden','Seizures','Death from complications','Pneumonia most common'],color:'var(--rose-light)',tagCls:'tag-rose'},
+];
+function buildStages(){
+  const tl=document.getElementById('timeline');
+  STAGES.forEach(s=>{
+    const el=document.createElement('div');
+    el.className=`tl-item ${s.cls}`;
+    el.innerHTML=`<div class="tl-left"><div class="tl-dot">${s.dot}</div><div class="tl-line"></div></div>
+    <div class="tl-content">
+      <div class="tl-stage" style="color:${s.color}">${s.stage}</div>
+      <div class="tl-title">${s.title}</div>
+      <div class="tl-pills">${s.pills.map(p=>`<span class="tag ${s.tagCls}">${p}</span>`).join('')}</div>
+    </div>`;
+    tl.appendChild(el);
+  });
+}
+
+// ══════════════════════════════════════════
+// MEDS
+// ══════════════════════════════════════════
+const MEDS_DATA=[
+  {name:'Donepezil',cls:'Cholinesterase Inhibitor',clsColor:'tag-teal',use:'Mild–severe Alzheimer\'s (DOC)',moa:'↑ Acetylcholine → improves cognition',note:'Drug of choice · Most widely used',alert:'Only slows progression — NOT a cure',brand:'Aricept'},
+  {name:'Rivastigmine',cls:'Cholinesterase Inhibitor',clsColor:'tag-teal',use:'Mild–moderate AD & Parkinson\'s dementia',moa:'↑ Acetylcholine levels in brain',note:'Also available as transdermal patch',alert:'GI side effects (N/V) are common',brand:'Exelon'},
+  {name:'Galantamine',cls:'Cholinesterase Inhibitor',clsColor:'tag-teal',use:'Mild–moderate Alzheimer\'s',moa:'↑ Acetylcholine + nicotinic receptor modulator',note:'Must take with food to reduce GI effects',alert:'Monitor for bradycardia',brand:'Razadyne'},
+  {name:'Memantine',cls:'NMDA Receptor Antagonist',clsColor:'tag-gold',use:'Moderate–SEVERE Alzheimer\'s',moa:'Blocks excess glutamate → neuroprotective',note:'Often combined with cholinesterase inhibitor',alert:'Can cause dizziness and confusion initially',brand:'Namenda'},
+];
+function buildMeds(){
+  const g=document.getElementById('medsGrid');
+  MEDS_DATA.forEach(m=>{
+    const c=document.createElement('div');
+    c.className='med-card';
+    c.innerHTML=`<div class="med-name">${m.name}</div>
+    <div class="med-class"><span class="tag ${m.clsColor}">${m.cls}</span></div>
+    <div class="med-row"><span class="med-lbl">Brand</span><span class="med-val">${m.brand}</span></div>
+    <div class="med-row"><span class="med-lbl">Use</span><span class="med-val">${m.use}</span></div>
+    <div class="med-row"><span class="med-lbl">MOA</span><span class="med-val">${m.moa}</span></div>
+    <div class="med-row"><span class="med-lbl">Note</span><span class="med-val" style="color:var(--text-dim)">${m.note}</span></div>
+    <div class="med-alert">⚠️ ${m.alert}</div>`;
+    g.appendChild(c);
+  });
+}
+
+// ══════════════════════════════════════════
+// SORT GAME
+// ══════════════════════════════════════════
+const SORT_ITEMS=[
+  {id:'s1',text:'Sudden onset (hours–days)',answer:'delirium'},
+  {id:'s2',text:'Gradual onset (months–years)',answer:'dementia'},
+  {id:'s3',text:'REVERSIBLE',answer:'delirium'},
+  {id:'s4',text:'IRREVERSIBLE (progressive)',answer:'dementia'},
+  {id:'s5',text:'Altered consciousness',answer:'delirium'},
+  {id:'s6',text:'Clear consciousness until late',answer:'dementia'},
+  {id:'s7',text:'Caused by medical condition / meds',answer:'delirium'},
+  {id:'s8',text:'Confabulation',answer:'dementia'},
+  {id:'s9',text:'Fluctuating throughout the day',answer:'delirium'},
+  {id:'s10',text:'Sundowning syndrome',answer:'dementia'},
+  {id:'s11',text:'Wandering behavior 🚨',answer:'dementia'},
+  {id:'s12',text:'Medical EMERGENCY',answer:'delirium'},
+  {id:'s13',text:'Gingival hyperplasia',answer:'delirium'}, // trick card - wrong domain
+  {id:'s14',text:'Treated with validation therapy',answer:'dementia'},
+  {id:'s15',text:'Find & treat the underlying CAUSE',answer:'delirium'},
+  {id:'s16',text:'Aphasia · Apraxia · Agnosia',answer:'dementia'},
+];
+// Remove trick card
+const REAL_SORT=SORT_ITEMS.filter(i=>i.id!=='s13');
+let sortPlaced={};
+function buildSort(){renderSort();}
+function renderSort(){
+  sortPlaced={};
+  const pool=document.getElementById('sortPool');
+  pool.innerHTML='';
+  const shuffled=[...REAL_SORT].sort(()=>Math.random()-.5);
+  shuffled.forEach(item=>{
+    const c=document.createElement('div');
+    c.className='sort-card';c.id='sc-'+item.id;c.textContent=item.text;
+    c.draggable=true;
+    c.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',item.id);});
+    pool.appendChild(c);
+  });
+  document.getElementById('dropped-delirium').innerHTML='';
+  document.getElementById('dropped-dementia').innerHTML='';
+  document.getElementById('sortFeedback').className='sort-feedback';
+  document.getElementById('sortFeedback').textContent='';
+}
+function resetSort(){renderSort();}
+function dropCard(e,zone){
+  e.preventDefault();
+  document.getElementById('zone-'+zone).classList.remove('drag-over');
+  const id=e.dataTransfer.getData('text/plain');
+  const orig=document.getElementById('sc-'+id);
+  if(!orig)return;
+  const item=REAL_SORT.find(i=>i.id===id);
+  if(!item)return;
+  // remove from old zone if re-dropped
+  const old=document.querySelector(`.sort-card[data-id="${id}"]`);
+  if(old)old.remove();
+  sortPlaced[id]=zone;
+  const c=document.createElement('div');
+  c.className='sort-card placed';c.dataset.id=id;c.textContent=item.text;
+  c.draggable=true;
+  c.addEventListener('dragstart',ev=>{ev.dataTransfer.setData('text/plain',id);});
+  document.getElementById('dropped-'+zone).appendChild(c);
+  orig.style.display='none';
+}
+function checkSort(){
+  let correct=0;const total=Object.keys(sortPlaced).length;
+  if(total===0){const fb=document.getElementById('sortFeedback');fb.textContent='Drag some cards first!';fb.className='sort-feedback partial show';return;}
+  Object.entries(sortPlaced).forEach(([id,zone])=>{
+    const item=REAL_SORT.find(i=>i.id===id);
+    const c=document.querySelector(`.sort-card[data-id="${id}"]`);
+    if(item&&c){if(item.answer===zone){c.classList.add('correct-place');correct++;}else{c.classList.add('wrong-place');}}
+  });
+  const placed=Object.keys(sortPlaced).length;
+  const pct=Math.round((correct/placed)*100);
+  const fb=document.getElementById('sortFeedback');
+  if(pct===100){fb.textContent=`🎉 Perfect! ${correct}/${placed} correct! +${correct*5} XP`;fb.className='sort-feedback win show';addXP(correct*5);}
+  else{fb.textContent=`${correct}/${placed} correct (${pct}%). Review the highlighted cards, then try again!`;fb.className='sort-feedback partial show';}
+  document.getElementById('sortScore').textContent=parseInt(document.getElementById('sortScore').textContent)+(correct*5);
+  document.getElementById('sortAttempts').textContent=parseInt(document.getElementById('sortAttempts').textContent)+1;
+}
+
+// ══════════════════════════════════════════
+// CASE STUDIES
+// ══════════════════════════════════════════
+const CASES=[
+  {
+    num:1,title:'Mr. Henderson',
+    patient:{Age:'78',Gender:'Male',Setting:'Post-op Day 1',Diagnosis:'Hip Fracture Repair'},
+    scenario:'Mr. Henderson, a previously alert and oriented 78-year-old, had a hip repair yesterday. Tonight the night nurse finds him trying to climb out of bed, pulling at his IV, and insisting that "the spiders on the wall are after me." His wife says he was "perfectly sharp" before surgery. His temperature is 38.2°C, HR 102.',
+    question:'What is your PRIORITY assessment and action?',
+    opts:['Call family to sit with patient and document as sundowning','Recognize this as delirium — assess for infection, hypoxia, electrolytes, and pain. Ensure safety and notify provider STAT','Give Haldol as ordered PRN for agitation','Reassure patient it\'s nighttime and he should sleep'],
+    ans:1,
+    explain:'<strong>This is DELIRIUM.</strong> Key clues: sudden onset, previously oriented, fluctuating, post-op in elderly patient. Priority = FIND THE CAUSE. The fever and tachycardia suggest infection. Haldol is contraindicated in elderly (↑ death risk). Non-pharmacologic safety first. This is a MEDICAL EMERGENCY — untreated delirium can cause permanent brain damage.',
+    concept:'delirium'
+  },
+  {
+    num:2,title:'Mrs. Caldwell',
+    patient:{Age:'71',Gender:'Female',Setting:'Memory Care Unit',Diagnosis:'Alzheimer\'s Disease — Middle Stage'},
+    scenario:'Mrs. Caldwell paces the hallway at 3 PM, becomes increasingly agitated, and begins crying and hitting the nursing aide who tries to redirect her. Staff say this happens every afternoon. She keeps saying "I need to go home to pick up my children from school." Her children are adults.',
+    question:'What is the BEST nursing response?',
+    opts:['Firmly correct her: "Mrs. Caldwell, your children are grown adults"','Administer Risperdal since this happens daily','Use validation therapy: "It sounds like you love your children very much. Tell me about them." Then gently redirect with a warm drink and music','Apply soft restraints to prevent hitting'],
+    ans:2,
+    explain:'<strong>Use validation therapy + redirection.</strong> Never argue or correct — this causes catastrophic reactions (crying, hitting). The patient is NOT being difficult; she is expressing unmet emotional needs. Sundowning (late afternoon agitation) is characteristic of middle-stage AD. Restraints worsen agitation and are harmful. Medications are NOT first-line.',
+    concept:'dementia'
+  },
+  {
+    num:3,title:'Mr. Okonkwo',
+    patient:{Age:'65',Gender:'Male',Setting:'Primary Care',Diagnosis:'Presenting with Memory Concerns'},
+    scenario:'Mr. Okonkwo comes in with his wife, who says he\'s been "not himself" for 2 months — forgetting appointments, not enjoying hobbies he loved, sleeping poorly, and "just seems sad." He scores 26/30 on MMSE (borderline). He denies feeling depressed but endorses low energy and hopelessness. He is a retired teacher with no family history of dementia.',
+    question:'What condition should be ruled out FIRST?',
+    opts:['Alzheimer\'s disease — start donepezil immediately','Vascular dementia — order MRI','Pseudodementia (depression) — complete depression screening and consider antidepressant trial','Normal aging — reassure patient'],
+    ans:2,
+    explain:'<strong>Rule out pseudodementia first!</strong> The 2-month onset, mood changes, sleep/appetite disruption, and hopelessness are classic depression flags. MMSE of 26/30 is borderline — not diagnostic alone. Treating depression may completely resolve the cognitive symptoms. Starting dementia meds without ruling out depression is a significant clinical error. Always screen for depression in apparent dementia.',
+    concept:'pseudodementia'
+  },
+];
+let caseDone=new Set();
+function buildCases(){
+  const nav=document.getElementById('caseNav');
+  CASES.forEach((c,i)=>{
+    const b=document.createElement('button');
+    b.className='case-num-btn'+(i===0?' active':'');
+    b.id='cn-'+c.num;
+    b.textContent=c.num;
+    b.onclick=()=>{document.querySelectorAll('.case-num-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderCase(c);};
+    nav.appendChild(b);
+  });
+  renderCase(CASES[0]);
+}
+function renderCase(c){
+  const el=document.getElementById('caseContent');
+  const isDone=caseDone.has(c.num);
+  el.innerHTML=`<div class="case-box">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px;">
+      <div style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--gold-light)">Case ${c.num}: ${c.title}</div>
+      <span class="tag tag-${c.concept==='delirium'?'rose':c.concept==='dementia'?'teal':'mint'}">${c.concept.charAt(0).toUpperCase()+c.concept.slice(1)}</span>
+    </div>
+    <div class="case-patient-bar">${Object.entries(c.patient).map(([k,v])=>`<div class="case-patient-item"><div class="case-patient-lbl">${k}</div><div class="case-patient-val">${v}</div></div>`).join('')}</div>
+    <div class="case-scenario">${c.scenario}</div>
+    <div class="case-question">${c.question}</div>
+    <div class="case-opts">${c.opts.map((o,i)=>`<button class="case-opt" onclick="pickCase(${c.num},${i},this)" ${isDone?'disabled':''}>${String.fromCharCode(65+i)}. ${o}</button>`).join('')}</div>
+    <div class="case-explain" id="ce-${c.num}">${c.explain}</div>
+  </div>`;
+  if(isDone){
+    document.querySelectorAll('.case-opt')[c.ans].classList.add('correct-opt');
+    document.getElementById('ce-'+c.num).classList.add('show');
+  }
+}
+function pickCase(caseNum,optIdx,el){
+  const c=CASES.find(x=>x.num===caseNum);
+  document.querySelectorAll('.case-opt').forEach(b=>b.disabled=true);
+  if(optIdx===c.ans){el.classList.add('correct-opt');addXP(30);}else{el.classList.add('wrong-opt');document.querySelectorAll('.case-opt')[c.ans].classList.add('correct-opt');}
+  document.getElementById('ce-'+caseNum).classList.add('show');
+  caseDone.add(caseNum);
+  document.getElementById('cn-'+caseNum).classList.add('done');
+  const remaining=CASES.length-caseDone.size;
+  const badge=document.getElementById('caseBadge');
+  if(badge){badge.textContent=remaining;if(remaining===0)badge.style.display='none';}
+}
+
+// ══════════════════════════════════════════
+// SPEED ROUND
+// ══════════════════════════════════════════
+const SPEED_Q=[
+  {q:'Delirium onset is:',opts:['Sudden (hours–days)','Gradual (months)','Unknown','Weeks'],ans:0},
+  {q:'Untreated delirium can cause:',opts:['Hypertension','Permanent brain damage','Rash','Infection only'],ans:1},
+  {q:"Alzheimer's drug of choice (DOC):",opts:['Memantine','Haloperidol','Donepezil','Risperidone'],ans:2},
+  {q:'Validation therapy is used when:',opts:['Patient needs reorientation','Reorientation causes distress','Patient is violent','Meds are not working'],ans:1},
+  {q:'Sundowning syndrome occurs:',opts:['At sunrise','After meals','In late afternoon/evening','During sleep'],ans:2},
+  {q:'Cholinesterase inhibitors work by:',opts:['Blocking glutamate','↑ Acetylcholine','↓ Dopamine','Blocking GABA'],ans:1},
+  {q:'Wandering is a priority safety concern in:',opts:['Delirium only','Dementia — middle stage','Early stage AD only','All stages equally'],ans:1},
+  {q:'Memantine is used for:',opts:['Mild AD only','Delirium','Moderate–severe AD','Pseudodementia'],ans:2},
+  {q:'AVOID this med in elderly dementia agitation:',opts:['Risperidone','Quetiapine','Haloperidol','Lorazepam'],ans:2},
+  {q:'Pseudodementia is caused by:',opts:['Neurodegenerative disease','Depression','Infection','Medication'],ans:1},
+  {q:'MMSE stands for:',opts:['Mental Mood Screening Eval','Mini-Mental State Exam','Modified Mental Status Exam','Mental Memory Staging Exam'],ans:1},
+  {q:'The 4 C\'s of dementia nursing are:',opts:['Care, Caution, Check, Control','Calm, Clear, Consistent, Caring','Clean, Clear, Correct, Careful','Check, Communicate, Care, Contain'],ans:1},
+  {q:'Confabulation means:',opts:['Refusing to speak','Repeating words','Filling memory gaps with false info','Inability to swallow'],ans:2},
+  {q:'First-line for agitation in dementia:',opts:['Haldol','Ativan','Non-pharmacologic interventions','Seroquel'],ans:2},
+  {q:"Alzheimer's disease accounts for what % of dementia?",opts:['About 30%','About 50%','About 60–80%','About 95%'],ans:2},
+  {q:'Agnosia refers to:',opts:['Difficulty speaking','Inability to recognize objects/people','Movement problems','Memory loss'],ans:1},
+  {q:'Delirium consciousness is:',opts:['Normal until late','Gradually declining','Altered and fluctuating','Always improved with sleep'],ans:2},
+  {q:"Alzheimer's usually begins after age:",opts:['40','50','60','70'],ans:2},
+  {q:'Apraxia refers to:',opts:['Inability to recognize objects','Difficulty with movement/purposeful tasks','Speech problems','Memory gaps'],ans:1},
+  {q:'Priority nursing approach from behind a dementia patient:',opts:['Call loudly from behind','Approach from behind slowly','NEVER approach from behind','Use hand gestures only'],ans:2},
+];
+let speedIdx=0,speedScore=0,speedStreak=0,speedTimer=null,speedTimeLeft=20,speedActive=false;
+function buildSpeed(){renderSpeedIntro();}
+function renderSpeedIntro(){
+  document.getElementById('speedArea').innerHTML=`<div class="speed-intro" style="background:var(--surface);border:1px solid var(--border2);border-radius:16px;text-align:center;padding:44px 28px;">
+    <div style="font-size:3rem;margin-bottom:16px;">⚡</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--gold-light);margin-bottom:10px;">Speed Round</div>
+    <div style="color:var(--text-dim);font-size:.9rem;margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto;">20 seconds per question. Answer as many as you can. Build your streak for bonus XP!</div>
+    <button class="btn btn-gold" style="font-size:1rem;padding:14px 40px;" onclick="startSpeed()">Start Speed Round ⚡</button>
+  </div>`;
+}
+function initSpeed(){if(!speedActive)renderSpeedIntro();}
+function startSpeed(){
+  speedIdx=0;speedScore=0;speedStreak=0;speedActive=true;
+  const shuffled=[...SPEED_Q].sort(()=>Math.random()-.5);
+  window._speedQ=shuffled;
+  showSpeedQ();
+}
+function showSpeedQ(){
+  if(speedIdx>=window._speedQ.length){endSpeed();return;}
+  speedTimeLeft=20;
+  clearInterval(speedTimer);
+  const q=window._speedQ[speedIdx];
+  document.getElementById('speedArea').innerHTML=`<div class="speed-arena">
+    <div class="speed-timer-wrap"><div class="speed-timer-bar" id="sTimerBar" style="width:100%"></div></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:14px;font-size:.82rem;color:var(--text-dim);">
+      <span>Question <strong style="color:var(--text)">${speedIdx+1}</strong> / ${window._speedQ.length}</span>
+      <span>Score: <strong style="color:var(--gold-light)">${speedScore}</strong> &nbsp;⏱ <strong id="sTimerNum" style="color:var(--text)">${speedTimeLeft}s</strong></span>
+    </div>
+    <div class="speed-q-box"><div class="speed-q-text">${q.q}</div>
+    <div class="speed-opts">${q.opts.map((o,i)=>`<button class="speed-opt" onclick="pickSpeed(${i})" id="so-${i}">${o}</button>`).join('')}</div></div>
+    <div class="speed-streak" id="sStreak">${speedStreak>1?`🔥 Streak: <span>${speedStreak}</span>`:'&nbsp;'}</div>
+  </div>`;
+  speedTimer=setInterval(()=>{
+    speedTimeLeft--;
+    const bar=document.getElementById('sTimerBar');
+    const num=document.getElementById('sTimerNum');
+    if(bar)bar.style.width=`${(speedTimeLeft/20)*100}%`;
+    if(num)num.textContent=speedTimeLeft+'s';
+    if(bar&&speedTimeLeft<=7)bar.style.background='linear-gradient(90deg,var(--rose),var(--rose-light))';
+    if(speedTimeLeft<=0){clearInterval(speedTimer);timeUp();}
+  },1000);
+}
+function pickSpeed(i){
+  clearInterval(speedTimer);
+  const q=window._speedQ[speedIdx];
+  document.querySelectorAll('.speed-opt').forEach(b=>b.disabled=true);
+  document.getElementById('so-'+q.ans).classList.add('s-correct');
+  if(i===q.ans){
+    speedScore++;speedStreak++;
+    addXP(speedStreak>=3?15:10);
+  }else{
+    document.getElementById('so-'+i).classList.add('s-wrong');
+    speedStreak=0;
+  }
+  setTimeout(()=>{speedIdx++;showSpeedQ();},700);
+}
+function timeUp(){
+  const q=window._speedQ[speedIdx];
+  document.querySelectorAll('.speed-opt').forEach(b=>b.disabled=true);
+  const correct=document.getElementById('so-'+q.ans);
+  if(correct)correct.classList.add('s-correct');
+  speedStreak=0;
+  setTimeout(()=>{speedIdx++;showSpeedQ();},800);
+}
+function endSpeed(){
+  speedActive=false;
+  const pct=Math.round((speedScore/window._speedQ.length)*100);
+  const stars=pct>=90?'★★★':pct>=70?'★★☆':'★☆☆';
+  const emoji=pct>=90?'🏆':pct>=70?'🌟':pct>=50?'💪':'📚';
+  const msg=pct>=90?'Incredible! NCLEX-ready!':pct>=70?'Solid! Keep reviewing.':pct>=50?'Good effort! Try again.':'Keep studying — you\'ve got this!';
+  document.getElementById('speedArea').innerHTML=`<div class="speed-result">
+    <div class="speed-result-emoji">${emoji}</div>
+    <div class="speed-result-big">${speedScore} / ${window._speedQ.length}</div>
+    <div class="speed-result-label">Questions correct (${pct}%)</div>
+    <div class="speed-stars">${stars}</div>
+    <div style="color:var(--text-dim);font-size:.92rem;margin:8px 0 24px;">${msg}</div>
+    <div class="btn-row" style="justify-content:center;gap:10px;">
+      <button class="btn btn-gold" onclick="startSpeed()">⚡ Play Again</button>
+      <button class="btn btn-ghost" onclick="goTo('tips',document.querySelectorAll('.nav-btn')[7])">⭐ Review Tips</button>
+    </div>
+  </div>`;
+}
+
+// ══════════════════════════════════════════
+// NCLEX TIPS
+// ══════════════════════════════════════════
+const TIPS=[
+  {icon:'🚨',front:'Delirium = find the cause FIRST',back:'Delirium is always caused by something else (infection, meds, metabolic). Your #1 job is to identify and treat the underlying cause. Non-pharmacologic safety measures while you investigate. Never jump to sedation first.'},
+  {icon:'🧠',front:'Never argue with a dementia patient',back:'Arguing triggers catastrophic reactions (yelling, hitting, crying). The patient genuinely believes their reality. Use validation therapy — enter their world, acknowledge feelings, then gently redirect. Always.'},
+  {icon:'🚶',front:'Wandering = your #1 safety priority',back:'Dementia patients who wander can walk into traffic, get lost, fall, or freeze. Ensure locked exits with alarms, door camouflage, ID bracelets, GPS trackers. Increased wandering in middle stage.'},
+  {icon:'💊',front:'Non-pharmacologic interventions FIRST',back:'Before ANY medication for agitation: reduce noise/light, establish routine, address pain/hunger/bathroom needs, use calm communication. Medications are last resort due to risks in elderly.'},
+  {icon:'🌅',front:'Sundowning = late afternoon confusion in AD',back:'Worsening confusion, agitation, and behavioral changes in late afternoon/evening. Increase lighting, avoid schedule changes, limit caffeine after noon, provide calm activities.'},
+  {icon:'😢',front:'Pseudodementia: treat depression first!',back:'Depression can mimic dementia so closely that even experienced clinicians miss it. Always complete depression screening (PHQ-9, GDS) before assuming dementia. Treating depression may fully restore cognition.'},
+  {icon:'💪',front:'Do NOT do everything for dementia patients',back:'Encourage maximum independence with ADLs for as long as possible. This preserves function, maintains dignity, and slows decline. The nurse\'s role is to support, not replace, the patient\'s capability.'},
+  {icon:'🔬',front:'The 3 A\'s + Executive Dysfunction = DSM-5',back:'Aphasia (speech) + Apraxia (movement) + Agnosia (recognition) + Executive dysfunction. Any ONE of these + memory impairment = meets DSM-5 dementia criteria. Know what each one looks like clinically.'},
+  {icon:'⚠️',front:'Haldol = DANGEROUS in elderly dementia',back:'Haloperidol has a BLACK BOX WARNING for increased mortality in elderly patients with dementia-related psychosis. Use Risperdal or Seroquel if medications are truly necessary — but NON-PHARM IS ALWAYS FIRST.'},
+  {icon:'🤝',front:'Behavior = the disease (not intentional)',back:'Dementia patients cannot control their behavior. Aggression, paranoia, wandering, and incontinence are symptoms — not choices. Treat the patient as an adult. Maintain dignity. Apply the 4 C\'s: Calm, Clear, Consistent, Caring.'},
+  {icon:'🔑',front:'Key difference: consciousness',back:'Delirium = ALTERED and FLUCTUATING consciousness. Dementia = consciousness is PRESERVED until late stages. This single finding can clinch your delirium vs. dementia differentiation in any scenario.'},
+  {icon:'📊',front:'Cholinesterase inhibitors slow — not cure',back:'Donepezil, rivastigmine, and galantamine increase acetylcholine. They slow progression of Alzheimer\'s symptoms but do NOT reverse or cure the disease. Educate families that benefit is temporary and modest.'},
+];
+function buildTips(){
+  const g=document.getElementById('tipsGrid');
+  TIPS.forEach(t=>{
+    const el=document.createElement('div');
+    el.className='tip-card';
+    el.innerHTML=`<div class="tip-icon">${t.icon}</div><div class="tip-content"><div class="tip-front">${t.front}</div><div class="tip-back">${t.back}</div></div><div class="tip-arrow">▾</div>`;
+    el.onclick=()=>{el.classList.toggle('revealed');addXP(2);};
+    g.appendChild(el);
+  });
+}
+</script>
+</body>
+</html>
