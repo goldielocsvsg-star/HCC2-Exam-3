@@ -1,0 +1,1606 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tissue Integrity | Wound Care | Burns — Application Exam (60Q)</title>
+  <style>
+    :root{
+      --bg0:#0b0714;
+      --bg1:#120a22;
+      --card:#170d2b;
+      --card2:#1f1238;
+      --ink:#f5f2ff;
+      --muted:#c9bfe8;
+
+      --purple:#8b5cf6;
+      --purple2:#a78bfa;
+      --orange:#f97316;
+      --orange2:#fb923c;
+      --yellow:#facc15;
+      --yellow2:#fde047;
+
+      --good:#22c55e;
+      --bad:#ef4444;
+      --line: rgba(250, 204, 21, 0.18);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(139,92,246,.20), transparent 60%),
+        radial-gradient(1100px 650px at 85% 20%, rgba(249,115,22,.16), transparent 55%),
+        radial-gradient(900px 600px at 55% 90%, rgba(250,204,21,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      color:var(--ink);
+      min-height:100vh;
+    }
+
+    .wrap{ max-width: 1150px; margin: 0 auto; padding: 28px 18px 60px; }
+    header{ display:flex; gap:14px; align-items:flex-start; justify-content:space-between; margin-bottom:18px; }
+    .brand{ display:flex; gap:12px; align-items:flex-start; }
+    .logo{
+      width:44px;height:44px;border-radius:14px;
+      background: linear-gradient(135deg, rgba(139,92,246,.95), rgba(249,115,22,.95));
+      box-shadow: 0 10px 30px rgba(139,92,246,.25);
+      position:relative; overflow:hidden;
+    }
+    .logo:before{
+      content:""; position:absolute; inset:-10px;
+      background: repeating-linear-gradient(90deg, rgba(253,224,71,.55) 0px, rgba(253,224,71,.55) 2px, rgba(253,224,71,0) 2px, rgba(253,224,71,0) 10px);
+      transform: rotate(-12deg); opacity:.18;
+    }
+    h1{ font-size: 18px; line-height: 1.25; margin:0; letter-spacing:.2px; }
+    .sub{ color:var(--muted); font-size: 13px; margin-top:4px; line-height:1.3; }
+
+    .pillbar{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .pill{
+      padding: 9px 12px;
+      border: 1px solid rgba(167,139,250,.25);
+      border-radius: 999px;
+      background: rgba(31,18,56,.6);
+      color: var(--muted);
+      font-size: 12.5px;
+      display:flex; align-items:center; gap:8px;
+      user-select:none;
+    }
+    .dot{ width:8px;height:8px;border-radius:999px; background: var(--yellow); box-shadow: 0 0 0 4px rgba(250,204,21,.14); }
+
+    .grid{ display:grid; grid-template-columns: 1.45fr .55fr; gap: 14px; margin-top: 12px; }
+    @media (max-width: 980px){ .grid{grid-template-columns: 1fr;} .pillbar{justify-content:flex-start;} }
+
+    .card{
+      border: 1px solid rgba(250,204,21,.16);
+      background: linear-gradient(180deg, rgba(31,18,56,.88), rgba(23,13,43,.88));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .cardHead{
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      display:flex; gap:10px; align-items:center; justify-content:space-between;
+      background: linear-gradient(90deg, rgba(139,92,246,.18), rgba(249,115,22,.10));
+    }
+
+    .qMeta{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .tag{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(167,139,250,.28);
+      background: rgba(18,10,34,.55);
+      color: var(--muted);
+    }
+    .tag strong{color: var(--ink); font-weight: 650;}
+
+    .progress{
+      font-size: 12px; color: var(--muted);
+      display:flex; align-items:center; gap:10px;
+    }
+    .bar{
+      width: 160px; height: 8px; border-radius: 999px;
+      background: rgba(253,224,71,.10);
+      overflow:hidden; border: 1px solid rgba(253,224,71,.18);
+    }
+    .bar > div{
+      height:100%; width:0%;
+      background: linear-gradient(90deg, var(--purple), var(--orange), var(--yellow));
+    }
+
+    .cardBody{ padding: 18px 16px 16px; }
+    .stem{ font-size: 15.5px; line-height: 1.5; margin: 0 0 14px; }
+
+    .caseBox{
+      padding: 14px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(167,139,250,.18);
+      background:
+        radial-gradient(700px 240px at 10% 10%, rgba(139,92,246,.14), transparent 55%),
+        radial-gradient(700px 240px at 90% 10%, rgba(249,115,22,.10), transparent 55%),
+        rgba(18,10,34,.35);
+      margin-bottom: 14px;
+    }
+    .caseBox .lbl{ display:inline-flex; align-items:center; gap:8px; font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .ekg{
+      display:inline-block; width: 12px; height: 12px; border-radius: 3px;
+      background: linear-gradient(135deg, rgba(250,204,21,.85), rgba(139,92,246,.85));
+      box-shadow: 0 0 0 3px rgba(250,204,21,.14);
+    }
+    .caseText{ font-size: 14px; line-height:1.55; color: rgba(245,242,255,.92); margin:0; }
+
+    .answers{ display:flex; flex-direction:column; gap: 10px; margin-top: 8px; }
+
+    label.opt{
+      display:flex; gap: 10px; align-items:flex-start;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(250,204,21,.14);
+      background: rgba(18,10,34,.35);
+      cursor:pointer;
+      transition: transform .08s ease, border-color .08s ease, background .08s ease;
+    }
+    label.opt:hover{ transform: translateY(-1px); border-color: rgba(250,204,21,.26); background: rgba(18,10,34,.48); }
+    .opt input{ margin-top: 2px; accent-color: var(--yellow); }
+    .opt .txt{ font-size: 14.5px; line-height: 1.35; color: rgba(245,242,255,.92); }
+
+    .controls{
+      display:flex; gap:10px; margin-top: 16px;
+      align-items:center; justify-content:space-between; flex-wrap:wrap;
+    }
+    .btnrow{display:flex; gap:10px; flex-wrap:wrap;}
+    button{
+      border: 0; border-radius: 14px;
+      padding: 11px 14px;
+      font-size: 13.5px;
+      cursor:pointer;
+      color: var(--ink);
+      background: rgba(31,18,56,.7);
+      border: 1px solid rgba(167,139,250,.25);
+      transition: transform .08s ease, filter .08s ease, opacity .08s ease;
+    }
+    button:hover{ transform: translateY(-1px); filter: brightness(1.04); }
+    button:disabled{ opacity:.45; cursor:not-allowed; transform:none; }
+    .primary{
+      background: linear-gradient(135deg, rgba(139,92,246,.95), rgba(249,115,22,.85));
+      border: 1px solid rgba(253,224,71,.22);
+      box-shadow: 0 14px 40px rgba(139,92,246,.18);
+    }
+    .ghost{ background: rgba(18,10,34,.25); }
+
+    .side{ padding: 14px 14px; }
+    .stat{
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(250,204,21,.14);
+      background: rgba(18,10,34,.35);
+      margin-bottom: 12px;
+    }
+    .stat .k{ color: var(--muted); font-size: 12px; }
+    .stat .v{ font-size: 18px; font-weight: 750; margin-top:3px; }
+    .small{ font-size: 12.5px; color: var(--muted); line-height:1.35; }
+
+    .noteToggle{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .noteToggle button{
+      padding: 8px 10px; border-radius: 12px;
+      background: rgba(18,10,34,.30);
+    }
+    .notesPanel{
+      display:none;
+      margin-top: 10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(167,139,250,.22);
+      background: rgba(18,10,34,.30);
+    }
+    .notesPanel h3{ margin:0 0 8px; font-size: 13px; color: var(--yellow2); }
+    .notesPanel ul{ margin:0; padding-left: 18px; }
+    .notesPanel li{ margin: 6px 0; color: rgba(245,242,255,.90); font-size: 12.8px; line-height:1.35; }
+
+    .rationale{
+      margin-top: 14px;
+      padding: 14px 14px;
+      border-radius: 14px;
+      border: 1px dashed rgba(253,224,71,.26);
+      background: rgba(18,10,34,.30);
+      display:none;
+    }
+    .rationale h3{ margin:0 0 8px; font-size: 13.5px; color: var(--yellow2); letter-spacing:.2px; }
+    .rationale p{ margin:0; color: rgba(245,242,255,.92); font-size: 14px; line-height:1.5; }
+
+    table.matrix{
+      width:100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow:hidden;
+      border-radius: 14px;
+      border: 1px solid rgba(250,204,21,.16);
+      background: rgba(18,10,34,.28);
+    }
+    .matrix th, .matrix td{
+      padding: 10px 10px;
+      border-bottom: 1px solid rgba(250,204,21,.10);
+      font-size: 13.5px;
+       color: rgba(245,242,255,.92);
+      vertical-align: middle;
+    }
+    .matrix th{
+      text-align:left;
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(31,18,56,.55);
+    }
+    .matrix tr:last-child td{ border-bottom:0; }
+    .matrix td.c{ width: 1%; white-space:nowrap; text-align:center; }
+    .matrix input{ accent-color: var(--yellow); }
+
+    .bow{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px; }
+    @media (max-width: 860px){ .bow{ grid-template-columns: 1fr; } }
+    .bowCol{
+      border: 1px solid rgba(250,204,21,.14);
+      border-radius: 14px;
+      background: rgba(18,10,34,.32);
+      padding: 12px;
+    }
+    .bowCol h4{
+      margin:0 0 8px;
+      font-size: 12.5px;
+      color: var(--muted);
+      font-weight:650;
+      display:flex; align-items:center; gap:8px;
+    }
+    .bowCol h4 .chip{ width: 10px; height: 10px; border-radius: 4px; background: var(--purple); box-shadow: 0 0 0 4px rgba(139,92,246,.12); }
+    .bowCol.mid h4 .chip{ background: var(--orange); box-shadow: 0 0 0 4px rgba(249,115,22,.12); }
+    .bowCol.right h4 .chip{ background: var(--yellow); box-shadow: 0 0 0 4px rgba(250,204,21,.12); }
+    .bowCol .row{ margin-bottom: 10px; }
+    select{
+      width:100%;
+      padding: 10px 10px;
+      border-radius: 12px;
+      background: rgba(31,18,56,.55);
+      border: 1px solid rgba(167,139,250,.25);
+      color: var(--ink);
+      font-size: 13.5px;
+      outline:none;
+    }
+    select:focus{ border-color: rgba(253,224,71,.32); }
+
+    .modalBackdrop{
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.55);
+      display:none; align-items:center; justify-content:center;
+      padding: 18px;
+      z-index: 50;
+    }
+    .modal{
+      width:min(560px, 100%);
+      border-radius: 18px;
+      border: 1px solid rgba(250,204,21,.18);
+      background:
+        radial-gradient(700px 240px at 15% 10%, rgba(139,92,246,.18), transparent 55%),
+        radial-gradient(700px 240px at 85% 10%, rgba(249,115,22,.14), transparent 55%),
+        linear-gradient(180deg, rgba(31,18,56,.92), rgba(23,13,43,.92));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .modalTop{
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(250,204,21,.14);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .modalTop .title{ font-weight:800; letter-spacing:.2px; }
+    .modalBody{
+      padding: 14px 16px 16px;
+      color: rgba(245,242,255,.92);
+      line-height: 1.45;
+      font-size: 14px;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(250,204,21,.18);
+      background: rgba(18,10,34,.30);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .badge .bDot{
+      width: 9px; height: 9px; border-radius: 999px;
+      background: var(--good);
+      box-shadow: 0 0 0 4px rgba(34,197,94,.14);
+    }
+    .badge.bad .bDot{ background: var(--bad); box-shadow: 0 0 0 4px rgba(239,68,68,.12); }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Tissue Integrity • Wound Care • Burns — Application Exam (60Q)</h1>
+          <div class="sub">One question at a time • Submit locks answer + shows rationale • Professional feedback popups</div>
+        </div>
+      </div>
+      <div class="pillbar">
+        <div class="pill"><span class="dot"></span>Application-only</div>
+        <div class="pill">Formats: MCQ • SATA • Matrix • Bow-tie</div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card" aria-label="Exam question card">
+        <div class="cardHead">
+          <div class="qMeta">
+            <span class="tag"><strong id="qTypeTag">MCQ</strong> • format</span>
+            <span class="tag scoreTopTag">Score: <strong id="scoreValTop">0</strong> / <strong id="totalValTop">60</strong></span>
+          </div>
+          <div class="progress">
+            <span id="progressText">Q 1 / 60</span>
+            <div class="bar" aria-hidden="true"><div id="barFill"></div></div>
+          </div>
+        </div>
+
+        <div class="cardBody">
+          <div class="caseBox" id="caseBox" style="display:none;">
+            <div class="lbl"><span class="ekg" aria-hidden="true"></span> Case</div>
+            <p class="caseText" id="caseText"></p>
+          </div>
+
+          <p class="stem" id="stemText"></p>
+
+          <div id="answerArea"></div>
+
+          <div class="controls">
+            <div class="btnrow">
+              <button class="ghost" id="prevBtn">← Previous</button>
+              <button class="ghost" id="resetBtn">Reset Exam</button>
+            </div>
+            <div class="btnrow">
+              <button id="submitBtn" class="primary">Submit Answer</button>
+              <button id="nextBtn" class="ghost" disabled>Next →</button>
+            </div>
+          </div>
+
+          <div class="rationale" id="rationaleBox" aria-live="polite">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+              <span class="tag"><strong id="qObjTag">—</strong> • objective</span>
+              <span class="tag"><strong id="qTopicTag">—</strong> • topic</span>
+              <span class="tag"><strong id="qFocusTag">—</strong> • focus</span>
+            </div>
+            <h3>Rationale</h3>
+            <p id="rationaleText"></p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card side" aria-label="Exam sidebar">
+        <div class="stat" id="notesStatPanel" style="display:none;">
+          <div class="noteToggle">
+            <div>
+              <div class="k">High-Yield Notes (toggle)</div>
+              <div class="small">Quick reminders while you test.</div>
+            </div>
+            <button id="notesBtn" class="ghost">Show</button>
+          </div>
+          <div class="notesPanel" id="notesPanel">
+            <h3>Burns (ABCs + Perfusion)</h3>
+            <ul>
+              <li>Inhalation red flags: hoarseness/stridor/drooling/soot/singed hairs; airway can worsen fast even if SpO₂ looks okay.</li>
+              <li>CO poisoning: pulse ox can be misleading; check carboxyhemoglobin; treat with high-flow O₂.</li>
+              <li>Burn shock: capillary leak → third spacing; "puffy" ≠ adequate circulating volume. Trend UO/BP/HR/mentation.</li>
+              <li>Circumferential burns can restrict perfusion/chest expansion → may need escharotomy; compartment syndrome needs urgent escalation.</li>
+            </ul>
+            <h3>Pressure Injuries + Wounds</h3>
+            <ul>
+              <li>Blanchable redness = reactive hyperemia (not Stage 1). Nonblanchable = tissue injury risk.</li>
+              <li>Moist wound healing: if dry add moisture; if wet absorb (protect periwound from maceration).</li>
+              <li>Stage ONLY pressure injuries. MASD/friction injuries aren't staged as PI Stage 2.</li>
+              <li>Donut pillows + massaging red skin are traps: increase injury risk.</li>
+              <li>Report infection cues: new odor, purulence, warmth, increasing pain, tunneling/undermining, systemic signs.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="stat" id="focusStatPanel" style="display:none;">
+          <div class="k">Current focus</div>
+          <div class="v" style="font-size:14px;font-weight:700;line-height:1.35" id="focusVal">—</div>
+        </div>
+
+        <div class="stat" id="examTipsPanel" style="display:none;">
+          <div class="k">Exam mode tips</div>
+          <div class="small">
+            • Biggest threat wins (ABCs, perfusion, sepsis).<br/>
+            • Trends > one value (UO/BP/HR/mentation).<br/>
+            • For wounds: choose the option that fixes the "why" (pressure, moisture, perfusion, infection).
+          </div>
+        </div>
+
+        <div class="stat" id="scoreHintPanel">
+          <div class="small" style="text-align:center;padding:4px 0;" id="scoreHint">Submit an answer to lock it in.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="modalBackdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-label="Feedback dialog">
+    <div class="modal">
+      <div class="modalTop">
+        <div class="title" id="modalTitle">Nice work.</div>
+        <div class="badge" id="modalBadge"><span class="bDot" aria-hidden="true"></span><span id="modalBadgeText">Correct</span></div>
+      </div>
+      <div class="modalBody" id="modalBody"></div>
+      <div style="padding:0 16px 16px; display:flex; justify-content:flex-end;">
+        <button class="primary" id="modalCloseBtn">Continue</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+const questions = [
+  {
+    id:"B1", type:"mcq", objective:"Medical Emergencies", topic:"Burns/Inhalation", focus:"Airway first",
+    case:"ED arrival after enclosed house fire. Hoarseness, drooling, singed nasal hairs, soot near nares. SpO₂ 98% RA.",
+    stem:"What is the nurse's FIRST priority action?",
+    options:[
+      "Apply nonadherent dressing to facial burns and reassess in 30 minutes",
+      "Initiate high-flow oxygen and notify provider/RRT to anticipate early intubation",
+      "Start oral fluids to prevent dehydration while awaiting diagnostics",
+      "Administer IM analgesia before further assessment"
+    ],
+    answer:[1],
+    rationale:"Red-flag inhalation signs can progress rapidly; airway/oxygenation comes before wound care, oral fluids, or IM meds."
+  },
+  {
+    id:"B2", type:"matrix", objective:"Medical Emergencies", topic:"CO Poisoning", focus:"Expected vs not expected",
+    case:"Client trapped in enclosed garage fire: headache + confusion; flushed appearance; pulse ox 99% RA.",
+    stem:"Matrix: Identify EXPECTED vs NOT EXPECTED for carbon monoxide poisoning.",
+    matrix:{ colLabels:["Expected","Not Expected"], rows:[
+      {key:"carboxy",label:"STAT carboxyhemoglobin level"},
+      {key:"cyanotic",label:"Cyanosis with low pulse ox readings"},
+      {key:"cherry",label:"Cherry-red mucous membranes"},
+      {key:"hfo2",label:"High-flow O₂ immediately (possible hyperbaric)"}
+    ]},
+    answerMatrix:{carboxy:"Expected", cyanotic:"Not Expected", cherry:"Expected", hfo2:"Expected"},
+    rationale:"Pulse ox can look normal; COHb requires carboxyhemoglobin lab + rapid oxygen therapy."
+  },
+  {
+    id:"B3", type:"sata", objective:"Medical Emergencies", topic:"Burn shock/resuscitation", focus:"Resuscitation effectiveness",
+    case:"Major burn client. Foley placed. Fluids titrated per protocol.",
+    stem:"Select ALL findings that best indicate resuscitation is EFFECTIVE.",
+    options:[
+      "Urine output trending ≥30 mL/hr (or ~0.5 mL/kg/hr)",
+      "Systolic BP trending toward ≥90–100 mmHg",
+      "New crackles + worsening dyspnea after increasing IV rate",
+      "HR trending down toward 60–100/110 with palpable pulses",
+      "Carboxyhemoglobin increasing despite treatment",
+      "Serum sodium trending toward near-normal"
+    ],
+    answer:[0,1,3,5],
+    rationale:"Effective perfusion shows improving UO/BP/HR/pulses and labs trending toward normal; crackles/dyspnea suggest overload."
+  },
+  {
+    id:"B4", type:"mcq", objective:"Medical Emergencies", topic:"Airway assessment", focus:"Silent chest trap",
+    case:"Burn client had wheezing. Now no wheeze is heard; work of breathing increased; fatigued.",
+    stem:"Best interpretation?",
+    options:[
+      "Airway swelling resolved; continue routine monitoring",
+      "Wheezing disappearing may signal severe obstruction with poor airflow—escalate immediately",
+      "Client is calmer; wait for ABGs before acting",
+      "Analgesia caused decreased wheezing; focus on dressing change"
+    ],
+    answer:[1],
+    rationale:"A quiet airway after wheezing can be worse—airflow is reduced. Escalate airway support now."
+  },
+  {
+    id:"B5", type:"mcq", objective:"Medical Emergencies", topic:"Burn phases", focus:"Resuscitative phase priority",
+    case:"Client with >25% TBSA burn arrives in ED within 2 hours of injury.",
+    stem:"Which nursing priority best matches the resuscitative phase?",
+    options:[
+      "Focus on scar prevention and pressure garments",
+      "Airway/breathing support + fluid resuscitation guided by perfusion trends",
+      "Begin aggressive ROM exercises before stabilization",
+      "Encourage oral diet immediately for hypermetabolism"
+    ],
+    answer:[1],
+    rationale:"Early/resuscitative phase prioritizes airway/oxygenation and circulation/perfusion via fluids and trend monitoring."
+  },
+  {
+    id:"B6", type:"sata", objective:"Medical Emergencies", topic:"Inhalation injury cues", focus:"Assessment cues",
+    case:"Smoke-related injury suspected.",
+    stem:"Select ALL assessment findings most consistent with inhalation injury risk.",
+    options:[
+      "Soot in sputum / carbonaceous sputum",
+      "Singed nasal hairs",
+      "Hoarseness/stridor/drooling",
+      "Burns limited to lower legs only; no smoke exposure",
+      "Use of accessory muscles",
+      "Normal oral mucosa with no facial exposure"
+    ],
+    answer:[0,1,2,4],
+    rationale:"Classic inhalation cues include soot/singed hairs/voice changes/drooling/resp distress; absence of exposure cues lowers suspicion."
+  },
+  {
+    id:"B7", type:"mcq", objective:"Medical Emergencies", topic:"CO treatment", focus:"Intervention explanation",
+    case:"Client with suspected CO poisoning asks why oxygen is being given when pulse ox is normal.",
+    stem:"Best nurse response?",
+    options:[
+      "Pulse ox is always accurate; oxygen is just precautionary",
+      "Oxygen helps displace carbon monoxide from hemoglobin and restores tissue oxygen delivery",
+      "Oxygen is mainly to dry secretions after smoke exposure",
+      "Oxygen prevents infection in burn wounds"
+    ],
+    answer:[1],
+    rationale:"CO binds hemoglobin; high-flow O₂ speeds dissociation and improves oxygen delivery even when SpO₂ reads normal."
+  },
+  {
+    id:"B8", type:"mcq", objective:"Medical Emergencies", topic:"Electrical burns", focus:"Hidden severity",
+    case:"Electrical burn with small external skin marks; patient reports muscle pain.",
+    stem:"Which action is highest priority related to electrical burn risk?",
+    options:[
+      "Apply aloe and discharge if skin looks minor",
+      "Obtain ECG/continuous cardiac monitoring for dysrhythmias",
+      "Delay monitoring until pain is controlled",
+      "Focus only on dressing selection"
+    ],
+    answer:[1],
+    rationale:"Electrical burns can cause internal injury and rhythm abnormalities—EKG monitoring is priority."
+  },
+  {
+    id:"B9", type:"matrix", objective:"Medical Emergencies", topic:"Local vs systemic", focus:"Systemic vs local indicators",
+    case:"Serious burn client during acute phase.",
+    stem:"Matrix: mark each finding as SYSTEMIC vs LOCAL (best fit).",
+    matrix:{ colLabels:["Systemic","Local"], rows:[
+      {key:"oliguria",label:"Oliguria / decreasing urine output"},
+      {key:"hypox",label:"Hypoxemia"},
+      {key:"odor",label:"New wound odor"},
+      {key:"graft",label:"Graft sloughing"},
+      {key:"loc",label:"Change in level of consciousness"}
+    ]},
+    answerMatrix:{oliguria:"Systemic", hypox:"Systemic", odor:"Local", graft:"Local", loc:"Systemic"},
+    rationale:"Perfusion/oxygenation/LOC changes are systemic instability; odor/graft changes are local wound signals (can lead systemic)."
+  },
+  {
+    id:"B10", type:"mcq", objective:"Medical Emergencies", topic:"Circumferential burns", focus:"Perfusion threat",
+    case:"Circumferential burn to forearm. Distal fingers cool, cap refill delayed, pain increasing.",
+    stem:"What is the priority nursing action?",
+    options:[
+      "Massage fingers to improve circulation",
+      "Elevate limb and reassess pulses; use Doppler if needed and notify provider urgently if compromised",
+      "Apply tight compression wrap to reduce edema",
+      "Delay reassessment until scheduled vitals"
+    ],
+    answer:[1],
+    rationale:"Circumferential burns can act like a tourniquet; assess distal perfusion and escalate immediately if pulses are absent/declining."
+  },
+  {
+    id:"B11", type:"mcq", objective:"Medical Emergencies", topic:"Escharotomy vs fasciotomy", focus:"Clinical indication",
+    case:"Burn client with circumferential chest burns is increasingly dyspneic; chest expansion restricted.",
+    stem:"Which intervention is most likely anticipated?",
+    options:[
+      "Hydrocolloid dressing change only",
+      "Escharotomy to relieve restriction from tight burned tissue",
+      "Fasciotomy for constipation relief",
+      "Remove all necrotic tissue immediately at bedside without analgesia"
+    ],
+    answer:[1],
+    rationale:"Escharotomy relieves restriction from stiff burned tissue limiting circulation/chest expansion."
+  },
+  {
+    id:"B12", type:"mcq", objective:"Medical Emergencies", topic:"Fluid resuscitation timing", focus:"Concept of time since injury",
+    case:"Client transferred from scene; fluids started 2 hours after injury.",
+    stem:"When thinking about resuscitation calculations/targets, which time point matters most conceptually?",
+    options:[
+      "Time the client arrived at hospital",
+      "Time of injury (when fluid loss started)",
+      "Time first pain medication was given",
+      "Time dressing was applied"
+    ],
+    answer:[1],
+    rationale:"Resuscitation needs relate to injury time because capillary leak/third spacing begins then."
+  },
+  {
+    id:"B13", type:"mcq", objective:"Medical Emergencies", topic:"GI complications", focus:"Major burn care reasoning",
+    case:"Major burn >25% TBSA. Abdomen distended; bowel sounds decreased.",
+    stem:"What additional intervention is commonly anticipated in this situation?",
+    options:[
+      "NG tube to suction due to paralytic ileus risk",
+      "High-fiber diet immediately",
+      "Enema every 2 hours",
+      "Oral antibiotics for all clients prophylactically"
+    ],
+    answer:[0],
+    rationale:"Large burns increase paralytic ileus risk; NG decompression is often anticipated."
+  },
+  {
+    id:"B14", type:"mcq", objective:"Medical Emergencies", topic:"Pain management", focus:"Route selection",
+    case:"Severe burn client in early phase, NPO, fluctuating perfusion.",
+    stem:"Why is IV analgesia preferred over IM/oral/transdermal early?",
+    options:[
+      "IV is less effective but faster",
+      "Absorption of IM/oral/transdermal is unreliable with shock/edema and delayed gastric emptying",
+      "IM is contraindicated only because it hurts",
+      "Oral meds cause airway swelling"
+    ],
+    answer:[1],
+    rationale:"Perfusion changes and GI dysfunction make non-IV absorption unreliable; IV gives predictable effect."
+  },
+  {
+    id:"B15", type:"sata", objective:"Illness Management", topic:"Burn infection prevention", focus:"Asepsis and environment",
+    case:"Severe burns in acute phase.",
+    stem:"Select ALL actions that best support infection prevention for serious burns.",
+    options:[
+      "Strict hand hygiene + sterile technique for dressing changes",
+      "Limit visitors and contamination sources per policy",
+      "Allow fresh flowers/plants to improve mood",
+      "Confirm tetanus status and update if needed",
+      "Use sterile linens and protective coverings as indicated",
+      "Skip gloves if client is afebrile"
+    ],
+    answer:[0,1,3,4],
+    rationale:"Burn skin barrier loss makes infection a leading risk; strict asepsis, reduced exposure, tetanus review, protective measures matter."
+  },
+  {
+    id:"B16", type:"mcq", objective:"Medical Emergencies", topic:"Shock type", focus:"Conceptual shock recognition",
+    case:"Major burns; hypotension + tachycardia + cool extremities; urine output falling.",
+    stem:"Burn shock is best described as which combination?",
+    options:[
+      "Cardiogenic only",
+      "Distributive + hypovolemic physiology",
+      "Neurogenic only",
+      "Septic only from day 1"
+    ],
+    answer:[1],
+    rationale:"Capillary leak/third spacing and inflammatory vasodilation create distributive + hypovolemic features."
+  },
+  {
+    id:"B17", type:"matrix", objective:"Illness Management", topic:"Teaching evaluation", focus:"Burn nutrition",
+    case:"Client recovering from large burns is moving toward oral intake.",
+    stem:"Matrix: Mark teaching as EFFECTIVE vs INEFFECTIVE for burn recovery nutrition.",
+    matrix:{ colLabels:["Effective","Ineffective"], rows:[
+      {key:"hiCal",label:"\"I'll aim for high-calorie, high-protein intake to support healing.\""},
+      {key:"lowFat",label:"\"I should avoid fats completely because they slow healing.\""},
+      {key:"route",label:"\"Tube feedings may be used early if I can't meet needs by mouth.\""},
+      {key:"tpn",label:"\"TPN is always preferred over enteral feeds because it's stronger.\""}
+    ]},
+    answerMatrix:{hiCal:"Effective", lowFat:"Ineffective", route:"Effective", tpn:"Ineffective"},
+    rationale:"Burns are hypermetabolic—high protein/calories support healing. Enteral is preferred if GI works; TPN is last-resort due to risks."
+  },
+  {
+    id:"B18", type:"mcq", objective:"Medical Emergencies", topic:"Compartment syndrome", focus:"Assessment escalation",
+    case:"Circumferential leg burns. Severe pain out of proportion, paresthesia, tense swelling; pulses difficult to palpate.",
+    stem:"What is the best next nursing action?",
+    options:[
+      "Apply heat to relax muscles",
+      "Use Doppler to assess pulses, assess sensation/movement/cap refill, and notify provider immediately",
+      "Wait until next scheduled assessment to prevent alarm",
+      "Massage the extremity to increase perfusion"
+    ],
+    answer:[1],
+    rationale:"Compartment syndrome/perfusion compromise is limb-threatening—confirm pulses (Doppler) and escalate urgently."
+  },
+  {
+    id:"B19", type:"bowtie", objective:"Medical Emergencies", topic:"Burn shock/airway", focus:"Problem + actions + outcomes",
+    case:"Major burns with suspected inhalation injury. HR 124, SBP 88, UO dropping, anxious with increasing work of breathing.",
+    stem:"Bow-tie: Select the BEST problem, TWO actions, and TWO outcomes showing improvement.",
+    bowtie:{
+      problem:{ label:"Clinical problem (choose 1)", options:[
+        "Inadequate tissue perfusion related to burn shock/capillary leak",
+        "Risk for constipation related to decreased mobility",
+        "Impaired skin integrity related to blanchable erythema",
+        "Chronic pain syndrome unrelated to injury phase"
+      ]},
+      actions:{ label:"Priority actions (choose 2)", pick:2, options:[
+        "Titrate fluids per protocol and trend UO/BP/HR closely",
+        "Initiate oxygen and escalate for early airway protection if worsening signs",
+        "Apply donut cushion to offload pressure quickly",
+        "Delay interventions until all labs return"
+      ]},
+      outcomes:{ label:"Evaluation outcomes (choose 2)", pick:2, options:[
+        "UO improves to ≥30 mL/hr (or ~0.5 mL/kg/hr) with improved BP/pulses",
+        "Mentation improves without new crackles/dyspnea suggesting overload",
+        "Skin burns look less red and client feels warmer",
+        "Crackles and dyspnea worsen after increasing IV rate"
+      ]}
+    },
+    answerBowtie:{
+      problem:"Inadequate tissue perfusion related to burn shock/capillary leak",
+      actions:["Titrate fluids per protocol and trend UO/BP/HR closely","Initiate oxygen and escalate for early airway protection if worsening signs"],
+      outcomes:["UO improves to ≥30 mL/hr (or ~0.5 mL/kg/hr) with improved BP/pulses","Mentation improves without new crackles/dyspnea suggesting overload"]
+    },
+    rationale:"Burn shock threatens perfusion; airway risk requires proactive escalation. Success = better perfusion trends without overload."
+  },
+  {
+    id:"B20", type:"mcq", objective:"Illness Management", topic:"Rehab phase", focus:"Contracture prevention",
+    case:"Client enters rehabilitative phase after wound closure. Limited ROM developing at elbow.",
+    stem:"Which intervention best supports rehab priorities?",
+    options:[
+      "Keep joints immobilized to reduce pain",
+      "Splints + ROM exercises to prevent contractures and preserve function",
+      "Avoid lubrication to keep skin dry",
+      "Stop psychosocial support because acute phase is over"
+    ],
+    answer:[1],
+    rationale:"Rehab focuses on function, preventing scars/contractures, ROM/splints, and psychosocial adjustment."
+  },
+  {
+    id:"B21", type:"mcq", objective:"Illness Management", topic:"Hypertrophic scarring", focus:"Pressure garments",
+    case:"Full-thickness burns healing with hypertrophic scarring risk.",
+    stem:"Which plan is most appropriate?",
+    options:[
+      "Elastic pressure garments and skin lubrication as directed",
+      "Avoid pressure garments because they reduce perfusion permanently",
+      "Use donut pillow to prevent scar formation",
+      "Keep skin exposed to sun to harden scars"
+    ],
+    answer:[0],
+    rationale:"Pressure garments and lubrication are used in rehab to manage scarring and support skin integrity."
+  },
+  {
+    id:"B22", type:"mcq", objective:"Medical Emergencies", topic:"CO severity", focus:"Escalation judgement",
+    case:"CO exposure: client becomes drowsy and confused with cardiopulmonary instability signs.",
+    stem:"Best nursing priority?",
+    options:[
+      "Continue room air and recheck in 2 hours",
+      "High-flow oxygen immediately and escalate for advanced care (hyperbaric consideration)",
+      "Give oral sedative to reduce anxiety",
+      "Delay treatment until CXR results"
+    ],
+    answer:[1],
+    rationale:"CO can rapidly become life-threatening; immediate oxygen + escalation is required."
+  },
+  {
+    id:"B23", type:"sata", objective:"Medical Emergencies", topic:"On-the-scene/initial", focus:"Early care actions",
+    case:"Prehospital arrival to scene with active burn injury.",
+    stem:"Select ALL appropriate immediate actions (application-based).",
+    options:[
+      "Stop the burning process and cool the burn (avoid hypothermia)",
+      "Assess ABCs and start oxygen if needed",
+      "Remove restrictive objects (rings/watches) from burned extremities",
+      "Apply ice directly to large burns for prolonged periods",
+      "Cover the wound with clean/sterile dressing/cloth",
+      "Delay airway assessment until pain controlled"
+    ],
+    answer:[0,1,2,4],
+    rationale:"Stop injury, ABCs, remove constrictors, cover wounds. Prolonged ice increases tissue injury/hypothermia risk."
+  },
+  {
+    id:"B24", type:"matrix", objective:"Illness Management", topic:"Management evaluation", focus:"Effective vs ineffective burn plan",
+    case:"Client in acute phase receiving fluids + respiratory support.",
+    stem:"Matrix: Mark each sign as EFFECTIVE vs INEFFECTIVE management.",
+    matrix:{ colLabels:["Effective","Ineffective"], rows:[
+      {key:"uo",label:"Urine output rising toward goal with improving pulses"},
+      {key:"dysp",label:"New crackles + worsening dyspnea after fluids increased"},
+      {key:"sbp",label:"SBP trending upward toward ≥90–100"},
+      {key:"ams",label:"New/worsening confusion with falling BP"}
+    ]},
+    answerMatrix:{uo:"Effective", dysp:"Ineffective", sbp:"Effective", ams:"Ineffective"},
+    rationale:"Improving perfusion trends suggest effectiveness; overload or worsening shock signs indicate ineffective/unsafe management."
+  },
+  {
+    id:"B25", type:"mcq", objective:"Illness Management", topic:"Pain types", focus:"Procedural pain planning",
+    case:"Client reports tolerable pain at rest but severe pain during dressing changes.",
+    stem:"Best nursing plan?",
+    options:[
+      "Give analgesia after dressing change to avoid masking pain",
+      "Pre-medicate before procedures and plan for breakthrough pain control",
+      "Avoid analgesics to encourage deep breathing",
+      "Use only nonpharmacologic methods for procedures"
+    ],
+    answer:[1],
+    rationale:"Burn care causes procedural pain—pre-medication + breakthrough plan supports function and tolerance of care."
+  },
+  {
+    id:"W26", type:"mcq", objective:"Illness Management", topic:"Pressure injuries", focus:"Stage 1 recognition",
+    case:"Intact skin over sacrum with localized redness that does NOT blanch with pressure.",
+    stem:"Best staging?",
+    options:["Blanchable erythema only (not a PI)","Stage 1 pressure injury","Stage 2 pressure injury","Unstageable pressure injury"],
+    answer:[1],
+    rationale:"Stage 1 = intact skin with nonblanchable erythema/hyperpigmentation over bony prominence."
+  },
+  {
+    id:"W27", type:"mcq", objective:"Illness Management", topic:"Reactive hyperemia", focus:"Not Stage 1 trap",
+    case:"After pressure relief, redness blanches and resolves within expected time window.",
+    stem:"Best interpretation?",
+    options:["Stage 1 PI","Reactive hyperemia (blanchable erythema), not Stage 1","Stage 2 PI","Deep tissue injury"],
+    answer:[1],
+    rationale:"Blanchable erythema is reactive hyperemia—signals risk but is not Stage 1."
+  },
+  {
+    id:"W28", type:"matrix", objective:"Illness Management", topic:"Reactive hyperemia", focus:"Expected vs not expected",
+    case:"Post-procedure skin check with redness after pressure relief.",
+    stem:"Matrix: EXPECTED vs NOT EXPECTED for reactive hyperemia.",
+    matrix:{ colLabels:["Expected","Not Expected"], rows:[
+      {key:"blanch",label:"Turns pale with light pressure"},
+      {key:"resolve",label:"Resolves in ~1/2 to 3/4 the time pressure was applied"},
+      {key:"stage1",label:"Automatically a Stage 1 pressure injury"},
+      {key:"plan",label:"Offload pressure and moisturize/protect skin"}
+    ]},
+    answerMatrix:{blanch:"Expected", resolve:"Expected", stage1:"Not Expected", plan:"Expected"},
+    rationale:"Reactive hyperemia is blanchable and time-limited; management is pressure relief + skin protection."
+  },
+  {
+    id:"W29", type:"mcq", objective:"Illness Management", topic:"Stage 2", focus:"Partial thickness application",
+    case:"Right hip: blistered 2.5 cm area; skin not intact; moist pink wound bed; no adipose visible.",
+    stem:"Most appropriate stage?",
+    options:["Stage 1","Stage 2","Stage 3","Unstageable"],
+    answer:[1],
+    rationale:"Stage 2 = partial thickness loss with exposed dermis or blister; no adipose/deeper structures visible."
+  },
+  {
+    id:"W30", type:"mcq", objective:"Illness Management", topic:"Stage 3 vs 4", focus:"Depth cues",
+    case:"Pressure injury with full-thickness loss; adipose visible; tunneling present; no bone/tendon visible.",
+    stem:"Best staging?",
+    options:["Stage 2","Stage 3","Stage 4","Deep tissue injury"],
+    answer:[1],
+    rationale:"Stage 3 = full-thickness with visible adipose; tunneling/undermining can be present without exposed bone."
+  },
+  {
+    id:"W31", type:"mcq", objective:"Illness Management", topic:"Stage 4", focus:"Exposed structures",
+    case:"Pressure injury with exposed bone palpable at base; slough around edges.",
+    stem:"Best staging?",
+    options:["Stage 3","Stage 4","Unstageable","Stage 2"],
+    answer:[1],
+    rationale:"Exposed or directly palpable bone/tendon/muscle = Stage 4."
+  },
+  {
+    id:"W32", type:"mcq", objective:"Illness Management", topic:"Unstageable", focus:"Cannot see base",
+    case:"Wound base is covered with thick slough/eschar so depth cannot be determined.",
+    stem:"Best staging?",
+    options:["Stage 2","Stage 3","Unstageable pressure injury","Deep tissue injury"],
+    answer:[2],
+    rationale:"Unstageable = full-thickness loss but depth obscured by slough/eschar."
+  },
+  {
+    id:"W33", type:"mcq", objective:"Illness Management", topic:"DTI", focus:"Purple/maroon cue",
+    case:"Heel shows persistent deep maroon/purple discoloration; skin may feel boggy/spongy.",
+    stem:"Best classification?",
+    options:["Stage 1","Deep tissue pressure injury (DTI)","Stage 2","MASD"],
+    answer:[1],
+    rationale:"DTI presents as deep red/maroon/purple discoloration or blood-filled blister; often 'iceberg' damage underneath."
+  },
+  {
+    id:"W34", type:"sata", objective:"Illness Management", topic:"Risk factors", focus:"Identify high risk",
+    case:"You're using Braden concepts to identify risk.",
+    stem:"Select ALL factors that increase pressure injury risk.",
+    options:[
+      "Immobility/chair-bound status",
+      "Moisture from incontinence",
+      "Good nutrition and hydration",
+      "Peripheral vascular disease/diabetes",
+      "High friction/shear from sliding in bed",
+      "Intact sensation and frequent self-repositioning"
+    ],
+    answer:[0,1,3,4],
+    rationale:"Immobility, moisture, poor perfusion, and shear/friction increase risk; good nutrition and self-repositioning reduce risk."
+  },
+  {
+    id:"W35", type:"mcq", objective:"Illness Management", topic:"Shear", focus:"Mechanism application",
+    case:"Client kept at high HOB; repeatedly slides down in bed.",
+    stem:"Which mechanism best explains deep tissue risk?",
+    options:["Friction only","Shear (skin fixed while deeper tissue slides/kinks vessels)","Thermal injury","Allergic contact dermatitis"],
+    answer:[1],
+    rationale:"Shear damages deeper tissue and perfusion (kinks blood vessels) even before skin looks severe."
+  },
+  {
+    id:"W36", type:"mcq", objective:"Illness Management", topic:"Friction vs pressure staging", focus:"Staging trap",
+    case:"Superficial 'sheet burn' abrasion on elbow from rubbing; not over bony prominence pressure point.",
+    stem:"Best documentation approach?",
+    options:[
+      "Stage as Stage 2 pressure injury",
+      "Document as friction injury/abrasion; protect skin and address cause",
+      "Stage as Stage 3 pressure injury due to skin loss",
+      "Ignore because it's superficial"
+    ],
+    answer:[1],
+    rationale:"Friction injuries are not automatically staged as pressure injuries; treat the cause and protect epidermis."
+  },
+  {
+    id:"W37", type:"mcq", objective:"Illness Management", topic:"MASD", focus:"Moisture damage approach",
+    case:"Incontinent client with diffuse maceration/irritation in skin folds; no bony prominence focal point.",
+    stem:"Best nursing approach?",
+    options:[
+      "Stage as Stage 2 PI",
+      "Treat as MASD: cleanse after soiling, barrier cream, keep folds dry, reassess",
+      "Massage redness to restore circulation",
+      "Use donut cushion"
+    ],
+    answer:[1],
+    rationale:"MASD needs moisture control/barrier protection; Stage 2 PI should not be used to describe MASD."
+  },
+  {
+    id:"W38", type:"matrix", objective:"Illness Management", topic:"Teaching", focus:"PI prevention teaching",
+    case:"Family caregiver teaching for immobile elder.",
+    stem:"Matrix: Effective vs Ineffective teaching.",
+    matrix:{ colLabels:["Effective","Ineffective"], rows:[
+      {key:"turn",label:"Reposition at least every 2 hours if unable to shift"},
+      {key:"donut",label:"Use donut pillow for sacrum"},
+      {key:"hob",label:"Keep HOB low (≈≤30°) when safe to reduce shear"},
+      {key:"massage",label:"Massage red areas to restore circulation"}
+    ]},
+    answerMatrix:{turn:"Effective", donut:"Ineffective", hob:"Effective", massage:"Ineffective"},
+    rationale:"Offload/turn/reduce shear and moisture; donut pillows and massaging redness increase injury risk."
+  },
+  {
+    id:"W39", type:"mcq", objective:"Illness Management", topic:"Moist wound healing", focus:"Dry wound plan",
+    case:"Full-thickness wound with minimal drainage; wound bed appears dry; no infection signs.",
+    stem:"Best dressing approach?",
+    options:[
+      "Dry gauze only to encourage scab formation",
+      "Wound gel to add moisture + lightly fill/cover as ordered",
+      "Hydrogen peroxide irrigation daily",
+      "Leave open to air"
+    ],
+    answer:[1],
+    rationale:"Moist wound healing: if dry, add moisture (wound gel). Peroxide/open air can impair healing."
+  },
+  {
+    id:"W40", type:"mcq", objective:"Illness Management", topic:"Moist wound healing", focus:"Wet wound plan",
+    case:"Full-thickness wound with moderate-heavy exudate; periwound maceration beginning.",
+    stem:"Best dressing choice?",
+    options:[
+      "Wound gel to increase moisture",
+      "Calcium alginate to absorb drainage and protect periwound",
+      "Leave open to air to dry out",
+      "Wet-to-dry daily regardless of tissue type"
+    ],
+    answer:[1],
+    rationale:"If wound is wet, absorb moisture. Calcium alginate is used for moderate-heavy drainage to manage exudate."
+  },
+  {
+    id:"W41", type:"mcq", objective:"Illness Management", topic:"Wet-to-dry", focus:"Nonselective debridement",
+    case:"Provider orders wet-to-dry for a wound with healthy granulation and minimal slough.",
+    stem:"Best nursing concern?",
+    options:[
+      "Wet-to-dry is selective and preserves healthy tissue",
+      "Wet-to-dry can remove healthy tissue and be painful; use carefully and reassess appropriateness",
+      "Wet-to-dry always prevents infection better than sterile technique",
+      "Wet-to-dry is contraindicated because it increases moisture"
+    ],
+    answer:[1],
+    rationale:"Wet-to-dry is nonselective and can damage granulation; must be used cautiously."
+  },
+  {
+    id:"W42", type:"mcq", objective:"Illness Management", topic:"Hydrocolloid", focus:"Use case",
+    case:"Shallow wound with light-to-moderate drainage; goal is moist environment/autolysis support.",
+    stem:"Best dressing option?",
+    options:["Calcium alginate","Hydrocolloid dressing","Dry gauze only","Tight compression wrap"],
+    answer:[1],
+    rationale:"Hydrocolloids help maintain moisture, protect, and can support autolytic debridement in shallow wounds."
+  },
+  {
+    id:"W43", type:"mcq", objective:"Illness Management", topic:"Barrier creams", focus:"Incontinence protection",
+    case:"Client with frequent urine/stool exposure developing skin irritation.",
+    stem:"Which intervention best protects skin integrity?",
+    options:["Alcohol-based cleanser only","Barrier cream after cleansing and moisture control","Vigorous scrubbing to remove stool","Neosporin for all intact skin"],
+    answer:[1],
+    rationale:"Barrier creams protect from moisture-associated damage; combine with gentle cleansing and dryness."
+  },
+  {
+    id:"W44", type:"mcq", objective:"Illness Management", topic:"Dry cracked skin", focus:"Protection choice",
+    case:"Older adult with very dry cracked heels but no open wound.",
+    stem:"Most appropriate skin protectant plan?",
+    options:["Aquaphor/petrolatum to seal moisture","Hydrogen peroxide to disinfect daily","Neosporin routinely to prevent infection","Leave skin dry to avoid maceration"],
+    answer:[0],
+    rationale:"Moisturizers/protectants reduce cracking (entry point for bacteria). Routine topical antibiotics can irritate."
+  },
+  {
+    id:"W45", type:"mcq", objective:"Illness Management", topic:"Wound infection cues", focus:"Report immediately",
+    case:"Chronic wound: new foul odor, increasing pain, warmth, purulent drainage.",
+    stem:"Best nursing action?",
+    options:[
+      "Document as expected colonization and continue plan",
+      "Notify provider/wound team; evaluate for infection and plan change",
+      "Irrigate aggressively with harsh antiseptic",
+      "Switch to dry dressings only"
+    ],
+    answer:[1],
+    rationale:"New pain/odor/purulence/warmth suggest infection—needs escalation and reassessment."
+  },
+  {
+    id:"W46", type:"mcq", objective:"Illness Management", topic:"Dehiscence", focus:"Recognition",
+    case:"Post-op day 7. Sudden increased serosanguineous drainage after vomiting; patient says it 'gave way.'",
+    stem:"Most appropriate interpretation?",
+    options:[
+      "Normal healing drainage increase",
+      "Possible dehiscence; reduce strain, assess incision, notify provider",
+      "Definite allergic reaction; remove staples",
+      "Expected colonization; no need to report"
+    ],
+    answer:[1],
+    rationale:"Sudden drainage + 'giving way' after strain suggests dehiscence—needs prompt assessment and notification."
+  },
+  {
+    id:"W47", type:"mcq", objective:"Medical Emergencies", topic:"Evisceration", focus:"First action",
+    case:"Abdominal incision opens; bowel protrudes.",
+    stem:"Nurse's FIRST action?",
+    options:[
+      "Reinsert organs and apply dry dressing",
+      "Cover with sterile saline-soaked gauze; keep NPO; notify surgeon immediately",
+      "Apply firm pressure dressing and ambulate",
+      "Cleanse with antiseptic and obtain culture first"
+    ],
+    answer:[1],
+    rationale:"Evisceration is surgical emergency—protect tissue (saline sterile gauze), NPO, rapid provider notification."
+  },
+  {
+    id:"W48", type:"matrix", objective:"Illness Management", topic:"Pressure injury management", focus:"Effective vs ineffective plan",
+    case:"Stage 1 PI prevention plan started (offloading, moisture control, nutrition).",
+    stem:"Matrix: Effective vs Ineffective management indicators.",
+    matrix:{ colLabels:["Effective","Ineffective"], rows:[
+      {key:"decrease",label:"Redness decreases with offloading and skin feels less warm"},
+      {key:"slide",label:"Client continues sliding down with HOB high; no shear prevention"},
+      {key:"macer",label:"Perineal care + barrier cream improves maceration"},
+      {key:"intake",label:"Nutrition intake improves; no progression of injury"}
+    ]},
+    answerMatrix:{decrease:"Effective", slide:"Ineffective", macer:"Effective", intake:"Effective"},
+    rationale:"Effective plan reduces pressure/shear/moisture and supports tissue tolerance; persistent sliding/shear undermines improvement."
+  },
+  {
+    id:"W49", type:"mcq", objective:"Illness Management", topic:"Braden", focus:"Risk interpretation",
+    case:"Braden score is 16.",
+    stem:"Best interpretation for PI risk?",
+    options:["No impairment","Low risk","High risk","Impossible to interpret without labs"],
+    answer:[2],
+    rationale:"Braden ≤17 indicates high risk; requires prevention bundle."
+  },
+  {
+    id:"W50", type:"mcq", objective:"Illness Management", topic:"Whole patient", focus:"System factors",
+    case:"Pressure injury not improving despite correct dressings; client has poor intake and edema.",
+    stem:"Best next nursing focus?",
+    options:[
+      "Change dressing type daily until it heals",
+      "Assess systemic barriers (nutrition/perfusion/edema/infection) and collaborate for support",
+      "Stop turning to avoid pain",
+      "Avoid documenting to reduce liability"
+    ],
+    answer:[1],
+    rationale:"Treat the whole patient—healing needs perfusion and nutrition; evaluate infection and systemic barriers."
+  },
+  {
+    id:"W51", type:"mcq", objective:"Illness Management", topic:"Culture process", focus:"When to culture",
+    case:"Surgical wound has warmth, tenderness, increased drainage and small openings between staples.",
+    stem:"Best nursing action?",
+    options:[
+      "Observe only because surgical wounds always drain",
+      "Report findings and obtain culture per protocol/provider order",
+      "Apply thick occlusive dressing and do not report",
+      "Irrigate with peroxide and document as resolved"
+    ],
+    answer:[1],
+    rationale:"These findings suggest possible infection; prompt reporting and specimen collection are appropriate."
+  },
+  {
+    id:"W52", type:"matrix", objective:"Illness Management", topic:"Dressing selection", focus:"Expected vs not expected",
+    case:"You're selecting dressings based on exudate level.",
+    stem:"Matrix: Match each dressing to the wound environment (Expected vs Not Expected).",
+    matrix:{ colLabels:["Expected","Not Expected"], rows:[
+      {key:"alg",label:"Calcium alginate for moderate-heavy drainage"},
+      {key:"gelwet",label:"Wound gel for highly exudative wound"},
+      {key:"geldig",label:"Wound gel for dry/minimal drainage wound"},
+      {key:"hydro",label:"Hydrocolloid for shallow/light-moderate drainage"}
+    ]},
+    answerMatrix:{alg:"Expected", gelwet:"Not Expected", geldig:"Expected", hydro:"Expected"},
+    rationale:"Absorb wet wounds (alginate) and add moisture to dry wounds (gel); hydrocolloid supports moist environment for shallow wounds."
+  },
+  {
+    id:"W53", type:"mcq", objective:"Illness Management", topic:"Device-related injury", focus:"MDRPI recognition",
+    case:"Redness and skin breakdown shaped exactly like nasal cannula tubing on the ear.",
+    stem:"Best classification and action?",
+    options:[
+      "Stage 2 pressure injury on ear; ignore tubing fit",
+      "Medical device–related pressure injury; pad/reposition device and protect skin",
+      "MASD; apply barrier and continue same device placement",
+      "Deep tissue injury; massage area"
+    ],
+    answer:[1],
+    rationale:"MDRPI matches device shape; intervene by padding/repositioning and frequent skin checks."
+  },
+  {
+    id:"W54", type:"mcq", objective:"Illness Management", topic:"Adhesive injury", focus:"MARSI trap",
+    case:"After removing tape, epidermis strips; redness persists beyond 30 minutes.",
+    stem:"Best description?",
+    options:["Stage 1 PI","MARSI (adhesive-related skin injury)","MASD","Normal finding; no documentation needed"],
+    answer:[1],
+    rationale:"MARSI is skin injury persisting ≥30 minutes after adhesive removal; requires gentle technique and skin protection."
+  },
+  {
+    id:"W55", type:"bowtie", objective:"Illness Management", topic:"Pressure injury prevention", focus:"Problem + actions + outcomes",
+    case:"Bed-bound client: incontinence, poor intake, sliding down in bed, new nonblanchable sacral redness.",
+    stem:"Bow-tie: Choose best problem, TWO actions, TWO outcomes showing improvement.",
+    bowtie:{
+      problem:{label:"Clinical problem (choose 1)", options:[
+        "Impaired skin integrity related to pressure/shear and moisture",
+        "Risk for constipation related to opioid use",
+        "Acute confusion unrelated to illness",
+        "Chronic pain syndrome"
+      ]},
+      actions:{label:"Priority actions (choose 2)", pick:2, options:[
+        "Offload sacrum, implement turning schedule, reduce shear (HOB ≤30° when safe)",
+        "Moisture management: prompt cleansing + barrier cream; protect periwound",
+        "Massage the reddened area to increase circulation",
+        "Use donut cushion to reduce pressure"
+      ]},
+      outcomes:{label:"Evaluation outcomes (choose 2)", pick:2, options:[
+        "Redness decreases or stops progressing; skin temperature/induration improves",
+        "No further maceration; incontinence-associated irritation improves",
+        "Redness persists and worsens with increased pain",
+        "New purple/maroon discoloration develops"
+      ]}
+    },
+    answerBowtie:{
+      problem:"Impaired skin integrity related to pressure/shear and moisture",
+      actions:["Offload sacrum, implement turning schedule, reduce shear (HOB ≤30° when safe)","Moisture management: prompt cleansing + barrier cream; protect periwound"],
+      outcomes:["Redness decreases or stops progressing; skin temperature/induration improves","No further maceration; incontinence-associated irritation improves"]
+    },
+    rationale:"Treat the cause: pressure + shear + moisture. Improvement looks like stabilization/regression of erythema and improved moisture control."
+  },
+  {
+    id:"M56", type:"mcq", objective:"Medical Emergencies", topic:"Notify provider", focus:"Unexpected response",
+    case:"Burn client receiving fluids: SBP falls to 84, UO drops, mental status worsens.",
+    stem:"Which action is most appropriate?",
+    options:[
+      "Document and reassess in 4 hours",
+      "Notify provider/RRT immediately and prepare to adjust resuscitation plan",
+      "Stop all fluids permanently",
+      "Focus on wound dressings first"
+    ],
+    answer:[1],
+    rationale:"Worsening perfusion + AMS is instability; requires immediate escalation and plan adjustment."
+  },
+  {
+    id:"M57", type:"matrix", objective:"Illness Management", topic:"Teaching evaluation", focus:"Wound care at home",
+    case:"Client discharged with wound care plan.",
+    stem:"Matrix: Evaluate teaching as EFFECTIVE vs INEFFECTIVE.",
+    matrix:{ colLabels:["Effective","Ineffective"], rows:[
+      {key:"hand",label:"\"I'll wash hands and use clean technique before dressing changes.\""},
+      {key:"skip",label:"\"If it smells a little worse, I'll just cover it tighter and wait a week.\""},
+      {key:"report",label:"\"I'll report new pain, odor, purulent drainage, or fever.\""},
+      {key:"moist",label:"\"If it's too wet, we'll use more absorbent dressing to prevent maceration.\""}
+    ]},
+    answerMatrix:{hand:"Effective", skip:"Ineffective", report:"Effective", moist:"Effective"},
+    rationale:"Teaching is effective when it includes infection red flags, hygiene, and moisture balance strategies."
+  },
+  {
+    id:"M58", type:"sata", objective:"Illness Management", topic:"Report immediately", focus:"Critical data",
+    case:"Client with pressure injury and comorbidities.",
+    stem:"Select ALL findings that should be reported promptly (possible deterioration).",
+    options:[
+      "New fever with wound warmth and purulent drainage",
+      "New tunneling/undermining with increasing pain",
+      "Redness that blanches and resolves quickly after offloading",
+      "New confusion with low BP",
+      "Stable wound with decreasing drainage and no odor",
+      "New foul odor with increased exudate"
+    ],
+    answer:[0,1,3,5],
+    rationale:"Infection/systemic instability cues and worsening wound features require prompt reporting; blanchable redness improving is less urgent."
+  },
+  {
+    id:"M59", type:"mcq", objective:"Medical Emergencies", topic:"Documentation", focus:"Evaluate response",
+    case:"After burn interventions, HR falls from 128→104, SBP 88→102, UO rises, mentation improves.",
+    stem:"Best interpretation?",
+    options:[
+      "Interventions appear effective; continue trending and document response",
+      "Interventions ineffective because HR still above 100",
+      "Stop monitoring because vitals improved once",
+      "Discontinue fluids immediately to avoid edema"
+    ],
+    answer:[0],
+    rationale:"Trends show improvement and should be documented; continue to monitor for stability and avoid swinging to overload."
+  },
+  {
+    id:"M60", type:"bowtie", objective:"Illness Management", topic:"Emergency explanations", focus:"Explain + evaluate",
+    case:"Family asks why you're limiting visitors and using protective coverings for a severe burn patient.",
+    stem:"Bow-tie: Choose best rationale, TWO actions, TWO outcomes indicating the plan is working.",
+    bowtie:{
+      problem:{label:"Best rationale (choose 1)", options:[
+        "Severe burns increase infection risk because the skin barrier is lost",
+        "Visitors increase pain by talking too much",
+        "Coverings are only for staff comfort",
+        "Isolation prevents scar tissue formation"
+      ]},
+      actions:{label:"Best actions (choose 2)", pick:2, options:[
+        "Use strict hand hygiene and sterile dressing technique",
+        "Limit contamination sources per unit protocol (visitors/flowers as indicated)",
+        "Encourage everyone to touch wounds to 'toughen skin'",
+        "Skip PPE when client looks stable"
+      ]},
+      outcomes:{label:"Best outcomes (choose 2)", pick:2, options:[
+        "No new local/systemic infection signs; wound appearance stable",
+        "Afebrile with stable vitals and no worsening drainage/odor",
+        "Increasing purulent drainage and odor but stable vitals",
+        "New confusion and hypotension"
+      ]}
+    },
+    answerBowtie:{
+      problem:"Severe burns increase infection risk because the skin barrier is lost",
+      actions:["Use strict hand hygiene and sterile dressing technique","Limit contamination sources per unit protocol (visitors/flowers as indicated)"],
+      outcomes:["No new local/systemic infection signs; wound appearance stable","Afebrile with stable vitals and no worsening drainage/odor"]
+    },
+    rationale:"Teaching should connect skin-barrier loss to infection risk; effective precautions show stable wound and no systemic decline."
+  },
+];
+
+const state = { idx: 0, score: 0, locked: {} };
+
+const els = {
+  qTypeTag: document.getElementById("qTypeTag"),
+  qObjTag: document.getElementById("qObjTag"),
+  qTopicTag: document.getElementById("qTopicTag"),
+  qFocusTag: document.getElementById("qFocusTag"),
+  progressText: document.getElementById("progressText"),
+  barFill: document.getElementById("barFill"),
+  caseBox: document.getElementById("caseBox"),
+  caseText: document.getElementById("caseText"),
+  stemText: document.getElementById("stemText"),
+  answerArea: document.getElementById("answerArea"),
+  rationaleBox: document.getElementById("rationaleBox"),
+  rationaleText: document.getElementById("rationaleText"),
+  prevBtn: document.getElementById("prevBtn"),
+  nextBtn: document.getElementById("nextBtn"),
+  submitBtn: document.getElementById("submitBtn"),
+  resetBtn: document.getElementById("resetBtn"),
+  scoreValTop: document.getElementById("scoreValTop"),
+  totalValTop: document.getElementById("totalValTop"),
+  scoreHint: document.getElementById("scoreHint"),
+  focusVal: document.getElementById("focusVal"),
+  focusStatPanel: document.getElementById("focusStatPanel"),
+  notesStatPanel: document.getElementById("notesStatPanel"),
+  examTipsPanel: document.getElementById("examTipsPanel"),
+  modalBackdrop: document.getElementById("modalBackdrop"),
+  modalTitle: document.getElementById("modalTitle"),
+  modalBadge: document.getElementById("modalBadge"),
+  modalBadgeText: document.getElementById("modalBadgeText"),
+  modalBody: document.getElementById("modalBody"),
+  modalCloseBtn: document.getElementById("modalCloseBtn"),
+  notesBtn: document.getElementById("notesBtn"),
+  notesPanel: document.getElementById("notesPanel"),
+};
+
+els.totalValTop.textContent = questions.length;
+
+els.notesBtn.addEventListener("click", ()=>{
+  const open = els.notesPanel.style.display === "block";
+  els.notesPanel.style.display = open ? "none" : "block";
+  els.notesBtn.textContent = open ? "Show" : "Hide";
+});
+
+function prettyType(t){
+  if(t==="mcq") return "MCQ";
+  if(t==="sata") return "SATA";
+  if(t==="matrix") return "Matrix";
+  if(t==="bowtie") return "Bow-tie";
+  return t;
+}
+function escapeHtml(s){
+  return (s ?? "").toString()
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+function setProgress(){
+  const qNum = state.idx + 1;
+  els.progressText.textContent = `Q ${qNum} / ${questions.length}`;
+  els.barFill.style.width = `${(qNum / questions.length) * 100}%`;
+}
+function showModal(isCorrect, message){
+  els.modalBackdrop.style.display = "flex";
+  if(isCorrect){
+    els.modalTitle.textContent = "Correct — clinical reasoning locked in.";
+    els.modalBadgeText.textContent = "Correct";
+    els.modalBadge.className = "badge";
+  }else{
+    els.modalTitle.textContent = "Not quite — tighten the priority logic.";
+    els.modalBadgeText.textContent = "Incorrect";
+    els.modalBadge.className = "badge bad";
+  }
+  els.modalBody.innerHTML = message;
+}
+function closeModal(){ els.modalBackdrop.style.display = "none"; }
+els.modalCloseBtn.addEventListener("click", closeModal);
+els.modalBackdrop.addEventListener("click", (e)=>{ if(e.target === els.modalBackdrop) closeModal(); });
+
+function renderMCQ(q, locked){
+  const wrap = document.createElement("div");
+  wrap.className = "answers";
+  const name = `q_${q.id}`;
+  q.options.forEach((opt, i)=>{
+    const lab = document.createElement("label");
+    lab.className = "opt";
+    const inp = document.createElement("input");
+    inp.type = "radio";
+    inp.name = name;
+    inp.value = i;
+    inp.disabled = !!locked;
+    if(locked && locked.userResponse?.[0] === i) inp.checked = true;
+    const txt = document.createElement("div");
+    txt.className = "txt";
+    txt.innerHTML = escapeHtml(opt);
+    lab.appendChild(inp);
+    lab.appendChild(txt);
+    wrap.appendChild(lab);
+  });
+  els.answerArea.appendChild(wrap);
+}
+
+function renderSATA(q, locked){
+  const wrap = document.createElement("div");
+  wrap.className = "answers";
+  q.options.forEach((opt, i)=>{
+    const lab = document.createElement("label");
+    lab.className = "opt";
+    const inp = document.createElement("input");
+    inp.type = "checkbox";
+    inp.value = i;
+    inp.disabled = !!locked;
+    if(locked && locked.userResponse?.includes(i)) inp.checked = true;
+    const txt = document.createElement("div");
+    txt.className = "txt";
+    txt.innerHTML = escapeHtml(opt);
+    lab.appendChild(inp);
+    lab.appendChild(txt);
+    wrap.appendChild(lab);
+  });
+  els.answerArea.appendChild(wrap);
+}
+
+function renderMatrix(q, locked){
+  const table = document.createElement("table");
+  table.className = "matrix";
+  const thead = document.createElement("thead");
+  const hr = document.createElement("tr");
+  const th0 = document.createElement("th");
+  th0.textContent = "Item";
+  hr.appendChild(th0);
+  q.matrix.colLabels.forEach(cl=>{
+    const th = document.createElement("th");
+    th.textContent = cl;
+    th.style.textAlign = "center";
+    hr.appendChild(th);
+  });
+  thead.appendChild(hr);
+  table.appendChild(thead);
+  const tbody = document.createElement("tbody");
+  q.matrix.rows.forEach(row=>{
+    const tr = document.createElement("tr");
+    const tdLabel = document.createElement("td");
+    tdLabel.textContent = row.label;
+    tr.appendChild(tdLabel);
+    q.matrix.colLabels.forEach(cl=>{
+      const td = document.createElement("td");
+      td.className = "c";
+      const inp = document.createElement("input");
+      inp.type = "radio";
+      inp.name = `m_${q.id}_${row.key}`;
+      inp.value = cl;
+      inp.disabled = !!locked;
+      if(locked && locked.userResponse?.[row.key] === cl) inp.checked = true;
+      td.appendChild(inp);
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  els.answerArea.appendChild(table);
+}
+
+function renderBowtie(q, locked){
+  const root = document.createElement("div");
+  const box = document.createElement("div");
+  box.className = "bow";
+  const colL = document.createElement("div");
+  colL.className = "bowCol left";
+  colL.innerHTML = `<h4><span class="chip"></span>${escapeHtml(q.bowtie.problem.label)}</h4>`;
+  const selProblem = document.createElement("select");
+  selProblem.disabled = !!locked;
+  selProblem.innerHTML = `<option value="">Select…</option>` + q.bowtie.problem.options.map(o=>`<option value="${escapeHtml(o)}">${escapeHtml(o)}</option>`).join("");
+  if(locked) selProblem.value = locked.userResponse?.problem || "";
+  colL.appendChild(selProblem);
+  const colM = document.createElement("div");
+  colM.className = "bowCol mid";
+  colM.innerHTML = `<h4><span class="chip"></span>${escapeHtml(q.bowtie.actions.label)} (pick ${q.bowtie.actions.pick})</h4>`;
+  const actionWrap = document.createElement("div");
+  q.bowtie.actions.options.forEach((o, i)=>{
+    const row = document.createElement("div");
+    row.className = "row";
+    row.innerHTML = `<label class="opt" style="margin:0;"><input type="checkbox" ${locked ? "disabled":""} value="${i}"><div class="txt">${escapeHtml(o)}</div></label>`;
+    actionWrap.appendChild(row);
+  });
+  colM.appendChild(actionWrap);
+  if(locked){
+    [...actionWrap.querySelectorAll("input[type=checkbox]")].forEach((cb, i)=>{
+      const text = q.bowtie.actions.options[i];
+      if(locked.userResponse?.actions?.includes(text)) cb.checked = true;
+    });
+  }
+  const colR = document.createElement("div");
+  colR.className = "bowCol right";
+  colR.innerHTML = `<h4><span class="chip"></span>${escapeHtml(q.bowtie.outcomes.label)} (pick ${q.bowtie.outcomes.pick})</h4>`;
+  const outWrap = document.createElement("div");
+  q.bowtie.outcomes.options.forEach((o, i)=>{
+    const row = document.createElement("div");
+    row.className = "row";
+    row.innerHTML = `<label class="opt" style="margin:0;"><input type="checkbox" ${locked ? "disabled":""} value="${i}"><div class="txt">${escapeHtml(o)}</div></label>`;
+    outWrap.appendChild(row);
+  });
+  colR.appendChild(outWrap);
+  if(locked){
+    [...outWrap.querySelectorAll("input[type=checkbox]")].forEach((cb, i)=>{
+      const text = q.bowtie.outcomes.options[i];
+      if(locked.userResponse?.outcomes?.includes(text)) cb.checked = true;
+    });
+  }
+  box.appendChild(colL);
+  box.appendChild(colM);
+  box.appendChild(colR);
+  root.appendChild(box);
+  els.answerArea.appendChild(root);
+}
+
+function getUserResponse(q){
+  if(q.type === "mcq"){
+    const checked = els.answerArea.querySelector("input[type=radio]:checked");
+    return checked ? [parseInt(checked.value,10)] : [];
+  }
+  if(q.type === "sata"){
+    return [...els.answerArea.querySelectorAll("input[type=checkbox]:checked")]
+      .map(x => parseInt(x.value,10)).sort((a,b)=>a-b);
+  }
+  if(q.type === "matrix"){
+    const res = {};
+    q.matrix.rows.forEach(r=>{
+      const checked = els.answerArea.querySelector(`input[name="m_${q.id}_${r.key}"]:checked`);
+      if(checked) res[r.key] = checked.value;
+    });
+    return res;
+  }
+  if(q.type === "bowtie"){
+    const res = { problem:"", actions:[], outcomes:[] };
+    const sel = els.answerArea.querySelector("select");
+    res.problem = sel?.value || "";
+    const cols = els.answerArea.querySelectorAll(".bowCol");
+    const actionChecks = cols[1]?.querySelectorAll("input[type=checkbox]:checked") || [];
+    res.actions = [...actionChecks].map(cb => q.bowtie.actions.options[parseInt(cb.value,10)]);
+    const outChecks = cols[2]?.querySelectorAll("input[type=checkbox]:checked") || [];
+    res.outcomes = [...outChecks].map(cb => q.bowtie.outcomes.options[parseInt(cb.value,10)]);
+    return res;
+  }
+  return null;
+}
+
+function validateAnswered(q, userRes){
+  if(q.type === "mcq") return userRes.length === 1;
+  if(q.type === "sata") return userRes.length >= 1;
+  if(q.type === "matrix") return q.matrix.rows.every(r => userRes[r.key]);
+  if(q.type === "bowtie"){
+    return userRes.problem &&
+      (userRes.actions?.length || 0) === q.bowtie.actions.pick &&
+      (userRes.outcomes?.length || 0) === q.bowtie.outcomes.pick;
+  }
+  return false;
+}
+
+function isCorrect(q, userRes){
+  if(q.type === "mcq") return userRes.length === 1 && q.answer[0] === userRes[0];
+  if(q.type === "sata"){
+    const a = [...q.answer].sort((x,y)=>x-y);
+    const b = [...userRes].sort((x,y)=>x-y);
+    return a.length === b.length && a.every((v,i)=>v===b[i]);
+  }
+  if(q.type === "matrix"){
+    const keys = q.matrix.rows.map(r=>r.key);
+    return keys.every(k => userRes[k] === q.answerMatrix[k]);
+  }
+  if(q.type === "bowtie"){
+    const needA = q.answerBowtie.actions.slice().sort();
+    const needO = q.answerBowtie.outcomes.slice().sort();
+    const gotA = (userRes.actions || []).slice().sort();
+    const gotO = (userRes.outcomes || []).slice().sort();
+    return (
+      userRes.problem === q.answerBowtie.problem &&
+      gotA.length === needA.length && gotA.every((v,i)=>v===needA[i]) &&
+      gotO.length === needO.length && gotO.every((v,i)=>v===needO[i])
+    );
+  }
+  return false;
+}
+
+function submit(){
+  const q = questions[state.idx];
+  if(state.locked[q.id]) return;
+  const userRes = getUserResponse(q);
+  if(!validateAnswered(q, userRes)){
+    showModal(false, `<div style="margin-bottom:10px"><strong>Almost.</strong> Complete the required selections, then submit.</div>
+      <div class="small">MCQ: pick 1 • SATA: pick ≥1 • Matrix: answer every row • Bow-tie: pick exactly what it asks.</div>`);
+    return;
+  }
+  const correct = isCorrect(q, userRes);
+  state.locked[q.id] = { correct, userResponse: userRes };
+  if(correct) state.score += 1;
+  els.rationaleBox.style.display = "block";
+  els.rationaleText.textContent = q.rationale;
+  const msg = correct
+    ? `<div style="margin-bottom:10px"><strong>Correct.</strong> You matched the highest-priority threat and best next nursing action.</div>
+       <div class="small">Read the rationale like a mini "teach-back" — that's where test scores jump.</div>`
+    : `<div style="margin-bottom:10px"><strong>Incorrect.</strong> Reframe: biggest threat + safest next step wins.</div>
+       <div class="small">Use the rationale below to compare your choice to the correct clinical logic.</div>`;
+  showModal(correct, msg);
+  render();
+}
+
+function next(){ if(state.idx < questions.length - 1){ state.idx += 1; render(); } }
+function prev(){ if(state.idx > 0){ state.idx -= 1; render(); } }
+function resetExam(){ state.idx = 0; state.score = 0; state.locked = {}; render(); }
+
+els.submitBtn.addEventListener("click", submit);
+els.nextBtn.addEventListener("click", next);
+els.prevBtn.addEventListener("click", prev);
+els.resetBtn.addEventListener("click", resetExam);
+
+function renderButtons(){
+  const q = questions[state.idx];
+  const locked = state.locked[q.id];
+  els.submitBtn.disabled = !!locked;
+  els.nextBtn.disabled = !locked || state.idx === questions.length - 1;
+  els.prevBtn.disabled = state.idx === 0;
+}
+
+function render(){
+  const q = questions[state.idx];
+  setProgress();
+  els.qTypeTag.textContent = prettyType(q.type);
+  els.caseBox.style.display = q.case ? "block" : "none";
+  els.caseText.textContent = q.case || "";
+  els.stemText.textContent = q.stem;
+  els.rationaleBox.style.display = "none";
+  els.rationaleText.textContent = "";
+  els.answerArea.innerHTML = "";
+  const locked = state.locked[q.id];
+  if(q.type === "mcq") renderMCQ(q, locked);
+  else if(q.type === "sata") renderSATA(q, locked);
+  else if(q.type === "matrix") renderMatrix(q, locked);
+  else if(q.type === "bowtie") renderBowtie(q, locked);
+
+  if(locked){
+    // Show rationale with metadata tags at bottom
+    els.rationaleBox.style.display = "block";
+    els.rationaleText.textContent = q.rationale;
+    els.qObjTag.textContent = q.objective;
+    els.qTopicTag.textContent = q.topic || "Tissue Integrity";
+    els.qFocusTag.textContent = q.focus || "Clinical reasoning";
+    // Reveal sidebar panels
+    els.focusVal.textContent = q.focus || "Clinical reasoning";
+    els.focusStatPanel.style.display = "block";
+    els.notesStatPanel.style.display = "block";
+    els.examTipsPanel.style.display = "block";
+  } else {
+    // Hide sidebar panels until answered
+    els.focusStatPanel.style.display = "none";
+    els.notesStatPanel.style.display = "none";
+    els.examTipsPanel.style.display = "none";
+    // Reset notes panel to closed state on new question
+    els.notesPanel.style.display = "none";
+    els.notesBtn.textContent = "Show";
+  }
+
+  els.scoreValTop.textContent = state.score.toString();
+  els.scoreHint.textContent = locked ? (locked.correct ? "Locked: Correct ✅" : "Locked: Incorrect ❌") : "Submit an answer to lock it in.";
+  renderButtons();
+}
+
+render();
+</script>
+</body>
+</html>

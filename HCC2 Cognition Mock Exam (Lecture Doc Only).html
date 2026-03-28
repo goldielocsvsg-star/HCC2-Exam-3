@@ -1,0 +1,2695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HCC2 Cognition Quiz | Dementia & Delirium</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f7f2e8;
+    --warm-white: #fdfaf4;
+    --parchment: #ede5d4;
+    --gold: #c8a84b;
+    --gold-light: #e8d08a;
+    --forest: #2d5a27;
+    --forest-light: #3a7532;
+    --forest-muted: #4e7a49;
+    --brown: #5c3d1e;
+    --text-dark: #2a2017;
+    --text-mid: #4a3825;
+    --text-light: #7a6855;
+    --red: #a33030;
+    --red-light: #f9e8e8;
+    --green-bg: #e8f2e8;
+    --blue: #2a5580;
+    --blue-light: #e8f0f8;
+    --shadow: rgba(60,40,10,0.12);
+    --shadow-md: rgba(60,40,10,0.18);
+    --border: #d4c5a9;
+    --correct-bg: #e6f4e6;
+    --incorrect-bg: #f9e8e8;
+    --correct-border: #3a7532;
+    --incorrect-border: #a33030;
+    --brain-glow: rgba(45,90,39,0.15);
+  }
+  .dark {
+    --cream: #1a1710;
+    --warm-white: #211e15;
+    --parchment: #2a2518;
+    --gold: #d4aa5a;
+    --gold-light: #a8832e;
+    --forest: #5aaa54;
+    --forest-light: #6bc065;
+    --forest-muted: #7acc74;
+    --brown: #c49a6c;
+    --text-dark: #f0e8d8;
+    --text-mid: #d4c5a9;
+    --text-light: #a08c70;
+    --red: #e06060;
+    --red-light: #2a1515;
+    --green-bg: #152015;
+    --blue: #5a90c0;
+    --blue-light: #15202a;
+    --shadow: rgba(0,0,0,0.4);
+    --shadow-md: rgba(0,0,0,0.5);
+    --border: #3a3020;
+    --correct-bg: #152518;
+    --incorrect-bg: #251515;
+    --correct-border: #5aaa54;
+    --incorrect-border: #e06060;
+    --brain-glow: rgba(90,170,84,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+    transition: background 0.35s, color 0.35s;
+    line-height: 1.7;
+  }
+
+  /* Header */
+  .site-header {
+    background: var(--forest);
+    color: #fff;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px var(--shadow-md);
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .header-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .header-sub {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.72);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 2px;
+    font-family: 'Source Serif 4', serif;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  .score-badge {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .score-val { font-weight: 600; }
+  .dark-toggle {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    width: 36px; height: 36px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .dark-toggle:hover { background: rgba(255,255,255,0.28); }
+
+  /* Progress bar */
+  .progress-bar-wrap {
+    background: rgba(0,0,0,0.2);
+    height: 4px;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--gold-light);
+    transition: width 0.5s ease;
+  }
+
+  /* Main layout */
+  .main-container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+
+  /* Section header */
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--forest-muted);
+    margin-bottom: 4px;
+  }
+  .section-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.45rem;
+    color: var(--forest);
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+
+  /* Case study banner */
+  .case-banner {
+    background: var(--forest);
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+    padding: 14px 22px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .case-icon { font-size: 1.2rem; }
+  .case-body {
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+    font-size: 0.93rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+  .case-body strong { color: var(--forest); }
+  .vitals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .vital-item {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 7px 11px;
+    font-size: 0.82rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .vital-label { color: var(--text-light); font-size: 0.7rem; display: block; }
+  .vital-val { color: var(--text-dark); font-weight: 600; }
+
+  /* Quiz card */
+  .quiz-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 2px 14px var(--shadow);
+    margin-bottom: 28px;
+    overflow: hidden;
+    transition: box-shadow 0.25s;
+  }
+  .quiz-card:hover { box-shadow: 0 4px 22px var(--shadow-md); }
+  .card-header {
+    background: var(--parchment);
+    border-bottom: 1px solid var(--border);
+    padding: 13px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .q-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--forest);
+    letter-spacing: 0.05em;
+    background: var(--green-bg);
+    border: 1px solid var(--forest-muted);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .q-type-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 7px;
+  }
+  .card-body { padding: 22px 22px 18px; }
+  .q-stem {
+    font-size: 1.0rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+    line-height: 1.75;
+  }
+  .q-stem strong { color: var(--forest); }
+  .q-stem em { color: var(--brown); font-style: italic; }
+  .sata-note {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--brown);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Answer options */
+  .options-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .option-item {
+    position: relative;
+  }
+  .option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 11px 15px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.18s, background 0.18s;
+    background: var(--cream);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    user-select: none;
+  }
+  .option-label:hover { border-color: var(--forest-muted); background: var(--green-bg); }
+  .option-label input { display: none; }
+  .option-circle {
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.18s, background 0.18s;
+    font-size: 0.65rem;
+    color: #fff;
+  }
+  .option-square {
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.18s, background 0.18s;
+    font-size: 0.65rem;
+    color: #fff;
+  }
+  .option-letter {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--forest);
+    flex-shrink: 0;
+    width: 22px;
+    margin-top: 2px;
+    text-align: center;
+  }
+  .option-label.selected { border-color: var(--forest); background: var(--green-bg); }
+  .option-label.selected .option-circle,
+  .option-label.selected .option-square { border-color: var(--forest); background: var(--forest); }
+  .option-label.selected .option-circle::after,
+  .option-label.selected .option-square::after { content: '✓'; font-size: 0.7rem; }
+  .option-label.correct-reveal {
+    border-color: var(--correct-border) !important;
+    background: var(--correct-bg) !important;
+  }
+  .option-label.incorrect-reveal {
+    border-color: var(--incorrect-border) !important;
+    background: var(--incorrect-bg) !important;
+  }
+  .option-label.correct-reveal .option-circle,
+  .option-label.correct-reveal .option-square { border-color: var(--correct-border) !important; background: var(--correct-border) !important; }
+  .option-label.incorrect-reveal .option-circle,
+  .option-label.incorrect-reveal .option-square { border-color: var(--incorrect-border) !important; background: var(--incorrect-border) !important; }
+  .option-label.disabled { pointer-events: none; }
+
+  /* Table question */
+  .table-q {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+  .table-q th {
+    background: var(--forest);
+    color: #fff;
+    padding: 9px 14px;
+    text-align: center;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+  }
+  .table-q th:first-child { text-align: left; }
+  .table-q td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .table-q tr:nth-child(even) td { background: var(--parchment); }
+  .table-q tr:last-child td { border-bottom: none; }
+  .table-q td:not(:first-child) { text-align: center; }
+  .radio-cell input[type=radio],
+  .radio-cell input[type=checkbox] { display: none; }
+  .radio-cell label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.7rem;
+    color: var(--text-light);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .radio-cell label.selected-cell { border-color: var(--forest); background: var(--forest); color: #fff; }
+  .radio-cell label.correct-cell { border-color: var(--correct-border) !important; background: var(--correct-bg) !important; color: var(--correct-border); }
+  .radio-cell label.incorrect-cell { border-color: var(--incorrect-border) !important; background: var(--incorrect-bg) !important; color: var(--incorrect-border); }
+  .table-q td.disabled-cell { pointer-events: none; }
+
+  /* Submit button */
+  .card-footer { padding: 0 22px 22px; }
+  .btn-submit {
+    background: var(--forest);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 28px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.12s;
+    letter-spacing: 0.02em;
+  }
+  .btn-submit:hover { background: var(--forest-light); transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
+  .btn-submit:disabled { background: var(--border); color: var(--text-light); cursor: not-allowed; transform: none; }
+
+  /* Feedback */
+  .feedback-box {
+    margin-top: 16px;
+    border-radius: 8px;
+    padding: 16px 18px;
+    display: none;
+    animation: fadeSlide 0.3s ease;
+    border-left: 4px solid;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .feedback-box.correct { background: var(--correct-bg); border-color: var(--correct-border); }
+  .feedback-box.incorrect { background: var(--incorrect-bg); border-color: var(--incorrect-border); }
+  .feedback-box.partial { background: var(--blue-light); border-color: var(--blue); }
+  .feedback-header {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.0rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .feedback-box.correct .feedback-header { color: var(--correct-border); }
+  .feedback-box.incorrect .feedback-header { color: var(--red); }
+  .feedback-box.partial .feedback-header { color: var(--blue); }
+  .feedback-body { color: var(--text-mid); }
+  .feedback-correct-ans {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-light);
+  }
+  .feedback-correct-ans strong { color: var(--forest); }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Navigation */
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .btn-nav {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 22px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.88rem;
+    cursor: pointer;
+    color: var(--text-mid);
+    transition: border-color 0.18s, color 0.18s, background 0.18s;
+  }
+  .btn-nav:hover { border-color: var(--forest); color: var(--forest); background: var(--green-bg); }
+  .btn-nav:disabled { opacity: 0.35; cursor: not-allowed; }
+  .q-counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-light);
+  }
+
+  /* Section divider */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 36px 0 20px;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+  .divider-label {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.0rem;
+    font-weight: 700;
+    color: var(--forest);
+    white-space: nowrap;
+    padding: 0 4px;
+  }
+  .divider-icon { font-size: 1.1rem; }
+
+  /* Results screen */
+  .results-screen {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeSlide 0.4s ease;
+  }
+  .results-circle {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: conic-gradient(var(--forest) calc(var(--pct) * 3.6deg), var(--parchment) 0);
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 10px var(--warm-white), 0 0 0 11px var(--border);
+    position: relative;
+  }
+  .results-circle-inner {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: var(--warm-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .results-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--forest);
+  }
+  .results-label {
+    font-size: 0.65rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .results-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 8px;
+  }
+  .results-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: 28px;
+  }
+  .results-stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .stat-pill {
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+  }
+  .stat-pill .stat-n { font-size: 1.1rem; font-weight: 600; color: var(--text-dark); }
+  .stat-pill .stat-desc { color: var(--text-light); font-size: 0.7rem; display: block; }
+  .btn-retry-missed, .btn-restart {
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin: 5px;
+  }
+  .btn-retry-missed {
+    background: var(--forest);
+    color: #fff;
+    border: none;
+  }
+  .btn-retry-missed:hover { background: var(--forest-light); transform: translateY(-1px); }
+  .btn-restart {
+    background: transparent;
+    color: var(--forest);
+    border: 1.5px solid var(--forest);
+  }
+  .btn-restart:hover { background: var(--green-bg); }
+  .btn-retry-missed:disabled { background: var(--border); color: var(--text-light); cursor: not-allowed; transform: none; }
+
+  /* Missed list */
+  .missed-review {
+    text-align: left;
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+  .missed-review h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.2rem;
+    color: var(--forest);
+    margin-bottom: 16px;
+  }
+  .missed-item {
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+  }
+  .missed-item-q { font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
+  .missed-item-ans { color: var(--correct-border); font-size: 0.83rem; }
+  .missed-item-ans span { font-family: 'JetBrains Mono', monospace; }
+
+  /* Welcome screen */
+  .welcome-screen {
+    max-width: 620px;
+    margin: 40px auto;
+    text-align: center;
+    padding: 0 20px;
+    animation: fadeSlide 0.4s ease;
+  }
+  .welcome-brain { font-size: 4rem; margin-bottom: 16px; display: block; filter: drop-shadow(0 0 20px var(--brain-glow)); }
+  .welcome-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .welcome-sub {
+    font-size: 1.0rem;
+    color: var(--text-light);
+    margin-bottom: 28px;
+    line-height: 1.65;
+  }
+  .welcome-info {
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    text-align: left;
+  }
+  .welcome-info-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-mid);
+  }
+  .welcome-info-row:last-child { margin-bottom: 0; }
+  .welcome-info-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+  .btn-start {
+    background: var(--forest);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 42px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.12s;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 16px rgba(45,90,39,0.3);
+  }
+  .btn-start:hover { background: var(--forest-light); transform: translateY(-2px); }
+
+  /* Animations */
+  .shimmer {
+    animation: shimmerPulse 2s infinite;
+  }
+  @keyframes shimmerPulse {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .header-inner { padding: 12px 16px; }
+    .main-container { padding: 20px 14px 50px; }
+    .card-body { padding: 16px 16px 14px; }
+    .card-footer { padding: 0 16px 16px; }
+    .card-header { padding: 10px 16px; }
+    .vitals-grid { grid-template-columns: 1fr 1fr; }
+    .results-stats { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div>
+      <div class="header-title">🧠 HCC2 Cognition Quiz</div>
+      <div class="header-sub">Delirium · Dementia · Alzheimer's · Pharmacology</div>
+    </div>
+    <div class="header-right">
+      <div class="score-badge">Score: <span class="score-val" id="scoreBadge">–</span></div>
+      <button class="dark-toggle" id="darkToggle" title="Toggle dark mode">🌙</button>
+    </div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main-container" id="mainContainer">
+
+  <!-- Welcome Screen -->
+  <div class="welcome-screen" id="welcomeScreen">
+    <span class="welcome-brain">🧠</span>
+    <h1 class="welcome-title">Concept: Cognition<br>Application Quiz</h1>
+    <p class="welcome-sub">65 NCLEX-style application questions covering delirium, dementia, Alzheimer's pharmacology, safety, and communication — built from Prof. Bryan's HCC2 materials.</p>
+    <div class="welcome-info">
+      <div class="welcome-info-row"><span class="welcome-info-icon">📋</span><span><strong>65 questions</strong> — multiple choice, SATA, indicated/contraindicated, effective/ineffective, prioritization, and case study progressions</span></div>
+      <div class="welcome-info-row"><span class="welcome-info-icon">🎯</span><span>All questions are <strong>application-level</strong> only — clinical scenarios, not recall</span></div>
+      <div class="welcome-info-row"><span class="welcome-info-icon">💊</span><span>Heavy coverage of <strong>medication safety</strong>, when to hold meds, and pharmacology nursing implications</span></div>
+      <div class="welcome-info-row"><span class="welcome-info-icon">🔄</span><span>Submit each question to see immediate feedback, then <strong>retry missed questions</strong> at the end</span></div>
+    </div>
+    <button class="btn-start" onclick="startQuiz()">Begin Quiz →</button>
+  </div>
+
+  <!-- Quiz Area -->
+  <div id="quizArea" style="display:none;"></div>
+
+  <!-- Results Screen -->
+  <div class="results-screen" id="resultsScreen">
+    <div class="results-circle" id="resultsCircle">
+      <div class="results-circle-inner">
+        <span class="results-pct" id="resultsPct">0%</span>
+        <span class="results-label">Score</span>
+      </div>
+    </div>
+    <h2 class="results-title" id="resultsTitle">Well Done!</h2>
+    <p class="results-subtitle" id="resultsSub">Here's how you did:</p>
+    <div class="results-stats">
+      <div class="stat-pill"><span class="stat-n" id="statCorrect">0</span><span class="stat-desc">✓ Correct</span></div>
+      <div class="stat-pill"><span class="stat-n" id="statIncorrect">0</span><span class="stat-desc">✗ Incorrect</span></div>
+      <div class="stat-pill"><span class="stat-n" id="statTotal">65</span><span class="stat-desc">Total Qs</span></div>
+    </div>
+    <button class="btn-retry-missed" id="btnRetryMissed" onclick="retryMissed()">🔁 Retry Missed Questions</button>
+    <button class="btn-restart" onclick="restartQuiz()">↺ Restart Full Quiz</button>
+    <div class="missed-review" id="missedReview"></div>
+  </div>
+
+</main>
+
+<script>
+// =====================
+// QUESTION BANK
+// =====================
+const ALL_QUESTIONS = [
+
+// ============================================================
+// CASE STUDY 1: MRS. JONES — DELIRIUM (Q1-Q5)
+// ============================================================
+{
+  id: 1,
+  section: "CASE STUDY 1",
+  sectionTitle: "Mrs. Jones — Acute Confusion",
+  caseHtml: `
+    <div class="case-banner"><span class="case-icon">📋</span>Case Study 1 — Questions 1 through 5</div>
+    <div class="case-body">
+      <strong>Mrs. Jones</strong> is an 81-year-old woman admitted from a skilled nursing facility for a urinary tract infection. Her daughter reports that over the past 48 hours her mother has become "a completely different person." She is disoriented to time and place, picking at her IV line, calling out to people who aren't there, and unable to carry on a conversation. Prior to this, she was alert, pleasant, and oriented. Her past medical history includes <strong>hypertension, osteoarthritis, and mild cognitive impairment</strong>. Current medications include <strong>lisinopril, acetaminophen PRN, and lorazepam 0.5 mg PO BID</strong> (prescribed two weeks ago for anxiety).
+      <br><br><strong>Assessment Findings:</strong>
+      <div class="vitals-grid">
+        <div class="vital-item"><span class="vital-label">Temp</span><span class="vital-val">101.8°F</span></div>
+        <div class="vital-item"><span class="vital-label">Heart Rate</span><span class="vital-val">108 bpm</span></div>
+        <div class="vital-item"><span class="vital-label">BP</span><span class="vital-val">138/82 mmHg</span></div>
+        <div class="vital-item"><span class="vital-label">RR</span><span class="vital-val">20/min</span></div>
+        <div class="vital-item"><span class="vital-label">SpO₂</span><span class="vital-val">95% on RA</span></div>
+      </div>
+      <strong>Neuro:</strong> Disoriented ×2, fluctuating attention, visual hallucinations, restless. <strong>Labs:</strong> WBC 13,800 (elevated), UA positive for nitrites/leukocytes, Na⁺ 132 mEq/L (low).
+    </div>`,
+  type: "MC",
+  stem: "Based on the clinical presentation, the nurse suspects Mrs. Jones is experiencing <strong>delirium</strong> rather than a progression of her dementia. Which finding most strongly supports this clinical distinction?",
+  options: [
+    "She has a known history of mild cognitive impairment.",
+    "Her confusion developed acutely over 48 hours with fluctuating attention.",
+    "She is 81 years old, which places her at high risk for cognitive decline.",
+    "She is experiencing visual hallucinations, which only occur in dementia."
+  ],
+  correct: [1],
+  rationale: "The hallmark distinguishing feature of delirium is its <strong>acute onset</strong> and <strong>fluctuating course</strong> — it develops over hours to days. Her daughter specifically reports a 48-hour change from her baseline. Dementia is chronic and slowly progressive with no periods of relative lucidity. Her age and cognitive history increase <em>risk</em>, but do not confirm the type. Hallucinations can occur in both delirium and dementia."
+},
+{
+  id: 2,
+  section: "CASE STUDY 1",
+  caseHtml: null,
+  type: "SATA",
+  stem: "The nurse reviews Mrs. Jones's current medications in light of her delirium presentation. Which findings require the nurse to <strong>hold the medication and notify the provider?</strong> Select all that apply.",
+  options: [
+    "Lorazepam 0.5 mg PO BID, which was recently added",
+    "Lisinopril, which she has been on chronically for hypertension",
+    "Lorazepam, because benzodiazepines may have reverse (paradoxical) effects in elderly patients",
+    "Acetaminophen PRN, which is used for pain management",
+    "Lorazepam, because it is likely contributing to her worsened confusion and agitation"
+  ],
+  correct: [0, 2, 4],
+  rationale: "Benzodiazepines (such as lorazepam) are well-known to cause or worsen delirium in elderly patients and can produce <strong>paradoxical/reverse effects</strong> — increased agitation and confusion rather than sedation. This medication was recently added (2 weeks ago), aligning with the onset. Lorazepam should be held and the provider notified. Lisinopril and acetaminophen are not implicated in causing this presentation and should continue unless contraindicated by the clinical picture."
+},
+{
+  id: 3,
+  section: "CASE STUDY 1",
+  caseHtml: null,
+  type: "TABLE",
+  stem: "The provider has been notified. It is now time to implement the plan of care for Mrs. Jones's delirium. For each nursing action below, indicate whether it is <strong>Indicated</strong> or <strong>Contraindicated</strong>.",
+  tableRows: [
+    { action: "Apply soft wrist restraints to keep her from pulling out her IV", correct: "Contraindicated", rationale: "Restraints worsen agitation and should be avoided in delirium." },
+    { action: "Keep the room dimly lit throughout the day to encourage rest", correct: "Contraindicated", rationale: "A well-lit, hazard-free environment is recommended to reduce confusion." },
+    { action: "Approach Mrs. Jones slowly, from the front, and address her by name", correct: "Indicated", rationale: "Approaching slowly from the front prevents startling, and using the patient's name is therapeutic. Terms like 'honey' or 'sweetie' are not appropriate." },
+    { action: "Place a clock and calendar in her room and reorient gently", correct: "Indicated", rationale: "Reorientation with sensory aids (clock, calendar) is a core nonpharmacologic nursing intervention for delirium." },
+    { action: "Administer the scheduled lorazepam to calm her agitation", correct: "Contraindicated", rationale: "Lorazepam has already been identified as a likely contributor and should not be given without a new provider order." },
+    { action: "Encourage family presence at the bedside", correct: "Indicated", rationale: "Familiar people and objects help reduce anxiety and support orientation in the delirious patient." },
+    { action: "Use complex, detailed explanations to help her understand what is happening", correct: "Contraindicated", rationale: "Communication should use simple, direct statements — not complex explanations, which increase cognitive load and agitation." }
+  ],
+  tableHeaders: ["Nursing Action", "Indicated", "Contraindicated"]
+},
+{
+  id: 4,
+  section: "CASE STUDY 1",
+  caseHtml: null,
+  type: "MC",
+  stem: "Mrs. Jones's daughter states: <em>&ldquo;I knew something like this would happen — she has mild cognitive impairment, so now she's just going to stay like this.&rdquo;</em> Which is the priority nursing response?",
+  options: [
+    '"You\'re right to be worried — dementia often progresses this way."',
+    '"Delirium is a temporary condition. If we treat the underlying infection and address contributing factors, her symptoms are expected to fully reverse."',
+    '"I understand your concern. She may need to be transferred to a memory care unit after this."',
+    '"We will do our best, but at her age we can never guarantee a full recovery."'
+  ],
+  correct: [1],
+  rationale: "Delirium is <strong>reversible</strong> when the underlying cause is identified and treated. Patients with mild cognitive impairment can still fully recover from delirium episodes if the cause is managed. The daughter needs accurate teaching — false hopelessness (options A, C, D) would cause unnecessary distress and is clinically inaccurate."
+},
+{
+  id: 5,
+  section: "CASE STUDY 1",
+  caseHtml: null,
+  type: "MC",
+  stem: "Two days later, after IV antibiotics and IV fluids, Mrs. Jones is improving. The nurse reassesses her. Which finding best indicates that the interventions for her delirium were <strong>effective</strong>?",
+  options: [
+    "She is sleeping 12 hours per day and difficult to arouse.",
+    "She is now oriented to person, place, and time, and is able to hold a conversation with her daughter.",
+    "She no longer attempts to get out of bed, even when assisted.",
+    "Her lorazepam dose has been cut in half and she is tolerating it."
+  ],
+  correct: [1],
+  rationale: "The goal of delirium treatment is to return the client to their <strong>baseline cognitive status</strong>. Being oriented ×3 and able to participate in conversation indicates that the acute confusion has resolved. Excessive sleepiness suggests over-sedation; loss of mobility is not a treatment goal; and reducing but not eliminating lorazepam does not resolve the underlying concern about its use in the elderly."
+},
+
+// ============================================================
+// CASE STUDY 2: MR. WASHINGTON — ALZHEIMER'S (Q6-Q11)
+// ============================================================
+{
+  id: 6,
+  section: "CASE STUDY 2",
+  sectionTitle: "Mr. Washington — Alzheimer's Disease",
+  caseHtml: `
+    <div class="case-banner"><span class="case-icon">📋</span>Case Study 2 — Questions 6 through 11</div>
+    <div class="case-body">
+      <strong>Mr. Washington</strong> is a 78-year-old retired postal worker with a <strong>moderate-stage Alzheimer's disease</strong> diagnosis. He lives at home with his wife, Rosa. Rosa reports that recently he has become increasingly agitated in the evenings, has been wandering at night, and last week accused Rosa of stealing his wallet (she found it in his shoe). He struggles to dress and bathe without step-by-step guidance, sometimes uses meaningless words, and has difficulty recognizing his adult children. His medications include <strong>donepezil (Aricept) 10 mg daily</strong> and <strong>memantine (Namenda) 10 mg BID</strong>. Rosa states: <em>&ldquo;I haven't slept in three nights. I don't know if I can keep doing this.&rdquo;</em>
+    </div>`,
+  type: "MC",
+  stem: "Based on the information provided, Mr. Washington's current symptoms are most consistent with which stage of Alzheimer's disease?",
+  options: [
+    "Early stage — he is still able to perform some self-care and lives at home.",
+    "Middle stage — he shows unstable emotions, paranoia, wandering, hallucinations/delusions, and difficulty recognizing family.",
+    "End stage — he has global memory loss and is bedridden.",
+    "Delirium superimposed on dementia — his symptoms appeared suddenly."
+  ],
+  correct: [1],
+  rationale: "The <strong>middle (moderate) stage</strong> of Alzheimer's is characterized by: inability to perform self-care unassisted, paranoia, emotional instability, wandering, visual hallucinations/delusions, difficulty recognizing family and friends, meaningless words, and sundowning/catastrophic reactions. End-stage involves bedridden state, global memory loss, mutism, and total incontinence. The symptoms appear to be progression of dementia — not acute onset, which would suggest delirium."
+},
+{
+  id: 7,
+  section: "CASE STUDY 2",
+  caseHtml: null,
+  type: "SATA",
+  stem: "The nurse is educating Rosa about Mr. Washington's medications. Which statements by the nurse reflect <strong>accurate teaching</strong>? Select all that apply.",
+  options: [
+    '"Donepezil works by preventing the breakdown of acetylcholine, which can help slow cognitive decline."',
+    '"Memantine is appropriate for moderate-to-severe Alzheimer\'s — it blocks excess glutamate to help restore signal transmission."',
+    '"These medications will cure Alzheimer\'s disease if taken consistently."',
+    '"Donepezil is the preferred cholinesterase inhibitor and is taken orally — it dissolves on the tongue and should be followed with water."',
+    '"After one year of donepezil therapy, there are minimal additional benefits, and risk of side effects doubles in people over 85."',
+    '"Memantine should have been started at the very beginning, before donepezil."'
+  ],
+  correct: [0, 1, 3, 4],
+  rationale: "Donepezil inhibits acetylcholinesterase (AChE) to preserve acetylcholine. Memantine is an NMDA receptor antagonist — it is appropriate for moderate-to-severe stages and is typically added <em>after</em> trying the cholinesterase inhibitors. Donepezil HCL dissolves on the tongue and is followed with water at the lower dose. Benefits from donepezil are minimal after a year, and side effect risk doubles after age 85. These medications do NOT cure Alzheimer's — they only marginally slow progression. Memantine should NOT be started first — cholinesterase inhibitors are tried first."
+},
+{
+  id: 8,
+  section: "CASE STUDY 2",
+  caseHtml: null,
+  type: "MC",
+  stem: "Mr. Washington is becoming increasingly agitated one evening. He is pacing, shouting, and trying to push past the nurse. The nurse's <strong>first</strong> action should be to:",
+  options: [
+    "Administer haloperidol (Haldol) IM as prescribed for agitation.",
+    "Restrain him with a vest restraint to prevent falls.",
+    "Assess for potential causes of the agitation (pain, overstimulation, unmet need, environmental triggers) and use a calm, unhurried voice while reducing stimulation.",
+    "Tell him firmly that this behavior is not appropriate and he needs to return to his room."
+  ],
+  correct: [2],
+  rationale: "The <strong>nonpharmacologic approach comes first</strong> in agitation management. The nurse should assess for triggers: overstimulation from bright lights/noise, an unmet need (pain, hunger, toileting), or disrupted routine. Communication should be calm, avoid commands and 'why' questions, and connect through the senses using a gentle, audible, unhurried voice. Restraints worsen agitation and should be avoided. Haloperidol (Haldol) is specifically contraindicated in clients with dementia-related psychosis due to increased incidence of death. Confrontational communication escalates catastrophic reactions."
+},
+{
+  id: 9,
+  section: "CASE STUDY 2",
+  caseHtml: null,
+  type: "MC",
+  stem: "The provider orders haloperidol (Haldol) PRN for Mr. Washington's agitation. What is the nurse's most appropriate action?",
+  options: [
+    "Administer the medication as ordered — it is the safest antipsychotic for elderly patients.",
+    "Hold the medication and notify the provider that haloperidol should not be used in clients with dementia-related psychosis due to increased risk of death.",
+    "Administer a half dose and document the clinical reasoning.",
+    "Administer it once and then request a different order if it does not help."
+  ],
+  correct: [1],
+  rationale: "This is a critical medication safety priority: <strong>haloperidol (Haldol) should NOT be administered to clients with dementia-related psychosis</strong> because it is associated with an increased incidence of death. The nurse must hold the medication and notify the provider. If an antipsychotic is needed, Risperdal is better than Haldol, and Seroquel is slightly better than Risperdal per course content. This is a 'question the order and notify the provider' situation — not a situation to adjust the dose or try it once."
+},
+{
+  id: 10,
+  section: "CASE STUDY 2",
+  caseHtml: null,
+  type: "TABLE",
+  stem: "Rosa tells the nurse: <em>&ldquo;I haven't slept in three nights.&rdquo;</em> For each of the nurse's responses below, indicate whether it represents <strong>Effective</strong> or <strong>Ineffective</strong> nursing support for the caregiver.",
+  tableRows: [
+    { action: '"You signed up for this when you married him. Caregiving is a commitment."', correct: "Ineffective", rationale: "This is dismissive, inappropriate, and not therapeutic." },
+    { action: '"Have you heard about respite care? It allows you to take breaks while ensuring he still gets good care."', correct: "Effective", rationale: "Respite care is a core caregiver support intervention — it provides temporary relief for family caregivers." },
+    { action: '"You need to hide how you\'re feeling so he doesn\'t get more upset."', correct: "Ineffective", rationale: "Suppressing caregiver emotions is not therapeutic and can worsen caregiver burden." },
+    { action: '"There are community resources and support groups specifically for Alzheimer\'s caregivers. I can connect you with some."', correct: "Effective", rationale: "Community resources, support groups, and information on financial/legal affairs are all appropriate caregiver support interventions." },
+    { action: '"Many caregivers feel guilty even thinking about placement — that guilt is common and doesn\'t mean you\'re a bad spouse."', correct: "Effective", rationale: "Acknowledging caregiver guilt about nursing home placement is therapeutic and validates the caregiver's emotional experience." }
+  ],
+  tableHeaders: ["Nurse Statement", "Effective", "Ineffective"]
+},
+{
+  id: 11,
+  section: "CASE STUDY 2",
+  caseHtml: null,
+  type: "SATA",
+  stem: "The nurse is reviewing safety measures for Mr. Washington at home. Which safety interventions are <strong>most important</strong> for a client in the moderate stage of Alzheimer's? Select all that apply.",
+  options: [
+    "Remove clutter and secure small area rugs to reduce fall risk",
+    "Allow him to manage his own medications independently to preserve autonomy",
+    "Install door locks that require complex manipulation to prevent wandering",
+    "Place night lights in hallways, bedroom, and bathroom",
+    "Encourage him to take long walks alone to maintain physical activity",
+    "Keep familiar objects and photos in his environment",
+    "Maintain a consistent daily routine to reduce confusion and catastrophic reactions"
+  ],
+  correct: [0, 2, 3, 5, 6],
+  rationale: "Safety priorities in moderate Alzheimer's include fall prevention (clear environment), wandering prevention (secured doors), adequate lighting, and familiar objects to reduce anxiety. A consistent routine is a core nursing principle for clients with dementia — it reduces confusion and behavior management problems. Independent medication management is unsafe at this stage — he requires reminders and supervision. Unsupervised long walks would increase wandering risk."
+},
+
+// ============================================================
+// SECTION: DELIRIUM VS. DEMENTIA VS. PSEUDODEMENTIA (Q12-Q17)
+// ============================================================
+{
+  id: 12,
+  section: "DELIRIUM vs. DEMENTIA vs. PSEUDODEMENTIA",
+  type: "MC",
+  stem: "A charge nurse is reviewing four newly admitted clients. Which client presentation is most consistent with <strong>delirium</strong>?",
+  options: [
+    "A 74-year-old man whose family reports he has gradually forgotten names and appointments over the past 2 years and needs help with ADLs.",
+    "A 68-year-old woman with a 3-week history of memory loss, fatigue, irritability, poor appetite, and loss of interest in her hobbies.",
+    "An 80-year-old man who was alert and oriented yesterday but today is acutely confused, restless, and speaking incoherently with fluctuating levels of alertness.",
+    "A 71-year-old woman with a long history of forgetting recently learned information who is now in a fetal position and mute."
+  ],
+  correct: [2],
+  rationale: "Delirium is characterized by <strong>acute onset</strong>, a fluctuating course, disorganized thinking, and an inability to focus or sustain attention. The key clue is 'was alert yesterday but today is acutely confused' — this rapid change distinguishes delirium from dementia. Option A describes dementia (gradual progression over years). Option B describes pseudodementia/depression in the elderly. Option D describes end-stage dementia."
+},
+{
+  id: 13,
+  section: "DELIRIUM vs. DEMENTIA vs. PSEUDODEMENTIA",
+  type: "MC",
+  stem: "A 72-year-old woman is brought in by her son who is concerned about her 'dementia.' He reports that for the past month she has become increasingly forgetful, socially withdrawn, and fatigued. She has made several somatic complaints (headaches, stomach problems), lost 8 lbs, and shows no interest in activities she used to love. She has no prior history of cognitive decline. Which condition should the nurse consider <strong>first</strong>?",
+  options: [
+    "Early-stage Alzheimer's disease — she meets criteria for memory loss.",
+    "Delirium — her acute onset is consistent with the diagnosis.",
+    "Pseudodementia — depression in elderly clients can manifest as apparent cognitive decline.",
+    "End-stage dementia — her withdrawal and somatic complaints are hallmarks."
+  ],
+  correct: [2],
+  rationale: "<strong>Pseudodementia</strong> is depression that manifests as apparent dementia. Symptoms in the elderly include memory loss, decreased thinking/learning, fatigue, irritability, somatic complaints, appetite changes, and sleep disturbances. The absence of prior cognitive history, the one-month onset of depressive symptoms, and the somatic pattern all point strongly to depression masquerading as dementia. This is a critical distinction — treating depression may fully reverse her 'cognitive' symptoms."
+},
+{
+  id: 14,
+  section: "DELIRIUM vs. DEMENTIA vs. PSEUDODEMENTIA",
+  type: "MC",
+  stem: "The nurse knows that a key reason to urgently distinguish delirium from dementia is because:",
+  options: [
+    "Delirium is more common in patients under age 65.",
+    "Dementia causes permanent brain damage if untreated, but delirium is always benign.",
+    "Without treatment, delirium can cause permanent brain damage; when the underlying cause is treated, delirium is fully reversible.",
+    "Delirium requires antipsychotic medication, while dementia does not."
+  ],
+  correct: [2],
+  rationale: "This is a critical distinction from the course material: <strong>without treatment, delirium causes permanent brain damage</strong>. However, when the underlying cause (infection, dehydration, metabolic imbalance, medication) is identified and treated, delirium symptoms are <strong>fully reversible</strong>. Dementia is chronic and progressive — there is no reversal. Delirium can occur at any age and does not automatically require antipsychotics."
+},
+{
+  id: 15,
+  section: "DELIRIUM vs. DEMENTIA vs. PSEUDODEMENTIA",
+  type: "MC",
+  stem: "A nurse admits an 85-year-old post-operative patient following hip fracture repair 24 hours ago. The client is now acutely confused, disoriented, and agitated. The nurse recognizes this as a common complication because:",
+  options: [
+    "Hip surgery always causes permanent cognitive decline in elderly patients.",
+    "Approximately 45% of elderly clients develop delirium after hip fracture repair.",
+    "Post-operative pain medication is contraindicated in the elderly, causing untreated pain.",
+    "Patients over age 80 always have pre-existing dementia prior to surgery."
+  ],
+  correct: [1],
+  rationale: "The course material specifically states that <strong>approximately 45% of elderly patients develop delirium following hip fracture repair</strong>. This is a well-known post-operative complication in older adults. Post-operative delirium is caused by a combination of factors including pain, anesthesia, metabolic changes, immobilization, and disrupted sleep-wake cycles — not by the surgery causing permanent damage or contraindications to pain management."
+},
+{
+  id: 16,
+  section: "DELIRIUM vs. DEMENTIA vs. PSEUDODEMENTIA",
+  type: "SATA",
+  stem: "A nurse is assessing a 77-year-old client admitted for confusion. Which assessment findings would point toward <strong>delirium</strong> rather than dementia? Select all that apply.",
+  options: [
+    "Sudden onset over the past 24 hours with periods of clarity",
+    "History of gradual cognitive decline over 3 years documented in the chart",
+    "Fluctuating attention span — oriented this morning, confused this afternoon",
+    "Family member confirms this is a marked change from the client's usual baseline",
+    "Diagnosis confirmed at a neurology visit 18 months ago",
+    "Identified active urinary tract infection on current labs"
+  ],
+  correct: [0, 2, 3, 5],
+  rationale: "Delirium features: <strong>acute onset</strong>, fluctuating clinical course with periods of lucidity, and a change from baseline (verified by family or chart). An acute underlying medical cause (UTI) is a classic precipitating factor for delirium. Gradual 3-year cognitive decline and a documented diagnosis from 18 months ago support dementia as the pre-existing baseline — but acute change layered on top indicates delirium."
+},
+{
+  id: 17,
+  section: "DELIRIUM vs. DEMENTIA vs. PSEUDODEMENTIA",
+  type: "MC",
+  stem: "The nurse is assessing a 78-year-old patient with dementia who is admitted for a knee replacement. The nurse notices that overnight the patient's confusion has <strong>suddenly and markedly worsened</strong> from his typical baseline. What is the nurse's priority action?",
+  options: [
+    "Document the finding as expected disease progression and continue routine monitoring.",
+    "Increase the frequency of reorientation every hour.",
+    "Assess vital signs, intake and output, recent medications, and consider a possible underlying cause such as infection, dehydration, or medication toxicity.",
+    "Request a psychiatric consult to evaluate for worsening dementia."
+  ],
+  correct: [2],
+  rationale: "A <strong>sudden worsening</strong> of confusion in a patient with baseline dementia is a red flag for <strong>superimposed delirium</strong>. The nurse's priority is to identify the underlying cause — infection, dehydration, medication side effect, pain, metabolic disturbance, or hypoxia. Documenting as 'expected dementia progression' ignores an acute and potentially life-threatening problem. Assessment of VS, I&O, and medications comes before psychiatric consult."
+},
+
+// ============================================================
+// SECTION: PHARMACOLOGY (Q18-Q30)
+// ============================================================
+{
+  id: 18,
+  section: "PHARMACOLOGY",
+  sectionTitle: "Medication Safety & Pharmacology",
+  type: "MC",
+  stem: "A client with mild Alzheimer's disease is started on donepezil (Aricept). The family asks how the medication works. Which explanation by the nurse is most accurate?",
+  options: [
+    '"Donepezil replaces the lost brain cells that cause Alzheimer\'s disease."',
+    '"Donepezil prevents the breakdown of acetylcholine by inhibiting the acetylcholinesterase enzyme, helping to temporarily preserve cognitive function."',
+    '"Donepezil blocks excess glutamate in the brain, protecting neurons from damage."',
+    '"Donepezil is a cure that stops Alzheimer\'s from progressing in most patients."'
+  ],
+  correct: [1],
+  rationale: "Donepezil is a <strong>cholinesterase inhibitor (CEI)</strong> — it works by inhibiting the acetylcholinesterase (AChE) enzyme, preventing it from breaking down acetylcholine. This increases the level and duration of acetylcholine activity at the synapse, helping to temporarily slow cognitive deterioration. It does <em>not</em> replace neurons, is not a cure, and does not block glutamate (that's memantine's mechanism)."
+},
+{
+  id: 19,
+  section: "PHARMACOLOGY",
+  type: "MC",
+  stem: "A nurse is caring for a 76-year-old with moderate Alzheimer's disease. The provider orders memantine (Namenda). Which statement about this medication is most accurate?",
+  options: [
+    "Memantine should be the first medication tried in early-stage Alzheimer's.",
+    "Memantine is an NMDA receptor antagonist appropriate for moderate-to-severe Alzheimer's, typically added after cholinesterase inhibitors.",
+    "Memantine works by preventing breakdown of acetylcholine and should replace donepezil.",
+    "Memantine cures Alzheimer's when started during the moderate stage."
+  ],
+  correct: [1],
+  rationale: "Memantine is an <strong>NMDA receptor antagonist</strong> that blocks the effects of excess glutamate, restoring signal transmission. Per course content, it is indicated for <strong>moderate-to-severe Alzheimer's</strong> (not mild), and is <strong>typically added after trying cholinesterase inhibitors</strong>. When started early (during moderate stage, not severe), it may temporarily delay disease progression. It does not replace donepezil — both can be used together."
+},
+{
+  id: 20,
+  section: "PHARMACOLOGY",
+  type: "MC",
+  stem: "A nurse is preparing to administer donepezil (Aricept) to an 88-year-old patient. The patient's daughter asks, <em>&ldquo;Does it still work as well at her age?&rdquo;</em> Which response by the nurse is most accurate?",
+  options: [
+    '"Donepezil works best in people over age 85 — it becomes more effective with age."',
+    '"Donepezil provides minimal additional cognitive benefits after one year of use, and the risk of side effects doubles in people over age 85, so the provider should reassess the benefit-to-risk ratio."',
+    '"Donepezil has no side effects in elderly patients, so there is no concern."',
+    '"We will need to double the dose to overcome her age-related resistance to the medication."'
+  ],
+  correct: [1],
+  rationale: "Per course material, cholinesterase inhibitors are <strong>only marginally effective</strong>, with <strong>minimal benefits after one year</strong>. Critically, the <strong>risk of side effects doubles in people over age 85</strong>. This information is essential for family education and shared decision-making about continued use. The nurse should present this information to prompt a provider reassessment of the medication's ongoing benefit."
+},
+{
+  id: 21,
+  section: "PHARMACOLOGY",
+  type: "MC",
+  stem: "A nurse is caring for a client with Alzheimer's disease who is experiencing increasing agitation and paranoia. The provider prescribes haloperidol (Haldol) 1 mg IM PRN for agitation. What is the nurse's priority action?",
+  options: [
+    "Administer the medication — it is the safest choice for elderly patients with psychosis.",
+    "Administer a half dose initially to assess tolerance before giving the full dose.",
+    "Hold the medication and contact the provider, explaining that haloperidol should not be used in clients with dementia-related psychosis due to increased incidence of death.",
+    "Give the medication once and document the clinical reasoning, then consult pharmacy."
+  ],
+  correct: [2],
+  rationale: "This is a critical pharmacology safety priority: <strong>DO NOT administer haloperidol to clients with dementia-related psychosis</strong>. Per course content, it is associated with an <strong>increased incidence of death</strong> in this population. The nurse must hold the medication and notify the provider. If pharmacological management of agitation is necessary, Risperdal (risperidone) is preferred over Haldol, and Seroquel (quetiapine) is slightly better than Risperdal."
+},
+{
+  id: 22,
+  section: "PHARMACOLOGY",
+  type: "MC",
+  stem: "A provider prescribes risperidone (Risperdal) for a client with dementia-related agitation. The nurse recognizes that this order is more appropriate than haloperidol because:",
+  options: [
+    "Risperdal has no side effects in the elderly and is FDA-approved for dementia-related psychosis.",
+    "While no antipsychotic is approved or ideal for dementia psychosis, Risperdal has a better safety profile than Haldol in this population.",
+    "Risperdal reverses the underlying cause of dementia-related behavior.",
+    "Risperdal is the preferred medication because it also treats the cognitive decline of dementia."
+  ],
+  correct: [1],
+  rationale: "While all antipsychotics carry risk in elderly patients with dementia, the course material specifically notes that <strong>Risperdal (risperidone) is better than Haldol</strong>, and <strong>Seroquel (quetiapine) is slightly better than Risperdal</strong>. Antipsychotics are noted as '<em>not approved, use with caution</em>' in the behavioral medication category. They do not reverse underlying pathology or treat cognitive decline."
+},
+{
+  id: 23,
+  section: "PHARMACOLOGY",
+  type: "SATA",
+  stem: "A nurse is providing medication education to the family of a client newly started on donepezil for Alzheimer's disease. Which statements by the nurse are accurate? Select all that apply.",
+  options: [
+    '"This medication slows the progression of cognitive decline but will not cure or reverse Alzheimer\'s."',
+    '"Donepezil is the drug of choice among cholinesterase inhibitors for Alzheimer\'s disease."',
+    '"Common side effects of this class of medication tend to be gastrointestinal."',
+    '"If the medication is not showing significant benefit after two or three years, it means the dosing is too low."',
+    '"The tablet dissolves on the tongue and should be followed with a full glass of water."',
+    '"You can expect full restoration of memory function within 6 months."'
+  ],
+  correct: [0, 1, 2, 4],
+  rationale: "Key teaching points for donepezil: it slows deterioration (<em>not a cure</em>); it is the 'drug of choice' CEI; GI side effects are common for this drug class; the orally dissolving tablet melts on the tongue and is followed with water at the lower 5 mg dose. Full restoration of memory is not realistic — these medications are only marginally effective, and benefits are minimal after a year."
+},
+{
+  id: 24,
+  section: "PHARMACOLOGY",
+  type: "MC",
+  stem: "An elderly client with dementia is being treated for anxiety with lorazepam (Ativan). The family calls the nurse to report that since starting the medication, the client seems <strong>more confused, more agitated, and more restless</strong> than before. The nurse should recognize this as:",
+  options: [
+    "Normal worsening of the dementia unrelated to the lorazepam.",
+    "A therapeutic response — the medication takes time to work.",
+    "A reverse (paradoxical) effect of the benzodiazepine in an elderly patient.",
+    "An allergic reaction requiring epinephrine administration."
+  ],
+  correct: [2],
+  rationale: "Benzodiazepines such as lorazepam and clorazepate may produce <strong>reverse (paradoxical) effects in elderly patients</strong> — instead of sedating and calming, they may cause increased agitation, restlessness, and worsening confusion. Some sleeping pills can also cause this effect. This is a safety concern that requires notifying the provider about possible medication discontinuation."
+},
+{
+  id: 25,
+  section: "PHARMACOLOGY",
+  type: "MC",
+  stem: "A nurse is reviewing a medication list for an 82-year-old with mild dementia who has been on multiple medications prescribed by different providers. Which concept does this situation most clearly exemplify as a risk factor for delirium?",
+  options: [
+    "Polypharmacy in the geriatric population",
+    "Thiamine deficiency from malnutrition",
+    "Substance intoxication from recreational drug use",
+    "Hepatic disease causing altered metabolism"
+  ],
+  correct: [0],
+  rationale: "<strong>Geriatric polypharmacy</strong> — the use of multiple medications, often prescribed by different providers — is a major cause of medication-induced delirium in the elderly. Drug interactions, overlapping side effects, and age-related pharmacokinetic changes increase toxicity risk. The nurse should review the medication list for potential interactions, duplications, and CNS-active agents (analgesics, anticonvulsants, neuroleptics, sedatives/hypnotics)."
+},
+{
+  id: 26,
+  section: "PHARMACOLOGY",
+  type: "TABLE",
+  stem: "For each client situation below, indicate whether the nurse should <strong>Give</strong> or <strong>Hold/Question</strong> the medication.",
+  tableRows: [
+    { action: "Haloperidol 0.5 mg IM ordered for a client with Alzheimer's dementia-related psychosis", correct: "Hold/Question", rationale: "Haldol is contraindicated in dementia-related psychosis due to increased mortality." },
+    { action: "Donepezil 5 mg PO daily for a 70-year-old with newly diagnosed mild Alzheimer's", correct: "Give", rationale: "Donepezil is the drug of choice for mild Alzheimer's. The dose and indication are appropriate." },
+    { action: "Lorazepam 1 mg PO TID ordered for an 84-year-old with dementia who became more agitated since starting the medication yesterday", correct: "Hold/Question", rationale: "Paradoxical/reverse effects of benzos in the elderly warrant holding and notifying the provider." },
+    { action: "Memantine 10 mg BID for a client with moderate-to-severe Alzheimer's already on donepezil", correct: "Give", rationale: "Memantine is appropriate for moderate-to-severe stages and can be combined with cholinesterase inhibitors." },
+    { action: "Memantine 5 mg daily newly ordered for a client with mild Alzheimer's, per order", correct: "Hold/Question", rationale: "Memantine should not be used until moderate-to-severe stage — the nurse should question this order for a mild dementia patient." }
+  ],
+  tableHeaders: ["Clinical Situation", "Give", "Hold/Question"]
+},
+{
+  id: 27,
+  section: "PHARMACOLOGY",
+  type: "MC",
+  stem: "A nurse is caring for a client with Alzheimer's disease who is experiencing behavioral agitation. Before reaching for any pharmacological intervention, the nurse should FIRST:",
+  options: [
+    "Call the provider for an order for an antipsychotic.",
+    "Apply soft restraints to keep the client safe.",
+    "Conduct a thorough assessment to identify possible causes: delirium? medication issue? overstimulation? unmet physical need?",
+    "Move the client to a busier area of the unit to provide distraction."
+  ],
+  correct: [2],
+  rationale: "The course material is explicit: <strong>nonpharmacologic approach first</strong>. This means conducting a thorough assessment before any medication — looking for delirium, pain, infection, medication adverse effects, overstimulation, or unmet needs. Agitated behavior in dementia always has a cause. Restraints worsen agitation and should be avoided. Moving to a busier area increases stimulation and is contraindicated."
+},
+{
+  id: 28,
+  section: "PHARMACOLOGY",
+  type: "MC",
+  stem: "A client with Alzheimer's disease reports nausea, vomiting, and diarrhea since starting a new medication three days ago. Which medication class is most likely responsible for these GI symptoms?",
+  options: [
+    "NMDA receptor antagonists such as memantine",
+    "Benzodiazepines such as lorazepam",
+    "Cholinesterase inhibitors such as donepezil or rivastigmine",
+    "Antipsychotics such as risperidone"
+  ],
+  correct: [2],
+  rationale: "<strong>Gastrointestinal side effects</strong> (nausea, vomiting, diarrhea) are the most common side effects of the <strong>cholinesterase inhibitor</strong> class, which includes donepezil, rivastigmine, and galantamine. This is because increasing acetylcholine stimulates parasympathetic GI activity. NMDA antagonists like memantine more commonly cause dizziness and headaches."
+},
+{
+  id: 29,
+  section: "PHARMACOLOGY",
+  type: "SATA",
+  stem: "A nurse is educating a client's family about behavioral medications used with caution in dementia. Which statements accurately reflect the course content? Select all that apply.",
+  options: [
+    "Antidepressants may be used but should be approached with caution in dementia.",
+    "Antipsychotics are FDA-approved for treating dementia-related psychosis and can be freely prescribed.",
+    "Benzodiazepines should be avoided in elderly patients with dementia due to risk of paradoxical effects and worsening confusion.",
+    "Anticonvulsants may be used behaviorally in some cases.",
+    "The goal is always to try nonpharmacologic interventions before resorting to behavioral medications.",
+    "Antipsychotics have no mortality risk in elderly dementia patients."
+  ],
+  correct: [0, 2, 3, 4],
+  rationale: "From course content, behavioral medications used with caution include: antidepressants, antipsychotics (NOT approved, use with caution), antianxiety agents (avoid benzos), and anticonvulsants. Antipsychotics are <em>not</em> FDA-approved for dementia psychosis and carry mortality risk — this is precisely why Haldol should not be given. Nonpharmacologic approaches always come first."
+},
+{
+  id: 30,
+  section: "PHARMACOLOGY",
+  type: "MC",
+  stem: "A nurse is reviewing medications that can <strong>cause or worsen delirium</strong>. Which category of medications is specifically listed in the course material as a drug class that can cause substance-induced delirium?",
+  options: [
+    "Antihypertensives such as lisinopril",
+    "Analgesics, anticonvulsants, neuroleptics, and sedatives/hypnotics",
+    "Statins such as atorvastatin",
+    "Oral hypoglycemics such as metformin"
+  ],
+  correct: [1],
+  rationale: "Per course content, medications that can cause substance-induced delirium include: <strong>analgesics, anticonvulsants, neuroleptics, and sedatives/hypnotics</strong>. Substance withdrawal (from alcohol, sedatives, hypnotics) and substance intoxication are also recognized causes. Antihypertensives, statins, and metformin are not listed as common delirium triggers."
+},
+
+// ============================================================
+// SECTION: COMMUNICATION TECHNIQUES (Q31-Q37)
+// ============================================================
+{
+  id: 31,
+  section: "COMMUNICATION & THERAPEUTIC APPROACH",
+  sectionTitle: "Communication & Therapeutic Approach",
+  type: "MC",
+  stem: "A nurse is caring for a client with moderate Alzheimer's disease who becomes agitated and says, <em>&ldquo;You stole my money! Give it back right now!&rdquo;</em> Which response best reflects therapeutic communication principles?",
+  options: [
+    '"I didn\'t steal anything. Your money is in your wallet, right here. See?"',
+    '"It sounds like you\'re worried about your money. Can you tell me more about that feeling? You\'re safe here."',
+    '"Why would you say that? That\'s not a nice thing to say."',
+    '"You need to calm down right now or I will have to call for help."'
+  ],
+  correct: [1],
+  rationale: "The nurse should avoid arguing or confrontation — arguing escalates distress in clients with dementia. Instead, the therapeutic response <strong>explores the feeling beneath the behavior</strong> (worry about safety/possessions), validates the emotional experience, and provides reassurance. Option A involves directly contradicting the client's reality, which often triggers a catastrophic reaction. Options C and D are confrontational and dismissive."
+},
+{
+  id: 32,
+  section: "COMMUNICATION & THERAPEUTIC APPROACH",
+  type: "SATA",
+  stem: "The nurse is preparing to assess a client with dementia. Which communication approaches reflect <strong>best practice</strong> according to the course content? Select all that apply.",
+  options: [
+    "Approach from the front, slowly and calmly",
+    "Address the client using terms of endearment like 'honey' or 'sweetie' to make them feel comfortable",
+    "Use simple, direct statements and speak in a normal tone of voice",
+    "Ask complex multi-part questions to stimulate cognitive function",
+    "Observe facial expression and body language as communication cues",
+    "Use gestures, visual, and verbal cues to supplement speech",
+    "Do not approach from behind while speaking"
+  ],
+  correct: [0, 2, 4, 5, 6],
+  rationale: "Therapeutic communication with dementia patients includes: approaching from the front slowly (never from behind — this can startle and trigger catastrophic reactions), using simple and direct statements, speaking in a normal tone, observing nonverbal cues, and using gestures/visual/verbal cues. Addressing patients as 'honey' or 'sweetie' is explicitly identified as <em>not</em> appropriate — use the client's name. Complex multi-part questions are overwhelming and should be avoided."
+},
+{
+  id: 33,
+  section: "COMMUNICATION & THERAPEUTIC APPROACH",
+  type: "MC",
+  stem: "While assisting with morning care, the nurse asks a client with Alzheimer's: <em>&ldquo;Do you remember what you had for breakfast this morning?&rdquo;</em> The client becomes anxious and distressed. The nurse should recognize that this question was inappropriate because:",
+  options: [
+    "It was asked too early in the morning.",
+    "Quizzing the person about memory failures causes distress without therapeutic benefit.",
+    "Questions about meals are inappropriate for clients with swallowing difficulties.",
+    "It should have been asked in writing rather than verbally."
+  ],
+  correct: [1],
+  rationale: "The course content explicitly states: <strong>do not quiz the person</strong>. Testing a client with Alzheimer's about recent memory — which they cannot recall — is cruel and causes anxiety and distress without any therapeutic benefit. The nurse should instead use memory aids, prompts, and redirection rather than quizzing."
+},
+{
+  id: 34,
+  section: "COMMUNICATION & THERAPEUTIC APPROACH",
+  type: "MC",
+  stem: "A client with moderate-stage Alzheimer's refuses to take their morning shower. The nurse's best approach is:",
+  options: [
+    "Tell the client they are not trying hard enough and need to cooperate.",
+    "Recognize that the refusal may reflect forgetting the routine or having a disrupted routine, and use creative, flexible approaches to redirect toward hygiene activities.",
+    "Document the refusal and skip the shower to avoid upsetting the client.",
+    "Ask the client to explain why they are refusing in order to identify the cause."
+  ],
+  correct: [1],
+  rationale: "The course content notes: <em>if the person refuses to perform a task, it could be that they have forgotten or their routine has been interrupted</em>. The nurse should use <strong>creativity and flexibility</strong>, avoid confrontation, and remember that the <strong>disease causes the behavior</strong>. The nurse should not shame or accuse the client of not trying (that is explicitly listed as a communication technique to avoid), nor abandon hygiene care altogether."
+},
+{
+  id: 35,
+  section: "COMMUNICATION & THERAPEUTIC APPROACH",
+  type: "TABLE",
+  stem: "A client with moderate dementia is agitated in the late afternoon (sundowning). For each nurse statement/action, indicate whether it is <strong>Appropriate</strong> or <strong>Inappropriate</strong>.",
+  tableRows: [
+    { action: "Speaking in a calm, gentle, unhurried voice while reducing environmental noise and lighting", correct: "Appropriate", rationale: "Low-stimulation environment and calm communication are core nonpharmacologic interventions." },
+    { action: "Saying: 'Why are you acting like this? Just relax.'", correct: "Inappropriate", rationale: "'Why' questions are specifically identified as to be avoided when communicating with agitated patients with dementia." },
+    { action: "Connecting through sensory engagement (offering a warm blanket, gentle music)", correct: "Appropriate", rationale: "Connecting through senses is a recommended communication strategy." },
+    { action: "Telling the client: 'You are being very difficult right now.'", correct: "Inappropriate", rationale: "This is confrontational and violates the principle that the disease causes the behavior — the client is not being intentionally difficult." },
+    { action: "Exploring what the client might need (pain? hunger? toileting? anxiety?)", correct: "Appropriate", rationale: "Agitation often signals an unmet need or overstimulation — assessment and exploration of reasons is always indicated." }
+  ],
+  tableHeaders: ["Nurse Statement/Action", "Appropriate", "Inappropriate"]
+},
+{
+  id: 36,
+  section: "COMMUNICATION & THERAPEUTIC APPROACH",
+  type: "MC",
+  stem: "A client with late-stage Alzheimer's cries out, <em>&ldquo;Mama! I need my mama!&rdquo;</em> The nurse understands that this behavior most likely represents:",
+  options: [
+    "A sign the client is acutely ill and experiencing pain.",
+    "Meaningless sounds with no communicative intent at this stage.",
+    "An attempt to express feelings, needs, or seek comfort — a form of communication even without full verbal ability.",
+    "A contraindication to ambulation and should be documented for psychiatric evaluation."
+  ],
+  correct: [2],
+  rationale: "Even in middle-to-late stage dementia, behavioral expressions — including calling out — represent the client's <strong>attempt to express feelings and needs</strong>. The course material emphasizes that agitated behaviors are not mean-spirited — the client is communicating. The nurse should assess for pain, discomfort, fear, or unmet need and respond with calm presence and compassion."
+},
+{
+  id: 37,
+  section: "COMMUNICATION & THERAPEUTIC APPROACH",
+  type: "MC",
+  stem: "The nurse overhears an aide tell a client with dementia: <em>&ldquo;Just try harder — I know you can do this.&rdquo;</em> The nurse should intervene because this statement:",
+  options: [
+    "May confuse the client since it uses too many words.",
+    "Is inappropriate — the course content specifically identifies 'telling the person they are not trying hard enough' as a communication technique to avoid.",
+    "Is therapeutic — positive encouragement helps stimulate cognitive function.",
+    "Lacks proper professional language — the aide should say 'please try harder.'"
+  ],
+  correct: [1],
+  rationale: "Per course content: <strong>Refrain from telling the person he/she is not trying hard enough or is incapable.</strong> This directly violates the communication principles for clients with dementia. The inability to perform tasks is caused by the disease, not by lack of effort. Such language damages dignity and causes distress."
+},
+
+// ============================================================
+// SECTION: VALIDATION THERAPY VS. REORIENTATION (Q38-Q41)
+// ============================================================
+{
+  id: 38,
+  section: "VALIDATION THERAPY",
+  sectionTitle: "Validation Therapy vs. Reorientation",
+  type: "MC",
+  stem: "A client with end-stage Alzheimer's disease cries and says: <em>&ldquo;I need to go home and cook dinner for my children. They'll be home soon from school.&rdquo;</em> Her children are adults in their 50s. The nurse's <strong>most therapeutic</strong> response using validation therapy is:",
+  options: [
+    '"Your children are grown adults now — they don\'t need you to cook for them."',
+    '"You don\'t have a home to go to — you live here now."',
+    '"It sounds like taking care of your family is very important to you. Tell me about your children."',
+    '"Okay, let\'s go check on dinner together."'
+  ],
+  correct: [2],
+  rationale: "<strong>Validation therapy</strong> is used when reorientation to the present would be cruel and would result in further agitation. In end-stage dementia, repeatedly correcting the client about reality is not therapeutic — it causes distress and serves no clinical purpose. The validation approach acknowledges the <em>feeling and emotional meaning</em> behind the statement (love for her children, sense of purpose as a caregiver) without arguing about the facts."
+},
+{
+  id: 39,
+  section: "VALIDATION THERAPY",
+  type: "MC",
+  stem: "The nurse understands that validation therapy is the appropriate communication approach (rather than reorientation) when:",
+  options: [
+    "The client has mild cognitive impairment and can benefit from memory correction.",
+    "The client is experiencing acute delirium and needs grounding.",
+    "Reorienting the client to present reality would be cruel and would cause further agitation or distress.",
+    "The client is completely oriented but emotionally distressed."
+  ],
+  correct: [2],
+  rationale: "Per course content, validation therapy is used <strong>when reorientation to the present would be cruel and would result in further agitation</strong>. Goals of validation therapy include: helping the person resolve unfinished business, helping them die in peace, reducing anxiety, increasing self-worth, and preventing withdrawal toward vegetation. It is most appropriate for moderate-to-end stage dementia where the client can no longer benefit from — and may be harmed by — persistent reality correction."
+},
+{
+  id: 40,
+  section: "VALIDATION THERAPY",
+  type: "SATA",
+  stem: "Which of the following are identified <strong>goals of validation therapy</strong>? Select all that apply.",
+  options: [
+    "Help the person resolve unfinished business",
+    "Correct the person's confused beliefs with factual information",
+    "Reduce the person's anxiety and increase feelings of self-worth",
+    "Prevent the person from withdrawing inward toward vegetation",
+    "Help the person die in peace",
+    "Lead to increased communication and positive changes in behavior"
+  ],
+  correct: [0, 2, 3, 4, 5],
+  rationale: "The goals of validation therapy are: help people resolve unfinished business; help people die in peace; reduce anxiety; increase feelings of self-worth; prevent withdrawal inward toward vegetation; provide joy for the caregiver; and lead to increased communication and behavior change. Correcting beliefs with factual information is the opposite of validation therapy — that is reality orientation, which is not always appropriate in advanced dementia."
+},
+{
+  id: 41,
+  section: "VALIDATION THERAPY",
+  type: "MC",
+  stem: "An early-stage Alzheimer's patient who is still alert and oriented mentions she forgot her sister's birthday last week. She can have a meaningful conversation about her feelings regarding the memory lapse. The most appropriate nursing response in this situation is:",
+  options: [
+    "Use validation therapy — agree she never forgets birthdays to prevent her distress.",
+    "Use gentle reality orientation — acknowledge the lapse, provide reassurance, and discuss strategies to support memory.",
+    "Avoid the topic entirely as it will increase her agitation.",
+    "Tell her that her memory problems will only get worse and she should prepare herself."
+  ],
+  correct: [1],
+  rationale: "In <strong>early-stage dementia</strong>, where the client is still capable of some insight and meaningful conversation, gentle reality orientation is more appropriate than validation therapy. Validation therapy is reserved for situations where reality-based conversation would be cruel or distressing — not when the client can actually benefit from honest, supportive conversation with orientation cues and encouragement."
+},
+
+// ============================================================
+// SECTION: SAFETY & BEHAVIOR MANAGEMENT (Q42-Q48)
+// ============================================================
+{
+  id: 42,
+  section: "SAFETY & BEHAVIOR MANAGEMENT",
+  sectionTitle: "Safety Priorities & Behavior Management",
+  type: "MC",
+  stem: "The nurse walks into a client's room and finds a client with Alzheimer's attempting to climb out of bed at 2 AM. The client is confused about their location and is heading toward the door. The nurse's <strong>priority action</strong> is:",
+  options: [
+    "Apply four-point restraints immediately to prevent injury.",
+    "Calmly approach from the front, address the client by name, speak in a calm voice, and guide them safely back to bed while assessing for unmet needs.",
+    "Call security to prevent the client from leaving.",
+    "Turn on all the lights and call a family member immediately."
+  ],
+  correct: [1],
+  rationale: "Safety is the priority, but <strong>restraints worsen agitation and should be avoided</strong>. The nurse should approach from the front (not behind), address the client by name, use a calm, unhurried voice, and gently redirect. Wandering behavior should trigger an assessment for unmet needs (pain, need to toilet, fear, sundowning) and a review of the environment. The room should have adequate lighting and the bed should be in low position with a bed alarm — not restraints."
+},
+{
+  id: 43,
+  section: "SAFETY & BEHAVIOR MANAGEMENT",
+  type: "SATA",
+  stem: "A client in the middle stage of Alzheimer's disease is showing signs of <strong>sundowning</strong>. Which nursing interventions are appropriate? Select all that apply.",
+  options: [
+    "Provide a calm, structured evening routine",
+    "Increase evening stimulation with loud television and group activities",
+    "Ensure adequate lighting in the room as darkness falls",
+    "Administer a benzodiazepine PRN to sedate the client",
+    "Identify and address potential triggers (overstimulation, pain, disrupted routine)",
+    "Maintain consistency in the client's daily schedule"
+  ],
+  correct: [0, 2, 4, 5],
+  rationale: "Sundowning management is nonpharmacologic first: a consistent, structured routine; adequate lighting as daylight fades (darkness can worsen disorientation); identifying triggers; and maintaining daily schedule consistency. Increasing stimulation worsens sundowning. Benzodiazepines should be avoided in the elderly with dementia — they are identified as 'with caution' and carry risks of paradoxical effects and worsening confusion."
+},
+{
+  id: 44,
+  section: "SAFETY & BEHAVIOR MANAGEMENT",
+  type: "MC",
+  stem: "A client with Alzheimer's disease is having a <strong>catastrophic reaction</strong> — screaming, crying, and striking out at caregivers. Which nursing action should the nurse implement FIRST?",
+  options: [
+    "Immediately administer the prescribed PRN antipsychotic medication.",
+    "Remove the client from the triggering situation, lower stimulation, speak calmly, and allow time for the episode to de-escalate.",
+    "Apply soft restraints to protect both the client and staff.",
+    "Tell the client loudly and firmly to stop the behavior."
+  ],
+  correct: [1],
+  rationale: "Catastrophic reactions (screaming, crying, striking out) are symptoms of the disease, not intentional behavior. The priority nonpharmacologic intervention is to <strong>remove the client from the triggering environment</strong>, reduce stimulation, speak in a calm gentle voice, and allow de-escalation time. Restraints and confrontational commands escalate rather than resolve the episode. Medication is a last resort, not the first action."
+},
+{
+  id: 45,
+  section: "SAFETY & BEHAVIOR MANAGEMENT",
+  type: "MC",
+  stem: "A client with mid-stage Alzheimer's is found rummaging through other clients' belongings in the hallway and trying to enter locked rooms. The nurse recognizes this as:",
+  options: [
+    "Aggressive behavior requiring immediate chemical restraint.",
+    "Purposeful theft that should be reported to the ethics committee.",
+    "Meaningless repetitive actions and wandering — a symptom characteristic of the middle stage of Alzheimer's.",
+    "A sign that the client needs more complex cognitive stimulation activities."
+  ],
+  correct: [2],
+  rationale: "Rummaging and wandering are listed as characteristic behaviors of the <strong>middle stage of Alzheimer's disease</strong>. They represent meaningless, repetitive actions driven by the disease — not intentional behavior. The nurse should ensure safety (wandering prevention, secured exits), provide redirection, explore potential unmet needs, and educate staff that the client is NOT being mean-spirited."
+},
+{
+  id: 46,
+  section: "SAFETY & BEHAVIOR MANAGEMENT",
+  type: "MC",
+  stem: "The nurse is teaching a client with early Alzheimer's disease and their family about the importance of <strong>preserving functional independence</strong>. Which statement best reflects this goal?",
+  options: [
+    '"It is safest to do everything for your loved one to prevent accidents."',
+    '"Encouraging your loved one to participate in ADLs at the highest level they are capable of helps preserve function, dignity, and quality of life — even if it takes longer."',
+    '"You should stop all activity to prevent falls and fatigue."',
+    '"As long as basic needs are met, it does not matter whether they participate in their own care."'
+  ],
+  correct: [1],
+  rationale: "A core nursing principle in dementia care is to <strong>assist participation in ADLs at the highest level of functional ability</strong>. Doing everything 'for' the client (completing care for them) accelerates functional decline, undermines dignity, and removes meaningful engagement. The three goals of Alzheimer's care are: protect dignity, preserve functional status, and promote quality of life."
+},
+{
+  id: 47,
+  section: "SAFETY & BEHAVIOR MANAGEMENT",
+  type: "MC",
+  stem: "A client with Alzheimer's disease is not eating and has significant weight loss. This finding is most consistent with which stage of Alzheimer's disease, and what is the priority nursing concern?",
+  options: [
+    "Early stage; priority is to encourage meal independence.",
+    "Middle stage; priority is to assess for dysphagia and trouble eating, and assist with meals while preserving dignity.",
+    "End stage only; trouble eating does not occur in earlier stages.",
+    "This is unrelated to Alzheimer's and requires a separate GI workup."
+  ],
+  correct: [1],
+  rationale: "The <strong>middle stage</strong> of Alzheimer's is characterized by 'trouble eating,' and the <strong>end stage</strong> involves significant weight loss with need for feeding assistance. When a client with Alzheimer's is not eating, the nurse should assess for trouble with feeding mechanics, swallowing, and food recognition, assist with meals while maintaining dignity, and ensure adequate nutrition and hydration. Feeding difficulty is disease-related."
+},
+{
+  id: 48,
+  section: "SAFETY & BEHAVIOR MANAGEMENT",
+  type: "SATA",
+  stem: "A nurse is completing discharge teaching for the family of a client with moderate Alzheimer's going home. Which safety teachings are most important? Select all that apply.",
+  options: [
+    "Install locks on exterior doors that are difficult for the client to operate independently",
+    "Remove clutter, loose rugs, and fall hazards from the home",
+    "Allow independent driving until assessed otherwise by a specialist",
+    "Place night lights in bathrooms, hallways, and the bedroom",
+    "Keep medications secured to prevent accidental ingestion",
+    "Establish a consistent daily routine to reduce confusion and agitation"
+  ],
+  correct: [0, 1, 3, 4, 5],
+  rationale: "Critical safety measures for moderate Alzheimer's at home include: preventing wandering with door locks; fall prevention through clutter removal; adequate lighting; secured medications; and a consistent routine. Driving with moderate Alzheimer's is unsafe — judgment, reaction time, and navigation are compromised. Independent driving should be actively discouraged and addressed with the provider."
+},
+
+// ============================================================
+// SECTION: WHOLE-PERSON IMPACT & ASSESSMENT (Q49-Q53)
+// ============================================================
+{
+  id: 49,
+  section: "WHOLE-PERSON IMPACT & ASSESSMENT",
+  sectionTitle: "Whole-Person Impact & Assessment",
+  type: "SATA",
+  stem: "The nurse understands that cognition disorders affect clients in multiple dimensions. Which domains of impact should guide the nurse's holistic assessment of a client with dementia? Select all that apply.",
+  options: [
+    "Physical functioning and safety",
+    "Psychological wellbeing and mood",
+    "Social relationships and isolation risk",
+    "Spiritual beliefs and meaning-making",
+    "Insurance billing and provider reimbursement",
+    "Risk of caregiver burnout in the family"
+  ],
+  correct: [0, 1, 2, 3, 5],
+  rationale: "The course material states that cognition impacts <strong>physical, psychological, social, and spiritual</strong> dimensions of the person. The nurse's holistic assessment should address all four domains plus caregiver burden, since more than 16 million Americans provide unpaid care to people with Alzheimer's or dementia. Insurance billing is not a direct domain of holistic nursing assessment."
+},
+{
+  id: 50,
+  section: "WHOLE-PERSON IMPACT & ASSESSMENT",
+  type: "MC",
+  stem: "The nurse is using the <strong>Mini-Mental Status Exam (MMSE)</strong> to evaluate a client with suspected cognitive decline. The nurse understands that this tool is most appropriately used to:",
+  options: [
+    "Diagnose the specific type of dementia the client has.",
+    "Screen for cognitive impairment and to determine progression of disease over time.",
+    "Determine the client's medication dosing needs.",
+    "Assess risk for violence and danger to others."
+  ],
+  correct: [1],
+  rationale: "Per course content, the <strong>Mini-Mental Status Exam (MMSE)</strong> is used for <strong>screening and to determine progression</strong> of cognitive decline. It is not a diagnostic tool that identifies the specific type of dementia — dementia is a diagnosis of exclusion requiring a full medical workup. The Functional Dementia Scale specifically looks at self-care, memory loss, mood changes, and danger to self/others."
+},
+{
+  id: 51,
+  section: "WHOLE-PERSON IMPACT & ASSESSMENT",
+  type: "MC",
+  stem: "A nurse is documenting assessment findings for a client with Alzheimer's. The client cannot write their name, cannot recognize a familiar object when shown it, and is responding with meaningless sounds when asked a question. Which terms correctly describe these findings?",
+  options: [
+    "Apraxia, agnosia, and confabulation",
+    "Agraphia, agnosia, and aphasia",
+    "Disinhibition, agraphia, and sundowning",
+    "Confabulation, paranoia, and hyperorality"
+  ],
+  correct: [1],
+  rationale: "Per course content: <strong>Agraphia</strong> = impairment in writing; <strong>Agnosia</strong> = inability to recognize familiar objects; <strong>Aphasia</strong> = impairment in speech/language. These are three of the four criteria (plus executive functioning) used in the diagnosis of neurocognitive disorders. Apraxia is impairment in movement. Confabulation is filling in memory gaps with fabricated information."
+},
+{
+  id: 52,
+  section: "WHOLE-PERSON IMPACT & ASSESSMENT",
+  type: "MC",
+  stem: "A client with end-stage Alzheimer's disease is admitted to the hospital with pneumonia and kidney failure. The client's family asks the nurse: <em>&ldquo;How did they get this sick?&rdquo;</em> Which response by the nurse is most accurate?",
+  options: [
+    '"They likely caught an infection from another resident at the nursing home."',
+    '"In end-stage Alzheimer\'s, the body deteriorates significantly. Complications such as pneumonia, heart failure, kidney failure, and starvation are the common causes of death."',
+    '"The Alzheimer\'s medication probably caused kidney damage."',
+    '"This is likely a completely unrelated condition that needs a separate workup."'
+  ],
+  correct: [1],
+  rationale: "Per course content, clients in end-stage Alzheimer's die from <strong>complications</strong> including: heart failure, pneumonia, kidney failure, and starvation — all resulting from the profound neurological deterioration that accompanies the final stage. Bedridden state, pressure ulcers, contractures, and systemic infections are also sequelae of end-stage disease. This is important family education to prepare for what they may experience."
+},
+{
+  id: 53,
+  section: "WHOLE-PERSON IMPACT & ASSESSMENT",
+  type: "MC",
+  stem: "A client in the early stage of Alzheimer's disease is being assessed. Which finding is most consistent with this stage?",
+  options: [
+    "Global loss of all memory, total incontinence, and bedridden state in fetal position.",
+    "Paranoia, wandering, visual hallucinations, and inability to perform self-care without assistance.",
+    "Memory loss for recent events, disorientation, difficulty with in-depth conversation, personality changes, and fatigue — but still able to care for self without supervision.",
+    "Seizures, contractures, and profound neurological loss with verbal communication limited to guttural sounds."
+  ],
+  correct: [2],
+  rationale: "The <strong>early stage</strong> of Alzheimer's includes: memory loss, disorientation, inability to learn new information, trouble carrying on in-depth conversations, personality changes (listless, apathetic, sudden temper outbursts), easy fatigue, and preference for familiar people/places — but the <em>individual is still able to care for self and does not need supervision</em>. Relatives may not even realize something is wrong. Options A and D describe end stage; Option B describes middle stage."
+},
+
+// ============================================================
+// SECTION: CAREGIVER SUPPORT (Q54-Q57)
+// ============================================================
+{
+  id: 54,
+  section: "CAREGIVER SUPPORT",
+  sectionTitle: "Caregiver Support & Family Education",
+  type: "MC",
+  stem: "The daughter of a client with Alzheimer's tearfully tells the nurse: <em>&ldquo;I had to move Mom to a nursing home last week. I feel so guilty. I feel like I failed her.&rdquo;</em> Which is the nurse's priority response?",
+  options: [
+    '"Guilt means you\'re a good daughter — you should feel guilty about this decision."',
+    '"You made this decision because you love her and want her to receive the care she needs. Guilt over placement is very common and does not mean you failed."',
+    '"You probably could have kept her home longer if you had tried harder."',
+    '"The good news is that you won\'t have to worry about her anymore."'
+  ],
+  correct: [1],
+  rationale: "Guilt over nursing home placement is explicitly identified as a <strong>caregiver concern</strong> to address. The therapeutic response validates the emotion, normalizes it (guilt is common in this situation), and reframes the decision with compassion — without reinforcing shame or dismissing the feeling. The nurse should not suggest the daughter failed or could have done more."
+},
+{
+  id: 55,
+  section: "CAREGIVER SUPPORT",
+  type: "SATA",
+  stem: "A nurse is planning care to support a family caregiver of a client with moderate Alzheimer's disease. Which interventions reflect appropriate nursing support for the caregiver? Select all that apply.",
+  options: [
+    "Provide information on respite care options",
+    "Tell the caregiver they are doing a poor job based on the client's worsening symptoms",
+    "Use therapeutic communication to elicit and validate caregiver concerns",
+    "Provide information about community resources and Alzheimer's support groups",
+    "Address financial and legal affairs — advance directives, power of attorney",
+    "Reassure the caregiver that everything will be fine and they have nothing to worry about"
+  ],
+  correct: [0, 2, 3, 4],
+  rationale: "The five core caregiver support interventions per course content are: <strong>support (therapeutic communication), respite care, community resources/groups, financial and legal affairs, and addressing guilt over placement</strong>. Dismissing concerns with false reassurance and criticizing the caregiver are both inappropriate and non-therapeutic."
+},
+{
+  id: 56,
+  section: "CAREGIVER SUPPORT",
+  type: "MC",
+  stem: "The nurse is performing a home visit for an 80-year-old client with moderate Alzheimer's cared for by his 75-year-old wife. The wife appears thin, tired, and tells the nurse, <em>&ldquo;I never get a break. I eat when he eats, sleep when he sleeps, and I haven't seen my own doctor in two years.&rdquo;</em> The nurse's priority concern is:",
+  options: [
+    "The client's weight and nutrition status.",
+    "Caregiver burnout and neglect of the wife's own physical and emotional health.",
+    "Whether the client is receiving his medications on time.",
+    "Whether the home environment is safe for the client."
+  ],
+  correct: [1],
+  rationale: "<strong>Caregiver burnout</strong> is a significant health crisis in family caregiving. The wife is describing total immersion in caregiving with no respite, no self-care, and medical self-neglect (no doctor visit in 2 years). While all concerns are valid, the nurse must prioritize the caregiver's health, as caregiver collapse directly threatens the client's care. The nurse should introduce respite care options and community support resources."
+},
+{
+  id: 57,
+  section: "CAREGIVER SUPPORT",
+  type: "MC",
+  stem: "A family member asks the nurse, <em>&ldquo;Why should I bother with a support group? Talking about this won't change anything.&rdquo;</em> Which response best educates the family member about the value of caregiver support groups?",
+  options: [
+    '"You\'re right — it won\'t change the disease, so it may not be helpful for you."',
+    '"Support groups provide connection with others who understand the experience, share practical strategies, offer emotional relief, and can reduce caregiver isolation and burnout."',
+    '"Support groups are only for people who can\'t handle caregiving on their own."',
+    '"I would recommend a support group only if you start feeling depressed."'
+  ],
+  correct: [1],
+  rationale: "Community resources and support groups are identified as a core component of <strong>caring for the caregiver</strong>. Caregivers benefit from peer support, practical coping strategies, emotional validation, and reduced isolation. More than 16 million Americans provide unpaid care to people with Alzheimer's — caregiver support is a public health priority. The nurse should encourage, not discourage, these resources."
+},
+
+// ============================================================
+// SECTION: PRIORITIZATION & CLINICAL JUDGMENT (Q58-Q65)
+// ============================================================
+{
+  id: 58,
+  section: "PRIORITIZATION & CLINICAL JUDGMENT",
+  sectionTitle: "Prioritization & Clinical Judgment",
+  type: "MC",
+  stem: "A charge nurse on a medical-surgical unit has four clients. Which client requires the nurse's <strong>most immediate assessment</strong>?",
+  options: [
+    "A 74-year-old with mild dementia who is asking for his breakfast tray.",
+    "An 80-year-old with known moderate dementia who is his usual baseline — oriented to person, slightly confused about day.",
+    "An 82-year-old with moderate dementia who has suddenly become acutely agitated, is having visual hallucinations, and is picking at her IV line — a change from her baseline earlier today.",
+    "A 76-year-old with early Alzheimer's who is refusing to take her evening medications."
+  ],
+  correct: [2],
+  rationale: "Sudden, acute worsening from baseline in a client with known dementia is a priority finding — it suggests <strong>superimposed delirium</strong>, which requires urgent assessment and identification of the underlying cause (infection, metabolic imbalance, medication). Hallucinations and IV line manipulation also indicate safety risk. The other clients represent stable chronic conditions or manageable situations that do not require immediate escalation."
+},
+{
+  id: 59,
+  section: "PRIORITIZATION & CLINICAL JUDGMENT",
+  type: "MC",
+  stem: "The nurse is assessing a 79-year-old client admitted with a UTI who now has a temperature of 101.2°F, HR 112, and acute confusion. The nurse knows the client's baseline is alert and fully oriented. Which assessment action takes priority?",
+  options: [
+    "Orient the client to time and place with a clock and calendar.",
+    "Administer the prescribed lorazepam PRN for agitation.",
+    "Perform a thorough assessment to identify the source of acute delirium, review medications, assess vital signs, and notify the provider of findings consistent with delirium.",
+    "Apply wrist restraints to prevent the client from pulling out their IV."
+  ],
+  correct: [2],
+  rationale: "The priority is a comprehensive assessment to identify and address the <strong>underlying cause of delirium</strong>. The UTI, fever, and tachycardia all point to infection-driven delirium. The provider must be notified and the source treated. Lorazepam is contraindicated as a first-line intervention (it can worsen delirium). Restraints worsen agitation. Reorientation is appropriate but secondary to identifying and treating the cause."
+},
+{
+  id: 60,
+  section: "PRIORITIZATION & CLINICAL JUDGMENT",
+  type: "MC",
+  stem: "A client with Alzheimer's disease is prescribed donepezil. The client's daughter states, <em>&ldquo;Mom's been on this medication for over a year and she doesn't seem any better. Should we just stop it?&rdquo;</em> The nurse's best response is:",
+  options: [
+    '"Yes, if there\'s no improvement after a year, you should stop it immediately."',
+    '"The medication cures Alzheimer\'s — she should definitely be improving by now."',
+    '"After one year of therapy, cholinesterase inhibitors provide minimal additional benefit. The provider should reassess whether the medication\'s benefits still outweigh the risks, especially at her age. This is a discussion to have with the provider."',
+    '"She needs a higher dose — that\'s why she isn\'t responding."'
+  ],
+  correct: [2],
+  rationale: "The course material explicitly notes: cholinesterase inhibitors are <strong>only marginally effective</strong>, with <strong>minimal benefits after one year</strong>. Additionally, risk of side effects doubles in people over age 85. This is an important family education point that should prompt a provider discussion about ongoing benefit vs. risk. The nurse should not independently advise stopping the medication but should facilitate this conversation."
+},
+{
+  id: 61,
+  section: "PRIORITIZATION & CLINICAL JUDGMENT",
+  type: "MC",
+  stem: "A nurse receives an order for <em>clorazepate</em> (Tranxene) for an 84-year-old client with known dementia who has been having difficulty sleeping. The nurse's best action is:",
+  options: [
+    "Administer as ordered — clorazepate is safe for elderly patients with dementia.",
+    "Hold the medication and contact the provider. Benzodiazepines including clorazepate may produce paradoxical/reverse effects in elderly patients, worsening agitation and confusion.",
+    "Cut the dose in half before administering as a standard geriatric precaution.",
+    "Give the medication but monitor closely for the first hour."
+  ],
+  correct: [1],
+  rationale: "Per course material, <strong>benzodiazepines — specifically including clorazepate and lorazepam — may produce reverse/paradoxical effects in elderly patients</strong>. These effects include increased agitation and worsening confusion rather than sedation. The nurse should hold the medication and contact the provider to discuss safer alternatives for sleep management, particularly in a client who already has dementia."
+},
+{
+  id: 62,
+  section: "PRIORITIZATION & CLINICAL JUDGMENT",
+  type: "SATA",
+  stem: "The nurse is educating a nursing student about risk factors for delirium. Which factors should the nurse include in the teaching? Select all that apply.",
+  options: [
+    "Pain",
+    "Infection",
+    "Dehydration and hypoxia",
+    "Stable home environment with familiar routine",
+    "Sleep deprivation",
+    "Sensory impairment (hearing/vision loss)",
+    "Use of restraints",
+    "Geriatric polypharmacy"
+  ],
+  correct: [0, 1, 2, 4, 5, 6, 7],
+  rationale: "Risk factors for delirium per course content include: pain, infection, dehydration, hypoxia, immobilization, poor nutrition, environmental noise/lack of orienting material, sleep deprivation, sensory problems (hearing and vision), restraint use, and polypharmacy/medication toxicity. A stable, familiar home environment with routine is actually <em>protective</em> against delirium — it is not a risk factor."
+},
+{
+  id: 63,
+  section: "PRIORITIZATION & CLINICAL JUDGMENT",
+  type: "MC",
+  stem: "A nurse is preparing to administer donepezil 10 mg to a 91-year-old client with Alzheimer's. The client's daughter mentions that the client has been taking this medication for 18 months with no obvious improvement. Which of the following is the nurse's most appropriate response?",
+  options: [
+    "Administer the medication as ordered and document the daughter's concerns.",
+    "Hold the medication until you have spoken to the provider, as there is no further benefit after one year in elderly patients.",
+    "Administer the medication but reduce to 5 mg, as this is the recommended dose for patients over 90.",
+    "Acknowledge the daughter's concerns, administer the medication per the current order, and communicate the daughter's concerns to the provider for reassessment of the medication's benefit-to-risk ratio at this client's age."
+  ],
+  correct: [3],
+  rationale: "This is a nuanced clinical judgment question. The nurse should not hold a valid medication order without a provider directive — but the concern is legitimate: after one year, minimal additional benefit exists, and risk of side effects doubles over age 85. The <strong>appropriate action</strong> is to administer the current order (no immediate contraindication), clearly document and <em>communicate</em> the family's concerns and the clinical context to the provider for formal reassessment. Simply ignoring the concern (option A) is insufficient."
+},
+{
+  id: 64,
+  section: "PRIORITIZATION & CLINICAL JUDGMENT",
+  type: "MC",
+  stem: "The nurse is developing a care plan for a client with Alzheimer's disease. In prioritizing nursing goals, which statement best reflects the <strong>core goals of Alzheimer's care</strong> per course content?",
+  options: [
+    "Promote rapid cognitive recovery through medication and intensive cognitive therapy.",
+    "Protect the dignity of the patient, preserve functional status, and promote quality of life.",
+    "Prioritize pharmacological management above all other interventions.",
+    "Achieve full independence in ADLs and halt disease progression."
+  ],
+  correct: [1],
+  rationale: "The three goals of care for clients with Alzheimer's disease per course content are: <strong>(1) Protect dignity of the patient, (2) Preserve functional status, (3) Promote quality of life</strong>. There is no cure or reversal — the goals are preservative and dignity-centered, not aimed at recovery. Pharmacology is one small part of a much broader holistic care plan."
+},
+{
+  id: 65,
+  section: "PRIORITIZATION & CLINICAL JUDGMENT",
+  type: "MC",
+  stem: "A nurse is providing discharge teaching to the family of a client with newly diagnosed early Alzheimer's disease. Which family statement indicates the teaching was <strong>effective</strong>?",
+  options: [
+    '"We should argue with him when he forgets things so he tries harder to remember."',
+    '"If he starts feeling depressed or anxious, that\'s normal — no need to report it to the doctor."',
+    '"We understand the disease causes his behavior. We will stay calm, use simple communication, keep a consistent routine, and report any sudden changes in his cognition to the doctor right away."',
+    '"The medication will cure his Alzheimer\'s if he takes it as prescribed."'
+  ],
+  correct: [2],
+  rationale: "Effective discharge teaching is demonstrated by: understanding that the <strong>disease causes the behavior</strong> (not willfulness); using the 4 C's (Calm, Clear, Consistent, Caring); maintaining structure and routine; and recognizing when to report acute changes (sudden worsening = delirium, not just progression). Options A and B reflect dangerous misconceptions. Option D reflects an inaccurate understanding of what Alzheimer's medications can accomplish."
+},
+
+// ============================================================
+// SECTION: PARKINSON'S DISEASE — PATHOPHYSIOLOGY (Q66-Q68)
+// ============================================================
+{
+  id: 66,
+  section: "PARKINSON'S DISEASE",
+  sectionTitle: "Parkinson's Disease — Pathophysiology",
+  type: "MC",
+  stem: "A nursing student asks the instructor to explain the underlying pathophysiology of Parkinson's disease. Which explanation by the instructor is most accurate?",
+  options: [
+    "Parkinson's disease results from the death of cholinergic neurons in the hippocampus, leading to a deficiency of acetylcholine.",
+    "Parkinson's disease results from the progressive loss of dopaminergic neurons in the substantia nigra, creating a dopamine deficiency and a relative excess of acetylcholine activity.",
+    "Parkinson's disease is caused by the overproduction of dopamine in the basal ganglia, leading to hyperkinetic movements.",
+    "Parkinson's disease results from amyloid plaques and neurofibrillary tangles in the frontal cortex."
+  ],
+  correct: [1],
+  rationale: "Parkinson's disease is a chronic, progressive neurodegenerative disorder characterized by the <strong>loss of dopaminergic neurons in the substantia nigra pars compacta</strong>. As dopamine levels fall, dopamine can no longer inhibit cholinergic activity — so acetylcholine becomes relatively overactive. This dopamine/acetylcholine imbalance drives the classic motor symptoms. Amyloid plaques and neurofibrillary tangles are hallmarks of Alzheimer's, not Parkinson's."
+},
+{
+  id: 67,
+  section: "PARKINSON'S DISEASE",
+  type: "SATA",
+  stem: "The nurse is assessing a 68-year-old client newly diagnosed with Parkinson's disease. Which findings are consistent with the <strong>cardinal motor symptoms</strong> of Parkinson's disease? Select all that apply.",
+  options: [
+    "Resting tremor (pill-rolling movement of the hand at rest)",
+    "Cogwheel rigidity when the arm is passively moved",
+    "Bradykinesia — slowness of movement and initiation",
+    "Acute-onset confusion that fluctuates throughout the day",
+    "Postural instability with tendency to fall forward or backward",
+    "Shuffling gait with short steps and reduced arm swing"
+  ],
+  correct: [0, 1, 2, 4, 5],
+  rationale: "The cardinal motor symptoms of Parkinson's disease are remembered as <strong>TRAP</strong>: <strong>T</strong>remor (resting, pill-rolling), <strong>R</strong>igidity (cogwheel), <strong>A</strong>kinesia/bradykinesia (slowness), and <strong>P</strong>ostural instability. Shuffling gait is a hallmark manifestation. Acute fluctuating confusion describes delirium, not Parkinson's disease — though dementia can develop in later stages of Parkinson's."
+},
+{
+  id: 68,
+  section: "PARKINSON'S DISEASE",
+  type: "MC",
+  stem: "A client with Parkinson's disease has a flat, expressionless face, speaks in a soft monotone voice, and has very small handwriting. The nurse correctly documents these findings as:",
+  options: [
+    "Bradykinesia, dysarthria, and agraphia — consistent with early dementia.",
+    "Masked facies (hypomimia), dysarthria, and micrographia — classic manifestations of Parkinson's disease.",
+    "Aphasia, agnosia, and agraphia — signs of progressive Alzheimer's disease.",
+    "Signs of medication toxicity from levodopa that require immediate provider notification."
+  ],
+  correct: [1],
+  rationale: "<strong>Masked facies</strong> (hypomimia — reduced facial expression), <strong>dysarthria</strong> (soft, monotone speech), and <strong>micrographia</strong> (abnormally small handwriting) are classic non-tremor manifestations of Parkinson's disease resulting from bradykinesia affecting the facial muscles, voice, and fine motor control. These are symptoms of the disease itself, not medication side effects."
+},
+
+// ============================================================
+// SECTION: PARKINSON'S PHARMACOLOGY — LEVODOPA/CARBIDOPA (Q69-Q73)
+// ============================================================
+{
+  id: 69,
+  section: "PARKINSON'S PHARMACOLOGY",
+  sectionTitle: "Parkinson's Pharmacology",
+  type: "MC",
+  stem: "A client with Parkinson's disease is prescribed levodopa/carbidopa (Sinemet). The client asks, <em>&ldquo;Why do I need two medications in one pill?&rdquo;</em> Which explanation by the nurse is most accurate?",
+  options: [
+    "Carbidopa enhances the therapeutic effects of levodopa by crossing the blood-brain barrier and converting directly to dopamine in the brain.",
+    "Levodopa is the active dopamine precursor that crosses the blood-brain barrier; carbidopa inhibits its peripheral conversion to dopamine, ensuring more levodopa reaches the brain while reducing systemic side effects.",
+    "Carbidopa is the primary medication; levodopa is added to reduce the risk of orthostatic hypotension.",
+    "Both medications have identical mechanisms — the combination simply allows a lower dose to be given."
+  ],
+  correct: [1],
+  rationale: "<strong>Levodopa</strong> is the dopamine precursor that crosses the blood-brain barrier (dopamine itself cannot cross). Without carbidopa, levodopa is rapidly converted to dopamine in the periphery before reaching the brain. <strong>Carbidopa inhibits peripheral decarboxylase</strong>, blocking this peripheral conversion — so more levodopa reaches the CNS, the effective dose is lower, and peripheral side effects (nausea, cardiac dysrhythmias) are significantly reduced. Carbidopa does NOT cross the BBB."
+},
+{
+  id: 70,
+  section: "PARKINSON'S PHARMACOLOGY",
+  type: "MC",
+  stem: "A nurse is teaching a client prescribed levodopa/carbidopa (Sinemet) about dietary considerations. Which instruction is most important?",
+  options: [
+    "Avoid all protein — it completely blocks levodopa from working.",
+    "Take the medication with a high-protein meal to protect the stomach.",
+    "High-protein meals can reduce levodopa absorption; take medication 30-60 minutes before meals and distribute protein intake evenly throughout the day.",
+    "Avoid all leafy green vegetables because they contain vitamin K that inactivates the medication."
+  ],
+  correct: [2],
+  rationale: "Large neutral amino acids (from protein) compete with levodopa for absorption in the gut and for transport across the blood-brain barrier. A <strong>high-protein meal taken at the same time as levodopa</strong> significantly reduces drug efficacy. The nurse should instruct the client to take the medication 30-60 minutes before meals and to distribute — not eliminate — protein intake evenly through the day. Leafy greens/vitamin K is a warfarin concern, not a levodopa concern."
+},
+{
+  id: 71,
+  section: "PARKINSON'S PHARMACOLOGY",
+  type: "SATA",
+  stem: "A nurse is monitoring a client with Parkinson's disease on long-term levodopa/carbidopa therapy. Which findings represent known adverse effects of levodopa that require assessment and reporting? Select all that apply.",
+  options: [
+    "Dyskinesia — involuntary, writhing movements",
+    "Orthostatic hypotension with dizziness on standing",
+    "Wearing-off effect — return of symptoms near the end of each dose interval",
+    "Bradycardia and AV block",
+    "Hallucinations and psychosis",
+    "Nausea and vomiting"
+  ],
+  correct: [0, 1, 2, 4, 5],
+  rationale: "Adverse effects of levodopa/carbidopa include: <strong>dyskinesia</strong> (involuntary movements from excessive dopamine stimulation), <strong>orthostatic hypotension</strong> (fall risk), <strong>wearing-off effect</strong> (symptoms return before the next dose — requires dosing adjustment), <strong>hallucinations and psychosis</strong> (dopamine stimulation in limbic system), and <strong>nausea/vomiting</strong> (especially early in therapy). Bradycardia/AV block are not typical levodopa adverse effects; tachycardia and cardiac irritability can occur but are less common than the others listed."
+},
+{
+  id: 72,
+  section: "PARKINSON'S PHARMACOLOGY",
+  type: "MC",
+  stem: "A client with Parkinson's disease on levodopa/carbidopa is admitted for hip replacement surgery. The surgical team asks the nurse if the morning dose of Sinemet should be held the day of surgery. The nurse's priority response is:",
+  options: [
+    "Yes — all medications should be held the morning of surgery per standard protocol.",
+    "The medication should be held to avoid interactions with anesthesia.",
+    "Parkinson's medications must be administered on schedule even perioperatively — missing doses causes rapid deterioration of motor function, rigidity, and can lead to a life-threatening complication called neuroleptic malignant-like syndrome.",
+    "Hold it and document the omission — the surgical team's request takes priority."
+  ],
+  correct: [2],
+  rationale: "Levodopa/carbidopa has a <strong>short half-life and very narrow therapeutic window</strong> — skipping doses causes rapid, severe return of Parkinson's symptoms including rigidity, dysphagia, and inability to protect the airway. Abrupt discontinuation can precipitate a life-threatening <strong>neuroleptic malignant-like syndrome</strong> (hyperthermia, severe rigidity, altered consciousness). The nurse must advocate to ensure the medication is given on schedule — including perioperatively. This is a critical nursing safety priority for hospitalized Parkinson's patients."
+},
+{
+  id: 73,
+  section: "PARKINSON'S PHARMACOLOGY",
+  type: "MC",
+  stem: "A client taking selegiline (Eldepryl), a MAO-B inhibitor for Parkinson's disease, is ordered meperidine (Demerol) for post-operative pain. The nurse's priority action is:",
+  options: [
+    "Administer the meperidine — it is the safest opioid for patients with Parkinson's disease.",
+    "Administer a half dose and monitor the patient closely.",
+    "Hold the meperidine and notify the provider immediately — the combination of selegiline and meperidine can cause a severe, potentially fatal reaction including hyperthermia, rigidity, and cardiovascular instability.",
+    "Administer the meperidine but premedicate with an antiemetic."
+  ],
+  correct: [2],
+  rationale: "This is a critical drug interaction: <strong>selegiline (a MAO-B inhibitor) combined with meperidine (Demerol) can cause a severe, potentially fatal reaction</strong> — including agitation, hyperthermia, coma, and cardiovascular collapse (similar to serotonin syndrome). This combination is <strong>absolutely contraindicated</strong>. The nurse must hold the meperidine and notify the provider immediately. Alternative non-opioid or opioid analgesics without MAO interaction should be substituted."
+},
+
+// ============================================================
+// SECTION: PARKINSON'S PHARMACOLOGY — OTHER AGENTS (Q74-Q77)
+// ============================================================
+{
+  id: 74,
+  section: "PARKINSON'S PHARMACOLOGY",
+  type: "MC",
+  stem: "A client with Parkinson's disease is prescribed pramipexole (Mirapex), a dopamine agonist. Which client statement during discharge teaching requires the nurse to intervene?",
+  options: [
+    "I will change positions slowly to avoid dizziness when standing up.",
+    "I understand the medication may cause nausea when I first start it.",
+    "Since I feel drowsy, I should keep driving short distances only.",
+    "I will report any unusual urges such as gambling, shopping compulsively, or hypersexuality to my provider."
+  ],
+  correct: [2],
+  rationale: "Dopamine agonists such as pramipexole and ropinirole are associated with <strong>sudden, uncontrollable sleep attacks</strong> — the client can fall asleep without warning while driving, which is immediately dangerous. Clients must be instructed to <strong>avoid driving and operating heavy machinery</strong> until the effect on alertness is known. Additionally, dopamine agonists cause <strong>impulse control disorders</strong> (gambling, hypersexuality, compulsive eating/shopping) — this is important patient education. Orthostatic hypotension and nausea teaching (options A and B) are appropriate."
+},
+{
+  id: 75,
+  section: "PARKINSON'S PHARMACOLOGY",
+  type: "MC",
+  stem: "A client with Parkinson's disease is started on entacapone (Comtan), a COMT inhibitor. The client calls the nurse alarmed, saying: <em>&ldquo;My urine has turned orange and my clothes are stained — something is wrong!&rdquo;</em> The nurse's best response is:",
+  options: [
+    "Stop the medication immediately and go to the emergency room — this indicates kidney damage.",
+    "This is a harmless and expected side effect of entacapone — the medication can discolor urine, sweat, and saliva orange. It is not a sign of harm.",
+    "Drink extra water — this color change indicates dehydration.",
+    "Notify the provider — this indicates the medication is not working correctly."
+  ],
+  correct: [1],
+  rationale: "<strong>Orange discoloration of urine, sweat, saliva, and tears</strong> is a known, harmless side effect of entacapone (Comtan). Patients must be warned about this before starting the medication to prevent panic and inappropriate medication discontinuation. Entacapone is a COMT inhibitor that prevents peripheral breakdown of levodopa, extending its duration of action. Stopping it abruptly could worsen Parkinson's symptoms."
+},
+{
+  id: 76,
+  section: "PARKINSON'S PHARMACOLOGY",
+  type: "TABLE",
+  stem: "A nurse is reviewing the pharmacology of anticholinergic agents (such as benztropine/Cogentin) used in Parkinson's disease. For each statement below, indicate whether it is <strong>Accurate</strong> or <strong>Inaccurate</strong>.",
+  tableHeaders: ["Statement", "Accurate", "Inaccurate"],
+  tableRows: [
+    { action: "Anticholinergics work by blocking muscarinic receptors, reducing the relative excess of acetylcholine activity that occurs when dopamine is deficient.", correct: "Accurate", rationale: "This is the correct mechanism — anticholinergics restore the dopamine/ACh balance by reducing ACh activity." },
+    { action: "Anticholinergics are the drug of choice for treating bradykinesia in Parkinson's disease.", correct: "Inaccurate", rationale: "Anticholinergics help with tremor and rigidity but are NOT effective for bradykinesia. Levodopa is most effective for bradykinesia." },
+    { action: "Common side effects include dry mouth, urinary retention, constipation, and blurred vision.", correct: "Accurate", rationale: "These are classic anticholinergic side effects from blocking muscarinic receptors throughout the body." },
+    { action: "Anticholinergics are preferred for elderly patients with Parkinson's disease because they are well tolerated.", correct: "Inaccurate", rationale: "Anticholinergics are generally AVOIDED in elderly patients — they worsen cognitive function, cause confusion, and have high side effect burden in older adults." },
+    { action: "Abrupt discontinuation of anticholinergics can cause a sudden worsening of Parkinson's symptoms.", correct: "Accurate", rationale: "Like levodopa, anticholinergics should be tapered — abrupt withdrawal can precipitate rebound worsening of tremor and rigidity." }
+  ]
+},
+{
+  id: 77,
+  section: "PARKINSON'S PHARMACOLOGY",
+  type: "SATA",
+  stem: "A nurse is educating a client with Parkinson's disease about their medication regimen. Which nursing instructions reflect accurate and safe patient education? Select all that apply.",
+  options: [
+    "Never skip or delay your Parkinson's medications — consistent timing is critical to maintaining symptom control.",
+    "You can take your levodopa/carbidopa with a high-protein snack to reduce nausea.",
+    "If you notice involuntary writhing movements, report them to your provider — this is called dyskinesia and may indicate the dose needs adjustment.",
+    "If you experience dizziness when standing up, rise slowly from sitting or lying positions.",
+    "It is safe to stop your medications if side effects become bothersome — you can always restart them.",
+    "If your symptoms seem to return before your next dose is due, tell your provider — this is called the wearing-off effect."
+  ],
+  correct: [0, 2, 3, 5],
+  rationale: "Key levodopa patient education: <strong>Never skip doses</strong> — abrupt discontinuation can cause severe symptom return or neuroleptic malignant-like syndrome. <strong>Dyskinesia</strong> (involuntary movements) is a known adverse effect requiring dose reassessment. <strong>Orthostatic hypotension</strong> is common — slow position changes are essential for fall prevention. The <strong>wearing-off effect</strong> (symptoms returning before next dose) requires provider notification for dosing adjustment. High-protein meals interfere with levodopa absorption — the medication should NOT be taken with high-protein food. Medications should never be stopped abruptly without provider guidance."
+},
+
+// ============================================================
+// SECTION: PARKINSON'S NURSING PRIORITIES (Q78-Q80)
+// ============================================================
+{
+  id: 78,
+  section: "PARKINSON'S NURSING PRIORITIES",
+  sectionTitle: "Parkinson's — Nursing Priorities & Safety",
+  type: "SATA",
+  stem: "A nurse is developing a care plan for a client with moderate Parkinson's disease admitted to the hospital. Which nursing interventions are priority? Select all that apply.",
+  options: [
+    "Administer Parkinson's medications on schedule — do not hold or delay doses",
+    "Assess swallowing ability before oral intake — dysphagia is a significant aspiration risk",
+    "Implement fall prevention measures: call light in reach, bed in low position, non-slip footwear",
+    "Encourage rapid position changes to build tolerance to orthostatic hypotension",
+    "Speak in short, clear sentences and allow extra time for responses",
+    "Allow the client to perform ADLs at their own pace to preserve dignity and remaining function"
+  ],
+  correct: [0, 1, 2, 4, 5],
+  rationale: "Priority nursing care for Parkinson's disease includes: <strong>on-schedule medications</strong> (skipping doses causes rapid deterioration); <strong>dysphagia assessment</strong> before oral intake (aspiration pneumonia is a leading cause of death in Parkinson's); <strong>fall prevention</strong> (postural instability and shuffling gait significantly increase fall risk); <strong>modified communication</strong> (dysarthria requires patience and clear sentences); and <strong>ADL support at the client's pace</strong> to preserve function and dignity. Rapid position changes worsen orthostatic hypotension and should be avoided — clients should rise slowly."
+},
+{
+  id: 79,
+  section: "PARKINSON'S NURSING PRIORITIES",
+  type: "MC",
+  stem: "A client with Parkinson's disease is having increasing difficulty swallowing and is coughing after meals. The nurse's priority action is:",
+  options: [
+    "Encourage the client to eat faster to reduce fatigue during meals.",
+    "Thicken liquids and foods are not appropriate until a speech-language pathology evaluation is completed — continue current diet.",
+    "Hold all oral intake, notify the provider, and request a speech-language pathology (SLP) swallowing evaluation to assess aspiration risk.",
+    "Document the findings and reassess at the next meal."
+  ],
+  correct: [2],
+  rationale: "Coughing after eating is a sign of <strong>dysphagia with aspiration risk</strong> — a serious and common complication of Parkinson's disease due to rigidity and bradykinesia affecting the swallowing mechanism. The priority nursing action is to <strong>hold oral intake</strong> to prevent aspiration and <strong>immediately notify the provider</strong> while requesting an SLP evaluation to determine safe swallowing strategies (texture modification, positioning, chin-tuck technique). Aspiration pneumonia is a leading cause of death in Parkinson's disease."
+},
+{
+  id: 80,
+  section: "PARKINSON'S NURSING PRIORITIES",
+  type: "MC",
+  stem: "The nurse is caring for a hospitalized client with Parkinson's disease. The nurse notes that a scheduled dose of levodopa/carbidopa was held by the previous nurse because the client was scheduled for a procedure. The client is now extremely rigid, diaphoretic, and has a temperature of 102.4°F and altered mental status. The nurse should recognize this as:",
+  options: [
+    "Expected worsening of Parkinson's disease unrelated to the missed medication.",
+    "A potential neuroleptic malignant-like syndrome precipitated by abrupt discontinuation of dopaminergic therapy — a medical emergency requiring immediate provider notification.",
+    "Delirium from the procedure sedation — administer lorazepam and continue monitoring.",
+    "A sign that the levodopa/carbidopa dose needs to be permanently reduced."
+  ],
+  correct: [1],
+  rationale: "Abrupt withdrawal of levodopa therapy can precipitate a <strong>life-threatening neuroleptic malignant-like syndrome</strong> characterized by hyperthermia, severe muscle rigidity, altered consciousness, and autonomic instability. This is a medical emergency. The nurse must immediately notify the provider, prepare to restart dopaminergic therapy, and support vital functions. This is precisely why Parkinson's medications must never be arbitrarily held in the hospital setting — it is a critical nursing advocacy responsibility."
+},
+
+// ============================================================
+// SECTION: ASSESSMENT TOOLS — CAM, RASS, SLUMS (Q81-Q85)
+// ============================================================
+{
+  id: 81,
+  section: "ASSESSMENT TOOLS",
+  sectionTitle: "Assessment Tools — CAM-ICU, RASS, SLUMS",
+  type: "MC",
+  stem: "An ICU nurse is using the Confusion Assessment Method for the ICU (CAM-ICU) on a ventilated patient. The nurse understands that the CAM-ICU is specifically designed to:",
+  options: [
+    "Diagnose the specific type of dementia in ICU patients.",
+    "Detect and monitor delirium in ICU patients who are unable to speak due to mechanical ventilation.",
+    "Measure the depth of sedation in critically ill patients receiving continuous infusions.",
+    "Screen for depression and anxiety in patients admitted to intensive care."
+  ],
+  correct: [1],
+  rationale: "The <strong>CAM-ICU (Confusion Assessment Method for the Intensive Care Unit)</strong> is a validated delirium screening tool adapted for use in patients who cannot speak — including those on mechanical ventilation. It assesses four features: (1) acute onset/fluctuating course, (2) inattention, (3) disorganized thinking, and (4) altered level of consciousness. A positive CAM-ICU (features 1+2 plus 3 or 4) indicates delirium. It is a delirium detection tool — not a diagnostic or sedation tool."
+},
+{
+  id: 82,
+  section: "ASSESSMENT TOOLS",
+  type: "MC",
+  stem: "The nurse is using the Richmond Agitation-Sedation Scale (RASS) to assess a client in the ICU. The nurse assigns a score of -2. Which clinical description best matches this RASS score?",
+  options: [
+    "The client is alert, calm, and cooperative — RASS 0.",
+    "The client is combative, extremely agitated, and poses a danger to staff — RASS +4.",
+    "The client is lightly sedated — opens eyes briefly to voice (less than 10 seconds), but is not fully alert.",
+    "The client is unarousable — no response to voice or physical stimulation — RASS -5."
+  ],
+  correct: [2],
+  rationale: "The <strong>Richmond Agitation-Sedation Scale (RASS)</strong> ranges from <strong>+4</strong> (combative) to <strong>-5</strong> (unarousable). A score of <strong>-2</strong> indicates <strong>light sedation</strong>: the patient opens their eyes briefly to voice (less than 10 seconds of eye contact) but is not fully alert. RASS 0 = alert and calm; RASS +4 = combative/violent; RASS -5 = unarousable. The target RASS goal for most ICU patients is 0 to -1. The nurse uses RASS to titrate sedation and detect agitation or over-sedation."
+},
+{
+  id: 83,
+  section: "ASSESSMENT TOOLS",
+  type: "MC",
+  stem: "A nurse in a primary care clinic is using the Saint Louis University Mental Status (SLUMS) examination on a 72-year-old patient. The nurse understands that this tool is most appropriately used to:",
+  options: [
+    "Diagnose Alzheimer's disease and determine the specific stage of dementia.",
+    "Screen for mild cognitive impairment and dementia, and to monitor cognitive changes over time.",
+    "Assess for delirium in the acute care setting.",
+    "Evaluate the client's eligibility for cholinesterase inhibitor therapy."
+  ],
+  correct: [1],
+  rationale: "The <strong>SLUMS (Saint Louis University Mental Status) examination</strong> is a validated cognitive screening tool used to detect <strong>mild cognitive impairment and dementia</strong> and to track cognitive changes over time. It assesses orientation, short-term memory, attention, and executive function. Like the MMSE, it is a <em>screening</em> tool — not a diagnostic tool for a specific type of dementia. A low score indicates the need for further evaluation, not a specific diagnosis."
+},
+{
+  id: 84,
+  section: "ASSESSMENT TOOLS",
+  type: "TABLE",
+  stem: "A nurse educator is reviewing cognitive and behavioral assessment tools with nursing students. For each clinical situation below, indicate whether the described assessment tool is <strong>Appropriate</strong> or <strong>Inappropriate</strong> for the situation.",
+  tableHeaders: ["Clinical Situation", "Appropriate", "Inappropriate"],
+  tableRows: [
+    { action: "Using the CAM-ICU to screen a mechanically ventilated patient for delirium", correct: "Appropriate", rationale: "The CAM-ICU was specifically designed for non-verbal/intubated patients in the ICU — this is its primary indication." },
+    { action: "Using the RASS to diagnose what type of dementia an elderly patient has", correct: "Inappropriate", rationale: "The RASS measures level of sedation and agitation — it does not diagnose dementia type. The MMSE or SLUMS would be used for cognitive screening." },
+    { action: "Using the SLUMS exam to track cognitive changes in a patient with known mild cognitive impairment over time", correct: "Appropriate", rationale: "The SLUMS is a validated tool for detecting and monitoring cognitive impairment — appropriate for serial assessments over time." },
+    { action: "Using the RASS to determine whether a sedated ICU patient is over-sedated and eligible for sedation lightening", correct: "Appropriate", rationale: "Titrating sedation based on RASS target score is a standard ICU nursing practice — the RASS is the appropriate tool for this purpose." },
+    { action: "Using the CAM-ICU to evaluate the severity of Parkinson's disease motor symptoms", correct: "Inappropriate", rationale: "The CAM-ICU assesses for delirium — not Parkinson's motor symptoms. Parkinson's staging uses disease-specific rating scales." }
+  ]
+},
+{
+  id: 85,
+  section: "ASSESSMENT TOOLS",
+  type: "MC",
+  stem: "A nurse is assessing a client with known alcohol use disorder who was admitted 36 hours ago. The client begins to show increasing agitation, diaphoresis, tremors, and reports seeing bugs on the wall. The nurse recognizes that the most appropriate tool to assess the severity of this client's condition is:",
+  options: [
+    "The SLUMS examination to screen for alcohol-induced dementia.",
+    "The CAM-ICU to confirm the diagnosis of delirium.",
+    "The CIWA-Ar (Clinical Institute Withdrawal Assessment for Alcohol) to assess the severity of alcohol withdrawal.",
+    "The RASS to determine the level of sedation before administering a benzodiazepine."
+  ],
+  correct: [2],
+  rationale: "This client is presenting with signs of <strong>alcohol withdrawal</strong> — a potentially life-threatening syndrome that peaks at 24-72 hours after last drink. The <strong>CIWA-Ar (Clinical Institute Withdrawal Assessment for Alcohol-revised)</strong> is the validated tool specifically designed to assess and quantify the severity of alcohol withdrawal symptoms including tremor, diaphoresis, agitation, perceptual disturbances (hallucinations), and seizure risk. The score guides treatment decisions including benzodiazepine dosing. Though delirium is present, the CAM-ICU would not guide treatment the way CIWA does."
+}
+
+]; // end ALL_QUESTIONS
+
+// =====================
+// QUIZ ENGINE — FIXED
+// =====================
+
+let currentIndex = 0;
+let score = 0;
+let answers = {}; // { qId: { submitted, correct, selected } }
+let darkMode = false;
+let retryMode = false;
+let retryQueue = [];
+
+function activeQuestions() {
+  return retryMode ? retryQueue : ALL_QUESTIONS;
+}
+
+function startQuiz() {
+  document.getElementById('welcomeScreen').style.display = 'none';
+  document.getElementById('quizArea').style.display = 'block';
+  renderQuestion(0);
+}
+
+// ── render ─────────────────────────────────────────────────────
+function renderQuestion(index) {
+  currentIndex = index;
+  const questions = activeQuestions();
+  const q = questions[index];
+  const qa = document.getElementById('quizArea');
+  qa.innerHTML = '';
+
+  // Section divider on first Q of each section
+  const isNewSection = index === 0 || questions[index - 1].section !== q.section;
+  if (isNewSection && (q.sectionTitle || q.section)) {
+    const sd = document.createElement('div');
+    sd.className = 'section-divider';
+    sd.innerHTML = `<div class="divider-line"></div><div class="divider-label">🧠 ${q.sectionTitle || q.section}</div><div class="divider-line"></div>`;
+    qa.appendChild(sd);
+  }
+
+  // Case study banner
+  if (q.caseHtml) {
+    const caseDiv = document.createElement('div');
+    caseDiv.innerHTML = q.caseHtml;
+    qa.appendChild(caseDiv);
+  }
+
+  // Card
+  const card = document.createElement('div');
+  card.className = 'quiz-card';
+  card.id = 'qcard-' + q.id;
+
+  // Header
+  const header = document.createElement('div');
+  header.className = 'card-header';
+  header.innerHTML = `
+    <span class="q-number">Q${index + 1} / ${questions.length}</span>
+    <span class="q-type-badge">${getTypeBadge(q)}</span>`;
+  card.appendChild(header);
+
+  // Body
+  const body = document.createElement('div');
+  body.className = 'card-body';
+
+  const stemDiv = document.createElement('div');
+  stemDiv.className = 'q-stem';
+  stemDiv.innerHTML = q.stem;
+  body.appendChild(stemDiv);
+
+  if (q.type === 'SATA') {
+    const note = document.createElement('div');
+    note.className = 'sata-note';
+    note.innerHTML = '☑ Select All That Apply';
+    body.appendChild(note);
+  }
+
+  if (q.type === 'MC' || q.type === 'SATA') {
+    body.appendChild(buildMCOptions(q));
+  } else if (q.type === 'TABLE') {
+    body.appendChild(buildTableQuestion(q));
+  }
+
+  // Feedback placeholder
+  const fb = document.createElement('div');
+  fb.className = 'feedback-box';
+  fb.id = `feedback-${q.id}`;
+  body.appendChild(fb);
+  card.appendChild(body);
+
+  // Footer
+  const footer = document.createElement('div');
+  footer.className = 'card-footer';
+
+  const submitBtn = document.createElement('button');
+  submitBtn.className = 'btn-submit';
+  submitBtn.id = `submit-${q.id}`;
+  submitBtn.textContent = 'Submit Answer';
+  submitBtn.onclick = () => submitQuestion(q, index);
+  footer.appendChild(submitBtn);
+
+  const nav = document.createElement('div');
+  nav.className = 'nav-row';
+  nav.style.marginTop = '16px';
+
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'btn-nav';
+  prevBtn.textContent = '← Previous';
+  prevBtn.disabled = index === 0;
+  prevBtn.onclick = () => renderQuestion(index - 1);
+
+  const counter = document.createElement('span');
+  counter.className = 'q-counter';
+  counter.textContent = `${index + 1} of ${questions.length}`;
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'btn-nav';
+  nextBtn.textContent = index === questions.length - 1 ? 'Finish Quiz →' : 'Next →';
+  nextBtn.onclick = () => {
+    if (index === questions.length - 1) showResults();
+    else renderQuestion(index + 1);
+  };
+
+  nav.appendChild(prevBtn);
+  nav.appendChild(counter);
+  nav.appendChild(nextBtn);
+  footer.appendChild(nav);
+  card.appendChild(footer);
+  qa.appendChild(card);
+
+  // Restore previously submitted state
+  if (answers[q.id] && answers[q.id].submitted) {
+    restoreSubmittedState(q, answers[q.id]);
+  }
+
+  updateProgress(index);
+}
+
+// ── build MC/SATA options ──────────────────────────────────────
+function buildMCOptions(q) {
+  const list = document.createElement('ul');
+  list.className = 'options-list';
+  const letters = ['A','B','C','D','E','F','G','H'];
+  const inputType = q.type === 'SATA' ? 'checkbox' : 'radio';
+  const shapeClass = q.type === 'SATA' ? 'option-square' : 'option-circle';
+
+  q.options.forEach((opt, i) => {
+    const li = document.createElement('li');
+    li.className = 'option-item';
+
+    const label = document.createElement('label');
+    label.className = 'option-label';
+    label.id = `optlabel-${q.id}-${i}`;
+
+    const inp = document.createElement('input');
+    inp.type = inputType;
+    inp.name = `q${q.id}`;
+    inp.value = String(i);
+    inp.className = 'opt-input';
+
+    const shape = document.createElement('div');
+    shape.className = shapeClass;
+    shape.id = `optshape-${q.id}-${i}`;
+
+    const letterSpan = document.createElement('span');
+    letterSpan.className = 'option-letter';
+    letterSpan.textContent = letters[i] + '.';
+
+    const textSpan = document.createElement('span');
+    textSpan.innerHTML = opt;
+
+    label.appendChild(inp);
+    label.appendChild(shape);
+    label.appendChild(letterSpan);
+    label.appendChild(textSpan);
+    li.appendChild(label);
+    list.appendChild(li);
+
+    label.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (answers[q.id] && answers[q.id].submitted) return;
+      if (q.type === 'MC') {
+        // Deselect all
+        q.options.forEach((_, j) => {
+          const otherInp = list.querySelector(`input[value="${j}"]`);
+          const otherLbl = document.getElementById(`optlabel-${q.id}-${j}`);
+          if (otherInp) otherInp.checked = false;
+          if (otherLbl) otherLbl.classList.remove('selected');
+        });
+        inp.checked = true;
+        label.classList.add('selected');
+      } else {
+        inp.checked = !inp.checked;
+        label.classList.toggle('selected', inp.checked);
+      }
+    });
+  });
+  return list;
+}
+
+// ── build TABLE question ───────────────────────────────────────
+function buildTableQuestion(q) {
+  const wrap = document.createElement('div');
+  wrap.style.overflowX = 'auto';
+  const table = document.createElement('table');
+  table.className = 'table-q';
+  table.id = `table-${q.id}`;
+
+  // Header
+  const thead = document.createElement('thead');
+  const trh = document.createElement('tr');
+  q.tableHeaders.forEach(h => {
+    const th = document.createElement('th');
+    th.textContent = h;
+    trh.appendChild(th);
+  });
+  thead.appendChild(trh);
+  table.appendChild(thead);
+
+  // Body
+  const tbody = document.createElement('tbody');
+  const optionKeys = q.tableHeaders.slice(1); // e.g. ["Indicated","Contraindicated"]
+
+  q.tableRows.forEach((row, ri) => {
+    const tr = document.createElement('tr');
+
+    const tdAction = document.createElement('td');
+    tdAction.innerHTML = row.action;
+    tdAction.style.lineHeight = '1.55';
+    tr.appendChild(tdAction);
+
+    optionKeys.forEach(opt => {
+      const td = document.createElement('td');
+      td.className = 'radio-cell';
+      // Use safe ID (replace special chars)
+      const safeOpt = opt.replace(/[^a-zA-Z0-9]/g, '_');
+      const cellId = `celllbl-${q.id}-${ri}-${safeOpt}`;
+
+      const lbl = document.createElement('label');
+      lbl.id = cellId;
+      lbl.title = opt;
+      lbl.textContent = '';
+      // track selection state
+      lbl.dataset.optionKey = opt;
+      lbl.dataset.rowIndex = ri;
+      lbl.dataset.isSelected = 'false';
+
+      lbl.addEventListener('click', () => {
+        if (answers[q.id] && answers[q.id].submitted) return;
+        // Deselect all in this row
+        optionKeys.forEach(o => {
+          const safeO = o.replace(/[^a-zA-Z0-9]/g, '_');
+          const l = document.getElementById(`celllbl-${q.id}-${ri}-${safeO}`);
+          if (l) {
+            l.dataset.isSelected = 'false';
+            l.classList.remove('selected-cell');
+          }
+        });
+        lbl.dataset.isSelected = 'true';
+        lbl.classList.add('selected-cell');
+      });
+
+      td.appendChild(lbl);
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+
+  table.appendChild(tbody);
+  wrap.appendChild(table);
+  return wrap;
+}
+
+// ── submit ─────────────────────────────────────────────────────
+function submitQuestion(q, index) {
+  if (answers[q.id] && answers[q.id].submitted) return;
+
+  let selected = [];
+  let isCorrect = false;
+
+  if (q.type === 'MC' || q.type === 'SATA') {
+    const inputs = document.querySelectorAll(`input[name="q${q.id}"]`);
+    inputs.forEach((inp, i) => { if (inp.checked) selected.push(i); });
+
+    if (selected.length === 0) {
+      showToast('Please select an answer before submitting.');
+      return;
+    }
+
+    const correctSet = new Set(q.correct);
+    const selectedSet = new Set(selected);
+    isCorrect = correctSet.size === selectedSet.size && [...correctSet].every(v => selectedSet.has(v));
+
+    // Paint options
+    inputs.forEach((inp, i) => {
+      const lbl = document.getElementById(`optlabel-${q.id}-${i}`);
+      const shape = document.getElementById(`optshape-${q.id}-${i}`);
+      if (!lbl) return;
+      lbl.classList.add('disabled');
+      if (q.correct.includes(i)) {
+        lbl.classList.add('correct-reveal');
+        if (shape) shape.textContent = '✓';
+      } else if (selected.includes(i)) {
+        lbl.classList.add('incorrect-reveal');
+        if (shape) shape.textContent = '✗';
+      }
+    });
+
+  } else if (q.type === 'TABLE') {
+    const optionKeys = q.tableHeaders.slice(1);
+
+    // First pass: collect selections & validate all rows answered
+    const rowSelections = q.tableRows.map((row, ri) => {
+      let rowSel = null;
+      optionKeys.forEach(opt => {
+        const safeOpt = opt.replace(/[^a-zA-Z0-9]/g, '_');
+        const lbl = document.getElementById(`celllbl-${q.id}-${ri}-${safeOpt}`);
+        if (lbl && lbl.dataset.isSelected === 'true') rowSel = opt;
+      });
+      return rowSel;
+    });
+
+    if (rowSelections.some(s => s === null)) {
+      showToast('Please answer every row before submitting.');
+      return;
+    }
+
+    // Second pass: evaluate and paint
+    let allCorrect = true;
+    rowSelections.forEach((rowSel, ri) => {
+      const row = q.tableRows[ri];
+      selected.push(rowSel);
+      if (rowSel !== row.correct) allCorrect = false;
+
+      optionKeys.forEach(opt => {
+        const safeOpt = opt.replace(/[^a-zA-Z0-9]/g, '_');
+        const lbl = document.getElementById(`celllbl-${q.id}-${ri}-${safeOpt}`);
+        if (!lbl) return;
+        lbl.parentElement.classList.add('disabled-cell');
+        lbl.style.pointerEvents = 'none';
+        if (opt === row.correct) {
+          lbl.classList.remove('selected-cell');
+          lbl.classList.add('correct-cell');
+          lbl.textContent = '✓';
+        } else if (rowSel === opt) {
+          lbl.classList.remove('selected-cell');
+          lbl.classList.add('incorrect-cell');
+          lbl.textContent = '✗';
+        }
+      });
+    });
+
+    isCorrect = allCorrect;
+  }
+
+  // Save state
+  answers[q.id] = { submitted: true, correct: isCorrect, selected: [...selected] };
+
+  // Update score (recount from scratch to avoid drift)
+  score = Object.values(answers).filter(a => a.correct).length;
+
+  const submitBtn = document.getElementById(`submit-${q.id}`);
+  if (submitBtn) submitBtn.disabled = true;
+
+  updateScoreBadge();
+  showFeedback(q, isCorrect, selected);
+}
+
+// ── feedback ───────────────────────────────────────────────────
+function showFeedback(q, isCorrect, selected) {
+  const fb = document.getElementById(`feedback-${q.id}`);
+  if (!fb) return;
+
+  let cls, icon, title, bodyHtml;
+
+  if (q.type === 'TABLE') {
+    const numCorrect = selected.filter((s, i) => s === q.tableRows[i].correct).length;
+    const allRight = numCorrect === q.tableRows.length;
+    cls = allRight ? 'correct' : (numCorrect > 0 ? 'partial' : 'incorrect');
+    icon = allRight ? '🎉' : (numCorrect > 0 ? '📝' : '📖');
+    title = allRight ? 'All Rows Correct!' : `${numCorrect} of ${q.tableRows.length} Rows Correct`;
+    const optionKeys = q.tableHeaders.slice(1);
+    const rowDetails = q.tableRows.map((row, i) => {
+      const userPick = selected[i] || '(none)';
+      const correct = row.correct;
+      const right = userPick === correct;
+      return `<div style="margin-bottom:10px; padding:8px 10px; border-radius:6px; background:${right ? 'var(--correct-bg)' : 'var(--incorrect-bg)'}; border-left:3px solid ${right ? 'var(--correct-border)' : 'var(--incorrect-border)'}">
+        <strong style="font-size:0.82rem; display:block; margin-bottom:3px;">Row ${i+1}: ${right ? '✓' : '✗'} ${right ? 'Correct' : 'Incorrect'} — Answer: <em>${correct}</em>${!right ? ` (You chose: ${userPick})` : ''}</strong>
+        <span style="font-size:0.82rem; color:var(--text-mid)">${row.rationale}</span>
+      </div>`;
+    }).join('');
+    bodyHtml = `<div class="feedback-body">${rowDetails}</div>`;
+  } else {
+    const letters = ['A','B','C','D','E','F','G','H'];
+    if (isCorrect) {
+      cls = 'correct'; icon = '🎉'; title = 'Excellent Clinical Thinking!';
+    } else {
+      cls = 'incorrect'; icon = '📖'; title = 'Review This Concept';
+    }
+    bodyHtml = `<div class="feedback-body">${q.rationale}</div>`;
+    if (!isCorrect) {
+      const correctLetters = q.correct.map(i => `${letters[i]}. ${q.options[i]}`).join('<br>');
+      bodyHtml += `<div class="feedback-correct-ans" style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border)"><strong style="color:var(--forest)">✓ Correct Answer:</strong><br>${correctLetters}</div>`;
+    }
+  }
+
+  fb.className = `feedback-box ${cls}`;
+  fb.style.display = 'block';
+  fb.innerHTML = `<div class="feedback-header">${icon} ${title}</div>${bodyHtml}`;
+}
+
+// ── restore submitted state on back navigation ─────────────────
+function restoreSubmittedState(q, state) {
+  const submitBtn = document.getElementById(`submit-${q.id}`);
+  if (submitBtn) submitBtn.disabled = true;
+
+  if (q.type === 'MC' || q.type === 'SATA') {
+    q.options.forEach((_, i) => {
+      const lbl = document.getElementById(`optlabel-${q.id}-${i}`);
+      const shape = document.getElementById(`optshape-${q.id}-${i}`);
+      if (!lbl) return;
+      lbl.classList.add('disabled');
+      if (q.correct.includes(i)) {
+        lbl.classList.add('correct-reveal');
+        if (shape) shape.textContent = '✓';
+      } else if (state.selected.includes(i)) {
+        lbl.classList.add('incorrect-reveal');
+        if (shape) shape.textContent = '✗';
+      }
+    });
+  } else if (q.type === 'TABLE') {
+    const optionKeys = q.tableHeaders.slice(1);
+    q.tableRows.forEach((row, ri) => {
+      const rowSel = state.selected[ri];
+      optionKeys.forEach(opt => {
+        const safeOpt = opt.replace(/[^a-zA-Z0-9]/g, '_');
+        const lbl = document.getElementById(`celllbl-${q.id}-${ri}-${safeOpt}`);
+        if (!lbl) return;
+        lbl.parentElement.classList.add('disabled-cell');
+        lbl.style.pointerEvents = 'none';
+        if (opt === row.correct) {
+          lbl.classList.add('correct-cell');
+          lbl.textContent = '✓';
+        } else if (rowSel === opt) {
+          lbl.classList.add('incorrect-cell');
+          lbl.textContent = '✗';
+        } else if (rowSel === opt) {
+          lbl.classList.add('selected-cell');
+        }
+      });
+    });
+  }
+
+  showFeedback(q, state.correct, state.selected);
+}
+
+// ── progress & score ───────────────────────────────────────────
+function updateProgress(index) {
+  const questions = activeQuestions();
+  const pct = ((index + 1) / questions.length) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function updateScoreBadge() {
+  const answered = Object.keys(answers).length;
+  const total = activeQuestions().length;
+  document.getElementById('scoreBadge').textContent = `${score}/${answered} (of ${total})`;
+}
+
+// ── results ────────────────────────────────────────────────────
+function showResults() {
+  document.getElementById('quizArea').style.display = 'none';
+  const rs = document.getElementById('resultsScreen');
+  rs.style.display = 'block';
+
+  const questions = activeQuestions();
+  const total = questions.length;
+  // Count only questions in current set
+  const correct = questions.filter(q => answers[q.id] && answers[q.id].correct).length;
+  const answered = questions.filter(q => answers[q.id] && answers[q.id].submitted).length;
+  const incorrect = answered - correct;
+  const pct = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+
+  document.getElementById('resultsCircle').style.setProperty('--pct', pct);
+  document.getElementById('resultsPct').textContent = pct + '%';
+  document.getElementById('statCorrect').textContent = correct;
+  document.getElementById('statIncorrect').textContent = incorrect;
+  document.getElementById('statTotal').textContent = answered + ' / ' + total;
+
+  let titleText, subText;
+  if (pct >= 90)      { titleText = '🏆 Outstanding!'; subText = 'You are exam-ready on this content!'; }
+  else if (pct >= 80) { titleText = '⭐ Strong Performance!'; subText = 'A few areas to sharpen — review the missed questions below.'; }
+  else if (pct >= 70) { titleText = '💪 Good Effort!'; subText = 'Review the rationales for missed questions carefully.'; }
+  else                { titleText = '📚 Keep Studying!'; subText = 'Focus on the rationales below — they hold your key learning points.'; }
+
+  document.getElementById('resultsTitle').textContent = titleText;
+  document.getElementById('resultsSub').textContent = subText;
+
+  // Missed questions list
+  const missed = questions.filter(q => answers[q.id] && !answers[q.id].correct);
+  const btnRetry = document.getElementById('btnRetryMissed');
+  btnRetry.disabled = missed.length === 0;
+
+  const mr = document.getElementById('missedReview');
+  mr.innerHTML = '';
+  if (missed.length > 0) {
+    const h3 = document.createElement('h3');
+    h3.textContent = `📖 Missed Questions (${missed.length})`;
+    mr.appendChild(h3);
+
+    const letters = ['A','B','C','D','E','F','G','H'];
+    missed.forEach(q => {
+      const qIndex = questions.findIndex(x => x.id === q.id);
+      const div = document.createElement('div');
+      div.className = 'missed-item';
+      let answerText = '';
+      if (q.type === 'MC' || q.type === 'SATA') {
+        answerText = q.correct.map(i => `${letters[i]}. ${q.options[i]}`).join(' | ');
+      } else {
+        answerText = q.tableRows.map(r => `"${r.action.substring(0,50)}..." → ${r.correct}`).join('<br>');
+      }
+      div.innerHTML = `
+        <div class="missed-item-q">Q${qIndex + 1}: ${q.stem.replace(/<[^>]*>/g, '').substring(0, 130)}...</div>
+        <div class="missed-item-ans">✓ Correct: <span>${answerText}</span></div>`;
+      mr.appendChild(div);
+    });
+  }
+
+  document.getElementById('progressFill').style.width = '100%';
+}
+
+// ── retry missed ───────────────────────────────────────────────
+function retryMissed() {
+  const questions = activeQuestions();
+  const missed = questions.filter(q => answers[q.id] && !answers[q.id].correct);
+  if (missed.length === 0) return;
+
+  // Clear only missed answers
+  missed.forEach(q => delete answers[q.id]);
+
+  retryMode = true;
+  retryQueue = [...missed];
+  score = Object.values(answers).filter(a => a.correct).length;
+
+  document.getElementById('resultsScreen').style.display = 'none';
+  document.getElementById('quizArea').style.display = 'block';
+  updateScoreBadge();
+  renderQuestion(0);
+}
+
+// ── restart ────────────────────────────────────────────────────
+function restartQuiz() {
+  retryMode = false;
+  retryQueue = [];
+  answers = {};
+  score = 0;
+  currentIndex = 0;
+  document.getElementById('resultsScreen').style.display = 'none';
+  document.getElementById('scoreBadge').textContent = '–';
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('quizArea').style.display = 'block';
+  renderQuestion(0);
+}
+
+// ── helpers ────────────────────────────────────────────────────
+function getTypeBadge(q) {
+  if (q.type === 'MC') return 'Multiple Choice';
+  if (q.type === 'SATA') return 'Select All That Apply';
+  if (q.type === 'TABLE') {
+    const h = (q.tableHeaders || []).slice(1).join(' / ');
+    return h || 'Table Question';
+  }
+  return q.type;
+}
+
+function showToast(msg) {
+  let t = document.getElementById('toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'toast';
+    t.style.cssText = 'position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:#2a2017;color:#fff;padding:12px 24px;border-radius:8px;font-size:0.9rem;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:opacity 0.3s';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.opacity = '1';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => { t.style.opacity = '0'; }, 2500);
+}
+
+// ── dark mode ──────────────────────────────────────────────────
+document.getElementById('darkToggle').addEventListener('click', function() {
+  darkMode = !darkMode;
+  document.documentElement.classList.toggle('dark', darkMode);
+  this.textContent = darkMode ? '☀️' : '🌙';
+});
+</script>
+</body>
+</html>

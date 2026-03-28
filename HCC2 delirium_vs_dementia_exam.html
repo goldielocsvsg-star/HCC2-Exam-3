@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Delirium vs Dementia · Clinical Judgment Exam</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #f4f2ee;
+    --surface: #ffffff;
+    --surface2: #f9f7f4;
+    --border: #e0dbd2;
+    --text: #1a1714;
+    --text-muted: #6b6560;
+    --accent: #2c5f6e;
+    --accent-light: #e8f3f5;
+    --accent2: #a0522d;
+    --correct: #2d6a4f;
+    --correct-bg: #e8f5ee;
+    --wrong: #9b1d1d;
+    --wrong-bg: #fdeaea;
+    --partial: #7a5c00;
+    --partial-bg: #fdf6e3;
+    --option-hover: #eef6f8;
+    --selected: #d4eef4;
+    --selected-border: #2c5f6e;
+    --pill-bg: #e8f3f5;
+    --pill-text: #2c5f6e;
+    --shadow: 0 2px 16px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+    --radius: 14px;
+    --tag-delirium: #fff0e6;
+    --tag-delirium-text: #8b3a0f;
+    --tag-dementia: #e8f0fe;
+    --tag-dementia-text: #1a3a6b;
+  }
+  [data-theme="dark"] {
+    --bg: #111416;
+    --surface: #1c2026;
+    --surface2: #242930;
+    --border: #2e3540;
+    --text: #e8e4dd;
+    --text-muted: #8a8580;
+    --accent: #4fa3b8;
+    --accent-light: #1a2e35;
+    --accent2: #d4845a;
+    --correct: #52b788;
+    --correct-bg: #0d2e1e;
+    --wrong: #e07070;
+    --wrong-bg: #2a1010;
+    --partial: #d4a843;
+    --partial-bg: #2a2000;
+    --option-hover: #1e2d32;
+    --selected: #1a3545;
+    --selected-border: #4fa3b8;
+    --pill-bg: #1a2e35;
+    --pill-text: #4fa3b8;
+    --shadow: 0 2px 16px rgba(0,0,0,0.4);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
+    --tag-delirium: #2a1500;
+    --tag-delirium-text: #e8a87c;
+    --tag-dementia: #0d1a35;
+    --tag-dementia-text: #7aabee;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .header-icon {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--accent), #4fa3b8);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .header-title { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--text); }
+  .header-sub { font-size: 0.72rem; color: var(--text-muted); font-weight: 400; }
+  .header-right { display: flex; align-items: center; gap: 14px; }
+  .q-counter {
+    font-size: 0.78rem; font-weight: 600; color: var(--text-muted);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 4px 12px; border-radius: 20px;
+  }
+  .dark-toggle {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 5px 14px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .dark-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── Progress bar ── */
+  .progress-wrap {
+    background: var(--border);
+    height: 4px;
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #4fa3b8);
+    transition: width 0.4s ease;
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* ── Main layout ── */
+  .main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 36px 20px 80px;
+  }
+
+  /* ── Screens ── */
+  .screen { display: none; }
+  .screen.active { display: block; animation: fadeUp 0.35s ease; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Welcome screen ── */
+  .welcome-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .welcome-badge {
+    display: inline-block;
+    background: var(--pill-bg);
+    color: var(--pill-text);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .welcome-card h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .welcome-card h1 em { font-style: italic; color: var(--accent); }
+  .welcome-card p {
+    color: var(--text-muted);
+    font-size: 0.94rem;
+    line-height: 1.65;
+    max-width: 520px;
+    margin: 0 auto 32px;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 0 auto 36px;
+    max-width: 480px;
+  }
+  .info-tile {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .info-tile .num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.7rem;
+    color: var(--accent);
+    display: block;
+  }
+  .info-tile .lbl {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .btn-start {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 14px 42px;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 18px rgba(44,95,110,0.3);
+  }
+  .btn-start:hover { background: #245460; transform: translateY(-1px); box-shadow: 0 6px 22px rgba(44,95,110,0.4); }
+
+  /* ── Question card ── */
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .q-card-header {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .q-num-badge {
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+  .q-type-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+  .tag-mc { background: var(--tag-delirium); color: var(--tag-delirium-text); }
+  .tag-sata { background: var(--tag-dementia); color: var(--tag-dementia-text); }
+  .q-topic-tag {
+    margin-left: auto;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .q-body { padding: 28px 28px 24px; }
+
+  /* case scenario box */
+  .case-box {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .case-box strong { font-weight: 600; color: var(--accent); }
+
+  .q-stem {
+    font-size: 0.97rem;
+    font-weight: 500;
+    line-height: 1.65;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  .sata-note {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent2);
+    background: var(--tag-delirium);
+    border-radius: 6px;
+    padding: 5px 12px;
+    margin-bottom: 16px;
+    display: inline-block;
+  }
+
+  /* ── Options ── */
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 16px;
+    cursor: pointer;
+    transition: all 0.18s;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--text);
+  }
+  .option:hover:not(.locked) { background: var(--option-hover); border-color: var(--accent); }
+  .option.selected { background: var(--selected); border-color: var(--selected-border); }
+  .option-letter {
+    width: 26px; height: 26px; min-width: 26px;
+    border-radius: 50%;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: all 0.18s;
+  }
+  .option.selected .option-letter { background: var(--accent); color: #fff; }
+  .option.correct-opt { background: var(--correct-bg); border-color: var(--correct); }
+  .option.correct-opt .option-letter { background: var(--correct); color: #fff; }
+  .option.wrong-opt { background: var(--wrong-bg); border-color: var(--wrong); }
+  .option.wrong-opt .option-letter { background: var(--wrong); color: #fff; }
+  .option.locked { cursor: default; }
+
+  /* ── Buttons ── */
+  .q-actions {
+    padding: 0 28px 24px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 11px 26px;
+    border-radius: 30px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s;
+    border: none;
+  }
+  .btn-submit {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 3px 12px rgba(44,95,110,0.25);
+  }
+  .btn-submit:hover:not(:disabled) { background: #245460; transform: translateY(-1px); }
+  .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .btn-nav {
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    color: var(--text-muted);
+  }
+  .btn-nav:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* ── Rationale ── */
+  .rationale {
+    margin: 0 28px 24px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+    animation: fadeUp 0.3s ease;
+  }
+  .rationale.show { display: block; }
+  .rat-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .rat-header.correct { background: var(--correct-bg); color: var(--correct); }
+  .rat-header.wrong   { background: var(--wrong-bg);   color: var(--wrong); }
+  .rat-header.partial { background: var(--partial-bg); color: var(--partial); }
+  .rat-body {
+    padding: 14px 16px;
+    font-size: 0.855rem;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-top: none;
+  }
+  .rat-body b { color: var(--accent); font-weight: 600; }
+  .rat-body ul { padding-left: 18px; margin-top: 6px; }
+  .rat-body li { margin-bottom: 4px; }
+
+  /* ── Results screen ── */
+  .results-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .score-ring {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    margin: 0 auto 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    position: relative;
+    background: conic-gradient(var(--accent) 0deg, var(--accent) var(--ring-deg, 0deg), var(--border) var(--ring-deg, 0deg));
+  }
+  .score-ring::before {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    background: var(--surface);
+    border-radius: 50%;
+  }
+  .score-inner { position: relative; z-index: 1; text-align: center; }
+  .score-pct { font-size: 2.2rem; color: var(--accent); }
+  .score-lbl { font-size: 0.75rem; color: var(--text-muted); font-family: 'DM Sans', sans-serif; }
+  .results-card h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  .results-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px; }
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .res-tile {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 8px;
+  }
+  .res-tile .rnum {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    display: block;
+  }
+  .res-tile .rlbl { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 600; }
+  .correct-clr { color: var(--correct); }
+  .wrong-clr   { color: var(--wrong); }
+  .partial-clr { color: var(--partial); }
+  .btn-restart {
+    background: var(--accent);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 14px 42px;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(44,95,110,0.3);
+    transition: all 0.2s;
+  }
+  .btn-restart:hover { background: #245460; transform: translateY(-1px); }
+
+  @media (max-width: 600px) {
+    .info-grid { grid-template-columns: repeat(3, 1fr); }
+    .welcome-card { padding: 32px 22px; }
+    .welcome-card h1 { font-size: 1.7rem; }
+    .q-body, .rationale, .q-actions { padding-left: 18px; padding-right: 18px; }
+    .results-card { padding: 36px 22px; }
+    .results-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <div class="header-icon">🧠</div>
+    <div>
+      <div class="header-title">Delirium vs Dementia</div>
+      <div class="header-sub">Clinical Judgment Exam</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="q-counter" id="qCounter" style="display:none">Q <span id="qNum">0</span> / 20</div>
+    <button class="dark-toggle" id="darkToggle">🌙 Dark</button>
+  </div>
+</header>
+
+<div class="progress-wrap"><div class="progress-fill" id="progressBar" style="width:0%"></div></div>
+
+<main class="main">
+
+  <!-- Welcome Screen -->
+  <div class="screen active" id="screenWelcome">
+    <div class="welcome-card">
+      <div class="welcome-badge">HCC2 · NURS 3202 · Delirium & Dementia</div>
+      <h1>Delirium <em>vs</em><br>Dementia</h1>
+      <p>Every question presents a real clinical scenario. Apply your knowledge of onset, course, associated conditions, and neurological features to distinguish these two conditions — no memorization, only clinical judgment.</p>
+      <div class="info-grid">
+        <div class="info-tile"><span class="num">20</span><div class="lbl">Questions</div></div>
+        <div class="info-tile"><span class="num">MC + SATA</span><div class="lbl">Formats</div></div>
+        <div class="info-tile"><span class="num">100%</span><div class="lbl">Application</div></div>
+      </div>
+      <button class="btn-start" onclick="startExam()">Begin Exam →</button>
+    </div>
+  </div>
+
+  <!-- Question Screen -->
+  <div class="screen" id="screenQuestion">
+    <div class="q-card" id="questionCard">
+      <div class="q-card-header">
+        <span class="q-num-badge" id="qBadge">Q1</span>
+        <span class="q-type-tag" id="qTypeTag"></span>
+
+      </div>
+      <div class="q-body">
+        <div class="case-box" id="caseBox" style="display:none"></div>
+        <div class="q-stem" id="qStem"></div>
+        <div class="sata-note" id="satanote" style="display:none">Select ALL that apply.</div>
+        <div class="options" id="optionsContainer"></div>
+      </div>
+      <div class="rationale" id="rationaleBox">
+        <div class="rat-header" id="ratHeader"></div>
+        <div class="rat-body" id="ratBody"></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-nav" id="btnBack" onclick="goBack()">← Back</button>
+        <button class="btn btn-submit" id="btnSubmit" onclick="submitAnswer()" disabled>Check Answer</button>
+        <button class="btn btn-nav" id="btnNext" onclick="goNext()" style="display:none">Next →</button>
+        <button class="btn btn-submit" id="btnResults" onclick="showResults()" style="display:none">View Results →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Screen -->
+  <div class="screen" id="screenResults">
+    <div class="results-card">
+      <div class="score-ring" id="scoreRing">
+        <div class="score-inner">
+          <div class="score-pct" id="scorePct">0%</div>
+          <div class="score-lbl">Score</div>
+        </div>
+      </div>
+      <h2 id="resultsTitle">Exam Complete</h2>
+      <p id="resultsMsg"></p>
+      <div class="results-grid">
+        <div class="res-tile"><span class="rnum correct-clr" id="rCorrect">0</span><div class="rlbl">Correct</div></div>
+        <div class="res-tile"><span class="rnum wrong-clr" id="rWrong">0</span><div class="rlbl">Incorrect</div></div>
+        <div class="res-tile"><span class="rnum partial-clr" id="rPartial">0</span><div class="rlbl">Partial</div></div>
+      </div>
+      <button class="btn-restart" onclick="restartExam()">Retake Exam</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+const questions = [
+  /* 1 */
+  {
+    type: "MC",
+    topic: "Onset · Associated Conditions",
+    scenario: "Mr. Elkins, 81 years old, was admitted 2 days ago for a urinary tract infection. His daughter reports he was \"perfectly sharp\" at home. This morning the nursing assistant calls you because he is confused, pulling at his IV, and does not know where he is.",
+    stem: "Which assessment finding BEST supports that Mr. Elkins is experiencing delirium rather than newly recognized dementia?",
+    options: [
+      "His daughter reports he has always had mild word-finding problems",
+      "His confusion developed acutely during a hospitalization associated with an active medical illness",
+      "He is unable to recall the names of his grandchildren",
+      "He was oriented on admission but has gradually declined over two years"
+    ],
+    correct: [1],
+    rationale: "<b>Delirium onset is acute</b> — often precipitated by an underlying illness — and is especially common during hospitalization. The hallmark distinguishing feature here is the <b>sudden change from baseline</b> in the context of a UTI, which is one of the most common precipitating conditions for delirium in older adults. Word-finding problems are more characteristic of dementia. Inability to recall family names can occur in dementia. Gradual decline over two years describes dementia's insidious course, not delirium."
+  },
+  /* 2 */
+  {
+    type: "MC",
+    topic: "Course · Duration",
+    scenario: "Mrs. Okafor, 76 years old, is brought to your clinic by her son, who says, \"She's been getting more forgetful over the past two years — she started missing appointments, then couldn't remember how to use the stove, and now she gets confused about the day of the week.\"",
+    stem: "The course described by Mrs. Okafor's son is MOST consistent with which condition, and what is the expected duration?",
+    options: [
+      "Delirium; hours to weeks, typically reversible with treatment",
+      "Dementia; chronic slow decline measured in months to years",
+      "Delirium; fluctuating symptoms that resolve once hospitalization ends",
+      "Dementia; acute onset followed by rapid functional deterioration"
+    ],
+    correct: [1],
+    rationale: "<b>Dementia follows a chronic, slow, progressive decline</b> — typically starting with memory loss and expanding to affect other functions over months to years. The son's description — two years of gradual worsening across multiple functional domains — is the textbook presentation. Delirium lasts <b>hours to weeks</b> and fluctuates; the timeline here rules that out. Dementia's onset is insidious, not acute."
+  },
+  /* 3 */
+  {
+    type: "SATA",
+    topic: "Associated Conditions",
+    scenario: "The nurse educator is reviewing delirium with your clinical group and asks you to identify which patient situations place a hospitalized older adult at highest risk for developing delirium.",
+    stem: "Select ALL findings that are associated with delirium as precipitating or contributing conditions:",
+    options: [
+      "Serum glucose of 42 mg/dL (hypoglycemia)",
+      "History of progressive memory loss over 3 years",
+      "Oxygen saturation 86% on room air (hypoxia)",
+      "Current use of multiple sedating medications",
+      "Fluid and electrolyte imbalance (sodium 128 mEq/L)",
+      "History of a mild stroke 5 years ago with full recovery"
+    ],
+    correct: [0, 2, 3, 4],
+    rationale: "<b>Delirium-associated conditions</b> per the comparison chart include: hypoglycemia, hypoxia, toxicity, multiple medications, and fluid-electrolyte imbalance. A progressive 3-year memory decline describes dementia's course, not a trigger for delirium. A fully resolved remote stroke does not currently predispose to delirium; however, active brain trauma is listed. Remember: delirium has <b>identifiable, often reversible medical causes</b>, which is why prompt treatment can resolve it."
+  },
+  /* 4 */
+  {
+    type: "MC",
+    topic: "Perceptions · Thoughts",
+    scenario: "You are caring for Mr. Brennan, 73 years old, post-op day 2 after hip replacement. He is shouting that there are \"rats climbing the walls\" and keeps trying to get out of bed to escape them. His wife says he has never had any psychiatric history and was completely oriented before surgery.",
+    stem: "His perception of rats climbing the walls is MOST consistent with which clinical finding, and in which condition does this characteristically occur?",
+    options: [
+      "Impoverished thoughts; dementia in its late stages",
+      "Hallucinations or illusions; delirium",
+      "Word-finding problems; dementia in its early stages",
+      "Intact perception with behavioral agitation; early dementia"
+    ],
+    correct: [1],
+    rationale: "<b>Hallucinations and illusions</b> are characteristic perceptual disturbances of <b>delirium</b>. In contrast, perceptions in dementia are usually intact early. Mr. Brennan's acute post-operative onset, no psychiatric history, and visual hallucinations all point to delirium. Impoverished thoughts and word-finding problems are dementia features. Behavioral agitation can occur in both conditions, but the combination of <b>acute onset + hallucinations</b> is a delirium signature."
+  },
+  /* 5 */
+  {
+    type: "MC",
+    topic: "Course · Alertness",
+    scenario: "Ms. Torres, 84 years old, was admitted yesterday for pneumonia. During morning rounds she is alert and answers questions appropriately. By 3 PM she is somnolent and difficult to arouse. By 9 PM she is agitated, screaming, and picking at her gown. Her daughter says, \"She was totally fine at home last week.\"",
+    stem: "The waxing and waning pattern of Ms. Torres's consciousness over the course of one day is MOST characteristic of:",
+    options: [
+      "Dementia, because memory loss fluctuates with fatigue",
+      "Delirium, because it follows a fluctuating course that remits with treatment",
+      "Dementia, because it causes disrupted sleep-wake cycles at night",
+      "Delirium, because it is a chronic, slow decline starting with memory"
+    ],
+    correct: [1],
+    rationale: "<b>Fluctuating course is the hallmark of delirium</b> — symptoms wax and wane throughout the day, and it can remit with treatment of the underlying cause (pneumonia, in this case). Dementia follows a <b>chronic slow decline</b>, not hour-to-hour fluctuation. Sleep-wake disruption can accompany both, but the dramatic intra-day alertness swings — from lucid to somnolent to agitated — are a defining delirium feature. The acute onset from a clear baseline further confirms delirium."
+  },
+  /* 6 */
+  {
+    type: "MC",
+    topic: "Speech · Alertness · Orientation",
+    scenario: "During your assessment of Mrs. Huang, 79 years old, you notice she is alert, makes appropriate eye contact, and is oriented to person, place, and time. However, she pauses frequently mid-sentence, substitutes words (\"the thing you eat with\" instead of \"spoon\"), and seems frustrated by her inability to express herself.",
+    stem: "Mrs. Huang's presentation is MOST consistent with which condition?",
+    options: [
+      "Delirium, because of her disorganized and incoherent speech",
+      "Dementia, because alertness and early orientation are intact while she has word-finding problems",
+      "Delirium, because impaired alertness with rapid or slowed speech is present",
+      "Dementia, because her perceptions are hallucinating and her thoughts are disorganized"
+    ],
+    correct: [1],
+    rationale: "In dementia, <b>alertness is normal</b> and <b>orientation is intact early</b>, but <b>word-finding problems (anomia)</b> are a hallmark speech characteristic. Mrs. Huang is alert, oriented, and her speech difficulty is specifically about retrieving words — not incoherence. Delirium speech is incoherent, rapid, or slowed, and is accompanied by <b>impaired alertness</b>. Her presentation — alert, oriented, frustrated word retrieval difficulty — is classic early-to-moderate dementia."
+  },
+  /* 7 */
+  {
+    type: "SATA",
+    topic: "Onset · Course · Attention",
+    scenario: "The charge nurse asks you to review four recently admitted patients and flag any who are showing signs consistent with delirium rather than their baseline dementia diagnosis.",
+    stem: "Select ALL findings that are MOST consistent with NEW delirium rather than previously diagnosed dementia:",
+    options: [
+      "A patient who was oriented on admission became confused within 24 hours of receiving IV morphine",
+      "A patient with a 2-year history of memory loss asks the same question repeatedly",
+      "A patient who correctly identified family members this morning cannot focus on any conversation by afternoon",
+      "A patient's family reports her confusion has been worsening \"for years\"",
+      "A patient with a known thyroid disorder develops acute disorientation and agitation during hospitalization",
+      "A patient with word-finding difficulties who remains alert and calm throughout the shift"
+    ],
+    correct: [0, 2, 4],
+    rationale: "<b>Delirium indicators:</b> acute onset during hospitalization after a medication (morphine = toxicity), <b>fluctuating attention within the same day</b> (hallmark of delirium's course), and acute disorientation triggered by an active associated condition (thyroid disorder → metabolic derangement). Dementia indicators: years-long history of memory loss, repetitive questioning as a stable pattern, and preserved alertness with word-finding problems. The key delirium signals are <b>acute change from baseline + inattention + identifiable precipitant</b>."
+  },
+  /* 8 */
+  {
+    type: "MC",
+    topic: "Behavior · Thoughts",
+    scenario: "Mr. Patel, 67 years old, is in the ICU after a motor vehicle accident with multiple injuries. He is restless, pulling at lines, yelling that the nurses are \"trying to poison him,\" and throws his water pitcher. His wife says he has no psychiatric history and was \"perfectly normal\" before the accident.",
+    stem: "Mr. Patel's paranoid belief that nurses are poisoning him is best classified as which type of perceptual or thought disturbance, and in which condition?",
+    options: [
+      "Impoverished thoughts in dementia",
+      "Delusions (disorganized thoughts) in delirium",
+      "Word-finding problems in early dementia",
+      "Hallucinations in dementia"
+    ],
+    correct: [1],
+    rationale: "<b>Delusions — fixed false beliefs — are classified as disorganized thoughts and are characteristic of delirium.</b> The chart lists 'disorganized, delusions' as the thought pattern in delirium. Mr. Patel's acute onset following trauma (an associated condition for delirium) with agitated behavior and paranoid ideation is classic. Dementia features <b>impoverished thoughts</b>, not delusions or paranoia. Perceptions in dementia are usually intact early. The combination of trauma + acute onset + delusions = delirium."
+  },
+  /* 9 */
+  {
+    type: "MC",
+    topic: "Alertness",
+    scenario: "You are documenting findings on two patients: Patient A is drowsy, difficult to rouse between family visits, and unresponsive to verbal cues at times. Patient B is awake, alert, makes good eye contact, but frequently cannot recall words during conversation and repeats the same stories.",
+    stem: "Which assessment finding MOST reliably distinguishes these two patients' conditions?",
+    options: [
+      "Patient A's sleep disturbance indicates dementia's fragmented sleep-wake cycle",
+      "Patient B's alertness being normal while cognition is impaired is more consistent with dementia",
+      "Patient A's normal alertness with impaired memory suggests dementia",
+      "Patient B's repetitive stories indicate delirium because of disorganized thoughts"
+    ],
+    correct: [1],
+    rationale: "<b>Alertness is the key distinguishing feature here.</b> In delirium, <b>alertness is impaired</b> — ranging from hyperalert/agitated to lethargic/somnolent. In dementia, <b>alertness is normal</b>. Patient A (drowsy, difficult to rouse) demonstrates impaired alertness → delirium. Patient B (alert, awake, word-finding problems) demonstrates normal alertness with cognitive deficits → dementia. This feature alone — level of alertness — is one of the most clinically reliable distinguishing points."
+  },
+  /* 10 */
+  {
+    type: "MC",
+    topic: "Associated Conditions · Reversibility",
+    scenario: "Mrs. Chen, 80 years old, presents to the ED with her son. She has a known history of hypothyroidism but ran out of levothyroxine 3 weeks ago. She is confused, slow to respond, and her son says this came on \"over the past week.\" Her blood work shows significantly elevated TSH.",
+    stem: "Based on the comparison chart, which statement BEST reflects the clinical priority for Mrs. Chen?",
+    options: [
+      "Begin dementia care planning, as her chronic thyroid disease has caused irreversible cognitive decline",
+      "This presentation is most consistent with delirium triggered by her thyroid disorder; treating the underlying cause is the priority",
+      "Dementia is confirmed because thyroid disease is not listed as an associated condition for delirium",
+      "Her slow response time and confusion indicate dementia's insidious onset"
+    ],
+    correct: [1],
+    rationale: "<b>Thyroid disorders are explicitly listed as associated conditions for delirium.</b> Mrs. Chen has an identifiable, acute precipitant (undertreated hypothyroidism), subacute onset over one week, and altered alertness. This is delirium — and the critical difference from dementia is that <b>delirium remits with treatment</b> of the underlying cause. The priority is correcting her thyroid levels. Dementia has no such treatable precipitant and does not remit with a specific intervention."
+  },
+  /* 11 */
+  {
+    type: "SATA",
+    topic: "Dementia Features",
+    scenario: "A nursing student asks you to help identify features that would support a working diagnosis of dementia over delirium.",
+    stem: "Select ALL findings that are MOST consistent with dementia rather than delirium:",
+    options: [
+      "Onset insidious over many months to years",
+      "Acute disorientation appearing within 24 hours of hospital admission",
+      "Alertness remains normal throughout assessment",
+      "Sleep-wake cycle is disrupted with marked sundowning and thrashing",
+      "Word-finding problems noted during conversation while orientation is intact",
+      "Patient has no other active medical conditions"
+    ],
+    correct: [0, 2, 4, 5],
+    rationale: "<b>Dementia features from the chart:</b> insidious onset (months to years), <b>normal alertness</b>, word-finding problems in speech, and potentially no other associated conditions. Acute disorientation within 24 hours describes delirium's acute onset. <b>Disrupted sleep-wake cycle</b> is characteristic of delirium, not dementia (dementia's sleep is usually normal or only mildly fragmented). Dementia may have no associated precipitating conditions, which is a key contrast to delirium's long list of medical triggers."
+  },
+  /* 12 */
+  {
+    type: "MC",
+    topic: "Duration",
+    scenario: "A patient's family asks, \"How long will this confusion last?\" The patient was admitted 3 days ago with sepsis and became confused on day 2. You explain that the cause (infection) is being treated aggressively.",
+    stem: "Based on the delirium vs dementia comparison, which BEST describes the expected duration of this patient's confusion?",
+    options: [
+      "Months to years, as cognitive changes from sepsis are typically permanent",
+      "Hours to weeks, as delirium remits with treatment of the underlying cause unless terminal",
+      "Months to years, because sepsis-related brain changes mirror dementia's chronic decline",
+      "Hours to weeks, because dementia also resolves once medical conditions are treated"
+    ],
+    correct: [1],
+    rationale: "<b>Delirium duration is hours to weeks</b>, and it typically remits with treatment of the underlying cause (sepsis, in this case). This is one of the most clinically important distinctions: delirium is <b>potentially reversible</b>, while dementia follows a months-to-years chronic slow decline that does not resolve. The caveat from the chart is 'unless terminal delirium,' which is important in end-of-life care. Sepsis-related delirium should resolve as infection is cleared."
+  },
+  /* 13 */
+  {
+    type: "MC",
+    topic: "Attention",
+    scenario: "You are performing a CAM (Confusion Assessment Method) screening on Mr. Wallace, 77 years old, who was admitted for a bowel obstruction. You ask him to count backward from 20, and he can only get to 18 before losing track. When you redirect him, he immediately forgets the task. He is restless and pulling at his NG tube.",
+    stem: "His inability to sustain and direct attention is MOST characteristic of which condition, and how does attention differ in the other condition?",
+    options: [
+      "Dementia; attention in delirium is intact until late in the disease",
+      "Delirium; attention is impaired, whereas in dementia attention is intact early and only becomes impaired late",
+      "Delirium; attention in dementia is also impaired from the earliest stage",
+      "Dementia; attention in delirium is described as impoverished rather than impaired"
+    ],
+    correct: [1],
+    rationale: "<b>Impaired attention is a core feature of delirium</b> and is actually required for a positive CAM screen. Mr. Wallace cannot sustain attention on a simple task — he loses track at 18 and immediately forgets the redirection. In contrast, dementia features <b>intact attention early</b>, with impairment developing only later in the disease course. This is a critical clinical distinction: if you see a patient with acute attention deficits + acute onset, think delirium first."
+  },
+  /* 14 */
+  {
+    type: "MC",
+    topic: "Sleep-Wake Cycle · Behavior",
+    scenario: "The night shift nurse reports that Mr. Gomez, 82 years old, admitted for a hip fracture repair, slept normally the first two nights. Last night he was awake all night, repeatedly calling out, trying to climb out of bed, and was convinced it was morning even at 3 AM. By day he is extremely drowsy.",
+    stem: "This reversal and disruption of his sleep-wake cycle is MOST consistent with which condition?",
+    options: [
+      "Dementia, because sleep-wake cycles are described as usually normal or only mildly fragmented",
+      "Delirium, because disrupted sleep-wake cycle is characteristic of this condition",
+      "Dementia, because sundowning is exclusive to dementia",
+      "Delirium, because dementia does not affect sleep patterns at all"
+    ],
+    correct: [1],
+    rationale: "<b>Disrupted sleep-wake cycle is a hallmark feature of delirium.</b> The complete reversal — sleeping all day, awake and agitated all night — is classic. In dementia, the sleep-wake cycle is described as 'usually normal or fragmented,' meaning it may be mildly off but not dramatically reversed. Mr. Gomez's acute change from normal post-op sleep to complete day-night reversal after a medical stressor (surgery, pain, medications) is consistent with delirium. Sundowning can occur in both conditions but profound disruption is most specific to delirium."
+  },
+  /* 15 */
+  {
+    type: "MC",
+    topic: "Orientation · Course",
+    scenario: "During your initial assessment of Mrs. Park, 75 years old, she correctly states her name, the hospital name, and today's date. Four hours later, when you return to administer her 1400 medications, she does not recognize you and does not know where she is. She was admitted this morning for a pulmonary embolism.",
+    stem: "What does the shift in orientation within the same afternoon MOST likely indicate, and what is the clinical significance?",
+    options: [
+      "Dementia, because orientation is expected to decline progressively over the hospital stay",
+      "Delirium, because the fluctuating course with acute onset during hospitalization and a medical precipitant (PE) indicates delirium",
+      "Dementia, because dementia can cause acute orientation changes when patients are in unfamiliar environments",
+      "Delirium, because all patients with PE develop permanent cognitive impairment"
+    ],
+    correct: [1],
+    rationale: "<b>Fluctuating orientation within hours is a signature delirium finding.</b> Mrs. Park was oriented this morning and disoriented four hours later — this intra-day fluctuation, combined with acute onset and a medical precipitant (PE → hypoxia, listed as a delirium-associated condition), is classic delirium. In dementia, orientation is <b>intact early</b> and declines gradually over months to years — not within hours. The PE provides a direct physiological explanation: hypoxia is one of the primary associated conditions for delirium."
+  },
+  /* 16 */
+  {
+    type: "MC",
+    topic: "Associated Conditions · Clinical Priority",
+    scenario: "You receive a SBAR from a nursing assistant about Mr. Davis, 88 years old, who became acutely confused, pulled out his Foley catheter, and is now yelling. He was admitted for fluid-electrolyte imbalance. Current labs show sodium 122 mEq/L. He is on multiple medications including opioids.",
+    stem: "Based on the associated conditions for delirium, which nursing priority BEST addresses the MOST likely root cause of Mr. Davis's acute confusion?",
+    options: [
+      "Initiate a dementia care pathway and reorient him every 2 hours",
+      "Notify the provider and address the fluid-electrolyte imbalance and medication review as likely delirium precipitants",
+      "Document the confusion as a new dementia diagnosis and consult neurology",
+      "Administer a PRN sedative to calm his agitation before addressing lab values"
+    ],
+    correct: [1],
+    rationale: "<b>Fluid-electrolyte imbalance and multiple medications are both explicitly listed delirium-associated conditions.</b> Mr. Davis has a sodium of 122 (severe hyponatremia) plus opioids — both delirium precipitants. The clinical priority is treating the underlying cause: correcting electrolytes and reviewing medications for contributing agents. Delirium remits with treatment of its cause. Sedatives can paradoxically worsen delirium and should not be the first response. Calling it dementia without investigating reversible causes is a patient safety error."
+  },
+  /* 17 */
+  {
+    type: "SATA",
+    topic: "Perceptions · Thoughts · Speech",
+    scenario: "A nursing student is documenting neuropsychiatric findings on two patients: one with confirmed delirium and one with mid-stage dementia. She asks you to help her sort the findings.",
+    stem: "Select ALL findings that would be MOST expected in a patient with delirium (as opposed to dementia):",
+    options: [
+      "Incoherent or rapidly disorganized speech",
+      "Word-finding problems with otherwise intact alertness",
+      "Visual hallucinations of a deceased relative entering the room",
+      "Impoverished thought content with poverty of speech",
+      "Fixed false belief that hospital staff are stealing from him (delusion)",
+      "Mildly repetitive questioning about the date"
+    ],
+    correct: [0, 2, 4],
+    rationale: "<b>Delirium features from the chart:</b> <b>Speech</b> — incoherent, rapid, or slowed. <b>Perceptions</b> — hallucinations and illusions. <b>Thoughts</b> — disorganized, delusions. Word-finding problems and poverty of speech are dementia features (impoverished thoughts, word-finding problems in speech). Repetitive questioning is a common dementia behavior reflecting memory loss. The three delirium-specific findings here all reflect active distortion of reality, while dementia features reflect gradual loss of retrieval and expression."
+  },
+  /* 18 */
+  {
+    type: "MC",
+    topic: "Behavior · Onset · Comparison",
+    scenario: "Two patients on your medical unit: Mr. A, 82 years old, admitted yesterday for pneumonia — he is pulling at lines, yelling, does not recognize his son, and cannot follow a 2-step instruction. Mr. B, 79 years old, admitted for joint pain — he is calm, follows instructions, but pauses frequently when talking and sometimes uses the wrong word.",
+    stem: "Which assessment MOST accurately characterizes the difference between these two patients?",
+    options: [
+      "Mr. A's agitation is consistent with late-stage dementia behavior; Mr. B's word retrieval issues suggest delirium",
+      "Mr. A has signs of acute delirium (behavior, attention, acute onset); Mr. B has signs consistent with dementia (intact behavior early, word-finding problems, alert)",
+      "Both patients demonstrate dementia because they are both older and have cognitive changes",
+      "Mr. B's agitation indicates delirium; Mr. A's calm behavior is more consistent with dementia"
+    ],
+    correct: [1],
+    rationale: "<b>Mr. A</b> — agitated behavior, cannot follow instructions (impaired attention), acute onset with medical illness = <b>delirium</b>. The chart lists behavior in delirium as 'agitated, withdrawn/depressed' and attention as 'impaired.' <b>Mr. B</b> — behavior intact (calm), alert, following instructions, but word-finding problems = <b>dementia</b>. Behavior is 'intact early' in dementia and speech shows 'word-finding problems.' Age alone does not determine either diagnosis. These two patients represent the textbook contrast between the conditions."
+  },
+  /* 19 */
+  {
+    type: "MC",
+    topic: "Course · Reversibility",
+    scenario: "A family member of a 78-year-old patient with newly diagnosed hospital-associated confusion asks you: \"Is this permanent? Will she ever be herself again?\" You are explaining the difference between her mother's acute episode and dementia.",
+    stem: "Which statement BEST reflects the clinical distinction in course and reversibility between delirium and dementia?",
+    options: [
+      "Both delirium and dementia are permanent; cognitive changes in older adults do not resolve",
+      "Delirium fluctuates and typically remits with treatment of the underlying cause; dementia follows a chronic slow decline and is not reversible",
+      "Dementia is reversible with the right medications; delirium is permanent because it damages the hippocampus",
+      "Delirium and dementia both follow a slow chronic course; the only difference is the presence of hallucinations"
+    ],
+    correct: [1],
+    rationale: "This is one of the most clinically and ethically significant distinctions. <b>Delirium's course is fluctuating and remits with treatment</b> — unless it is terminal delirium. This means that identifying and treating the underlying cause (infection, metabolic derangement, medication toxicity, etc.) gives a realistic chance of full recovery. <b>Dementia's course is a chronic slow decline</b> — it is progressive and not reversible. When family members ask if their loved one will return to baseline after delirium, the answer, with proper treatment, is often yes."
+  },
+  /* 20 */
+  {
+    type: "SATA",
+    topic: "Clinical Assessment · All Features",
+    scenario: "You receive shift report on Mrs. Langford, 85 years old, admitted 2 days ago for renal insufficiency. The off-going nurse says 'She was oriented x3 on admission but I'm not sure what's going on now — she seems different today.'",
+    stem: "Select ALL assessment findings that would MOST strongly indicate that Mrs. Langford is NOW experiencing delirium:",
+    options: [
+      "She cannot maintain attention during your assessment, losing track of your questions mid-sentence",
+      "Her family confirms she has had progressively worsening memory over the past 2 years",
+      "She reports seeing 'children playing in the corner' that are not there (hallucinations)",
+      "She is alert, calm, and oriented, but pauses to find words during conversation",
+      "Her alertness has fluctuated throughout the day — lucid at 0800, drowsy by noon, agitated by 1600",
+      "Her admitting diagnosis (renal insufficiency) is one of the associated conditions listed for delirium"
+    ],
+    correct: [0, 2, 4, 5],
+    rationale: "<b>Signs pointing to delirium in Mrs. Langford:</b> <b>Impaired attention</b> (core delirium feature, not seen early in dementia). <b>Hallucinations</b> (characteristic delirium perception). <b>Fluctuating alertness throughout the day</b> (hallmark delirium course). <b>Active associated condition</b> — renal insufficiency (specifically listed as a delirium precipitant). Family report of 2-year memory decline suggests underlying dementia, which actually <i>increases</i> her delirium risk but does not confirm the current acute episode is dementia. Calm and alert with word-finding problems = dementia, not delirium. Always assess for delirium when a patient with any underlying dementia shows acute behavioral change."
+  }
+];
+
+// ── State ──
+let current = 0;
+let userAnswers = new Array(questions.length).fill(null); // null = not answered
+let submitted = new Array(questions.length).fill(false);
+let scores = [];   // 'correct' | 'wrong' | 'partial'
+
+function startExam() {
+  current = 0;
+  userAnswers = new Array(questions.length).fill(null);
+  submitted = new Array(questions.length).fill(false);
+  scores = [];
+  showScreen('screenQuestion');
+  document.getElementById('qCounter').style.display = 'flex';
+  renderQuestion();
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function renderQuestion() {
+  const q = questions[current];
+  const idx = current;
+
+  // Header
+  document.getElementById('qBadge').textContent = `Q${idx+1}`;
+  document.getElementById('qNum').textContent = idx+1;
+  document.getElementById('qTypeTag').textContent = q.type === 'SATA' ? 'Select All That Apply' : 'Multiple Choice';
+  document.getElementById('qTypeTag').className = 'q-type-tag ' + (q.type === 'SATA' ? 'tag-sata' : 'tag-mc');
+
+
+  // Progress
+  document.getElementById('progressBar').style.width = ((idx) / questions.length * 100) + '%';
+
+  // Case
+  const caseBox = document.getElementById('caseBox');
+  if (q.scenario) {
+    caseBox.style.display = 'block';
+    caseBox.innerHTML = '<strong>Clinical Scenario:</strong> ' + q.scenario;
+  } else {
+    caseBox.style.display = 'none';
+  }
+
+  // Stem
+  document.getElementById('qStem').textContent = q.stem;
+
+  // SATA note
+  document.getElementById('satanote').style.display = q.type === 'SATA' ? 'inline-block' : 'none';
+
+  // Options
+  const container = document.getElementById('optionsContainer');
+  container.innerHTML = '';
+  const letters = ['A','B','C','D','E','F'];
+  const savedAnswer = userAnswers[idx];
+
+  q.options.forEach((opt, oi) => {
+    const div = document.createElement('div');
+    div.className = 'option';
+    div.dataset.idx = oi;
+
+    if (submitted[idx]) {
+      div.classList.add('locked');
+      if (q.correct.includes(oi)) {
+        div.classList.add('correct-opt');
+      } else if (savedAnswer && savedAnswer.includes(oi)) {
+        div.classList.add('wrong-opt');
+      }
+    } else {
+      if (savedAnswer && savedAnswer.includes(oi)) {
+        div.classList.add('selected');
+      }
+      div.addEventListener('click', () => selectOption(oi));
+    }
+
+    div.innerHTML = `<div class="option-letter">${letters[oi]}</div><div>${opt}</div>`;
+    container.appendChild(div);
+  });
+
+  // Submit btn
+  const btnSubmit = document.getElementById('btnSubmit');
+  btnSubmit.style.display = 'inline-block';
+  btnSubmit.disabled = !savedAnswer || savedAnswer.length === 0;
+  if (submitted[idx]) btnSubmit.style.display = 'none';
+
+  // Rationale
+  const ratBox = document.getElementById('rationaleBox');
+  if (submitted[idx]) {
+    ratBox.classList.add('show');
+    showRationale(idx);
+  } else {
+    ratBox.classList.remove('show');
+  }
+
+  // Nav buttons
+  document.getElementById('btnBack').disabled = idx === 0;
+  const isLast = idx === questions.length - 1;
+  const btnNext = document.getElementById('btnNext');
+  const btnResults = document.getElementById('btnResults');
+  if (submitted[idx]) {
+    if (isLast) {
+      btnNext.style.display = 'none';
+      btnResults.style.display = 'inline-block';
+    } else {
+      btnNext.style.display = 'inline-block';
+      btnResults.style.display = 'none';
+    }
+  } else {
+    btnNext.style.display = 'none';
+    btnResults.style.display = 'none';
+  }
+}
+
+function selectOption(oi) {
+  if (submitted[current]) return;
+  const q = questions[current];
+  let ans = userAnswers[current] ? [...userAnswers[current]] : [];
+
+  if (q.type === 'MC') {
+    ans = [oi];
+  } else {
+    if (ans.includes(oi)) {
+      ans = ans.filter(x => x !== oi);
+    } else {
+      ans.push(oi);
+    }
+  }
+  userAnswers[current] = ans;
+
+  // Re-render selected state
+  document.querySelectorAll('.option').forEach((div, i) => {
+    div.classList.toggle('selected', ans.includes(i));
+    div.querySelector('.option-letter').style.background = ans.includes(i) ? 'var(--accent)' : '';
+    div.querySelector('.option-letter').style.color = ans.includes(i) ? '#fff' : '';
+  });
+
+  document.getElementById('btnSubmit').disabled = ans.length === 0;
+}
+
+function submitAnswer() {
+  if (submitted[current]) return;
+  submitted[current] = true;
+
+  const q = questions[current];
+  const ans = userAnswers[current] || [];
+  const correct = q.correct;
+
+  let score;
+  if (q.type === 'MC') {
+    score = ans[0] === correct[0] ? 'correct' : 'wrong';
+  } else {
+    const rightSelected = ans.filter(a => correct.includes(a)).length;
+    const wrongSelected = ans.filter(a => !correct.includes(a)).length;
+    if (wrongSelected === 0 && rightSelected === correct.length) score = 'correct';
+    else if (wrongSelected > 0 || rightSelected < correct.length) score = wrongSelected === ans.length ? 'wrong' : 'partial';
+    else score = 'partial';
+    if (ans.length === 0) score = 'wrong';
+  }
+  scores[current] = score;
+
+  // Lock options and show correct/wrong
+  document.querySelectorAll('.option').forEach((div, oi) => {
+    div.classList.add('locked');
+    div.classList.remove('selected');
+    if (correct.includes(oi)) {
+      div.classList.add('correct-opt');
+    } else if (ans.includes(oi)) {
+      div.classList.add('wrong-opt');
+    }
+  });
+
+  document.getElementById('btnSubmit').style.display = 'none';
+
+  // Show rationale
+  const ratBox = document.getElementById('rationaleBox');
+  ratBox.classList.add('show');
+  showRationale(current);
+
+  // Show next/results
+  const isLast = current === questions.length - 1;
+  if (isLast) {
+    document.getElementById('btnResults').style.display = 'inline-block';
+  } else {
+    document.getElementById('btnNext').style.display = 'inline-block';
+  }
+}
+
+function showRationale(idx) {
+  const score = scores[idx];
+  const q = questions[idx];
+  const ratHeader = document.getElementById('ratHeader');
+  const ratBody = document.getElementById('ratBody');
+
+  const icons = { correct: '✓ Correct', wrong: '✗ Incorrect', partial: '◑ Partially Correct' };
+  ratHeader.textContent = icons[score] || '';
+  ratHeader.className = 'rat-header ' + score;
+  ratBody.innerHTML = q.rationale;
+}
+
+function goNext() {
+  if (current < questions.length - 1) {
+    current++;
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function goBack() {
+  if (current > 0) {
+    current--;
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function showResults() {
+  document.getElementById('progressBar').style.width = '100%';
+  document.getElementById('qCounter').style.display = 'none';
+
+  const total = questions.length;
+  const correct = scores.filter(s => s === 'correct').length;
+  const wrong = scores.filter(s => s === 'wrong').length;
+  const partial = scores.filter(s => s === 'partial').length;
+  const pct = Math.round((correct / total) * 100);
+
+  document.getElementById('scorePct').textContent = pct + '%';
+  document.getElementById('rCorrect').textContent = correct;
+  document.getElementById('rWrong').textContent = wrong;
+  document.getElementById('rPartial').textContent = partial;
+
+  // Animate ring
+  const deg = (pct / 100) * 360;
+  document.getElementById('scoreRing').style.setProperty('--ring-deg', deg + 'deg');
+
+  let title, msg;
+  if (pct >= 90) {
+    title = '🏆 Excellent Clinical Judgment';
+    msg = `You scored ${correct}/20. You have a strong command of the clinical distinctions between delirium and dementia. Keep applying this thinking at the bedside!`;
+  } else if (pct >= 75) {
+    title = '🌟 Good Work';
+    msg = `You scored ${correct}/20. You understand the core distinctions well. Review the rationales for any missed questions — pay attention to alertness, course, and associated conditions.`;
+  } else if (pct >= 60) {
+    title = '📖 Needs Review';
+    msg = `You scored ${correct}/20. Focus on the key distinguishing features: onset (acute vs. insidious), alertness (impaired vs. normal), and course (fluctuating vs. slow decline). Retake when ready!`;
+  } else {
+    title = '💪 Keep Studying!';
+    msg = `You scored ${correct}/20. Return to your comparison chart and focus on the contrasts for each feature row. You've got this — retake the exam after review!`;
+  }
+  document.getElementById('resultsTitle').textContent = title;
+  document.getElementById('resultsMsg').textContent = msg;
+
+  showScreen('screenResults');
+}
+
+function restartExam() {
+  startExam();
+}
+
+// Dark mode
+const toggle = document.getElementById('darkToggle');
+toggle.addEventListener('click', () => {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    document.documentElement.removeAttribute('data-theme');
+    toggle.textContent = '🌙 Dark';
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    toggle.textContent = '☀️ Light';
+  }
+});
+</script>
+</body>
+</html>

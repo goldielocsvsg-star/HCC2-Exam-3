@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HCC2 Mock Exam - 60 Questions | Health Disparities, Palliation, Grief</title>
+<style>
+  :root {
+    --bg: #f6f4fb;
+    --panel: rgba(255,255,255,0.88);
+    --panel-strong: #ffffff;
+    --text: #241f33;
+    --muted: #665c7a;
+    --line: #ddd5ee;
+    --accent: #7b5cff;
+    --accent-2: #00a7a0;
+    --accent-3: #f1b94b;
+    --good: #197a4b;
+    --good-bg: #e9f8ef;
+    --bad: #a53b3b;
+    --bad-bg: #fff1f1;
+    --shadow: 0 10px 30px rgba(59,40,109,0.12);
+  }
+  body.dark {
+    --bg: #16131f;
+    --panel: rgba(33,28,46,0.9);
+    --panel-strong: #211c2e;
+    --text: #f5f1ff;
+    --muted: #b8aed1;
+    --line: #3c3455;
+    --accent: #a98dff;
+    --accent-2: #53d4cd;
+    --accent-3: #ffd67a;
+    --good: #7ae0a5;
+    --good-bg: rgba(32,96,60,0.28);
+    --bad: #ff9d9d;
+    --bad-bg: rgba(128,36,36,0.28);
+    --shadow: 0 14px 34px rgba(0,0,0,0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:
+    radial-gradient(circle at top left, rgba(123,92,255,0.12), transparent 32%),
+    radial-gradient(circle at top right, rgba(0,167,160,0.11), transparent 28%),
+    linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--bg) 90%, #ffffff 10%)); color: var(--text); min-height: 100%; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 22px 18px 40px; }
+  .topbar {
+    display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    margin-bottom:16px;
+  }
+  .title-card {
+    flex:1 1 720px; background: linear-gradient(135deg, rgba(123,92,255,.14), rgba(0,167,160,.12));
+    border:1px solid var(--line); border-radius: 24px; padding: 20px 22px; box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+  }
+  h1 { margin:0 0 10px; font-size: clamp(1.55rem, 2vw, 2.35rem); line-height:1.1; }
+  .sub {
+    color: var(--muted); line-height:1.55; font-size: 0.97rem;
+  }
+  .utility {
+    display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+  }
+  button, .pill {
+    border: 1px solid var(--line); background: var(--panel-strong); color: var(--text);
+    border-radius: 999px; padding: 10px 14px; font: inherit; cursor: pointer; transition: .18s ease;
+  }
+  button:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+  .layout {
+    display:grid; grid-template-columns: 270px 1fr; gap:16px;
+  }
+  @media (max-width: 980px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+  .sidebar, .maincard {
+    background: var(--panel); border:1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); backdrop-filter: blur(16px);
+  }
+  .sidebar { padding: 16px; position: sticky; top: 16px; align-self:start; }
+  @media (max-width: 980px) { .sidebar { position: static; } }
+  .maincard { padding: 22px; min-height: 70vh; }
+  .eyebrow {
+    display:inline-flex; align-items:center; gap:8px; border-radius: 999px; background: rgba(123,92,255,.10);
+    color: var(--accent); padding: 7px 12px; font-size: .85rem; font-weight: 700; letter-spacing:.02em;
+    margin-bottom: 12px;
+  }
+  .progress-wrap { margin: 4px 0 12px; }
+  .bar { height: 10px; border-radius: 999px; background: rgba(123,92,255,.12); overflow:hidden; }
+  .bar > div { height:100%; width:0%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .25s ease; }
+  .meta { display:flex; justify-content:space-between; gap:12px; color: var(--muted); font-size: .92rem; margin: 10px 0 2px; }
+  .jump-grid {
+    display:grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap:8px; margin-top: 10px;
+  }
+  .jump {
+    width:100%; min-height:38px; border-radius: 12px; padding:0; font-weight:700;
+  }
+  .jump.current { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(123,92,255,.16); }
+  .jump.done { background: color-mix(in srgb, var(--accent-2) 12%, var(--panel-strong)); }
+  .legend { display:grid; gap:8px; margin-top: 14px; color: var(--muted); font-size:.9rem; }
+  .legend span::before {
+    content:""; display:inline-block; width:12px; height:12px; border-radius:999px; margin-right:8px; vertical-align:-1px;
+  }
+  .legend .l1::before { background: rgba(123,92,255,.5); }
+  .legend .l2::before { background: rgba(0,167,160,.6); }
+  .legend .l3::before { background: rgba(241,185,75,.7); }
+  .qtitle { font-size: clamp(1.15rem, 1.5vw, 1.45rem); line-height:1.45; margin:0 0 10px; }
+  .section { color: var(--accent-2); font-weight:700; letter-spacing:.01em; margin-bottom: 14px; }
+  .choice-list { display:grid; gap:12px; margin-top: 18px; }
+  .choice {
+    border:1px solid var(--line); background: var(--panel-strong); border-radius: 18px; padding: 14px 16px; display:flex; gap:12px; align-items:flex-start;
+  }
+  .choice input, .matrix select, .bowtie select { margin-top: 2px; accent-color: var(--accent); }
+  .choice.correct {
+    border-color: color-mix(in srgb, var(--good) 55%, var(--line)); background: var(--good-bg);
+  }
+  .choice.incorrect {
+    border-color: color-mix(in srgb, var(--bad) 55%, var(--line)); background: var(--bad-bg);
+  }
+  .choice label { cursor:pointer; line-height:1.5; width:100%; }
+  .matrix, .bowtie {
+    width:100%; border-collapse: collapse; margin-top: 16px; overflow:hidden; border-radius: 20px; border:1px solid var(--line);
+  }
+  .matrix th, .matrix td, .bowtie th, .bowtie td {
+    border-bottom:1px solid var(--line); padding: 13px 12px; vertical-align: top; background: var(--panel-strong);
+  }
+  .matrix th, .bowtie th { text-align:left; background: color-mix(in srgb, var(--panel-strong) 86%, var(--accent) 14%); }
+  .matrix tr:last-child td, .bowtie tr:last-child td { border-bottom: none; }
+  select {
+    width:100%; padding:10px 12px; border-radius: 12px; border:1px solid var(--line); background: var(--panel-strong); color: var(--text);
+  }
+  .feedback {
+    margin-top: 18px; padding: 16px 18px; border-radius: 18px; border:1px solid var(--line); display:none; line-height:1.6;
+  }
+  .feedback.show { display:block; }
+  .feedback.good { background: var(--good-bg); color: var(--good); }
+  .feedback.bad { background: var(--bad-bg); color: var(--bad); }
+  .rationale {
+    margin-top:10px; color: var(--text); font-size: .97rem;
+  }
+  .controls {
+    display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top: 22px;
+  }
+  .primary {
+    background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 72%, var(--accent-2) 28%));
+    color: white; border-color: transparent;
+  }
+  .ghost { background: transparent; }
+  .score-card {
+    display:grid; gap:14px; padding: 4px 0 4px;
+  }
+  .stat-grid {
+    display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px;
+  }
+  @media (max-width: 720px) { .stat-grid { grid-template-columns: 1fr; } }
+  .stat {
+    border:1px solid var(--line); background: var(--panel-strong); border-radius: 20px; padding: 18px;
+  }
+  .stat b { display:block; font-size: 1.8rem; margin-top: 8px; }
+  .tiny { font-size:.88rem; color: var(--muted); }
+  .note {
+    border-left: 4px solid var(--accent-3); padding: 12px 14px; background: color-mix(in srgb, var(--accent-3) 13%, var(--panel-strong));
+    border-radius: 14px; line-height:1.55; margin-top: 14px;
+  }
+  .answer-key {
+    margin-top: 10px; padding: 12px 14px; border-radius: 14px;
+    border: 1px solid var(--line); background: var(--panel-strong);
+    line-height: 1.55;
+  }
+  .review-list {
+    display:grid; gap:12px; margin-top: 8px;
+  }
+  .review-card {
+    border:1px solid var(--line); background: var(--panel-strong); border-radius: 18px; padding: 14px;
+  }
+  .review-card h3 { margin: 0 0 8px; font-size: 1rem; }
+  .review-card .tiny { margin-bottom: 6px; display:block; }
+  .review-card button { margin-top: 10px; }
+  .hidden { display:none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="title-card">
+      <h1>HCC2 Mock Exam: Health Disparities, Palliation, Grief, Loss & Suffering</h1>
+      <div class="sub">
+        Application-only practice built from your uploaded HCC2 resources and question stem style.
+        Includes multiple choice, SATA, matrix, and bowtie items with immediate rationales, progress tracking, and dark mode.
+      </div>
+    </div>
+    <div class="utility">
+      <button id="toggleTheme" aria-label="Toggle dark mode">🌙 Toggle mode</button>
+      <button id="resetExam" aria-label="Reset exam">↺ Reset exam</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="eyebrow">Exam dashboard</div>
+      <div class="progress-wrap">
+        <div class="bar"><div id="progressBar"></div></div>
+      </div>
+      <div class="meta">
+        <span id="progressText">0 / 0 complete</span>
+        <span id="scoreText">Score: —</span>
+      </div>
+      <div class="jump-grid" id="jumpGrid"></div>
+      <div class="legend">
+        <span class="l1">Current question</span>
+        <span class="l2">Answered</span>
+        <span class="l3">Mixed formats: MC, SATA, matrix, bowtie</span>
+      </div>
+      <div class="note">
+        HCC2-style reminder: every item is application-based. Read for priority, safety, therapeutic communication, person-centered care, and realistic discharge planning.
+      </div>
+    </aside>
+
+    <main class="maincard">
+      <div id="examArea"></div>
+      <div id="summaryArea" class="hidden"></div>
+    </main>
+  </div>
+</div>
+
+<script>
+const questions = [{"id": 1, "type": "mc", "section": "Health Disparities", "stem": "An adult client with acute-on-chronic heart failure is being prepared for discharge. The client reports gaining 8 lb in 5 days because their insurance denied coverage this month and they could not refill bumetanide. Which nursing action is the priority?", "choices": ["Reinforce low-sodium teaching and proceed with discharge because the client recognizes fluid-overload symptoms", "Notify case management/social work and assess medication affordability before discharge", "Advise the client to ration the remaining medication until the insurance issue is resolved", "Document nonadherence and instruct the client to follow up with the prescriber after discharge"], "answer": [1], "rationale": "The priority is to address the social determinant driving the readmission risk: inability to afford the prescribed medication. The lecture materials emphasize assessing medication affordability before discharge, documenting barriers, and referring early to case management or social work. Teaching alone or telling the client to ration medication does not remove the barrier."}, {"id": 2, "type": "sata", "section": "Health Disparities", "stem": "A nurse is discharging a client with diabetes who has low health literacy, limited transportation, and food insecurity. Which nursing actions are indicated? Select all that apply.", "choices": ["Use teach-back to confirm the client can explain the plan in their own words", "Provide low-literacy written instructions", "Ask what stores or food options are realistically available near the client's home", "Use the client's adolescent child as an interpreter because the family already trusts them", "Confirm that follow-up appointments and transportation plans are realistic before discharge", "Delay discussion of cost because finances are outside the nurse's role"], "answer": [0, 1, 2, 4], "rationale": "The resources stress teach-back, low-literacy education, realistic diet teaching, and discharge planning that addresses transportation and access barriers. Certified interpreters—not family members—should be used when language support is needed. Cost barriers are part of nursing assessment and discharge planning."}, {"id": 3, "type": "matrix", "section": "Health Disparities", "stem": "It is now 1400 and the nurse is planning care for hospitalized clients from vulnerable populations. For each nursing action, indicate whether it is Indicated, Contraindicated, or Non-essential.", "rows": [{"label": "Use a certified interpreter for a client with limited English proficiency", "correct": "Indicated"}, {"label": "Rely on a family member to interpret medication instructions", "correct": "Contraindicated"}, {"label": "Screen for transportation barriers and food insecurity during intake", "correct": "Indicated"}, {"label": "Avoid asking about finances to prevent embarrassing the client", "correct": "Contraindicated"}, {"label": "Reflect on possible implicit bias when assessing pain reports", "correct": "Indicated"}, {"label": "Delay referral to social work until the discharge order is written", "correct": "Contraindicated"}], "options": ["Indicated", "Contraindicated", "Non-essential"], "rationale": "Equity-focused nursing care includes SDOH screening, early referrals, certified interpreters, and reflection on implicit bias. Waiting until discharge or avoiding barrier assessment increases risk for poor outcomes."}, {"id": 4, "type": "bowtie", "section": "Health Disparities", "stem": "A client with hypertension has repeated emergency department visits because the client cannot get to appointments and frequently runs out of food before the end of the month. Complete the bowtie by identifying the most likely contributing factor, the best initial nursing action, and the finding that would best indicate the intervention was effective.", "prompts": ["Most likely contributing factor", "Best initial nursing action", "Best evidence intervention was effective"], "choices": [["Transportation barrier and food insecurity", "Lack of disease severity", "Medication allergy", "Family overinvolvement"], ["Screen for SDOH, document barriers, and refer to social work/case management", "Tell the client to use urgent care instead of the ED", "Provide a generic low-sodium handout only", "Instruct the client to call a taxi after discharge"], ["Client states a realistic transportation plan and identifies accessible food options for the diet plan", "Client repeats the words 'low-sodium diet' exactly as written", "Client says, 'I'll try harder next time'", "Client refuses assistance but accepts a brochure"]], "answer": ["Transportation barrier and food insecurity", "Screen for SDOH, document barriers, and refer to social work/case management", "Client states a realistic transportation plan and identifies accessible food options for the diet plan"], "rationale": "The disparity content emphasizes SDOH screening, documentation of barriers, early referral, and education tailored to what is realistically available. Evidence of effectiveness is not rote repetition; it is the client's ability to describe an achievable plan."}, {"id": 5, "type": "mc", "section": "Palliation", "stem": "A client with advanced COPD is receiving inhalers, pulmonary rehabilitation, and intermittent steroids. The client tells the nurse, 'I feel panicked when I can't catch my breath.' Which statement best describes the role of palliative care for this client?", "choices": ["Palliative care is not appropriate until curative treatment has stopped", "Palliative care can be integrated now to manage dyspnea, anxiety, and quality of life while disease-directed treatment continues", "Palliative care should begin only after the provider certifies a life expectancy of 6 months or less", "Palliative care is the same as hospice and requires a DNR order"], "answer": [1], "rationale": "Palliative care can begin at diagnosis of serious illness and can occur alongside curative or life-prolonging treatment. Hospice is a specific type of palliative care generally used near the end of life when curative treatment stops."}, {"id": 6, "type": "sata", "section": "Palliation", "stem": "A nurse is teaching a family about the difference between hospice and palliative care. Which statements by the nurse are accurate? Select all that apply.", "choices": ["All hospice care is palliative care, but not all palliative care is hospice care", "Palliative care focuses only on physical symptoms", "Hospice care usually applies when life expectancy is about 6 months or less if the disease follows its expected course", "Hospice care includes bereavement support for family members", "Palliative care may address physical, emotional, social, and spiritual needs", "Hospice requires the patient to keep receiving curative treatment"], "answer": [0, 2, 3, 4], "rationale": "Palliative care is broader and can occur at any stage of serious illness. Hospice is end-of-life-focused, typically with a prognosis around 6 months or less, and includes family/bereavement support. Hospice does not require ongoing curative treatment."}, {"id": 7, "type": "matrix", "section": "Palliation", "stem": "The nurse has provided teaching to the family of a dying client. For each family statement, indicate whether the teaching was Effective or Ineffective.", "rows": [{"label": "\"Loss of appetite can be a natural part of the dying process.\"", "correct": "Effective"}, {"label": "\"We should insist on IV hydration because dehydration always increases comfort at end of life.\"", "correct": "Ineffective"}, {"label": "\"We can moisten the lips and mouth and apply emollient if the mouth is dry.\"", "correct": "Effective"}, {"label": "\"Morphine may be used for dyspnea even when the goal is comfort rather than cure.\"", "correct": "Effective"}, {"label": "\"If the client stops wanting food, we should force feed to prevent suffering.\"", "correct": "Ineffective"}, {"label": "\"We should keep asking about the client's goals and preferences.\"", "correct": "Effective"}], "options": ["Effective", "Ineffective"], "rationale": "At end of life, reduced appetite and intake are often natural. Artificial hydration and feeding can increase discomfort from secretions, edema, nausea, and ascites. Oral care, goal-focused communication, and morphine for dyspnea are appropriate comfort measures."}, {"id": 8, "type": "bowtie", "section": "Palliation", "stem": "A client with end-stage COPD is now on hospice. The client is restless, reports severe air hunger, and is using accessory muscles to breathe. Complete the bowtie by selecting the most likely priority problem, the best initial intervention, and the reassessment finding that best shows the intervention helped.", "prompts": ["Priority problem", "Best initial intervention", "Best reassessment finding"], "choices": [["Uncontrolled dyspnea causing distress", "Acute bowel obstruction", "Complicated grief", "Hyperactive delirium related to environmental noise"], ["Administer prescribed morphine for dyspnea and use nonpharmacologic comfort measures such as positioning and cool air", "Encourage the client to ambulate in the hall to improve lung capacity", "Withhold medications until oxygen saturation falls below 88%", "Increase oral fluids rapidly"], ["Client reports less breathlessness and appears less panicked", "Client has a higher appetite at dinner", "Client requests to stop all family visits", "Client develops a productive cough"]], "answer": ["Uncontrolled dyspnea causing distress", "Administer prescribed morphine for dyspnea and use nonpharmacologic comfort measures such as positioning and cool air", "Client reports less breathlessness and appears less panicked"], "rationale": "Dyspnea is subjective and may not correlate perfectly with oxygen saturation or respiratory rate. Opioids are effective for air hunger, and comfort-focused strategies such as positioning and cool air/fan support relief. Improvement is shown by less perceived breathlessness and less anxiety."}, {"id": 9, "type": "mc", "section": "Palliation", "stem": "A hospitalized client is receiving chemotherapy for metastatic cancer and has uncontrolled pain, nausea, and spiritual distress. Which provider request should the nurse anticipate as most appropriate?", "choices": ["A hospice referral only, because active treatment is still occurring", "A palliative care consult to address symptom burden and quality of life while treatment continues", "Discontinuation of all treatment because serious illness automatically meets hospice criteria", "Transfer to psychiatry because distress during cancer treatment is outside palliative care scope"], "answer": [1], "rationale": "Palliative care works alongside disease-directed treatment and addresses pain, other symptoms, emotional distress, social needs, and spiritual concerns."}, {"id": 10, "type": "sata", "section": "Palliation", "stem": "A nurse is managing non-pain symptoms for a client receiving end-of-life care. Which interventions or principles are supported by the course resources? Select all that apply.", "choices": ["Ask the patient and family to help determine priorities of care", "Assess symptom distress rather than focusing only on diagnoses", "Assume dyspnea severity can be judged accurately from respiratory rate alone", "Treat the cause of dyspnea when possible and the symptom itself", "Expect constipation with opioid use and plan prevention early", "Give antiemetics only PRN even when nausea occurs daily"], "answer": [0, 1, 3, 4], "rationale": "The resources emphasize patient/family priorities, symptom assessment, treating both etiology and symptom when possible, and preventing opioid-related constipation. Dyspnea is subjective and does not correlate perfectly with respiratory rate or oxygen status. Daily nausea often calls for around-the-clock antiemetic therapy."}, {"id": 11, "type": "matrix", "section": "Palliation", "stem": "It is now 1700 and the nurse has just implemented a comfort plan for a client with terminal dyspnea. For each reassessment finding, indicate whether it is Expected or Unexpected after effective intervention.", "rows": [{"label": "Client rates dyspnea as less intense during talking", "correct": "Expected"}, {"label": "Client appears less panicked and less frustrated", "correct": "Expected"}, {"label": "Family states the client seems more comfortable with cool air and positioning", "correct": "Expected"}, {"label": "Nurse concludes dyspnea is resolved because respiratory rate is lower even though the client still says breathing feels terrible", "correct": "Unexpected"}, {"label": "Client develops increasing distress after secretions worsen and no follow-up assessment is done", "correct": "Unexpected"}], "options": ["Expected", "Unexpected"], "rationale": "Effective dyspnea management focuses on the client's subjective experience and observable distress reduction. A lower respiratory rate alone does not prove relief if the client still feels breathless. Ongoing reassessment is essential."}, {"id": 12, "type": "mc", "section": "Palliation", "stem": "Which client best meets typical hospice eligibility criteria described in the course resources?", "choices": ["A client newly diagnosed with multiple sclerosis who wants symptom support while continuing all long-term therapies", "A client with progressive metastatic cancer, limited life expectancy of about 6 months, and a decision to focus on comfort rather than curative treatment", "A client with controlled heart failure who wants dietary teaching before discharge", "A client with chronic kidney disease requesting social work because transportation is unreliable"], "answer": [1], "rationale": "Hospice is generally appropriate for serious progressive illness with limited life expectancy—often about 6 months if the disease follows its expected course—and a comfort-focused plan rather than curative treatment."}, {"id": 13, "type": "sata", "section": "Grief, Loss, Suffering", "stem": "The nurse is assessing a client's response to the death of a spouse. Which variables can influence the grief response? Select all that apply.", "choices": ["Previous experience with death and loss", "Type and suddenness of the death", "Quality of the relationship with the deceased", "Culture, ethnicity, and spiritual beliefs", "Support systems and concurrent stressors", "Whether the nurse personally agrees with the family's coping style"], "answer": [0, 1, 2, 3, 4], "rationale": "Course materials identify prior losses, nature/cause of death, quality of relationship, support systems, mental health/substance history, coping capacity, and cultural/spiritual factors as influences on grief. The nurse's agreement is irrelevant."}, {"id": 14, "type": "matrix", "section": "Grief, Loss, Suffering", "stem": "For each scenario, indicate the type of grief that is most clearly illustrated.", "rows": [{"label": "A spouse begins mourning while a partner with terminal Alzheimer's disease is still alive", "correct": "Anticipatory"}, {"label": "A client's intense, prolonged grief after a sudden child's death is preventing any forward movement in life", "correct": "Complicated"}, {"label": "A nurse grieves privately after a patient's death but feels others do not recognize the loss as legitimate", "correct": "Disenfranchised"}, {"label": "A bereaved adult experiences intense sadness and crying in the weeks after a parent's death, then gradually begins to reinvest in life", "correct": "Normal"}], "options": ["Normal", "Anticipatory", "Disenfranchised", "Complicated"], "rationale": "Anticipatory grief occurs before death, complicated grief is prolonged or maladaptive, disenfranchised grief is not openly supported by society, and normal grief varies but gradually progresses toward adaptation."}, {"id": 15, "type": "mc", "section": "Grief, Loss, Suffering", "stem": "The nurse is caring for a hospitalized 7-year-old whose grandparent has died. Which assessment finding is most consistent with the child's developmental understanding of death?", "choices": ["The child fully understands personal mortality and asks detailed questions about future estate planning", "The child believes death is reversible and mostly fantasy-based", "The child is beginning to understand death is final and may show regressive or aggressive behaviors", "The child is unable to experience separation distress because death is not understood until adolescence"], "answer": [2], "rationale": "School-age children around 6 to 9 years are beginning to understand finality of death and may show regressive or aggressive grief reactions."}, {"id": 16, "type": "sata", "section": "Grief, Loss, Suffering", "stem": "A client says, 'I don't know how I'm supposed to live without her.' Which nurse responses are therapeutic? Select all that apply.", "choices": ["\"Tell me what has been hardest for you today.\"", "\"I know exactly how you feel.\"", "\"Would it help to talk about support people or resources that could be with you?\"", "\"At least she didn't suffer.\"", "\"Would you like me to stay with you for a while?\"", "\"Let me know if there's anything I can do for you.\""], "answer": [0, 2, 4], "rationale": "Therapeutic communication uses presence, listening, individualized support, and offers of specific help. Nontherapeutic responses include minimizing, assuming feelings, or using vague statements that place the burden on the grieving person."}, {"id": 17, "type": "bowtie", "section": "Grief, Loss, Suffering", "stem": "A client learns during hospitalization that a sibling has died and becomes distraught. Complete the bowtie by choosing the best immediate nursing response, the underlying therapeutic principle, and the best indicator the intervention is helping.", "prompts": ["Best immediate response", "Underlying therapeutic principle", "Best indicator of effectiveness"], "choices": [["Ask whether the client would like a visit from the chaplain or social services", "Leave the client alone unless medications are due", "Tell the client to stay strong for the family", "Request an immediate psychiatric evaluation before speaking with the client"], ["Support coping through presence, choice, and active listening", "Avoid emotion so the nurse stays objective", "Redirect grief quickly so the client can rest", "Encourage denial until discharge"], ["Client begins expressing feelings and identifies a preferred support person", "Client stops crying immediately", "Client agrees not to discuss the death again today", "Client asks the nurse to leave and refuses all support"]], "answer": ["Ask whether the client would like a visit from the chaplain or social services", "Support coping through presence, choice, and active listening", "Client begins expressing feelings and identifies a preferred support person"], "rationale": "The appropriate action is to offer support and options, not to impose or withdraw. Effective grief support centers on presence, listening, and individualized resources."}, {"id": 18, "type": "mc", "section": "Grief, Loss, Suffering", "stem": "A family member asks, 'Why are you still turning him and doing mouth care if he is dying anyway?' Which response by the nurse is best?", "choices": ["These measures are mostly routine and not very important once a patient is actively dying", "Comfort care focuses on dignity and symptom relief, so repositioning and mouth care are used to reduce discomfort even when cure is no longer possible", "We continue these interventions because the family could be reported for neglect if we stop", "These actions are required only when artificial hydration is continued"], "answer": [1], "rationale": "Hospice and palliative care prioritize comfort, dignity, and relief of suffering. Repositioning and oral care are meaningful comfort measures even when cure is not the goal."}, {"id": 19, "type": "sata", "section": "Palliation", "stem": "A client receiving opioids for end-of-life comfort has not had a bowel movement for 3 days. Which nursing actions are appropriate based on the symptom management resources? Select all that apply.", "choices": ["Recognize constipation prevention is easier than treatment after it occurs", "Expect no bowel movement as long as oral intake is poor", "Anticipate constipation with opioid therapy", "Escalate the bowel plan when no bowel movement occurs within expected time frames", "Assess the client's usual bowel pattern and relevant history", "Delay intervention until severe abdominal pain develops"], "answer": [0, 2, 3, 4], "rationale": "Constipation is expected with opioids and altered intake/activity. Prevention, assessment of baseline bowel habits, and timely escalation of treatment are emphasized. Waiting for severe symptoms is unsafe."}, {"id": 20, "type": "matrix", "section": "Grief, Loss, Suffering", "stem": "It is now 0900 and the nurse is supporting a family after a recent death. For each nursing action, indicate whether it is Indicated, Contraindicated, or Non-essential.", "rows": [{"label": "Use silence and presence while the family shares the story of the loss", "correct": "Indicated"}, {"label": "Tell the family, 'At least you had time to prepare'", "correct": "Contraindicated"}, {"label": "Ask about cultural or spiritual practices the family would like honored", "correct": "Indicated"}, {"label": "Focus only on physical care needs to avoid increasing the family's emotions", "correct": "Contraindicated"}, {"label": "Offer referral to bereavement, counseling, or community resources when needed", "correct": "Indicated"}, {"label": "Insist on the chaplain visit even if the family declines", "correct": "Contraindicated"}], "options": ["Indicated", "Contraindicated", "Non-essential"], "rationale": "Appropriate grief care includes listening, individualized support, cultural sensitivity, and resource referral. Minimizing statements, emotional avoidance, or imposing spiritual care are not therapeutic."}, {"id": 21, "type": "bowtie", "section": "Palliation", "stem": "A dying client has noisy respiratory secretions, dry cracked lips, and the family worries that stopping IV fluids is causing suffering. Complete the bowtie by selecting the most appropriate explanation, intervention, and finding that best supports effective care.", "prompts": ["Best explanation", "Best intervention", "Best evidence care is effective"], "choices": [["Loss of appetite and reduced intake can be a natural part of the dying process, and extra fluids may worsen secretions and discomfort", "Stopping fluids always causes painful dehydration and should be reversed immediately", "Noisy secretions mean the client is hungry", "Dry lips prove the client is being neglected"], ["Provide mouth care, moisten lips, reposition, and manage secretions per the comfort plan", "Force oral fluids every 15 minutes", "Begin tube feedings to stop the death rattle", "Avoid repositioning to preserve energy"], ["Family verbalizes understanding and the client appears more comfortable with less distress", "The client starts requesting large meals", "The family says they now want full curative treatment solely because of dry lips", "The noisy breathing stops immediately without any other care"]], "answer": ["Loss of appetite and reduced intake can be a natural part of the dying process, and extra fluids may worsen secretions and discomfort", "Provide mouth care, moisten lips, reposition, and manage secretions per the comfort plan", "Family verbalizes understanding and the client appears more comfortable with less distress"], "rationale": "The end-of-life slides emphasize that reduced intake is often natural, extra fluids can worsen secretions and edema, and oral comfort measures remain important. Reassessment should show improved comfort and family understanding."}, {"id": 22, "type": "mc", "section": "Health Disparities", "stem": "Which statement by a nursing student best reflects accurate understanding of health disparities from the course resources?", "choices": ["Health disparities are unavoidable differences explained mostly by patient choices", "Lack of health insurance is one of the most significant factors associated with poor quality of care", "Health disparities matter mainly in outpatient public health, not in acute care", "Health equity means giving every client identical instructions regardless of resources"], "answer": [1], "rationale": "The health disparities content emphasizes that disparities are preventable differences affecting optimal health, and lack of health insurance is a major factor in poor quality of care. Equity means fair opportunity and tailoring care to actual barriers and access."}, {"id": 23, "type": "sata", "section": "Palliation + Grief", "stem": "A nurse is caring for a dying client and the family at the bedside. Which actions support person-centered, culturally sensitive end-of-life care? Select all that apply.", "choices": ["Ask about the client's goals, values, and preferred place or manner of care when possible", "Support family coping and bereavement needs", "Provide the same script to every family so care stays standardized", "Coordinate with the interprofessional team, including spiritual care when desired", "Respect rapidly changing physical, social, and spiritual needs during the dying process", "Judge decisions that differ from the nurse's personal beliefs"], "answer": [0, 1, 3, 4], "rationale": "Primary palliative care competencies include person-centered goals, team collaboration, support for grief and bereavement, and culturally sensitive response to changing needs. Standardized scripts and judgment undermine individualized care."}, {"id": 24, "type": "mc", "section": "Grief, Loss, Suffering", "stem": "A nurse notices feeling emotionally distant, avoiding a dying client's room except for technical tasks, and focusing only on physical care. Which interpretation is most accurate?", "choices": ["These behaviors show excellent professional boundaries and require no reflection", "These are common defensive responses to death anxiety and signal a need for self-awareness and self-care", "These behaviors prove the nurse is not suited for nursing", "These responses are required so the nurse does not intensify family grief"], "answer": [1], "rationale": "The grief slides describe emotional distancing, avoidance, and focusing only on physical care as defenses nurses may use in response to death anxiety. Increasing death awareness, reflection, discussion, and self-care are healthier responses."}, {"id": 25, "type": "mc", "section": "Health Disparities", "stem": "A nurse is admitting a client with uncontrolled diabetes who has missed two clinic visits. The client says, \"I work hourly shifts and the bus route doesn't run early enough for my appointments.\" Which response by the nurse best addresses the likely barrier?", "choices": ["\"You need to prioritize your health and keep the appointments you were given.\"", "\"Let's talk about transportation barriers now so we can document them and involve case management early.\"", "\"I'll ask the provider to repeat the diabetes teaching since missed visits usually mean poor motivation.\"", "\"Because you came to the hospital today, transportation is not the real issue.\""], "answer": [1], "rationale": "The health-disparities content emphasizes early SDOH screening, clear documentation of barriers, and referral to case management or social work. The client's statement identifies transportation as a realistic access barrier, not simply lack of motivation."}, {"id": 26, "type": "sata", "section": "Health Disparities", "stem": "The nurse is planning discharge teaching for an uninsured client with heart failure who lives in a rural area. Which interventions are appropriate? Select all that apply.", "choices": ["Verify the client has a realistic follow-up plan before discharge", "Provide information about sliding-scale clinics or assistance programs", "Assume the client will call the office if medication cost becomes a problem", "Assess whether the client can afford prescribed medications", "Ask about internet access only if the client specifically mentions it", "Document transportation concerns that may affect follow-up"], "answer": [0, 1, 3, 5], "rationale": "Course materials emphasize realistic follow-up planning, medication-affordability assessment, local assistance resources, and clear documentation of access barriers such as transportation. Waiting for the client to volunteer problems or assuming barriers will resolve increases risk for nonadherence and readmission."}, {"id": 27, "type": "matrix", "section": "Health Disparities", "stem": "The nurse is caring for several clients from vulnerable populations. For each planned intervention, indicate whether it is Indicated, Contraindicated, or Non-essential.", "rows": [{"label": "Use teach-back after explaining a new low-sodium diet", "correct": "Indicated"}, {"label": "Tell the client to buy healthier food without asking what stores are accessible", "correct": "Contraindicated"}, {"label": "Assess whether the client has reliable internet for telehealth follow-up", "correct": "Indicated"}, {"label": "Use the adult daughter to interpret because it saves time", "correct": "Contraindicated"}, {"label": "Ask what assumptions the care team may be making about adherence", "correct": "Indicated"}, {"label": "Delay SDOH screening until the discharge paperwork is complete", "correct": "Contraindicated"}], "options": ["Indicated", "Contraindicated", "Non-essential"], "rationale": "Equity-focused care requires tailored teaching, realistic assessment of access, certified interpreters, and reflection on implicit assumptions. Generic advice or delaying assessment ignores barriers that drive poor outcomes."}, {"id": 28, "type": "bowtie", "section": "Health Disparities", "stem": "A postpartum client has limited prenatal care, no reliable transportation, and difficulty reading discharge paperwork. Complete the bowtie by identifying the most likely contributor to risk, the best nursing action, and the best outcome indicator.", "prompts": ["Most likely contributor to poor outcomes", "Best nursing action", "Best indicator the plan is effective"], "choices": [["Combined access barriers related to transportation and low health literacy", "Lack of maternal interest in newborn care", "Provider shortage alone with no other factors", "Intentional refusal of care"], ["Use plain-language teaching, teach-back, and connect the client with follow-up resources before discharge", "Give the standard packet and tell the client to call with questions", "Ask a family member to explain the paperwork later", "Shorten the education session to avoid overwhelming the client"], ["The client accurately explains warning signs and can describe how follow-up will occur", "The client nods silently during teaching", "The client states, 'I'll read it all when I get home'", "The client says transportation will probably work out somehow"]], "answer": ["Combined access barriers related to transportation and low health literacy", "Use plain-language teaching, teach-back, and connect the client with follow-up resources before discharge", "The client accurately explains warning signs and can describe how follow-up will occur"], "rationale": "The resources emphasize low-literacy teaching, realistic discharge planning, and addressing transportation barriers before discharge. Effective education is shown by teach-back and a concrete follow-up plan, not by passive agreement."}, {"id": 29, "type": "mc", "section": "Health Disparities", "stem": "A client reports, \"No one ever believes me when I say how bad the pain is.\" Which nursing action best reflects the course guidance on racial and cultural disparities?", "choices": ["Reassess the pain using the same scale, reflect on possible bias, and advocate if the client's pain concerns are not being heard", "Explain that pain is subjective and the provider will decide whether it is severe enough", "Ask the family if the client usually exaggerates symptoms", "Delay further action until objective signs of pain become more obvious"], "answer": [0], "rationale": "The lecture materials specifically link disparities to communication and unequal pain assessment. The nurse should assess pain equitably, reflect on possible bias, and advocate when patients report not feeling heard."}, {"id": 30, "type": "sata", "section": "Health Disparities", "stem": "Which nursing actions help reduce community-level health disparities according to the course resources? Select all that apply.", "choices": ["Participate in community health fairs", "Work with public health departments", "Collect and report disparity data", "Join hospital equity committees", "Avoid policy issues because they are outside the nursing role", "Advocate for policies that improve access to care"], "answer": [0, 1, 2, 3, 5], "rationale": "The health-disparities resources describe community advocacy as part of nursing: community health fairs, public-health collaboration, equity committees, reporting disparity data, and policy advocacy. Avoiding these roles does not align with the course content."}, {"id": 31, "type": "mc", "section": "Palliation", "stem": "A client with metastatic cancer says, \"I still want chemotherapy, but I also want help with fatigue, nausea, and anxiety.\" Which nursing statement is most accurate?", "choices": ["\"Because you are still receiving chemotherapy, hospice is the only service that can help now.\"", "\"Palliative care can be added now because it focuses on quality of life while disease-directed treatment continues.\"", "\"Symptom management should wait until treatment is stopped so goals are not mixed.\"", "\"Palliative care is reserved for the final days of life.\""], "answer": [1], "rationale": "Palliative care can begin early in serious illness and may occur alongside curative or life-prolonging treatment. It addresses physical, emotional, social, and spiritual distress while treatment continues."}, {"id": 32, "type": "sata", "section": "Palliation", "stem": "The nurse is assessing a client with serious illness for palliative care needs. Which assessment domains align with the course objectives? Select all that apply.", "choices": ["Physical symptoms such as dyspnea or nausea", "Psychological distress such as anxiety or depression", "Social concerns such as caregiver strain or finances", "Spiritual distress or loss of meaning", "Only pain, because other symptoms are secondary", "Client and family goals of care"], "answer": [0, 1, 2, 3, 5], "rationale": "Primary palliative care objectives call for holistic assessment of physical, psychological, social, and spiritual needs, along with alignment of care to client and family goals. Limiting assessment to pain alone is incomplete."}, {"id": 33, "type": "matrix", "section": "Palliation", "stem": "A nurse is implementing comfort-focused care for a dying client. For each action, indicate whether it is Indicated, Contraindicated, or Non-essential.", "rows": [{"label": "Provide mouth care and apply emollient to dry lips", "correct": "Indicated"}, {"label": "Force oral intake despite choking and refusal", "correct": "Contraindicated"}, {"label": "Reposition the client to reduce discomfort and skin breakdown", "correct": "Indicated"}, {"label": "Assume oxygen saturation alone reflects the client's dyspnea severity", "correct": "Contraindicated"}, {"label": "Ask about patient and family goals before changing the plan of care", "correct": "Indicated"}, {"label": "Delay symptom treatment until the provider rounds if the client is distressed now", "correct": "Contraindicated"}], "options": ["Indicated", "Contraindicated", "Non-essential"], "rationale": "Comfort care includes oral care, repositioning, ongoing goal assessment, and prompt symptom management. The materials stress that dyspnea is subjective and intake at end of life should be individualized rather than forced."}, {"id": 34, "type": "bowtie", "section": "Palliation", "stem": "A client with advanced heart failure is still receiving disease-directed treatment but now has severe fatigue, nausea, and emotional distress. Complete the bowtie by selecting the best description, best nursing action, and best evidence the intervention is working.", "prompts": ["Best description of the situation", "Best nursing action", "Best evidence of effectiveness"], "choices": [["The client may benefit from palliative care integrated with ongoing treatment", "The client now automatically qualifies for hospice because symptoms are present", "The client should stop all treatments before symptom management begins", "The client needs only discharge teaching, not interdisciplinary input"], ["Request palliative care involvement and perform a holistic symptom assessment", "Tell the client to discuss symptoms only with oncology at the next visit", "Focus only on physical symptoms because emotional distress is expected", "Wait until the prognosis is less than 6 months"], ["The client reports improved symptom control and the plan reflects the client's stated goals", "The client agrees not to mention fatigue again", "The family states they understand hospice rules even though hospice was not discussed", "The client's lab work is unchanged"]], "answer": ["The client may benefit from palliative care integrated with ongoing treatment", "Request palliative care involvement and perform a holistic symptom assessment", "The client reports improved symptom control and the plan reflects the client's stated goals"], "rationale": "Palliative care is integrated across the disease trajectory and is guided by holistic assessment plus person-centered goals. Effectiveness is shown by symptom relief and care that matches patient preferences."}, {"id": 35, "type": "mc", "section": "Palliation", "stem": "A family asks why morphine is being offered to a hospice client who denies pain but is gasping and panicked. Which explanation by the nurse is best?", "choices": ["Morphine is being used only to help the client sleep through the dying process", "Morphine can reduce the sensation of air hunger and distress even when the client is not reporting pain", "Morphine is necessary because oxygen is no longer effective for any dyspnea", "Morphine is given mainly to lower the respiratory rate to a normal range"], "answer": [1], "rationale": "The palliation resources state that opioids such as morphine relieve dyspnea or air hunger. The goal is symptom relief and improved comfort, not simply sedation or normalization of numbers."}, {"id": 36, "type": "sata", "section": "Palliation", "stem": "Which findings and principles about dyspnea should the nurse keep in mind when providing comfort-focused care? Select all that apply.", "choices": ["Dyspnea is subjective like pain", "Respiratory rate and oxygen saturation always correlate with breathlessness", "Dyspnea can trigger panic, anxiety, frustration, and depression", "The nurse should ask the client to rate dyspnea intensity with different activities when possible", "Morphine may be used even when the client is not reporting pain", "Only pulmonary disease causes dyspnea at end of life"], "answer": [0, 2, 3, 4], "rationale": "The symptom-management slides stress that dyspnea is subjective, may not correlate with oxygen data, and often causes affective distress. Assessment includes intensity and activity pattern, and opioids may be used for dyspnea even without pain."}, {"id": 37, "type": "matrix", "section": "Palliation", "stem": "The nurse is teaching a family about nausea and vomiting near end of life. For each statement, indicate whether the teaching was Effective or Ineffective.", "rows": [{"label": "\"Vomiting can still occur even if the client is minimally responsive.\"", "correct": "Effective"}, {"label": "\"If nausea occurs daily, medications may need to be scheduled rather than given only once symptoms are severe.\"", "correct": "Effective"}, {"label": "\"Because nausea often occurs at end of life, there is no need to treat it.\"", "correct": "Ineffective"}, {"label": "\"Opioid-related nausea sometimes improves after a few days, but the client still needs assessment and comfort measures.\"", "correct": "Effective"}, {"label": "\"The main goal is to stop all food intake permanently.\"", "correct": "Ineffective"}], "options": ["Effective", "Ineffective"], "rationale": "The comfort materials note that nausea and vomiting are common at end of life, may occur even in unresponsive clients, and often require assessment plus around-the-clock medication when recurrent. Accepting untreated distress is not appropriate."}, {"id": 38, "type": "bowtie", "section": "Palliation", "stem": "A client with advanced cancer has had no bowel movement for 4 days after starting opioid therapy. Complete the bowtie by selecting the most likely cause, best action, and best reassessment finding.", "prompts": ["Most likely cause", "Best nursing action", "Best reassessment finding"], "choices": [["Opioid-related constipation complicated by immobility and altered intake", "A normal expected pattern requiring no follow-up", "Acute grief response", "Primary anxiety disorder"], ["Assess bowel pattern and implement the constipation plan rather than waiting for spontaneous resolution", "Stop all opioid medication immediately without notifying anyone", "Increase fluid intake aggressively regardless of aspiration risk", "Tell the family constipation is unavoidable at end of life"], ["The client has a bowel movement and abdominal discomfort decreases", "The client reports more fatigue but no bowel movement occurs", "The family says they will monitor the problem at home later", "The client becomes more restless and distended"]], "answer": ["Opioid-related constipation complicated by immobility and altered intake", "Assess bowel pattern and implement the constipation plan rather than waiting for spontaneous resolution", "The client has a bowel movement and abdominal discomfort decreases"], "rationale": "Constipation is common with life-limiting illness and expected with opioids. Prevention and early treatment are emphasized because waiting for spontaneous resolution increases discomfort and complications."}, {"id": 39, "type": "mc", "section": "Palliation", "stem": "Which nursing statement best reflects the course teaching about terminal dehydration?", "choices": ["Artificial hydration is always required because dehydration universally worsens comfort", "Benefits and burdens of hydration should be individualized because research is inconclusive and extra fluids may increase discomfort for some clients", "Hydration decisions belong only to the provider, so nurses should avoid discussing them with families", "Terminal dehydration is mainly managed by insisting the family continue tube feedings"], "answer": [1], "rationale": "The course resources state that terminal dehydration should be individualized, with discussion of benefits and burdens. Research is inconclusive, and added fluids may worsen secretions, nausea, edema, or ascites for some dying clients."}, {"id": 40, "type": "sata", "section": "Palliation", "stem": "A nurse is supporting a family after a transition to hospice. Which actions align with hospice philosophy and course content? Select all that apply.", "choices": ["Focus on comfort, dignity, and quality of life", "Include bereavement support for family members", "Continue aggressive curative treatment as the central goal", "Coordinate care with an interdisciplinary team", "Ask about the client's fears and goals for end-of-life care", "Avoid discussing advance directives because they increase anxiety"], "answer": [0, 1, 3, 4], "rationale": "Hospice philosophy focuses on comfort, dignity, quality of life, family support, and interdisciplinary care. The nurse should assess fears and goals rather than avoiding conversations about preferences or planning."}, {"id": 41, "type": "mc", "section": "Palliation", "stem": "A dying client begins speaking about \"going away\" and says they see deceased relatives. The family asks if the client is confused. Which response by the nurse is best?", "choices": ["\"This can be part of near-death awareness and should not automatically be labeled abnormal confusion.\"", "\"Yes, this always means the client has untreated psychosis.\"", "\"That means the client is no longer able to hear or understand you.\"", "\"Those statements prove the client now lacks decision-making capacity.\""], "answer": [0], "rationale": "The palliative slides describe near-death awareness and emotional-spiritual release as phenomena that should not automatically be dismissed as abnormal confusion. The nurse should support the family and continue assessment."}, {"id": 42, "type": "sata", "section": "Palliation", "stem": "Which comfort interventions are commonly mistaken for curative treatment but may still be appropriate in palliation or hospice? Select all that apply.", "choices": ["Morphine for shortness of breath", "Mouth care", "Repositioning", "Fan or cool air", "Suctioning secretions when indicated for comfort", "Insisting on aggressive IV hydration for every dying client"], "answer": [0, 1, 2, 3, 4], "rationale": "The lecture notes specifically list oxygen, morphine for dyspnea, IV fluids, repositioning, suctioning secretions, anti-anxiety medications, mouth care, and fan/cool air as comfort interventions students often mistake for treatment. Their use should be guided by comfort goals, not automatic assumptions."}, {"id": 43, "type": "matrix", "section": "Palliation", "stem": "The RN is delegating care for a stable hospice client. For each task, indicate whether it is Appropriate to delegate to UAP or Not appropriate to delegate.", "rows": [{"label": "Provide routine mouth care as directed in the plan of care", "correct": "Appropriate to delegate"}, {"label": "Reassess the meaning of new terminal agitation and determine changes to the plan", "correct": "Not appropriate to delegate"}, {"label": "Assist with turning and repositioning for comfort", "correct": "Appropriate to delegate"}, {"label": "Provide initial teaching about liquid morphine dosing to the family", "correct": "Not appropriate to delegate"}, {"label": "Report changes in skin condition or increased restlessness to the RN", "correct": "Appropriate to delegate"}], "options": ["Appropriate to delegate", "Not appropriate to delegate"], "rationale": "Stable, routine comfort measures can be delegated to UAP, but assessment, evaluation, and teaching remain the RN's responsibility. Reporting changes is appropriate; interpreting and teaching about new findings is not."}, {"id": 44, "type": "bowtie", "section": "Palliation", "stem": "A client on comfort care becomes increasingly restless, pulls at the gown, and has disorganized speech. Complete the bowtie by selecting the most likely symptom pattern, best nursing action, and best indicator the intervention helped.", "prompts": ["Most likely symptom pattern", "Best nursing action", "Best indicator the intervention helped"], "choices": [["Altered cognition or terminal agitation that requires assessment of possible causes", "Normal grief requiring no comfort measures", "Simple boredom due to low stimulation", "Stable coping with end-of-life care"], ["Assess for reversible causes when possible, provide calm support, and collaborate on pharmacologic and nonpharmacologic management", "Argue with the client to reorient them forcefully", "Leave the client alone so stimulation is minimized regardless of distress", "Assume the family is overreacting and chart no change"], ["The client appears calmer and less distressed, and family reports less anguish", "The client becomes more combative and diaphoretic", "The client asks detailed questions about discharge instructions", "The family leaves the bedside because care feels chaotic"]], "answer": ["Altered cognition or terminal agitation that requires assessment of possible causes", "Assess for reversible causes when possible, provide calm support, and collaborate on pharmacologic and nonpharmacologic management", "The client appears calmer and less distressed, and family reports less anguish"], "rationale": "The comfort resources identify altered cognition and terminal agitation as distressing symptoms that require assessment plus supportive pharmacologic and nonpharmacologic care. Improvement is measured by reduced distress for the client and family."}, {"id": 45, "type": "mc", "section": "Palliation", "stem": "Which client best meets the course description of hospice care?", "choices": ["A client newly diagnosed with heart failure who wants symptom support while beginning treatment", "A client with severe COPD receiving inhalers and pulmonary rehab who wants help with dyspnea", "A client with end-stage cancer who has stopped chemotherapy and is focusing on comfort and dignity", "A client recovering from pneumonia who needs discharge teaching and home health"], "answer": [2], "rationale": "Hospice is a specific form of palliative care focused on end of life, usually when life expectancy is about 6 months or less and curative treatment has stopped. The other clients may need palliative support but do not best match hospice criteria."}, {"id": 46, "type": "mc", "section": "Grief, Loss, Suffering", "stem": "A client whose spouse recently died says, \"Some days I cry constantly and other days I feel numb. Then I feel guilty when I laugh.\" Which nursing interpretation is best?", "choices": ["These changing emotions suggest the client is experiencing an individualized, unpredictable grief process", "The client is showing clear evidence of psychosis", "The client should have moved past acute grief already if coping were healthy", "The client is demonstrating manipulative behavior that should be redirected"], "answer": [0], "rationale": "The grief slides describe grief as a normal, individualized, and unpredictable process. Fluctuating sadness, numbness, guilt, and brief moments of relief can occur without indicating pathology."}, {"id": 47, "type": "sata", "section": "Grief, Loss, Suffering", "stem": "Which factors can influence a person's response to grief according to the course materials? Select all that apply.", "choices": ["Previous experiences with death and loss", "Nature and cause of the death", "Quality of the relationship with the deceased", "Support systems and resilience", "Culture, ethnicity, and spiritual beliefs", "Blood pressure reading on the day of the loss alone"], "answer": [0, 1, 2, 3, 4], "rationale": "The grief resources list prior losses, type and cause of death, relationship quality, mental health and coping, support systems, culture, ethnicity, and spiritual beliefs as variables affecting grief. A vital sign in isolation does not capture grief response."}, {"id": 48, "type": "matrix", "section": "Grief, Loss, Suffering", "stem": "For each situation, indicate the type of grief that best fits the scenario.", "rows": [{"label": "A spouse begins grieving emotionally while caring for a partner with terminal cancer", "correct": "Anticipatory grief"}, {"label": "A nurse feels deep grief after the death of a long-term patient, but others dismiss it as part of the job", "correct": "Disenfranchised grief"}, {"label": "A parent remains unable to move forward years after the sudden death of a child and engages in self-destructive behavior", "correct": "Complicated grief"}, {"label": "A bereaved adult shows waves of sorrow that gradually integrate into daily life over time", "correct": "Normal grief"}, {"label": "A person shows little reaction initially, then has intense grief after a later unrelated loss", "correct": "Delayed or inhibited grief"}], "options": ["Normal grief", "Anticipatory grief", "Disenfranchised grief", "Complicated grief", "Delayed or inhibited grief"], "rationale": "The grief slides distinguish anticipatory, disenfranchised, normal, complicated, and delayed grief based on timing, social recognition, severity, and ability to move forward after loss."}, {"id": 49, "type": "bowtie", "section": "Grief, Loss, Suffering", "stem": "A client says, \"My partner died, but people keep telling me to be grateful for the time we had. I feel even more alone.\" Complete the bowtie by choosing the best interpretation, best nursing response, and best evidence of effective care.", "prompts": ["Best interpretation", "Best nursing response", "Best evidence care is effective"], "choices": [["The client may be experiencing unsupported grief and needs therapeutic listening rather than minimizing statements", "The client is refusing to cope and should be redirected quickly", "The client mainly needs advice to stay busy", "The client no longer needs bereavement support because the death already occurred"], ["Use active listening and invite the client to describe the loss in their own words", "Say, 'I know exactly how you feel'", "Tell the client, 'At least your partner didn't suffer'", "Change the topic to avoid worsening the client's sadness"], ["The client begins sharing the story of the loss and identifies one supportive resource", "The client becomes silent because the nurse stopped discussing the loss", "The client immediately states grief is gone", "The client agrees not to cry in front of staff"]], "answer": ["The client may be experiencing unsupported grief and needs therapeutic listening rather than minimizing statements", "Use active listening and invite the client to describe the loss in their own words", "The client begins sharing the story of the loss and identifies one supportive resource"], "rationale": "The nurse's role includes listening, supporting grief work, and avoiding minimizing statements such as 'I know how you feel' or 'at least....' Effective care is shown when the client is able to tell the story and connect with support."}, {"id": 50, "type": "mc", "section": "Grief, Loss, Suffering", "stem": "Which nursing action best reflects Worden's grief theory in practice?", "choices": ["Encouraging the bereaved client to avoid reminders of the deceased so reintegration happens faster", "Supporting the client in acknowledging the loss, experiencing the pain, and gradually adjusting to life without the deceased", "Telling the client there is a correct stage order that must be followed to grieve normally", "Focusing solely on medication because grief theory does not guide nursing care"], "answer": [1], "rationale": "Worden's tasks include accepting the reality of the loss, experiencing the pain of grief, adjusting to a world without the deceased, and emotionally relocating the person while moving forward. Nursing care supports these tasks rather than forcing avoidance or rigid stage expectations."}, {"id": 51, "type": "sata", "section": "Grief, Loss, Suffering", "stem": "A nurse is caring for the family of a dying client. Which interventions support grieving clients and families? Select all that apply.", "choices": ["Use presence, silence, and therapeutic touch when appropriate", "Encourage available support systems", "Ask about cultural or spiritual practices that should be honored", "Tell the family they need to stay strong for the client and avoid crying", "Offer referral to bereavement or counseling resources when needed", "Help family members find meaning or ways to honor the loss if they are ready"], "answer": [0, 1, 2, 4, 5], "rationale": "The grief slides emphasize listening, presence, individualized support, cultural sensitivity, and referral to professional resources when needed. Telling families not to cry suppresses rather than supports grief."}, {"id": 52, "type": "matrix", "section": "Grief, Loss, Suffering", "stem": "A nurse is teaching about children's concepts of death. For each age group, indicate whether the statement is Accurate or Inaccurate.", "rows": [{"label": "Ages 3 to 5 may believe death is reversible and have difficulty separating fantasy from reality", "correct": "Accurate"}, {"label": "Ages 6 to 9 usually understand the finality of death perfectly and have no behavioral grief reactions", "correct": "Inaccurate"}, {"label": "Ages 10 to 12 often understand death is final and may feel anger, guilt, or depression", "correct": "Accurate"}, {"label": "Adolescents may view death on an adult level but can still withdraw or act out", "correct": "Accurate"}, {"label": "Birth to age 2 fully understands death as permanent", "correct": "Inaccurate"}], "options": ["Accurate", "Inaccurate"], "rationale": "The course slides outline developmental understanding of death: very young children experience separation but do not understand permanence, preschoolers may see death as reversible, school-age children gradually understand finality, and adolescents may understand death yet still react behaviorally or emotionally."}, {"id": 53, "type": "bowtie", "section": "Grief, Loss, Suffering", "stem": "A hospitalized adolescent learns that a close friend has died. The adolescent becomes withdrawn, refuses visitors, and says, \"It should have been me.\" Complete the bowtie by selecting the priority concern, best nursing action, and best reassessment finding.", "prompts": ["Priority concern", "Best nursing action", "Best reassessment finding"], "choices": [["Possible high-risk grief response requiring further assessment for self-harm", "Normal behavior that never requires follow-up in adolescents", "Need to insist the adolescent talk immediately in front of family", "Primary learning deficit about funeral traditions"], ["Assess safety and suicidal thoughts while using therapeutic communication and support resources", "Tell the adolescent to stop saying dramatic things", "Leave the adolescent alone for the rest of the shift to respect privacy", "Promise complete confidentiality even if safety is at risk"], ["The adolescent denies a plan for self-harm, agrees to ongoing support, and identifies one trusted support person", "The adolescent becomes more isolated but stops talking about death", "The adolescent laughs with staff once", "The adolescent says, 'I'm fine,' and the nurse performs no further assessment"]], "answer": ["Possible high-risk grief response requiring further assessment for self-harm", "Assess safety and suicidal thoughts while using therapeutic communication and support resources", "The adolescent denies a plan for self-harm, agrees to ongoing support, and identifies one trusted support person"], "rationale": "The course content notes that adolescents may withdraw or act out and should be assessed for suicide risk. Statements implying self-blame or wishing to die require direct safety assessment and supportive follow-up."}, {"id": 54, "type": "mc", "section": "Grief, Loss, Suffering", "stem": "A bereaved client says, \"I don't want to burden my family, so I keep everything inside.\" Which response by the nurse is most therapeutic?", "choices": ["\"You need to be strong and protect your family right now.\"", "\"Many people try to protect loved ones, but you do not have to grieve alone. Who has been supportive for you so far?\"", "\"Try not to think about it so much and stay busy.\"", "\"At least your family still has you.\""], "answer": [1], "rationale": "Therapeutic grief support validates feelings, invites exploration of support systems, and avoids minimizing or shutting down emotion. The nurse should facilitate support rather than praise emotional suppression."}, {"id": 55, "type": "sata", "section": "Grief, Loss, Suffering", "stem": "A nurse caring for dying clients notices personal distress after multiple patient deaths. Which strategies from the course materials support healthy nurse coping? Select all that apply.", "choices": ["Increase death awareness and self-reflection", "Discuss experiences and process emotions appropriately", "Use art, meditation, or other self-care practices", "Avoid all emotional responses so professionalism is preserved", "Recognize that personal losses and fears can be triggered by patient deaths", "Withdraw from all dying clients to avoid attachment"], "answer": [0, 1, 2, 4], "rationale": "The grief slides encourage death awareness, reflection, discussion, and self-care. Emotional distancing and total avoidance are described as defenses, not healthy long-term coping strategies."}, {"id": 56, "type": "matrix", "section": "Grief, Loss, Suffering", "stem": "For each nurse statement, indicate whether it is Therapeutic or Nontherapeutic.", "rows": [{"label": "\"Would you like me to sit with you for a while?\"", "correct": "Therapeutic"}, {"label": "\"I know exactly how you feel.\"", "correct": "Nontherapeutic"}, {"label": "\"What have the past few days been like for you?\"", "correct": "Therapeutic"}, {"label": "\"At least she is in a better place now.\"", "correct": "Nontherapeutic"}, {"label": "\"Would it help to talk about who you would like involved for support?\"", "correct": "Therapeutic"}], "options": ["Therapeutic", "Nontherapeutic"], "rationale": "The course materials explicitly identify minimizing or assumptive phrases as poor responses to grief. Therapeutic responses use presence, open-ended questions, and support without imposing meaning."}, {"id": 57, "type": "bowtie", "section": "Grief, Loss, Suffering", "stem": "A client whose estranged ex-spouse died says, \"People act like I shouldn't be upset because we were divorced.\" Complete the bowtie by selecting the grief type, best nursing action, and best evidence the intervention helped.", "prompts": ["Type of grief", "Best nursing action", "Best evidence care is effective"], "choices": [["Disenfranchised grief", "Normal grief only", "Delayed grief", "Anticipatory grief"], ["Acknowledge the loss and provide space for the client to grieve without judging the relationship", "Tell the client the divorce means the grief should be less intense", "Encourage the client to hide these feelings from others", "Focus only on practical matters and avoid emotional discussion"], ["The client states feeling understood and accepts information about support resources", "The client apologizes for bringing up the death", "The client stops crying immediately", "The client says the nurse is right and the loss should not matter"]], "answer": ["Disenfranchised grief", "Acknowledge the loss and provide space for the client to grieve without judging the relationship", "The client states feeling understood and accepts information about support resources"], "rationale": "Disenfranchised grief occurs when society does not recognize or support the loss. The nurse should validate the grief experience and connect the client with support rather than minimizing the relationship."}, {"id": 58, "type": "mc", "section": "Grief, Loss, Suffering", "stem": "Which client statement best suggests movement toward reintegration after a significant loss?", "choices": ["\"I can never talk about my loved one again.\"", "\"I still miss him deeply, but I am beginning to find ways to carry the memories into my life now.\"", "\"Nothing in my life can ever have meaning again.\"", "\"If I stay busy enough, maybe the death never really happened.\""], "answer": [1], "rationale": "Reintegration involves accepting the loss, developing a different relationship with the deceased through memories, adjusting to life without the person, and reinvesting in life. Ongoing sadness may still be present."}, {"id": 59, "type": "sata", "section": "Grief + Palliation", "stem": "Which nursing actions best support collaboration with families and the interprofessional team in end-of-life care? Select all that apply.", "choices": ["Clarify the client and family goals of care", "Involve social work, spiritual care, and other disciplines as needed", "Communicate symptom concerns promptly to the provider team", "Assume one discipline will handle all family distress", "Support bereavement and coping needs before and after death", "Provide culturally sensitive care that adapts as needs change"], "answer": [0, 1, 2, 4, 5], "rationale": "The objectives stress interprofessional collaboration, person-centered goals, prompt communication about symptoms, grief and bereavement support, and culturally sensitive care during the dying process and after death."}, {"id": 60, "type": "mc", "section": "Comprehensive Mixed Review", "stem": "A client with end-stage illness says, \"I do not want more aggressive treatment. I want to be comfortable, I want my daughter included in decisions, and I do not want assumptions made because English is not my first language.\" Which nursing priority best integrates the objectives from this unit?", "choices": ["Move immediately to standardized hospice teaching and let the daughter translate so the conversation feels personal", "Center the plan on the client's goals, use a certified interpreter, assess symptoms holistically, and coordinate family support", "Focus first on persuading the client to continue treatment because withdrawal of treatment suggests depression", "Delay goals-of-care discussion until all physical symptoms are gone"], "answer": [1], "rationale": "This option integrates core course objectives across disparities, palliation, and grief: person-centered goals, equitable communication using certified interpreters, holistic symptom assessment, and collaboration with family and the team. The other choices ignore autonomy or increase risk for inequitable care."}];
+let current = 0;
+let state = {
+  submitted: Array(questions.length).fill(false),
+  answers: Array(questions.length).fill(null),
+  correctness: Array(questions.length).fill(null)
+};
+
+const STORAGE_KEY = "hcc2_hd_pall_grief_exam_v3";
+const LEGACY_KEYS = ["hcc2_hd_pall_grief_exam_v2", "hcc2_hd_pall_grief_exam"];
+const saved = localStorage.getItem(STORAGE_KEY) || LEGACY_KEYS.map(k => localStorage.getItem(k)).find(Boolean);
+if (saved) {
+  try {
+    const parsed = JSON.parse(saved);
+    if (parsed && parsed.answers && parsed.submitted && parsed.correctness) state = parsed;
+  } catch (e) {}
+}
+
+function persist() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function normalizeArray(arr) {
+  return JSON.stringify([...arr].sort()) ;
+}
+
+function isCorrect(q, ans) {
+  if (q.type === "mc" || q.type === "sata") return normalizeArray(ans || []) === normalizeArray(q.answer);
+  if (q.type === "matrix") {
+    return q.rows.every((row, idx) => ans && ans[idx] === row.correct);
+  }
+  if (q.type === "bowtie") {
+    return q.answer.every((value, idx) => ans && ans[idx] === value);
+  }
+  return false;
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#39;");
+}
+
+function formatAnswerLabel(q, answer) {
+  if (q.type === "mc" || q.type === "sata") {
+    return answer.map(idx => `<strong>${String.fromCharCode(65 + idx)}.</strong> ${escapeHtml(q.choices[idx])}`).join("<br>");
+  }
+  if (q.type === "matrix") {
+    return q.rows.map((row, idx) => `<strong>${escapeHtml(row.label)}</strong>: ${escapeHtml(row.correct)}`).join("<br>");
+  }
+  if (q.type === "bowtie") {
+    return q.prompts.map((prompt, idx) => `<strong>${escapeHtml(prompt)}</strong>: ${escapeHtml(q.answer[idx])}`).join("<br>");
+  }
+  return "";
+}
+
+function renderJumpGrid() {
+  const grid = document.getElementById("jumpGrid");
+  grid.innerHTML = "";
+  questions.forEach((q, i) => {
+    const btn = document.createElement("button");
+    btn.className = "jump" + (i === current ? " current" : "") + (state.submitted[i] ? " done" : "");
+    btn.textContent = i + 1;
+    btn.onclick = () => { current = i; render(); };
+    grid.appendChild(btn);
+  });
+}
+
+function getCompletionCount() {
+  return state.submitted.filter(Boolean).length;
+}
+
+function getCorrectCount() {
+  return state.correctness.filter(v => v === true).length;
+}
+
+function renderProgress() {
+  const done = getCompletionCount();
+  const total = questions.length;
+  const correct = getCorrectCount();
+  document.getElementById("progressText").textContent = `${done} / ${total} complete`;
+  document.getElementById("scoreText").textContent = done ? `Score: ${correct} / ${done}` : "Score: —";
+  document.getElementById("progressBar").style.width = `${(done/total)*100}%`;
+}
+
+function getCurrentAnswerFromUI(q) {
+  if (q.type === "mc") {
+    const checked = [...document.querySelectorAll('input[name="choice"]:checked')].map(el => Number(el.value));
+    return checked;
+  }
+  if (q.type === "sata") {
+    return [...document.querySelectorAll('input[name="choice"]:checked')].map(el => Number(el.value));
+  }
+  if (q.type === "matrix") {
+    return q.rows.map((_, idx) => document.getElementById(`matrix_${idx}`).value || "");
+  }
+  if (q.type === "bowtie") {
+    return q.prompts.map((_, idx) => document.getElementById(`bowtie_${idx}`).value || "");
+  }
+  return null;
+}
+
+function hydrateInputs(q, existing) {
+  if (!existing) return;
+  if (q.type === "mc" || q.type === "sata") {
+    existing.forEach(v => {
+      const el = document.querySelector(`input[name="choice"][value="${v}"]`);
+      if (el) el.checked = true;
+    });
+  } else if (q.type === "matrix") {
+    existing.forEach((v, idx) => {
+      const el = document.getElementById(`matrix_${idx}`);
+      if (el) el.value = v;
+    });
+  } else if (q.type === "bowtie") {
+    existing.forEach((v, idx) => {
+      const el = document.getElementById(`bowtie_${idx}`);
+      if (el) el.value = v;
+    });
+  }
+}
+
+function highlightResults(q) {
+  if (!state.submitted[current]) return;
+  const answer = state.answers[current];
+  if (q.type === "mc" || q.type === "sata") {
+    document.querySelectorAll(".choice").forEach((wrap, idx) => {
+      const chosen = (answer || []).includes(idx);
+      const should = q.answer.includes(idx);
+      if (should) wrap.classList.add("correct");
+      if (chosen && !should) wrap.classList.add("incorrect");
+    });
+  }
+}
+
+function renderQuestion() {
+  const q = questions[current];
+  const area = document.getElementById("examArea");
+  const submitted = state.submitted[current];
+  let body = "";
+  if (q.type === "mc" || q.type === "sata") {
+    const inputType = q.type === "mc" ? "radio" : "checkbox";
+    body = `<div class="choice-list">` + q.choices.map((choice, idx) => `
+      <div class="choice">
+        <input ${submitted ? "disabled" : ""} type="${inputType}" name="choice" id="choice_${idx}" value="${idx}">
+        <label for="choice_${idx}"><strong>${String.fromCharCode(65+idx)}.</strong> ${escapeHtml(choice)}</label>
+      </div>`).join("") + `</div>`;
+  } else if (q.type === "matrix") {
+    body = `<table class="matrix"><thead><tr><th style="width:64%">Finding / Nursing Action</th><th>Classification</th></tr></thead><tbody>` +
+      q.rows.map((row, idx) => `
+        <tr>
+          <td>${escapeHtml(row.label)}</td>
+          <td>
+            <select ${submitted ? "disabled" : ""} id="matrix_${idx}">
+              <option value="">Select...</option>
+              ${q.options.map(opt => `<option value="${escapeHtml(opt)}">${escapeHtml(opt)}</option>`).join("")}
+            </select>
+          </td>
+        </tr>`).join("") + `</tbody></table>`;
+  } else if (q.type === "bowtie") {
+    body = `<table class="bowtie"><thead><tr><th style="width:35%">Prompt</th><th>Choose the best answer</th></tr></thead><tbody>` +
+      q.prompts.map((prompt, idx) => `
+        <tr>
+          <td><strong>${escapeHtml(prompt)}</strong></td>
+          <td>
+            <select ${submitted ? "disabled" : ""} id="bowtie_${idx}">
+              <option value="">Select...</option>
+              ${q.choices[idx].map(opt => `<option value="${escapeHtml(opt)}">${escapeHtml(opt)}</option>`).join("")}
+            </select>
+          </td>
+        </tr>`).join("") + `</tbody></table>`;
+  }
+
+  area.innerHTML = `
+    <div class="eyebrow">Question ${current+1} of ${questions.length} • ${escapeHtml(q.type.toUpperCase())}</div>
+    <div class="section">${escapeHtml(q.section)}</div>
+    <h2 class="qtitle">${escapeHtml(q.stem)}</h2>
+    ${body}
+    <div id="feedback" class="feedback"></div>
+    <div class="controls">
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="ghost" ${current===0 ? "disabled" : ""} id="prevBtn">← Previous</button>
+        <button class="ghost" id="nextBtn">${current===questions.length-1 ? "Finish" : "Next →"}</button>
+      </div>
+      <button class="primary" id="submitBtn">${submitted ? "Submitted" : "Submit answer"}</button>
+    </div>
+  `;
+
+  hydrateInputs(q, state.answers[current]);
+  highlightResults(q);
+  renderFeedback(q);
+
+  document.getElementById("prevBtn").onclick = () => {
+    if (current > 0) { current--; render(); }
+  };
+  document.getElementById("nextBtn").onclick = () => {
+    if (current < questions.length - 1) {
+      current++;
+      render();
+    } else {
+      renderSummary();
+    }
+  };
+  document.getElementById("submitBtn").onclick = () => submitCurrent();
+  if (submitted) document.getElementById("submitBtn").disabled = true;
+}
+
+function renderFeedback(q) {
+  const box = document.getElementById("feedback");
+  if (!state.submitted[current]) {
+    box.className = "feedback";
+    box.innerHTML = "";
+    return;
+  }
+  const good = !!state.correctness[current];
+  const answerKey = formatAnswerLabel(q, q.answer);
+  box.className = "feedback show " + (good ? "good" : "bad");
+  box.innerHTML = `
+    <strong>${good ? "Correct — nice clinical judgment." : "Not quite yet."}</strong>
+    <div class="answer-key"><strong>Correct answer${q.type === "mc" ? "" : "s"}:</strong><br>${answerKey}</div>
+    <div class="rationale"><strong>Rationale:</strong> ${escapeHtml(q.rationale)}</div>
+  `;
+}
+
+function submitCurrent() {
+  const q = questions[current];
+  const ans = getCurrentAnswerFromUI(q);
+
+  const incomplete = (
+    ((q.type === "mc" || q.type === "sata") && (!ans || ans.length === 0)) ||
+    (q.type === "matrix" && ans.some(v => !v)) ||
+    (q.type === "bowtie" && ans.some(v => !v))
+  );
+  if (incomplete) {
+    alert("Answer the whole question before submitting.");
+    return;
+  }
+
+  state.answers[current] = ans;
+  state.correctness[current] = isCorrect(q, ans);
+  state.submitted[current] = true;
+  persist();
+  render();
+}
+
+function renderSummary() {
+  document.getElementById("examArea").classList.add("hidden");
+  const summary = document.getElementById("summaryArea");
+  summary.classList.remove("hidden");
+  const total = questions.length;
+  const done = getCompletionCount();
+  const correct = getCorrectCount();
+  const percent = done ? Math.round((correct / total) * 100) : 0;
+
+  const bySection = [...new Set(questions.map(q => q.section))].map(section => {
+    const items = questions.map((q, i) => ({q, i})).filter(x => x.q.section === section);
+    const c = items.filter(x => state.correctness[x.i] === true).length;
+    return `<div class="stat"><div class="tiny">${escapeHtml(section)}</div><b>${c} / ${items.length}</b><div class="tiny">section performance</div></div>`;
+  }).join("");
+
+  const missed = questions.map((q, i) => ({q, i})).filter(x => state.submitted[x.i] && state.correctness[x.i] === false);
+  const missedHtml = missed.length ? `<div class="review-list">${missed.map(({q, i}) => `
+      <div class="review-card">
+        <span class="tiny">Question ${i + 1} • ${escapeHtml(q.type.toUpperCase())} • ${escapeHtml(q.section)}</span>
+        <h3>${escapeHtml(q.stem)}</h3>
+        <div><strong>Correct answer${q.type === "mc" ? "" : "s"}:</strong><br>${formatAnswerLabel(q, q.answer)}</div>
+        <div class="rationale" style="margin-top:8px;"><strong>Rationale:</strong> ${escapeHtml(q.rationale)}</div>
+        <button class="ghost" data-jump="${i}">Review this question</button>
+      </div>
+    `).join("")}</div>` : `<div class="note">You did not miss any submitted questions. Nice work.</div>`;
+
+  summary.innerHTML = `
+    <div class="eyebrow">Exam summary</div>
+    <div class="score-card">
+      <h2 style="margin:0;">You finished the HCC2 mock exam.</h2>
+      <div class="stat-grid">
+        <div class="stat"><div class="tiny">Completed</div><b>${done} / ${total}</b><div class="tiny">questions submitted</div></div>
+        <div class="stat"><div class="tiny">Correct</div><b>${correct}</b><div class="tiny">total correct answers</div></div>
+        <div class="stat"><div class="tiny">Overall score</div><b>${percent}%</b><div class="tiny">based on total exam questions</div></div>
+      </div>
+      <div class="stat-grid">${bySection}</div>
+      <div class="note">
+        High-yield review tip: go back to the questions you missed and look for the pattern. In this unit, the traps are usually one of these: forgetting to screen for real-life barriers, confusing hospice with palliative care, choosing a nontherapeutic response, or prioritizing cure over comfort when the stated goal is dignity and symptom relief.
+      </div>
+      <h3 style="margin:6px 0 0;">Missed question review</h3>
+      ${missedHtml}
+      <div class="controls">
+        <button class="ghost" id="reviewBtn">← Back to exam</button>
+        <button class="primary" id="restartBtn">Start over</button>
+      </div>
+    </div>
+  `;
+  document.getElementById("reviewBtn").onclick = () => {
+    summary.classList.add("hidden");
+    document.getElementById("examArea").classList.remove("hidden");
+    render();
+  };
+  document.getElementById("restartBtn").onclick = resetExam;
+  summary.querySelectorAll("[data-jump]").forEach(btn => {
+    btn.onclick = () => {
+      current = Number(btn.dataset.jump);
+      summary.classList.add("hidden");
+      document.getElementById("examArea").classList.remove("hidden");
+      render();
+    };
+  });
+}
+
+function render() {
+  document.getElementById("summaryArea").classList.add("hidden");
+  document.getElementById("examArea").classList.remove("hidden");
+  renderJumpGrid();
+  renderProgress();
+  renderQuestion();
+}
+
+function resetExam() {
+  if (!confirm("Reset all answers and start over?")) return;
+  state = {
+    submitted: Array(questions.length).fill(false),
+    answers: Array(questions.length).fill(null),
+    correctness: Array(questions.length).fill(null)
+  };
+  [STORAGE_KEY, ...LEGACY_KEYS].forEach(k => localStorage.removeItem(k));
+  current = 0;
+  render();
+}
+
+document.getElementById("toggleTheme").onclick = () => {
+  document.body.classList.toggle("dark");
+  localStorage.setItem("hcc2_hd_pall_grief_theme", document.body.classList.contains("dark") ? "dark" : "light");
+};
+document.getElementById("resetExam").onclick = resetExam;
+
+if (localStorage.getItem("hcc2_hd_pall_grief_theme") === "dark") {
+  document.body.classList.add("dark");
+}
+
+render();
+</script>
+</body>
+</html>

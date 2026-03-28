@@ -1,0 +1,3023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HCC2 Study Guide: Grief, Palliation, Suffering & SDOH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=Outfit:wght@500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f0f4f8;
+      --surface: #e8edf3;
+      --card: #ffffff;
+      --text: #0f1f33;
+      --text2: #364a63;
+      --muted: #6b7f99;
+      --line: #dde3ec;
+      --navy: #1a2d4f;
+      --teal: #0d9488;
+      --teal-light: #e6f7f6;
+      --amber: #d97706;
+      --amber-light: #fef3c7;
+      --rose: #be123c;
+      --rose-light: #fff1f2;
+      --indigo: #4f46e5;
+      --indigo-light: #eef2ff;
+      --shadow-sm: 0 1px 3px rgba(15,31,51,.07), 0 1px 2px rgba(15,31,51,.05);
+      --shadow: 0 4px 16px rgba(15,31,51,.09), 0 1px 3px rgba(15,31,51,.06);
+      --shadow-lg: 0 12px 40px rgba(15,31,51,.13), 0 4px 8px rgba(15,31,51,.07);
+      --radius: 14px;
+      --radius-lg: 20px;
+    }
+    body.dark {
+      --bg: #0a1628;
+      --surface: #0f1e34;
+      --card: #162034;
+      --text: #e8eef8;
+      --text2: #a8b8d0;
+      --muted: #6d84a0;
+      --line: #1f3050;
+      --navy: #1e3a6e;
+      --teal: #14b8a6;
+      --teal-light: #0d2a28;
+      --amber: #f59e0b;
+      --amber-light: #1f1700;
+      --rose: #f43f5e;
+      --rose-light: #1f0810;
+      --indigo: #818cf8;
+      --indigo-light: #1e1b4b;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.3);
+      --shadow: 0 4px 16px rgba(0,0,0,.35);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,.45);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+      transition: background .25s, color .25s;
+    }
+
+    /* ── Shell ── */
+    .shell { max-width: 1280px; margin: 0 auto; padding: 24px 20px; }
+    main section[id] { scroll-margin-top: 110px; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #0f3460 60%, #16213e 100%);
+      border-radius: var(--radius-lg);
+      padding: 36px 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 24px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(13,148,136,.35), transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: 30%;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(79,70,229,.2), transparent 70%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.85);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .eyebrow::before { content: '⚕️'; }
+    .hero h1 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      color: #fff;
+      margin: 0 0 10px;
+      line-height: 1.15;
+      font-weight: 600;
+    }
+    .hero .sub {
+      color: rgba(255,255,255,.72);
+      font-size: .93rem;
+      max-width: 680px;
+      margin: 0 0 22px;
+      line-height: 1.6;
+    }
+    .hero-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; justify-content: space-between; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      display: inline-block;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.82);
+      font-size: .77rem;
+      font-weight: 500;
+      padding: 5px 11px;
+      border-radius: 999px;
+    }
+    .controls { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font: 500 .85rem 'DM Sans', sans-serif;
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s, background .15s;
+    }
+    .btn-ghost {
+      background: rgba(255,255,255,.12);
+      color: rgba(255,255,255,.9);
+      border: 1px solid rgba(255,255,255,.2);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.2); transform: translateY(-1px); }
+    .btn-teal { background: var(--teal); color: #fff; }
+    .btn-teal:hover { background: #0b837a; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(13,148,136,.4); }
+    .btn-navy { background: var(--card); color: var(--text); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+    .btn-navy:hover { background: var(--surface); transform: translateY(-1px); }
+
+    /* ── Sticky nav bar ── */
+    .topnav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(240,244,248,.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 2px 12px rgba(15,31,51,.07);
+      transition: background .25s;
+    }
+    body.dark .topnav-wrap {
+      background: rgba(10,22,40,.9);
+    }
+    .topnav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    /* Scrollable nav links */
+    .nav-scroll {
+      flex: 1;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 8px 0;
+    }
+    .nav-scroll::-webkit-scrollbar { display: none; }
+    .nav-scroll a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      text-decoration: none;
+      color: var(--text2);
+      font-size: .8rem;
+      font-weight: 500;
+      padding: 7px 13px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: all .15s;
+      flex-shrink: 0;
+    }
+    .nav-scroll a .nav-icon { font-size: .85rem; }
+    .nav-scroll a:hover { background: var(--surface); color: var(--text); }
+    .nav-scroll a.active {
+      background: var(--teal-light);
+      color: var(--teal);
+      border-color: rgba(13,148,136,.22);
+      font-weight: 600;
+    }
+    body.dark .nav-scroll a.active { color: #14b8a6; }
+    /* Fade edges */
+    .nav-scroll-fade {
+      position: relative;
+    }
+    .nav-scroll-fade::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 40px;
+      background: linear-gradient(to left, rgba(240,244,248,.95), transparent);
+      pointer-events: none;
+    }
+    body.dark .nav-scroll-fade::after {
+      background: linear-gradient(to left, rgba(10,22,40,.95), transparent);
+    }
+    /* Right side of nav bar */
+    .topnav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-left: 12px;
+      border-left: 1px solid var(--line);
+      flex-shrink: 0;
+    }
+    /* Progress in nav */
+    .nav-progress {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-bar-track {
+      width: 80px;
+      height: 6px;
+      background: var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .nav-bar-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--teal), #0ea5e9);
+      border-radius: 999px;
+      transition: width .3s ease;
+    }
+    .nav-pct { font-size: .75rem; font-weight: 700; color: var(--teal); min-width: 28px; }
+    /* Search bar below nav links (second row) */
+    .search-row {
+      padding: 0 20px 8px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .search-wrap { position: relative; max-width: 420px; }
+    .search-icon {
+      position: absolute;
+      left: 11px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: .85rem;
+    }
+    .search {
+      width: 100%;
+      padding: 8px 12px 8px 32px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      font: .84rem 'DM Sans', sans-serif;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .search:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13,148,136,.12); }
+    .bar-track { height: 8px; background: var(--line); border-radius: 999px; overflow: hidden; margin: 6px 0; }
+    .bar-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--teal), #0ea5e9); border-radius: 999px; transition: width .3s ease; }
+
+    /* ── Layout ── */
+    .layout { display: block; }
+
+    /* ── Main content ── */
+    .content { display: flex; flex-direction: column; gap: 20px; }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: background .25s, border-color .25s;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .icon-teal { background: var(--teal-light); }
+    .icon-indigo { background: var(--indigo-light); }
+    .icon-amber { background: var(--amber-light); }
+    .icon-rose { background: var(--rose-light); }
+    .section-header h2 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0;
+    }
+    .badge {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .badge-teal { background: var(--teal-light); color: var(--teal); }
+    .badge-amber { background: var(--amber-light); color: var(--amber); }
+    body.dark .badge-teal { color: #14b8a6; }
+    body.dark .badge-amber { color: #fbbf24; }
+
+    /* ── Grid helpers ── */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 780px) { .grid-2, .grid-3, .grid-compare { grid-template-columns: 1fr; } }
+
+    /* ── Mini cards ── */
+    .mini {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+    .mini h4 {
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+    .mini ul, .mini ol { margin: 0; padding-left: 1.2rem; }
+    .mini li { margin: 6px 0; font-size: .9rem; line-height: 1.5; }
+
+    /* ── Compare columns ── */
+    .compare-col {
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+    }
+    .compare-col.col-a { background: var(--teal-light); border-left: 4px solid var(--teal); }
+    .compare-col.col-b { background: var(--indigo-light); border-left: 4px solid var(--indigo); }
+    body.dark .compare-col.col-a { background: #0d2a28; }
+    body.dark .compare-col.col-b { background: #1e1b4b; }
+    .compare-col h3 {
+      font-size: .9rem;
+      font-weight: 700;
+      margin: 0 0 12px;
+      color: var(--text);
+    }
+    .compare-col ul { margin: 0; padding-left: 1.15rem; }
+    .compare-col li { font-size: .9rem; margin: 7px 0; line-height: 1.5; }
+
+    /* ── Callouts ── */
+    .callout {
+      display: flex;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      font-size: .9rem;
+      line-height: 1.55;
+      margin-top: 16px;
+    }
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .callout-teal { background: var(--teal-light); border-left: 4px solid var(--teal); }
+    .callout-amber { background: var(--amber-light); border-left: 4px solid var(--amber); }
+    .callout-rose { background: var(--rose-light); border-left: 4px solid var(--rose); }
+    body.dark .callout-teal { background: #0d2a28; }
+    body.dark .callout-amber { background: #1f1700; }
+    body.dark .callout-rose { background: #1f0810; }
+
+    /* ── Tables ── */
+    .table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--line); margin-top: 16px; }
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      background: var(--navy);
+      color: rgba(255,255,255,.9);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 12px 16px;
+      text-align: left;
+    }
+    body.dark th { background: #0f1e34; color: rgba(255,255,255,.75); }
+    td { padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: .9rem; line-height: 1.5; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: var(--surface); }
+
+    /* ── Accordions ── */
+    .accordion { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+    details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--card);
+    }
+    summary {
+      cursor: pointer;
+      padding: 14px 18px;
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      list-style: none;
+      user-select: none;
+      transition: background .15s;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: '›';
+      font-size: 1.2rem;
+      transition: transform .2s;
+      color: var(--teal);
+      width: 18px;
+      text-align: center;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    details[open] summary { background: var(--surface); }
+    details > :not(summary) { padding: 4px 18px 16px 46px; }
+    details ul, details ol { margin: 0; padding-left: 1.1rem; }
+    details li { font-size: .9rem; margin: 7px 0; line-height: 1.5; }
+
+    /* ── Subsection headings ── */
+    .subsection-title {
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 22px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .subsection-title::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+    /* ── Flashcards ── */
+    .flash-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 4px;
+    }
+    @media (max-width: 820px) { .flash-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .flash-grid { grid-template-columns: 1fr; } }
+    .flash { perspective: 1200px; height: 180px; cursor: pointer; }
+    .flashInner {
+      position: relative; width: 100%; height: 100%;
+      transition: transform .55s cubic-bezier(.4,0,.2,1);
+      transform-style: preserve-3d;
+    }
+    .flash.flip .flashInner { transform: rotateY(180deg); }
+    .face {
+      position: absolute; inset: 0;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .front {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a6e 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: .95rem;
+    }
+    .front::after {
+      content: 'TAP TO FLIP';
+      position: absolute;
+      bottom: 12px;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.35);
+    }
+    .back {
+      background: linear-gradient(135deg, #0f3460, #16213e);
+      color: rgba(255,255,255,.9);
+      font-size: .87rem;
+      line-height: 1.55;
+      transform: rotateY(180deg);
+    }
+    body.dark .front { background: linear-gradient(135deg, #1e3a6e, #0f1e34); }
+    body.dark .back { background: linear-gradient(135deg, #0f1e34, #0a1628); }
+
+    /* ── Quiz ── */
+    .quiz-item {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 16px;
+      background: var(--surface);
+      transition: border-color .2s;
+    }
+    .quiz-item:last-child { margin-bottom: 0; }
+    .quiz-q {
+      font-size: .93rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 14px;
+      line-height: 1.5;
+    }
+    .quiz-q .qnum {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px; height: 24px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 6px;
+      font-size: .75rem;
+      font-weight: 700;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+    body.dark .quiz-q .qnum { background: #1e3a6e; }
+    .opt-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 9px;
+      border: 1px solid var(--line);
+      margin: 7px 0;
+      cursor: pointer;
+      font-size: .88rem;
+      background: var(--card);
+      transition: background .15s, border-color .15s;
+      line-height: 1.45;
+    }
+    .opt-label:hover { border-color: var(--teal); background: var(--teal-light); }
+    .opt-label.correct { border-color: var(--teal) !important; background: var(--teal-light) !important; font-weight: 600; }
+    .opt-label.incorrect { border-color: var(--rose) !important; background: var(--rose-light) !important; }
+    body.dark .opt-label.correct { background: #0d2a28 !important; }
+    body.dark .opt-label.incorrect { background: #1f0810 !important; }
+    .rationale {
+      margin-top: 12px;
+      padding: 12px 14px;
+      background: var(--teal-light);
+      border-radius: 9px;
+      font-size: .86rem;
+      line-height: 1.5;
+      border-left: 3px solid var(--teal);
+    }
+    body.dark .rationale { background: #0d2a28; }
+    .quiz-actions { display: flex; align-items: center; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+    #quizResult {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--teal);
+    }
+
+    /* ── Quiz type badges & filters ── */
+    .quiz-type-badge {
+      display: inline-block;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .badge-mc   { background: var(--indigo-light); color: var(--indigo); }
+    .badge-sata { background: var(--amber-light);  color: var(--amber);  }
+    .badge-mat  { background: var(--teal-light);   color: var(--teal);   }
+    body.dark .badge-mc   { color: #a5b4fc; }
+    body.dark .badge-sata { color: #fbbf24; }
+    body.dark .badge-mat  { color: #14b8a6; }
+    .quiz-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .filter-btn {
+      font: 500 .8rem 'DM Sans', sans-serif;
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text2);
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .filter-btn:hover { background: var(--card); color: var(--text); }
+    .filter-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+    body.dark .filter-btn.active { background: #1e3a6e; border-color: #1e3a6e; }
+    .quiz-counter { font-size: .83rem; color: var(--muted); margin-bottom: 6px; }
+    /* Matrix table */
+    .matrix-table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+    .matrix-table th {
+      background: var(--navy);
+      color: rgba(255,255,255,.9);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    body.dark .matrix-table th { background: #0f1e34; }
+    .matrix-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: .88rem;
+      vertical-align: middle;
+    }
+    .matrix-table tr:last-child td { border-bottom: none; }
+    .matrix-table tr:nth-child(even) td { background: var(--surface); }
+    .matrix-table .radio-cell {
+      text-align: center;
+      white-space: nowrap;
+      width: 110px;
+    }
+    .matrix-table .radio-cell label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .83rem;
+      cursor: pointer;
+      padding: 5px 8px;
+      border-radius: 7px;
+      border: 1px solid transparent;
+      transition: all .15s;
+    }
+    .matrix-table .radio-cell label:hover { background: var(--surface); border-color: var(--line); }
+    .matrix-table tr.row-correct td { background: rgba(13,148,136,.1) !important; }
+    .matrix-table tr.row-incorrect td { background: rgba(190,18,60,.1) !important; }
+    body.dark .matrix-table tr.row-correct td  { background: rgba(13,148,136,.15) !important; }
+    body.dark .matrix-table tr.row-incorrect td { background: rgba(244,63,94,.15) !important; }
+    .row-result-icon { font-size: .9rem; margin-left: 6px; }
+    /* SATA hint */
+    .sata-hint {
+      font-size: .8rem;
+      color: var(--amber);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    /* Scenario block */
+    .quiz-scenario {
+      background: var(--surface);
+      border-left: 4px solid var(--indigo);
+      border-radius: 0 10px 10px 0;
+      padding: 12px 16px;
+      font-size: .88rem;
+      line-height: 1.55;
+      margin-bottom: 14px;
+      color: var(--text2);
+    }
+    body.dark .quiz-scenario { border-left-color: #818cf8; }
+
+    /* ── Checklist / Tracker ── */
+    .tracker-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      margin-bottom: 9px;
+      cursor: pointer;
+      background: var(--surface);
+      transition: background .15s, border-color .15s;
+    }
+    .tracker-item:hover { border-color: var(--teal); }
+    .tracker-item input[type="checkbox"] {
+      width: 18px; height: 18px;
+      accent-color: var(--teal);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .tracker-item span { font-size: .9rem; line-height: 1.5; }
+    .tracker-item:has(input:checked) { background: var(--teal-light); border-color: rgba(13,148,136,.25); }
+    body.dark .tracker-item:has(input:checked) { background: #0d2a28; }
+
+    /* ── Utility ── */
+    .hidden { display: none !important; }
+    mark { background: #fef9c3; padding: 0 .2em; border-radius: .25em; }
+    body.dark mark { background: #713f12; color: #fef3c7; }
+    ul, ol { margin: 8px 0 0 1.2rem; padding: 0; }
+    li { margin: 7px 0; line-height: 1.5; }
+    strong { font-weight: 700; }
+    .footer { text-align: center; padding: 32px 0 48px; color: var(--muted); font-size: .84rem; }
+    .footer span { opacity: .5; }
+
+    /* ══════════════════════════════════════
+       VISUAL REDESIGN LAYER
+    ══════════════════════════════════════ */
+
+    /* ── Rich textured background ── */
+    body {
+      background-image:
+        radial-gradient(ellipse 60% 50% at 10% 0%, rgba(13,148,136,.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 90% 100%, rgba(79,70,229,.06) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1.2' fill='%231a2d4f' fill-opacity='.05'/%3E%3C/svg%3E");
+    }
+    body.dark {
+      background-image:
+        radial-gradient(ellipse 60% 50% at 10% 0%, rgba(13,148,136,.1) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 90% 100%, rgba(79,70,229,.08) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1.2' fill='%2314b8a6' fill-opacity='.06'/%3E%3C/svg%3E");
+    }
+
+    /* ── Outfit for all headings ── */
+    h1, h2, h3, h4, h5 { font-family: 'Outfit', sans-serif; }
+    .hero h1 { font-family: 'Lora', serif; font-style: italic; }
+    .section-header h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+    .subsection-title { font-family: 'Outfit', sans-serif; }
+    .mini h4 { font-family: 'Outfit', sans-serif; }
+    .sidebar-title { font-family: 'Outfit', sans-serif; }
+    summary { font-family: 'Outfit', sans-serif; }
+
+    /* ── Animated hero ── */
+    .hero {
+      background: linear-gradient(135deg, #091a33 0%, #0f3460 40%, #0d2a45 70%, #0a1a2e 100%);
+      background-size: 300% 300%;
+      animation: heroShift 14s ease infinite;
+    }
+    @keyframes heroShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .hero::before {
+      background: radial-gradient(circle, rgba(13,148,136,.5), transparent 65%);
+      animation: orbFloat 9s ease-in-out infinite;
+    }
+    .hero::after {
+      background: radial-gradient(circle, rgba(79,70,229,.35), transparent 65%);
+      animation: orbFloat 12s ease-in-out infinite reverse;
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(25px, -25px) scale(1.1); }
+    }
+    .hero h1 { font-size: clamp(1.9rem, 3.8vw, 2.8rem); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero { animation: fadeUp .65s ease both; }
+
+    /* ── Card entrance animations ── */
+    .card {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        background .25s,
+        border-color .25s,
+        opacity .55s cubic-bezier(.22,1,.36,1),
+        transform .55s cubic-bezier(.22,1,.36,1),
+        box-shadow .2s;
+    }
+    .card.visible { opacity: 1; transform: translateY(0); }
+    .card:hover {
+      box-shadow: 0 10px 36px rgba(15,31,51,.14), 0 2px 6px rgba(15,31,51,.07);
+      transform: translateY(-3px);
+    }
+    body.dark .card:hover {
+      box-shadow: 0 10px 36px rgba(0,0,0,.5), 0 2px 6px rgba(0,0,0,.3);
+    }
+
+    /* ── ALWAYS-VISIBLE colored section accent strips ── */
+    .card[id] {
+      position: relative;
+      overflow: visible;
+      border-top: 4px solid transparent;
+    }
+    /* Per-section top accent (always visible) */
+    #objectives   { border-top-color: #0ea5e9; }
+    #population   { border-top-color: #0d9488; }
+    #wellness     { border-top-color: #7c3aed; }
+    #sdoh         { border-top-color: #059669; }
+    #grief        { border-top-color: #4f46e5; }
+    #grief-theories { border-top-color: #8b5cf6; }
+    #communication { border-top-color: #2563eb; }
+    #advance      { border-top-color: #d97706; }
+    #palliative   { border-top-color: #0d9488; }
+    #symptoms     { border-top-color: #ea580c; }
+    #death        { border-top-color: #6366f1; }
+    #postmortem   { border-top-color: #4f46e5; }
+    #ethics       { border-top-color: #be123c; }
+    #rapid        { border-top-color: #f97316; }
+    #flashcards   { border-top-color: #0ea5e9; }
+    #quiz         { border-top-color: #6366f1; }
+    #tracker      { border-top-color: #059669; }
+
+    /* Gradient top strip effect */
+    .card[id]::after {
+      content: '';
+      position: absolute;
+      top: -4px; left: 0; right: 0;
+      height: 4px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      background: inherit;
+      pointer-events: none;
+    }
+    #objectives::after   { background: linear-gradient(90deg, #0ea5e9, #0d9488); }
+    #population::after   { background: linear-gradient(90deg, #0d9488, #0ea5e9); }
+    #wellness::after     { background: linear-gradient(90deg, #7c3aed, #4f46e5); }
+    #sdoh::after         { background: linear-gradient(90deg, #059669, #0d9488); }
+    #grief::after        { background: linear-gradient(90deg, #4f46e5, #6366f1); }
+    #grief-theories::after { background: linear-gradient(90deg, #8b5cf6, #6366f1); }
+    #communication::after { background: linear-gradient(90deg, #0d9488, #2563eb); }
+    #advance::after      { background: linear-gradient(90deg, #d97706, #f59e0b); }
+    #palliative::after   { background: linear-gradient(90deg, #0d9488, #14b8a6); }
+    #symptoms::after     { background: linear-gradient(90deg, #ea580c, #d97706); }
+    #death::after        { background: linear-gradient(90deg, #6366f1, #4f46e5); }
+    #postmortem::after   { background: linear-gradient(90deg, #4f46e5, #7c3aed); }
+    #ethics::after       { background: linear-gradient(90deg, #be123c, #e11d48); }
+    #rapid::after        { background: linear-gradient(90deg, #f97316, #d97706); }
+    #flashcards::after   { background: linear-gradient(90deg, #0ea5e9, #0d9488); }
+    #quiz::after         { background: linear-gradient(90deg, #6366f1, #4f46e5); }
+    #tracker::after      { background: linear-gradient(90deg, #059669, #0d9488); }
+
+    /* ── Section icon — bigger, richer gradients ── */
+    .section-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      font-size: 1.35rem;
+      box-shadow: 0 3px 12px rgba(0,0,0,.12);
+    }
+    .icon-teal   { background: linear-gradient(145deg, #b2f5ea, #81e6d9); }
+    .icon-indigo { background: linear-gradient(145deg, #c3dafe, #a3bffa); }
+    .icon-amber  { background: linear-gradient(145deg, #fefcbf, #fef08a); }
+    .icon-rose   { background: linear-gradient(145deg, #fed7e2, #fbb6ce); }
+    body.dark .icon-teal   { background: linear-gradient(145deg, #0d4038, #0a2e28); }
+    body.dark .icon-indigo { background: linear-gradient(145deg, #1e1b4b, #312e81); }
+    body.dark .icon-amber  { background: linear-gradient(145deg, #1f1700, #2d1e00); }
+    body.dark .icon-rose   { background: linear-gradient(145deg, #1f0810, #3b0a1a); }
+
+    /* ── Section header h2 — richer typography ── */
+    .section-header {
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+    }
+    .section-header h2 {
+      font-size: 1.55rem;
+      letter-spacing: -.02em;
+    }
+
+    /* ── Mini cards — striped left accent by position ── */
+    .mini {
+      border-radius: 12px;
+      position: relative;
+      transition: box-shadow .2s, transform .18s;
+      border-left: 3px solid var(--line);
+    }
+    .grid-2 .mini:nth-child(2n+1),
+    .grid-3 .mini:nth-child(3n+1) { border-left-color: var(--teal); }
+    .grid-2 .mini:nth-child(2n),
+    .grid-3 .mini:nth-child(3n+2) { border-left-color: var(--indigo); }
+    .grid-3 .mini:nth-child(3n+3)  { border-left-color: var(--amber); }
+    .mini:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,.1);
+      transform: translateY(-2px);
+    }
+    body.dark .mini:hover { box-shadow: 0 6px 20px rgba(0,0,0,.35); }
+
+    /* ── Mini card h4 — gradient text via Outfit ── */
+    .mini h4 {
+      font-size: .8rem;
+      letter-spacing: .06em;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--teal), var(--indigo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0 0 10px;
+    }
+    body.dark .mini h4 {
+      background: linear-gradient(90deg, #14b8a6, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Subsection title — pill redesign ── */
+    .subsection-title {
+      font-size: .73rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .subsection-title::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--teal), var(--indigo));
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .subsection-title::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+    /* ── Callouts — more dramatic ── */
+    .callout {
+      border-radius: 16px;
+      border-left-width: 5px;
+      padding: 16px 20px;
+    }
+    .callout-teal  { background: linear-gradient(135deg, rgba(13,148,136,.08), rgba(14,165,233,.04)); }
+    .callout-amber { background: linear-gradient(135deg, rgba(217,119,6,.08),  rgba(251,191,36,.04)); }
+    .callout-rose  { background: linear-gradient(135deg, rgba(190,18,60,.08),  rgba(244,63,94,.04)); }
+    body.dark .callout-teal  { background: linear-gradient(135deg, rgba(13,148,136,.14), rgba(14,165,233,.05)); }
+    body.dark .callout-amber { background: linear-gradient(135deg, rgba(217,119,6,.14),  rgba(251,191,36,.05)); }
+    body.dark .callout-rose  { background: linear-gradient(135deg, rgba(190,18,60,.14),  rgba(244,63,94,.05)); }
+    .callout-icon { font-size: 1.25rem; filter: drop-shadow(0 1px 4px rgba(0,0,0,.2)); }
+
+    /* ── Compare columns — richer ── */
+    .compare-col { border-radius: 14px; }
+    .compare-col.col-a { background: linear-gradient(145deg, rgba(13,148,136,.08), rgba(14,165,233,.04)); border-left-width: 5px; }
+    .compare-col.col-b { background: linear-gradient(145deg, rgba(79,70,229,.08),  rgba(99,102,241,.04)); border-left-width: 5px; }
+    body.dark .compare-col.col-a { background: linear-gradient(145deg, #0d2a28, #0a1f28); }
+    body.dark .compare-col.col-b { background: linear-gradient(145deg, #1e1b4b, #13113a); }
+    .compare-col h3 { font-family: 'Outfit', sans-serif; font-size: .95rem; font-weight: 700; }
+
+    /* ── Accordions — smoother ── */
+    .accordion { gap: 10px; }
+    details { border-radius: 13px; transition: box-shadow .2s; }
+    details:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+    body.dark details:hover { box-shadow: 0 4px 16px rgba(0,0,0,.3); }
+    summary {
+      border-radius: 13px;
+      padding: 15px 20px;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+    details[open] summary { border-radius: 13px 13px 0 0; }
+    summary::before { color: var(--teal); font-size: 1.1rem; font-weight: 900; }
+
+    /* ── Table headers — gradient ── */
+    th {
+      background: linear-gradient(135deg, #0f1f3c, #0d2a4a);
+      letter-spacing: .04em;
+      font-family: 'Outfit', sans-serif;
+      font-size: .77rem;
+    }
+    body.dark th { background: linear-gradient(135deg, #0a1628, #0f1e34); }
+    tr:nth-child(even) td { background: rgba(13,148,136,.03); }
+    body.dark tr:nth-child(even) td { background: rgba(13,148,136,.04); }
+
+    /* ── Nav — glow + Outfit font ── */
+    .nav-scroll a { font-family: 'DM Sans', sans-serif; transition: all .2s cubic-bezier(.4,0,.2,1); }
+    .nav-scroll a:hover { transform: translateY(-1px); background: var(--surface); }
+    .nav-scroll a.active {
+      background: linear-gradient(135deg, rgba(13,148,136,.14), rgba(14,165,233,.08));
+      box-shadow: 0 0 0 1.5px rgba(13,148,136,.3), 0 2px 10px rgba(13,148,136,.15);
+      font-weight: 600;
+    }
+
+    /* ── Flashcards — richer ── */
+    .flash:hover .flashInner { transform: scale(1.02); }
+    .flash.flip:hover .flashInner { transform: rotateY(180deg) scale(1.02); }
+    .front {
+      background: linear-gradient(145deg, #091a33 0%, #14376e 50%, #0f3460 100%);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .back {
+      background: linear-gradient(145deg, #082535 0%, #0d3a60 60%, #0a1e30 100%);
+      font-family: 'DM Sans', sans-serif;
+    }
+    body.dark .front { background: linear-gradient(145deg, #0a1628, #162240, #0f1e34); }
+    body.dark .back  { background: linear-gradient(145deg, #0f1e34, #162240, #0a1628); }
+    .front::after { letter-spacing: .15em; font-family: 'Outfit', sans-serif; }
+
+    /* ── Quiz items — richer ── */
+    .quiz-item { border-radius: 16px; }
+    .quiz-item:hover { border-color: rgba(13,148,136,.35); box-shadow: 0 2px 12px rgba(13,148,136,.08); }
+
+    /* ── Tracker — slide effect ── */
+    .tracker-item { border-radius: 13px; transition: background .15s, border-color .15s, transform .15s; }
+    .tracker-item:hover { transform: translateX(4px); border-color: var(--teal); }
+
+    /* ── Badges — Outfit font ── */
+    .badge { font-family: 'Outfit', sans-serif; letter-spacing: .04em; }
+    .quiz-type-badge { font-family: 'Outfit', sans-serif; }
+    .filter-btn { font-family: 'DM Sans', sans-serif; }
+
+    /* ── Footer ── */
+    .footer { border-top: 1px solid var(--line); }
+
+    /* ── Mini stagger on scroll ── */
+    @keyframes miniIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="eyebrow">HCC2 Interactive Study Guide</div>
+    <h1>Grief, Palliation, Suffering &amp; Social Determinants of Health</h1>
+    <p class="sub">Built from your uploaded lecture notes, objectives, student slides, and comfort-symptom document. Organized for fast review and exam prep with flashcards, self-checks, and a study tracker.</p>
+    <div class="hero-bottom">
+      <div class="tag-row">
+        <span class="tag">Grief &amp; Loss</span>
+        <span class="tag">Palliative vs Hospice</span>
+        <span class="tag">Suffering</span>
+        <span class="tag">Comfort Care</span>
+        <span class="tag">Imminent Death</span>
+        <span class="tag">SDOH</span>
+      </div>
+      <div class="controls">
+        <button class="btn btn-ghost" id="themeBtn">🌙 Dark mode</button>
+        <button class="btn btn-ghost" id="expandBtn">⊕ Expand all</button>
+        <button class="btn btn-teal" onclick="window.print()">⬇ Print / PDF</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Sticky horizontal nav ── -->
+  <div class="topnav-wrap">
+    <div class="topnav-inner">
+      <div class="nav-scroll-fade" style="flex:1;overflow:hidden">
+        <nav class="nav-scroll" id="nav">
+          <a href="#objectives"><span class="nav-icon">🎯</span>Objectives</a>
+          <a href="#population"><span class="nav-icon">🌐</span>Population Health</a>
+          <a href="#wellness"><span class="nav-icon">💚</span>Health &amp; Wellness</a>
+          <a href="#sdoh"><span class="nav-icon">🏘</span>SDOH &amp; Disparities</a>
+          <a href="#grief"><span class="nav-icon">💙</span>Grief &amp; Loss</a>
+          <a href="#grief-theories"><span class="nav-icon">📖</span>Grief Theories</a>
+          <a href="#communication"><span class="nav-icon">💬</span>Communication</a>
+          <a href="#advance"><span class="nav-icon">📋</span>Advance Directives</a>
+          <a href="#palliative"><span class="nav-icon">🏥</span>Palliative vs Hospice</a>
+          <a href="#symptoms"><span class="nav-icon">🩺</span>Symptom Management</a>
+          <a href="#death"><span class="nav-icon">🕊</span>Approaching Death</a>
+          <a href="#postmortem"><span class="nav-icon">🕯</span>Postmortem Care</a>
+          <a href="#ethics"><span class="nav-icon">⚖️</span>Ethics at EOL</a>
+          <a href="#rapid"><span class="nav-icon">⚡</span>Rapid Review</a>
+          <a href="#flashcards"><span class="nav-icon">🃏</span>Flashcards</a>
+          <a href="#quiz"><span class="nav-icon">✏️</span>Quiz</a>
+          <a href="#tracker"><span class="nav-icon">✅</span>Tracker</a>
+        </nav>
+      </div>
+      <div class="topnav-right">
+        <div class="nav-progress">
+          <div class="nav-bar-track"><div class="nav-bar-fill" id="progressBar"></div></div>
+          <span class="nav-pct" id="progressText">0%</span>
+        </div>
+      </div>
+    </div>
+    <div class="search-row">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input id="searchBox" class="search" type="text" placeholder="Search: dyspnea, SDOH, anticipatory grief…" />
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- ── Main ── -->
+    <main class="content" id="contentArea">
+
+      <!-- Objectives -->
+      <section class="card searchable" id="objectives">
+        <div class="section-header">
+          <div class="section-icon icon-indigo">🎯</div>
+          <h2>Module Objectives at a Glance</h2>
+        </div>
+        <div class="grid-2">
+          <div class="mini">
+            <h4>Population Health &amp; Community Nursing</h4>
+            <ul>
+              <li>Explain the relationship between public health and community health nursing.</li>
+              <li>Discuss the nurse's role in community-based and community health practice.</li>
+              <li>Identify characteristics of medically underserved populations and how they influence nursing care.</li>
+              <li>Explain competencies for population health nursing.</li>
+              <li>Discuss how global health affects community health.</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Health, Wellness &amp; Illness Prevention</h4>
+            <ul>
+              <li>Compare models of health and illness (HBM, HPM, holistic).</li>
+              <li>Identify internal and external variables influencing health beliefs and practices.</li>
+              <li>Compare the three levels of prevention (primary, secondary, tertiary).</li>
+              <li>Compare modifiable and nonmodifiable risk factors.</li>
+              <li>Discuss the nurse's role in risk-factor modification and behavior change.</li>
+              <li>Identify strategies to prevent or reduce compassion fatigue.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-2" style="margin-top:16px">
+          <div class="mini">
+            <h4>Grief, Loss &amp; Suffering</h4>
+            <ul>
+              <li>Classify types of loss and compare types of grief.</li>
+              <li>Explain the grief process and how nurses apply grief theory in practice.</li>
+              <li>Assess variables influencing response to grief.</li>
+              <li>Develop care for patient and family experiencing loss or grief.</li>
+              <li>Support anticipatory grieving and provide bereavement resources.</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Palliation, SDOH &amp; End-of-Life</h4>
+            <ul>
+              <li>Integrate palliative care across the disease trajectory.</li>
+              <li>Communicate respectfully and compassionately with patients, families, and team.</li>
+              <li>Perform holistic assessment of pain and other symptoms.</li>
+              <li>Support coping with suffering, grief, loss, and bereavement.</li>
+              <li>Align care with patient goals, values, beliefs, and preferences.</li>
+              <li>Address social determinants of health in care planning.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout callout-teal" style="margin-top:16px">
+          <span class="callout-icon">📌</span>
+          <div>Big exam thread: know the <strong>nurse's role</strong> in psychosocial support, symptom management, person-centered goals of care, hospice criteria, and culturally sensitive care.</div>
+        </div>
+      </section>
+
+      <!-- Population Health -->
+      <section class="card searchable" id="population">
+        <div class="section-header">
+          <div class="section-icon icon-teal">🌐</div>
+          <h2>Population Health &amp; Community Nursing</h2>
+          <span class="badge badge-teal">Pop. Health Ch.</span>
+        </div>
+        <p style="color:var(--muted);font-size:.9rem;margin:0 0 16px">Community-based health care is a collaborative, person-centered, culturally sensitive model that reaches people where they live, work, socialize, and learn — including the poor and underinsured. Nurses are strategically positioned to improve health care delivery and community health every day.</p>
+
+        <div class="subsection-title">Key Distinctions</div>
+        <div class="grid-3">
+          <div class="mini">
+            <h4>Community Health Nursing</h4>
+            <ul>
+              <li>Focuses on improving health of <strong>individuals, families, and groups</strong> within their communities</li>
+              <li>Goals: preserve, protect, promote, and maintain health</li>
+              <li>BSN is recommended entry level (ANA)</li>
+              <li>Considers the individual/family as part of a group at risk</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Public Health Nursing</h4>
+            <ul>
+              <li>Focuses on understanding needs of a <strong>population</strong> — a collection of individuals with common personal or environmental characteristics</li>
+              <li>Understands: disease trends/patterns, environmental influences, political processes affecting policy</li>
+              <li>Example: using playground injury data to advocate for safer materials</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Population Health</h4>
+            <ul>
+              <li>Covers the continuum from public health prevention through population disease management</li>
+              <li>Includes collaborative partnerships: communities, public health, education, business, local government</li>
+              <li><strong>Goal:</strong> improve health equity and the health of all people</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="subsection-title">Healthy People 2030 Goals</div>
+        <div class="grid-2">
+          <div class="mini">
+            <h4>Five Goals</h4>
+            <ul>
+              <li>Increase life expectancy</li>
+              <li>Improve quality of life</li>
+              <li>Attain health literacy</li>
+              <li>Achieve health equity</li>
+              <li>Eliminate health disparities through improved health care delivery</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Three Key Components of Improved Care</h4>
+            <ul>
+              <li><strong>Assessment:</strong> systematic data collection; monitoring population health status (incident rates, pregnancy rates, accident rates)</li>
+              <li><strong>Policy:</strong> health professionals develop public policies supporting population health (e.g., prescription monitoring, naloxone access)</li>
+              <li><strong>Access to care:</strong> essential community-wide services available and reachable for all; includes insurance coverage, geographic availability, and provider relationships</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="subsection-title">8 Roles of the Community Health Nurse</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Role</th><th>Description</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Caregiver</strong></td><td>Partners with patients/families using the nursing process; individualizes care in community context</td><td>Identifying a safe park for exercise recommendations</td></tr>
+              <tr><td><strong>Case Manager</strong></td><td>Establishes plan of care; coordinates resources/services across the continuum; manages multiple patients</td><td>Coordinating home health, social work, and pharmacy for hospice discharge</td></tr>
+              <tr><td><strong>Change Agent</strong></td><td>Identifies and implements more effective approaches; may work within a family or mediate community issues</td><td>Locating a closer clinic when a patient misses appointments due to transportation</td></tr>
+              <tr><td><strong>Patient Advocate</strong></td><td>Helps patients navigate the system; ensures informed decisions; defends patient choices</td><td>Supporting a patient's decision to stop cancer treatment</td></tr>
+              <tr><td><strong>Collaborator</strong></td><td>Works with patients, families, and interprofessional team; built on trust, respect, and role recognition</td><td>Collaborating with hospice staff, social work, and pastoral care</td></tr>
+              <tr><td><strong>Counselor</strong></td><td>Helps patients clarify health problems and choose actions; uses motivational interviewing; does NOT make decisions for the patient</td><td>Helping a patient identify obstacles to diet adherence</td></tr>
+              <tr><td><strong>Educator</strong></td><td>Assesses learning needs and readiness; adapts teaching to the home setting; reinforces via follow-up and support groups</td><td>Prenatal classes, child safety, cancer screening teaching</td></tr>
+              <tr><td><strong>Epidemiologist</strong></td><td>Uses epidemiology (incidence, distribution, control of disease); case finding, health teaching, tracking incident rates</td><td>Identifying TB exposure at a school cafeteria</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="accordion">
+          <details>
+            <summary>Medically underserved populations — characteristics &amp; nursing approach</summary>
+            <div class="grid-2" style="margin-top:10px">
+              <div class="mini"><h4>Who is medically underserved?</h4><ul><li>People in poverty / without homes (582,500 people in U.S. on a single night in 2022)</li><li>Older adults, people with disabilities</li><li>Immigrants, refugees, migrant workers</li><li>Individuals in abusive relationships</li><li>People with substance use disorders</li><li>People with serious mental illness</li></ul></div>
+              <div class="mini"><h4>Nursing assessment approach</h4><ul><li>Create a comfortable, nonthreatening environment</li><li>Use professional interpreter when needed</li><li>Recognize patients may have priorities other than health (financial, legal, housing)</li><li>Refer appropriately — social worker for financial, proper resource for legal</li><li>Do NOT provide financial or legal advice yourself</li><li>Assess home environment: water, plumbing, safe food storage, pests, temperature, crime level</li><li>Be alert for signs of abuse, neglect, and substance misuse</li></ul></div>
+            </div>
+          </details>
+          <details>
+            <summary>Community assessment — three components and elements</summary>
+            <div class="grid-3" style="margin-top:10px">
+              <div class="mini"><h4>Structure / Locale</h4><ul><li>Geographic boundaries</li><li>Emergency services</li><li>Water and sanitation</li><li>Housing, transportation, safety</li><li>Economic status</li></ul></div>
+              <div class="mini"><h4>Population</h4><ul><li>Age and sex distribution</li><li>Growth trends, density</li><li>Education level</li><li>Predominant ethnic and religious groups</li></ul></div>
+              <div class="mini"><h4>Social System</h4><ul><li>Educational system, government</li><li>Communication system</li><li>Welfare system</li><li>Volunteer programs, health system</li></ul></div>
+            </div>
+          </details>
+          <details>
+            <summary>Global health &amp; its impact on communities</summary>
+            <ul>
+              <li>WHO (formed 1948, 150 countries): focuses on universal health coverage, health emergencies, and well-being.</li>
+              <li>Global factors affecting communities: equitable vaccine access, air pollution/climate change, infectious diseases, health care equality, medication availability, health care worker shortages, clean water/sanitation.</li>
+              <li>Emerging infectious diseases: Ebola, H1N1, SARS, Zika, COVID-19 — often result from international travel, crowded urban populations, or climate change.</li>
+              <li><strong>Pandemic effects:</strong> disrupt schools/businesses, overwhelm health systems, increase mental health problems, cause supply/medication shortages.</li>
+              <li>Nurses in pandemics: caregivers, educators, supply managers, disease prevention leaders, liaisons between patients and the team.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Specific population concerns — immigrants, people experiencing poverty, abuse victims, patients with mental illness</summary>
+            <ul>
+              <li><strong>Immigrants:</strong> may face poverty, language barriers, limited transportation, legal concerns, housing barriers; higher rates of HTN, DM, infectious disease, stress; may use nontraditional healing practices — assess beliefs without judgment.</li>
+              <li><strong>People without homes:</strong> lack employment, shelter, healthy nutrition; higher ER use; chronic health problems worsen due to inability to store food or adhere to medications.</li>
+              <li><strong>Abuse victims:</strong> interview privately (separate from possible abuser); use therapeutic communication; reinforce abuse is not the victim's fault; <strong>nurses are mandatory reporters</strong> for adults 65+, children under 18, and dependent individuals.</li>
+              <li><strong>Patients with mental illness:</strong> face homelessness, poverty, medication needs, counseling, vocational assistance; navigating the system is difficult — many remain untreated or undertreated in community settings.</li>
+            </ul>
+          </details>
+        </div>
+        <div class="callout callout-teal">
+          <span class="callout-icon">📌</span>
+          <div>Key distinction: <strong>community health nursing</strong> focuses on improving health of individuals/families within communities. <strong>Community-based nursing</strong> focuses on direct illness care to individuals in settings like homes and clinics. Both are part of the health care delivery system — they are not the same thing.</div>
+        </div>
+      </section>
+
+      <!-- Health & Wellness -->
+      <section class="card searchable" id="wellness">
+        <div class="section-header">
+          <div class="section-icon icon-indigo">💚</div>
+          <h2>Health, Wellness &amp; Illness Prevention</h2>
+          <span class="badge badge-teal">Health &amp; Wellness Ch.</span>
+        </div>
+        <p style="color:var(--muted);font-size:.9rem;margin:0 0 16px">Health is more than the absence of disease — it is <strong>personally defined</strong>, influenced by culture, values, lifestyle, and life circumstances. A person may be disease-free and still not be healthy, or have a diagnosed disease and still feel healthy.</p>
+
+        <div class="subsection-title">Health Models</div>
+        <div class="grid-3">
+          <div class="mini">
+            <h4>Health Belief Model (HBM)</h4>
+            <ul>
+              <li>Explains the relationship between a person's <strong>beliefs</strong> and health behaviors</li>
+              <li>Key elements: perceived susceptibility, perceived seriousness/severity, perceived benefits, perceived barriers, cues to action</li>
+              <li>Cues to action: media campaigns, advice from others, a friend becoming ill</li>
+              <li>Example: patient refuses colonoscopy until a younger friend is diagnosed with colon cancer</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Health Promotion Model (HPM)</h4>
+            <ul>
+              <li>Defines health as a <strong>positive, dynamic state</strong> — not merely absence of disease</li>
+              <li>Three focus areas: individual characteristics/experiences → behavior-specific cognitions → behavioral outcomes</li>
+              <li>Nurses modify influencing variables to support behavior change</li>
+              <li>Health promotion behaviors improve health, function, and quality of life</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Holistic Health &amp; Nursing</h4>
+            <ul>
+              <li>Emphasizes relationship among body, mind, and spirit</li>
+              <li>Empowers patients to participate in recovery and take responsibility for health</li>
+              <li>Common interventions: meditation, music therapy, reminiscence, relaxation therapy, therapeutic touch, guided imagery</li>
+              <li>Can be combined with conventional medicine</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="subsection-title">Three Levels of Prevention</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Level</th><th>Goal</th><th>Examples</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Primary prevention</strong></td><td>Reduce incidence of disease — health promotion before disease occurs</td><td>Immunizations, nutrition programs, physical fitness, occupational safety, environmental sanitation, sex education, hearing protection</td></tr>
+              <tr><td><strong>Secondary prevention</strong></td><td>Detect and treat early disease; prevent spread or progression; limit disability</td><td>Screening for DM/HTN/cancer, early treatment of hypertension, colonoscopy, mammogram, identifying new disease cases</td></tr>
+              <tr><td><strong>Tertiary prevention</strong></td><td>Minimize effects of permanent or irreversible disease/disability; maximize function</td><td>Spinal cord injury rehab, cardiac rehab, managing chronic disease complications, hospice and palliative care</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="subsection-title">Risk Factors</div>
+        <div class="grid-compare">
+          <div class="compare-col col-a">
+            <h3>Nonmodifiable risk factors</h3>
+            <ul>
+              <li>Cannot be changed</li>
+              <li>Age, sex, genetics, family history</li>
+              <li>Example: older adults have higher risk for heart disease, cancer, Alzheimer's, influenza/pneumonia</li>
+              <li>Nurses use these with assessment data and patient preferences to select appropriate prevention strategies</li>
+              <li>Screen patients for age-appropriate preventive services</li>
+            </ul>
+          </div>
+          <div class="compare-col col-b">
+            <h3>Modifiable risk factors</h3>
+            <ul>
+              <li>Can be changed — often involve behavior</li>
+              <li>Smoking, alcohol use, unhealthy diet, obesity, physical inactivity, poor sleep</li>
+              <li>Poor control of HTN, elevated lipids, elevated glucose, excessive sun exposure</li>
+              <li>Stress (when severe, prolonged, poorly managed) → heart disease, sleep problems, HTN, GI issues</li>
+              <li>Environmental risks: air, water, soil, workplace, neighborhood conditions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <details>
+            <summary>Transtheoretical Model of Change (5 Stages) — nursing interventions by stage</summary>
+            <div class="table-wrap" style="margin-top:10px">
+              <table>
+                <thead><tr><th>Stage</th><th>Patient statement</th><th>Nursing approach</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>1. Precontemplation</strong></td><td>"There is nothing I really need to change."</td><td>Plant seeds of awareness; provide nonjudgmental information; do NOT push change</td></tr>
+                  <tr><td><strong>2. Contemplation</strong></td><td>"I have a problem I think I need to work on." (next 6 months)</td><td>Explore ambivalence; reinforce benefits; discuss barriers</td></tr>
+                  <tr><td><strong>3. Preparation</strong></td><td>"I think I might try again in a few weeks."</td><td>Help set specific goals; identify resources; build a plan</td></tr>
+                  <tr><td><strong>4. Action</strong></td><td>"I am really working hard to stop smoking." (up to 6 months)</td><td>Provide support and encouragement; anticipate relapse triggers; reinforce effort</td></tr>
+                  <tr><td><strong>5. Maintenance</strong></td><td>"I need to avoid people who smoke." (6+ months)</td><td>Help prevent relapse; connect to support groups; normalize setbacks as part of learning</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="callout callout-teal" style="margin-top:8px"><span class="callout-icon">📌</span><div>Relapse should be <strong>framed as part of learning, not failure</strong>. Nursing interventions must match the patient's current stage of change — pushing Action-stage strategies on a Precontemplation patient is counterproductive.</div></div>
+          </details>
+          <details>
+            <summary>Variables influencing health beliefs &amp; practices</summary>
+            <div class="grid-2" style="margin-top:10px">
+              <div class="mini"><h4>Internal variables</h4><ul><li>Developmental stage</li><li>Intellectual background and education</li><li>Perception of functioning (subjective: pain, fatigue; objective: BP, lung sounds)</li><li>Emotional factors (stress, depression, fear)</li><li>Spiritual factors (values, hope, meaning, treatment decisions)</li></ul></div>
+              <div class="mini"><h4>External variables</h4><ul><li>Family role and practices</li><li>SDOH (economic stability, education access, neighborhood)</li><li>Culture (beliefs, customs, views of health care, cause of illness)</li><li>Social support and peer influence</li><li>Health care accessibility and insurance status</li></ul></div>
+            </div>
+          </details>
+          <details>
+            <summary>Illness behavior &amp; impact on patient and family</summary>
+            <ul>
+              <li><strong>Illness</strong> = a state in which physical, emotional, intellectual, social, developmental, or spiritual functioning is impaired — the <em>feeling</em> of poor health. A person may have disease without feeling ill, or feel ill without diagnosable disease.</li>
+              <li><strong>Acute disease:</strong> usually reversible, short duration, abrupt onset, intense symptoms that subside relatively quickly.</li>
+              <li><strong>Chronic disease:</strong> lasts >6 months, usually irreversible, affects one or more body systems, involves periods of better functioning and relapses. ~60% of U.S. adults have at least one chronic disease; ~40% have two or more.</li>
+              <li><strong>Impact on family:</strong> behavioral/emotional changes, altered body image, changed self-concept, family role reversal, changed family dynamics. Nurses observe these changes and plan care to support adjustment.</li>
+              <li>Patients more likely to seek care if symptoms disrupt normal routine or feel serious. Older adults may delay due to mistrust, desire to preserve independence, or underestimating symptoms.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Compassion fatigue — recognize and prevent</summary>
+            <div class="grid-compare" style="margin-top:10px">
+              <div class="compare-col col-a"><h3>What it is</h3><ul><li>Combination of <strong>secondary traumatic stress</strong> (from close relationships with suffering patients/families) and <strong>burnout</strong> (from chronic lack of resources)</li><li>Effects: emotional exhaustion, sleep/appetite changes, reduced empathy, impaired focus, hopelessness, anxiety, irritability, poor judgment, absenteeism, turnover</li></ul></div>
+              <div class="compare-col col-b"><h3>Prevention strategies</h3><ul><li><strong>During work:</strong> journaling, mindfulness, meditation, walking with coworkers, debriefing after difficult experiences</li><li><strong>Personal:</strong> nutritious diet, adequate sleep, regular exercise, work-family balance, allowing time to grieve patient loss, mentorship</li><li>Many organizations now offer programs with education, coping tools, and resilience building</li></ul></div>
+            </div>
+          </details>
+          <details>
+            <summary>Patient teaching for behavior change — key principles</summary>
+            <ul>
+              <li>Practice active listening; build rapport; assess what the patient already knows.</li>
+              <li>Ask about barriers to diet, exercise, and medication adherence.</li>
+              <li>Help set goals aligned with standards (e.g., Physical Activity Guidelines: 150–300 min/week moderate intensity, strength training 2 days/week).</li>
+              <li>Tailor materials to literacy level, culture, and patient needs.</li>
+              <li>Involve family, social groups, and social media support when appropriate.</li>
+              <li>Use <strong>teach-back</strong> to evaluate understanding — ask the patient to demonstrate or explain what they learned.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Federally Qualified Health Centers (FQHCs)</summary>
+            <ul>
+              <li>Government-supported centers located in medically underserved communities.</li>
+              <li>Address causes of poor health: nutrition, housing, mental illness, SDOH.</li>
+              <li>Reduce barriers to primary care: cost, lack of insurance, distance, language.</li>
+              <li>Nurses in FQHCs use a holistic approach — an important SDOH resource to include in discharge planning.</li>
+            </ul>
+          </details>
+        </div>
+        <div class="callout callout-amber">
+          <span class="callout-icon">⚠️</span>
+          <div>NCLEX trap: <strong>primary prevention</strong> = before disease occurs (immunizations, education). <strong>Secondary</strong> = early detection/screening. <strong>Tertiary</strong> = minimizing effects of established disease/disability. Know which level applies to each nursing action.</div>
+        </div>
+      </section>
+
+      <!-- SDOH -->
+      <section class="card searchable" id="sdoh">
+        <div class="section-header">
+          <div class="section-icon icon-teal">🏘</div>
+          <h2>Social Determinants of Health &amp; Health Disparities</h2>
+          <span class="badge badge-teal">Concept 49</span>
+        </div>
+        <div class="grid-3">
+          <div class="mini">
+            <h4>Core Definitions</h4>
+            <ul>
+              <li><strong>Health disparities:</strong> differences in health or healthcare closely linked to social, economic, or environmental disadvantage.</li>
+              <li><strong>Health equity:</strong> attainment of the highest level of health for all people — social justice in health.</li>
+              <li><strong>SDOH:</strong> conditions where people live, work, learn, and socialize that shape health outcomes.</li>
+              <li><strong>Inequality vs inequity:</strong> not every inequality is an inequity — inequities are <em>avoidable</em> and unjust.</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Five SDOH Domains (HP 2030)</h4>
+            <ul>
+              <li>Economic stability</li>
+              <li>Education access and quality</li>
+              <li>Health care access and quality</li>
+              <li>Neighborhood / built environment</li>
+              <li>Social and community context</li>
+            </ul>
+            <p style="font-size:.83rem;margin:8px 0 0;color:var(--muted)">Goal: Health equity is the <em>goal</em>; disparities measure how far from it we are.</p>
+          </div>
+          <div class="mini">
+            <h4>Vulnerable Populations</h4>
+            <ul>
+              <li>Uninsured / underinsured / homeless</li>
+              <li>Migrant workers, immigrants, refugees</li>
+              <li>Racial/ethnic minorities</li>
+              <li>Elderly, veterans, chronically ill</li>
+              <li>People with disabilities (cognitive, sensory, physical)</li>
+              <li>Sexual/gender minorities</li>
+              <li>People with limited English proficiency</li>
+              <li>Victims of violence / trafficking</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="subsection-title">Four Categories of Healthcare Disparities (Avoidability × Acceptability)</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Category</th><th>Description</th><th>Nursing Priority</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Unavoidable &amp; acceptable</strong></td><td>Biologically expected (e.g., older adults use ER more)</td><td>Low — not a primary target</td></tr>
+              <tr><td><strong>Unavoidable &amp; unacceptable</strong></td><td>Biologic risk + system failure (e.g., Hispanic DM risk + poor prevention access)</td><td>Medium — address systemic access gaps</td></tr>
+              <tr><td><strong>Avoidable &amp; acceptable</strong></td><td>Unusual circumstances (e.g., post-disaster disparities)</td><td>Situational</td></tr>
+              <tr><td><strong>⭐ Avoidable &amp; unacceptable</strong></td><td>Unjust, preventable differences — e.g., unequal pain management, poor palliative care for minorities</td><td><strong>Highest priority for nursing</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="subsection-title">Major Clinical Exemplars of Avoidable Disparities</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Disparity</th><th>Affected groups</th><th>Nursing action</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Uninsured / high cost</strong></td><td>Minorities, low-income, marginalized groups</td><td>Assess affordability, connect to medication assistance, FQHCs, Medicaid</td></tr>
+              <tr><td><strong>Transportation barriers</strong></td><td>Rural, low-income, people with disabilities, POC</td><td>Arrange telehealth, home health, transportation resources before discharge</td></tr>
+              <tr><td><strong>Language barriers</strong></td><td>Immigrants, refugees, limited English</td><td><strong>Always use certified professional interpreter</strong> — never family/friends/staff</td></tr>
+              <tr><td><strong>Biased clinical decisions</strong></td><td>Racial/ethnic minorities (e.g., pain undertreated in Black/Hispanic pts)</td><td>Assess pain equally, recognize implicit bias, advocate aggressively</td></tr>
+              <tr><td><strong>Patient mistrust</strong></td><td>African Americans (history of discrimination &amp; unethical experimentation)</td><td>Acknowledge history, build trust, never dismiss concerns</td></tr>
+              <tr><td><strong>Unequal palliative care</strong></td><td>Minorities less likely to enter hospice, more ICU/ER visits near death</td><td>Proactively discuss palliative options, address cultural beliefs, reduce systemic barriers</td></tr>
+              <tr><td><strong>Prenatal care delays</strong></td><td>Low-income, uninsured, young mothers</td><td>Ensure early access, connect to WIC/Medicaid, teach-back with culturally responsive materials</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="accordion">
+          <details>
+            <summary>Health Canada Determinants — Know the Full List</summary>
+            <ul>
+              <li>Income and social status</li>
+              <li>Social support networks</li>
+              <li>Education</li>
+              <li>Employment and working conditions</li>
+              <li>Social and physical environments</li>
+              <li>Personal health practices and coping skills</li>
+              <li>Healthy child development</li>
+              <li>Biology and genetic endowment</li>
+              <li>Health services access</li>
+              <li>Gender and culture</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Theoretical Frameworks for Understanding Disparities</summary>
+            <div class="grid-3" style="margin-top:10px">
+              <div class="mini"><h4>Social-Ecological Model</h4><ul><li>Microsystem: immediate environment</li><li>Mesosystem: interactions between systems</li><li>Exosystem: outside systems (indirect)</li><li>Macrosystem: culture, laws, social structures</li><li>Chronosystem: time/life transitions</li></ul><p style="font-size:.82rem;color:var(--muted);margin-top:6px">Helps nurses identify barriers and intervention points at each level.</p></div>
+              <div class="mini"><h4>Structural-Constructivist Model</h4><ul><li>Race/ethnicity are socially constructed categories</li><li>Disparities result from social meaning assigned to these categories</li><li>Changing systems and shared meanings can reduce disparities</li></ul></div>
+              <div class="mini"><h4>Cultural Competence Model</h4><ul><li>Explore and respect patient beliefs and values</li><li>Build trust; find common ground</li><li>Recognize personal bias</li><li>Use interpreter services</li><li>Criticism: can over-focus on individual providers rather than structural causes</li></ul></div>
+            </div>
+          </details>
+          <details>
+            <summary>Core Nursing Competencies — Health Disparities (Concept 49)</summary>
+            <ul>
+              <li>Define populations at increased risk because of SDOH.</li>
+              <li>Assess population data to identify and evaluate disparities.</li>
+              <li>Understand public health systems, laws, and policies.</li>
+              <li>Develop culturally and linguistically responsive interventions.</li>
+              <li>Identify ethical principles protecting vulnerable populations.</li>
+              <li>Collaborate with other professionals to address inequities.</li>
+              <li><strong>Challenge biases and barriers affecting health outcomes.</strong></li>
+            </ul>
+          </details>
+          <details>
+            <summary>High-yield SDOH nursing actions for exam questions</summary>
+            <ul>
+              <li>Screen during intake for transportation, food insecurity, housing instability, and insurance.</li>
+              <li>Use teach-back and low-literacy, culturally responsive materials.</li>
+              <li>Ask what resources are realistically available <em>before</em> teaching diet, medications, or follow-up plans.</li>
+              <li>Document barriers clearly and refer to case management/social work early.</li>
+              <li>Never use family, friends, or support staff as interpreters — always use a certified professional interpreter.</li>
+              <li>Avoid assuming understanding; always verify comprehension with teach-back.</li>
+            </ul>
+          </details>
+        </div>
+        <div class="callout callout-amber">
+          <span class="callout-icon">⚠️</span>
+          <div>NCLEX priority: a discharge instruction is <strong>NOT effective</strong> if it ignores money, transportation, literacy, follow-up access, language, or community resources. The highest-priority nursing target is <strong>avoidable and unacceptable disparities</strong>.</div>
+        </div>
+      </section>
+
+      <!-- Grief -->
+      <section class="card searchable" id="grief">
+        <div class="section-header">
+          <div class="section-icon icon-indigo">💙</div>
+          <h2>Grief, Loss, Bereavement &amp; Suffering</h2>
+          <span class="badge badge-teal">Ch. 36</span>
+        </div>
+
+        <div class="subsection-title">Types of Loss</div>
+        <div class="grid-3">
+          <div class="mini">
+            <h4>By Cause</h4>
+            <ul>
+              <li><strong>Necessary loss:</strong> normal life change expected with maturation (e.g., child starting school)</li>
+              <li><strong>Maturational loss:</strong> type of necessary loss linked to normal development across the lifespan</li>
+              <li><strong>Situational loss:</strong> sudden, unexpected, not part of normal development (e.g., accident, divorce, job loss)</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>By Perception</h4>
+            <ul>
+              <li><strong>Actual loss:</strong> person can no longer feel, hear, see, or know the lost person/object (e.g., amputation, death)</li>
+              <li><strong>Perceived loss:</strong> experienced internally; may not be obvious to others (e.g., loss of confidence, feeling rejected) — can be just as painful as actual loss</li>
+              <li><strong>Ambiguous loss:</strong> uncertainty with no finality (e.g., dementia, missing person)</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>5 Categories of What Is Lost</h4>
+            <ul>
+              <li>Loss of possessions or objects</li>
+              <li>Loss of known environment (hospitalization, relocation)</li>
+              <li>Loss of a significant other (divorce, death, caregiver)</li>
+              <li>Loss of an aspect of self (body part, function, identity)</li>
+              <li>Loss of life (one's own or a loved one's)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="subsection-title">Grief — Core Concepts</div>
+        <div class="grid-2">
+          <div class="mini">
+            <h4>What grief is</h4>
+            <ul>
+              <li>Individualized response to a loss — real, perceived, or anticipated</li>
+              <li>Emotional, cognitive, physical, social, and spiritual — it is a <em>process</em>, not a state</li>
+              <li>Cannot be prevented; is highly personal; requires a great deal of energy</li>
+              <li>Cyclical rather than linear; memories/anniversaries may reactivate it</li>
+              <li>Most people recover within about 1 year after major loss, but grief is never completely "finished"</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Factors affecting grief response</h4>
+            <ul>
+              <li>Human development / age / developmental stage</li>
+              <li>Nature of loss: sudden vs expected, traumatic, suicide, homicide</li>
+              <li>Quality of the relationship to the deceased</li>
+              <li>Coping strategies (healthy vs unhealthy)</li>
+              <li>Socioeconomic status and available resources</li>
+              <li>Culture, ethnicity, spirituality, religion</li>
+              <li>Prior losses and prior mental health history</li>
+              <li>Social support systems</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="subsection-title">Types of Grief</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Type</th><th>Description</th><th>Exam clue / Risk factors</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Normal (uncomplicated)</strong></td><td>Universal emotional, physical, cognitive, behavioral, social &amp; spiritual response to loss</td><td>Sadness, tearfulness, yearning, anger, disbelief — but functioning gradually returns</td></tr>
+              <tr><td><strong>Anticipatory grief</strong></td><td>Grieving before the actual loss, with prolonged or expected loss</td><td>Caring for loved one with dementia/ALS/cancer; 4 phases: accepting inevitability → concern → rehearsing death → imagining future</td></tr>
+              <tr><td><strong>Disenfranchised grief</strong></td><td>Loss is not socially recognized or openly supported</td><td>Ex-spouse, pet, suicide, homicide, terminated pregnancy, health care worker loss, same-sex partner "not out"</td></tr>
+              <tr><td><strong>Ambiguous loss</strong></td><td>Uncertainty and lack of finality (type of disenfranchised grief)</td><td>Dementia/brain injury (physically present, psychologically absent); kidnapping, MIA, POW (physically absent, present in mind)</td></tr>
+              <tr><td><strong>Complicated grief</strong></td><td>Prolonged, severe, disruptive grief preventing forward movement; affects ~10–20% of grieving individuals; often lasts &gt;1 year</td><td>Sudden death, suicide, homicide, multiple losses, death of a child, prior MH issues, lack of support, conflicted relationship</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="accordion">
+          <details>
+            <summary>Subtypes of complicated grief</summary>
+            <div class="grid-2" style="margin-top:10px">
+              <div class="mini"><h4>Chronic grief</h4><p style="font-size:.87rem">Normal grief symptoms continue for years or decades — never resolves.</p></div>
+              <div class="mini"><h4>Exaggerated grief</h4><p style="font-size:.87rem">Maladaptive or self-destructive behavior, psychiatric symptoms, obsession. <strong>Suicide risk may increase.</strong></p></div>
+              <div class="mini"><h4>Delayed grief</h4><p style="font-size:.87rem">Response is postponed — loss is too overwhelming. A later loss may trigger buried grief.</p></div>
+              <div class="mini"><h4>Masked grief</h4><p style="font-size:.87rem">Person doesn't realize their physical/functional problems (headaches, tachycardia, rashes) come from grief.</p></div>
+            </div>
+          </details>
+          <details>
+            <summary>Common symptoms of grief — assessment guide</summary>
+            <div class="grid-3" style="margin-top:10px">
+              <div class="mini"><h4>Feelings</h4><ul><li>Sorrow, fear, anger, guilt</li><li>Anxiety, loneliness, fatigue</li><li>Helplessness, hopelessness</li><li>Yearning or relief</li></ul></div>
+              <div class="mini"><h4>Cognitions</h4><ul><li>Disbelief, confusion</li><li>Memory problems, inability to concentrate</li><li>Difficulty making decisions</li><li>Sensing the deceased's presence (normal)</li></ul></div>
+              <div class="mini"><h4>Physical sensations</h4><ul><li>Headaches, nausea, chest tightness</li><li>Insomnia, shortness of breath</li><li>Weakness, appetite changes</li><li>Dry mouth</li></ul></div>
+            </div>
+          </details>
+          <details>
+            <summary>Children's concepts of death — developmental stages</summary>
+            <ul>
+              <li><strong>Birth to 2:</strong> cannot understand death but react to separation through fussiness, sleep changes, bowel/bladder changes.</li>
+              <li><strong>Ages 3–5:</strong> limited understanding; may believe death is reversible ("coming back").</li>
+              <li><strong>Ages 6–9:</strong> beginning to understand finality; may show regressive or aggressive behaviors; know it can happen to others.</li>
+              <li><strong>Ages 10–12:</strong> understand death is final and universal; anger, guilt, depression may occur.</li>
+              <li><strong>Adolescents:</strong> adult-like understanding; may withdraw or act out; <strong>assess for suicide risk.</strong></li>
+            </ul>
+          </details>
+          <details>
+            <summary>Mourning vs bereavement</summary>
+            <ul>
+              <li><strong>Mourning:</strong> the <em>outward expression</em> of grief; includes behaviors people use to cope; often culturally shaped (e.g., Jewish shivah).</li>
+              <li><strong>Bereavement:</strong> the <em>period of sadness</em> following the death of a significant person.</li>
+              <li>Nurses support bereaved individuals by allowing them to talk, reassuring their feelings are normal, and encouraging delay of major decisions when possible.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Hope at end of life</summary>
+            <ul>
+              <li>Hope is multidimensional — it energizes, comforts, gives meaning, and helps people live fully even near death.</li>
+              <li>Hope does not always mean hope for <em>cure</em> — it may shift to hope for: pain relief, attending an event, seeing a loved one, peace, dignity, or a meaningful death.</li>
+              <li><strong>Supports hope:</strong> strong relationships, emotional connectedness, faith, humor, positive memories, attentive caregivers.</li>
+              <li><strong>Diminishes hope:</strong> abandonment, isolation, uncontrolled symptoms, being devalued.</li>
+            </ul>
+          </details>
+        </div>
+        <div class="callout callout-rose">
+          <span class="callout-icon">🚨</span>
+          <div><strong>Red flags requiring professional help:</strong> enduring hopelessness, suicidal thoughts or statements ("I can't go on"), self-destructive behavior, or inability to move forward are signs of complicated grief. <strong>Always assess safety first.</strong></div>
+        </div>
+      </section>
+
+      <!-- Grief Theories -->
+      <section class="card searchable" id="grief-theories">
+        <div class="section-header">
+          <div class="section-icon icon-indigo">📖</div>
+          <h2>Grief Theories &amp; Models</h2>
+        </div>
+        <p style="color:var(--muted);font-size:.9rem;margin:0 0 16px">Grief theories help nurses understand patterns, but <strong>grief is individualized and not linear</strong> — newer models emphasize cyclical movement, not fixed stages.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Theory / Model</th><th>Key Stages or Components</th><th>Exam takeaway</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Kübler-Ross Stages of Dying</strong></td><td>Denial → Anger → Bargaining → Depression → Acceptance</td><td>Most recognized model; <em>not</em> meant to be rigid or sequential — people move back and forth</td></tr>
+              <tr><td><strong>Bowlby's Attachment Theory</strong></td><td>Numbing → Yearning &amp; searching → Disorganization &amp; despair → Reorganization</td><td>Highlights physical symptoms and emotional distress; eventual adjustment</td></tr>
+              <tr><td><strong>Worden's Grief Tasks</strong></td><td>1. Accept reality of loss 2. Experience the pain 3. Adjust to world without deceased 4. Emotionally relocate deceased &amp; move forward</td><td>"Tasks" — something the person actively does, not passive stages</td></tr>
+              <tr><td><strong>Rando's "R" Process</strong></td><td>Recognize → React → Recollect &amp; reexperience → Relinquish old attachments → Readjust → Reinvest</td><td>More comprehensive than Kübler-Ross; emphasizes letting go and rebuilding</td></tr>
+              <tr><td><strong>Dual Process Model</strong></td><td>Oscillation between <em>loss-oriented</em> activities (grieving, dwelling on memories) and <em>restoration-oriented</em> activities (adapting, new roles, routines)</td><td>Most current model — emphasizes back-and-forth movement; neither orientation is "wrong"</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout callout-teal">
+          <span class="callout-icon">📌</span>
+          <div><strong>Main takeaway from all grief theories:</strong> older theories emphasized stages or tasks; newer theories emphasize individuality, unique meaning-making, and cyclical movement. Nurses should <strong>never impose a grief timeline</strong> on patients or families.</div>
+        </div>
+        <div class="accordion">
+          <details>
+            <summary>Nursing diagnoses related to grief (NANDA)</summary>
+            <ul>
+              <li>Hopelessness (often the priority diagnosis)</li>
+              <li>Dysfunctional Grief / Anticipatory Grief</li>
+              <li>Death Anxiety</li>
+              <li>Impaired Family Coping</li>
+              <li>Spiritual Distress</li>
+              <li>Chronic Pain, Fatigue, Low Nutritional Intake</li>
+              <li>Denial About Illness Severity</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Expected outcomes for grieving patients — evaluation guide</summary>
+            <ul>
+              <li>Talking about the loss without becoming overwhelmed</li>
+              <li>Improved sleep and appetite</li>
+              <li>Improved energy; easier social interaction</li>
+              <li>Better decision-making ability</li>
+              <li>Reorganized daily life; return of humor</li>
+              <li>Renewed relationships; decreased inner pain</li>
+            </ul>
+          </details>
+        </div>
+      </section>
+
+      <!-- Communication -->
+      <section class="card searchable" id="communication">
+        <div class="section-header">
+          <div class="section-icon icon-teal">💬</div>
+          <h2>Therapeutic Communication &amp; Nurse Role</h2>
+        </div>
+        <div class="grid-compare">
+          <div class="compare-col col-a">
+            <h3>✓ Helpful nursing responses</h3>
+            <ul>
+              <li>Listen. Be <strong>present</strong> — physically and psychologically.</li>
+              <li>Use silence, appropriate therapeutic touch, and active listening.</li>
+              <li>Encourage the person to tell the story: <em>"Tell me more."</em></li>
+              <li>Normalize grief as individualized and non-linear.</li>
+              <li>Ask about cultural, spiritual, or religious preferences.</li>
+              <li>Encourage support systems; refer early when needed.</li>
+              <li>Provide anticipatory guidance about what to expect.</li>
+              <li>Acknowledge feelings without trying to "fix" them.</li>
+              <li><em>"This must be very difficult for you."</em></li>
+              <li><em>"I'm sorry this is happening."</em></li>
+            </ul>
+          </div>
+          <div class="compare-col col-b">
+            <h3>✗ Avoid (non-therapeutic)</h3>
+            <ul>
+              <li>"I know how you feel." — assumes understanding</li>
+              <li>"At least they are in a better place." — minimizes loss</li>
+              <li>"Everything happens for a reason." — dismissive cliché</li>
+              <li>"Don't cry." / "You need to stay strong." — shuts down grief</li>
+              <li>"In a year you'll have forgotten." — imposes timeline</li>
+              <li>Withdrawing emotionally while focusing only on physical care</li>
+              <li>Using family/friends as interpreters for non-English speakers</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top:16px">
+          <div class="mini">
+            <h4>Nurse's role with grieving client/family</h4>
+            <ol>
+              <li>Support and help the person grieve.</li>
+              <li>Encourage the person to accept support.</li>
+              <li>Assist in discovering meaning from the loss.</li>
+              <li>Seek professional assistance when indicated.</li>
+              <li>Incorporate cultural differences into care.</li>
+            </ol>
+          </div>
+          <div class="mini">
+            <h4>Nurse self-awareness</h4>
+            <ul>
+              <li>Death anxiety can lead to emotional distancing or avoidance.</li>
+              <li>Healthy coping: reflection, discussion, arts, meditation, self-care.</li>
+              <li>Your discomfort should <strong>never</strong> stop the patient or family from expressing grief.</li>
+              <li>Personal assumptions and attitudes require ongoing reflection.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <details>
+            <summary>Presence — a core therapeutic tool</summary>
+            <p style="font-size:.88rem;margin:6px 0">Presence means being both <em>physically</em> and <em>psychologically</em> with the patient and family — listening and acknowledging the legitimacy of their pain and impending loss. Sometimes the most therapeutic action is simply sitting, saying nothing, and holding a hand.</p>
+          </details>
+          <details>
+            <summary>Life review, reminiscence &amp; storytelling</summary>
+            <ul>
+              <li><strong>Life review:</strong> structured reflection on one's life, often facilitated by another person — helps patients find meaning, perspective, legacy, and connection near the end of life.</li>
+              <li><strong>Reminiscence:</strong> informal, spontaneous remembering of life events.</li>
+              <li>Nurses can encourage: journals, scrapbooks, letters, memory books, recorded messages/videos for loved ones.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Helpful open-ended assessment questions (Ch. 36)</summary>
+            <ul>
+              <li>"What is the most important thing I can do for you right now?"</li>
+              <li>"What do you understand about your diagnosis?"</li>
+              <li>"You seem sad today. Can you tell me more?"</li>
+              <li>"What does this loss mean to you?"</li>
+              <li>"What would be most helpful to you right now?"</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Bereavement facilitation — supporting families after death</summary>
+            <ul>
+              <li>Reinforce that the loss is real; discuss facts of the loss openly.</li>
+              <li>Help survivors solve practical problems.</li>
+              <li>Encourage asking for help and safe social connection.</li>
+              <li>Remind survivors that anniversary reactions are normal.</li>
+              <li>Normalize behaviors like poor concentration or sensing the deceased's voice.</li>
+              <li>Watch for harmful coping such as substance misuse.</li>
+            </ul>
+          </details>
+        </div>
+      </section>
+
+      <!-- Advance Care Planning -->
+      <section class="card searchable" id="advance">
+        <div class="section-header">
+          <div class="section-icon icon-amber">📋</div>
+          <h2>Advance Care Planning &amp; Advance Directives</h2>
+          <span class="badge badge-amber">Ch. 8</span>
+        </div>
+        <p style="color:var(--muted);font-size:.9rem;margin:0 0 16px">Advance care planning is an <strong>ongoing process</strong> — not just a form. The Patient Self-Determination Act (1991) requires healthcare agencies to ask patients about ADs and provide information.</p>
+        <div class="grid-2">
+          <div class="mini">
+            <h4>Durable Power of Attorney for Health Care (DPOAHC)</h4>
+            <ul>
+              <li>Names a person to make healthcare decisions if the patient loses decisional capacity.</li>
+              <li>NOT the same as financial power of attorney.</li>
+              <li>The designated person does not act until the provider determines the patient lacks decision-making capacity.</li>
+              <li><strong>Decision-making capacity requires:</strong> ability to receive information, evaluate/process it, and communicate a treatment preference.</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Living Will</h4>
+            <ul>
+              <li>Legal document describing what life-sustaining treatments a person does or does not want if unable to decide later.</li>
+              <li>Common decisions included: CPR, mechanical ventilation, artificial nutrition/hydration.</li>
+            </ul>
+            <h4 style="margin-top:12px">DNR / DNAR</h4>
+            <ul>
+              <li>A provider order stating CPR should not be attempted if cardiac or respiratory arrest occurs.</li>
+              <li>By law, CPR must be initiated unless a valid DNR exists.</li>
+              <li>Some states allow portable DNRs; POLST forms may document wishes across settings.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout callout-amber">
+          <span class="callout-icon">⚠️</span>
+          <div><strong>CPR at end of life:</strong> CPR can be violent, painful, and may prevent a peaceful death. Many patients and families do not realize CPR was not originally designed for patients with end-stage disease — education is critical. The nurse's role is to inform, advocate for documented wishes, and support informed decisions without imposing personal values.</div>
+        </div>
+        <div class="accordion">
+          <details>
+            <summary>Nurse's role in advance care planning</summary>
+            <ul>
+              <li>Help patients think through their goals and values before a crisis occurs.</li>
+              <li>Help families understand options and implications.</li>
+              <li>Support informed decisions without influencing them based on personal values.</li>
+              <li>Recognize that advance care planning is a <em>process</em> — not a single conversation or form.</li>
+              <li>Assess for ADs, DPOAHC, living will, and DNR status on admission and at transitions of care.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Common decisions in advance care planning</summary>
+            <ul>
+              <li>Continuing or stopping curative treatments</li>
+              <li>Transition to hospice or palliative care</li>
+              <li>Location of care (home, hospital, hospice facility)</li>
+              <li>Artificial nutrition and hydration</li>
+              <li>Code status (Full code, DNR, DNI)</li>
+              <li>Desired spiritual or religious support at end of life</li>
+              <li>Preferences for death: who should be present, where, under what conditions</li>
+            </ul>
+          </details>
+        </div>
+      </section>
+
+      <!-- Palliative vs Hospice -->
+      <section class="card searchable" id="palliative">
+        <div class="section-header">
+          <div class="section-icon icon-teal">🏥</div>
+          <h2>Palliative Care vs Hospice</h2>
+          <span class="badge badge-teal">Concept 53 · High yield</span>
+        </div>
+        <p style="color:var(--muted);font-size:.9rem;margin:0 0 16px">Palliative care developed because it was not ethical to reserve expert symptom relief and whole-person care only for patients who were clearly dying. It is now a core sphere of professional nursing education (AACN Essentials).</p>
+        <div class="grid-compare">
+          <div class="compare-col col-a">
+            <h3>🌿 Palliative care</h3>
+            <ul>
+              <li>Begins at diagnosis of serious illness; continues across the entire illness trajectory.</li>
+              <li>Can occur alongside curative or life-prolonging treatment.</li>
+              <li>Appropriate at ANY age, any diagnosis, any stage, any setting.</li>
+              <li>Addresses physical, emotional, social, cultural, and spiritual needs.</li>
+              <li>Family and caregivers are included as part of the unit of care.</li>
+              <li>May be delivered in person, via telehealth, or hybrid model.</li>
+              <li>Continues into the bereavement period for families after death.</li>
+            </ul>
+          </div>
+          <div class="compare-col col-b">
+            <h3>🕊 Hospice care</h3>
+            <ul>
+              <li>Specific type of palliative care for patients nearing the end of life.</li>
+              <li>Medicare eligibility: serious progressive illness + life expectancy ≤6 months if disease follows expected course.</li>
+              <li>Curative treatment stops; focus shifts entirely to comfort and dignity.</li>
+              <li>Core services: 24/7 nursing/medical availability, symptom management, family support, bereavement follow-up, trained volunteers, respite care.</li>
+              <li>Can be home, hospice center, nursing facility, or hospital.</li>
+              <li>Originally most hospice patients had cancer; now also dementia, COPD, cardiac disease, neurologic disease.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="subsection-title">High-yield distinctions</div>
+        <ul>
+          <li>⭐ <strong>All hospice is palliative, but not all palliative care is hospice.</strong></li>
+          <li>Palliative care ≠ end-of-life care ≠ giving up — it can start the day of diagnosis.</li>
+          <li>Two major patient fears at EOL: <strong>being a burden to family</strong> and <strong>being in pain.</strong></li>
+          <li>Early palliative referral improves: treatment planning, goal setting, symptom relief, quality of life, coping, and patient outcomes.</li>
+        </ul>
+
+        <div class="subsection-title">8 Domains of Quality Palliative Care (National Consensus Project)</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Domain</th><th>Focus</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1. Structure &amp; Processes</strong></td><td>Interprofessional team, education, care processes, patient/family collaboration</td></tr>
+              <tr><td><strong>2. Physical Aspects</strong></td><td>Assessment &amp; management of pain, dyspnea, constipation, fatigue, nausea</td></tr>
+              <tr><td><strong>3. Psychological &amp; Psychiatric</strong></td><td>Anxiety, depression, grief, bereavement, common emotional reactions</td></tr>
+              <tr><td><strong>4. Social Aspects</strong></td><td>Family as unit of care, health literacy, financial literacy, social supports, disabilities</td></tr>
+              <tr><td><strong>5. Spiritual, Religious &amp; Existential</strong></td><td>Meaning, spiritual needs, ritual, religion, existential distress</td></tr>
+              <tr><td><strong>6. Cultural Aspects</strong></td><td>Language, truth telling, disclosure preferences, rituals, ethnicity, religion, identity, immigration status</td></tr>
+              <tr><td><strong>7. Care Near EOL</strong></td><td>Recognizing advanced illness, planning, site of care, social/spiritual/physical/cultural needs, bereavement</td></tr>
+              <tr><td><strong>8. Ethical &amp; Legal Aspects</strong></td><td>Goals of care, surrogates, advance care planning, withholding/withdrawing treatment, moral distress, health disparities</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="accordion">
+          <details>
+            <summary>Levels of palliative nursing practice</summary>
+            <div class="grid-compare" style="margin-top:10px">
+              <div class="compare-col col-a"><h3>Primary palliative nursing (ALL nurses)</h3><ul><li>Basic pain &amp; symptom management</li><li>Common communication skills</li><li>Discussing quality of life &amp; advance directives</li><li>Recognizing community resources</li><li>General support for seriously ill patients</li></ul></div>
+              <div class="compare-col col-b"><h3>Specialty palliative nursing (advanced)</h3><ul><li>Complex/refractory symptom management</li><li>Advanced communication &amp; conflict resolution</li><li>Navigating changing care needs across trajectory</li><li>Culturally sensitive advanced care</li></ul></div>
+            </div>
+          </details>
+          <details>
+            <summary>Interprofessional palliative care team</summary>
+            <p style="font-size:.87rem;margin:6px 0 10px">Core NCP services: <strong>chaplaincy, social work, nursing, medicine, pharmacy.</strong></p>
+            <p style="font-size:.87rem;margin:0">Extended team may include: psychologist/psychiatrist, case manager, child life, art/music therapy, bereavement counselors, volunteers, Reiki/massage/acupuncture/pet therapy.</p>
+          </details>
+          <details>
+            <summary>Caregiver burden — recognize and address</summary>
+            <ul>
+              <li>Physical, emotional, social, and financial stress on family/caregivers.</li>
+              <li>Risk increased by: high caregiving demands, low resources, caregiver age, ADL dependence of care recipient, socioeconomic inequities.</li>
+              <li><strong>Nursing actions:</strong> assess caregiver stress, teach coping strategies, connect to respite/services, encourage support groups, promote caregiver self-care and help-seeking.</li>
+              <li>CBT, mindfulness, and support groups reduce burden.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>End-of-life nursing priorities</summary>
+            <ul>
+              <li>Promote dignity, comfort, hope, and family involvement.</li>
+              <li>Coordinate interprofessional care.</li>
+              <li>Support goals-of-care conversations and advance directives.</li>
+              <li>Respect person-centered and culturally sensitive care.</li>
+              <li>Comfort-care pearl: <strong>IV hydration/tube feeding may increase discomfort in multiorgan shutdown</strong> — mouth care and lip moisture often matter more than pushing fluids.</li>
+            </ul>
+          </details>
+        </div>
+        <div class="callout callout-teal">
+          <span class="callout-icon">📌</span>
+          <div>Palliative care also applies in <strong>emergencies, pandemics, and mass casualty events</strong> — wherever suffering is high and prognosis is uncertain. It is essential in ICUs, EDs, and trauma services, not just oncology.</div>
+        </div>
+      </section>
+
+      <!-- Symptoms -->
+      <section class="card searchable" id="symptoms">
+        <div class="section-header">
+          <div class="section-icon icon-amber">🩺</div>
+          <h2>Comfort Symptom Management at End of Life</h2>
+          <span class="badge badge-amber">Ch. 8</span>
+        </div>
+        <p style="color:var(--muted); font-size:.9rem; margin:0 0 16px;">A major nursing goal is comfort. Uncontrolled symptoms increase suffering for both patient and family. The nurse identifies distressing symptoms and advocates for treatment based on patient priorities.</p>
+        <div class="accordion">
+          <details open>
+            <summary>Dyspnea (breathlessness)</summary>
+            <div class="grid-2" style="margin-top:10px">
+              <div class="mini"><h4>Assessment</h4><ul><li>Subjective like pain — only the patient can describe it.</li><li>Normal SpO₂ does <strong>NOT</strong> rule out dyspnea.</li><li>Assess: intensity, triggers (talking, eating, stairs), emotional responses (panic, anxiety, anger, frustration)</li></ul></div>
+              <div class="mini"><h4>Interventions</h4><ul><li><strong>Morphine</strong> — first-line even without pain; reduces air hunger, anxiety &amp; O₂ demand</li><li>Benzodiazepines (lorazepam) for anxiety-related dyspnea</li><li>Corticosteroids, bronchodilators, diuretics for specific causes</li><li>Anticholinergics (atropine, hyoscyamine, scopolamine) for secretions</li><li>Fan directed at face — evidence-based, very effective</li><li>Elevate HOB; cool wet cloths; guided imagery; deep breathing</li></ul></div>
+            </div>
+            <div class="callout callout-amber" style="margin-top:8px"><span class="callout-icon">⚠️</span><div><strong>Death rattle</strong> is usually more distressing to family than to the patient. Manage with: side positioning, towel for secretions, anticholinergics. <strong>Avoid oropharyngeal suctioning</strong> — it agitates and does not help.</div></div>
+          </details>
+          <details>
+            <summary>Pain management</summary>
+            <div class="grid-2" style="margin-top:10px">
+              <div class="mini"><h4>Causes near EOL</h4><ul><li>Tumor infiltration of organs, nerves, or bone</li><li>Osteoarthritis, muscle spasms</li><li>Immobility-related pain</li><li>Pre-existing chronic pain</li></ul></div>
+              <div class="mini"><h4>Management</h4><ul><li>Continue scheduled opioids — do not withhold because of renal/respiratory changes in EOL patients</li><li>As swallowing declines → sublingual, rectal, transdermal, IV, or SQ routes</li><li>Older adults: start low, increase cautiously; pain is often undertreated</li><li>Renal failure: fentanyl preferred over morphine (metabolite accumulation worsens delirium)</li></ul></div>
+            </div>
+          </details>
+          <details>
+            <summary>Nausea &amp; vomiting</summary>
+            <ul>
+              <li>Common in last week of life, especially with advanced HIV/AIDS, breast, stomach, GI, and GYN cancers.</li>
+              <li>Causes: uremia, hypercalcemia, increased ICP, constipation/impaction, bowel obstruction, opioid side effect (may resolve in a few days).</li>
+              <li>Medications: prochlorperazine, ondansetron, dexamethasone, metoclopramide.</li>
+              <li>If constipation is the cause: Fleet enema, mineral oil enema, gentle disimpaction.</li>
+              <li>Environmental: remove odors, comfortable temperature; aromatherapy (peppermint, chamomile, lavender) may help some patients.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Agitation, delirium &amp; terminal restlessness</summary>
+            <ul>
+              <li>First: assess for reversible causes — pain, urinary retention, constipation, medication effects.</li>
+              <li><strong>Delirium</strong> = acute, fluctuating change in mental status (inattention, disorganized thinking, altered LOC). Types: hyperactive, hypoactive, mixed.</li>
+              <li><strong>Terminal delirium</strong> occurs in last days/weeks; may be caused by opioids, benzodiazepines, anticholinergics, or steroids — reduce/stop contributing agents when possible.</li>
+              <li>Antipsychotics (low-dose haloperidol) for hallucinations/delusions. <strong>Do NOT give more than one antipsychotic at a time.</strong></li>
+              <li>Benzodiazepines are <strong>NOT first-line</strong> for agitation in older adults — can worsen delirium; paradoxical agitation possible.</li>
+              <li>Nonpharmacologic: soothing music, pet therapy, lavender/chamomile aromatherapy, calm environment.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Constipation</summary>
+            <ul>
+              <li>Expected and predictable with opioids and many analgesics — <strong>prevention is easier than treatment.</strong></li>
+              <li>Bowel movement expected at least every 3 days regardless of intake/activity.</li>
+              <li>Stepwise escalation: senna/Peri-Colace/Doxidan → bisacodyl or milk of magnesia → suppository/enema if needed.</li>
+              <li>Start a stimulant laxative prophylactically at the same time opioids are initiated.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Weakness, fatigue &amp; dysphagia</summary>
+            <ul>
+              <li>Fatigue: balance energy reserves and expenditure; encourage bedrest to prevent falls; hospital/electric beds helpful.</li>
+              <li>As swallowing declines: limit to soft foods/sips; do not force food/fluid; teach family about aspiration risk.</li>
+              <li><strong>Terminal dehydration</strong> does not cause distress and may actually promote comfort through endorphin release — IV fluids may worsen secretions, edema, ascites, and nausea.</li>
+              <li>Comfort: moisten mouth, use swabs, apply lip balm.</li>
+              <li>Reassess medications — discontinue nonessential drugs; avoid crushing sustained-release formulations; IM route avoided (painful and unreliable).</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Seizures</summary>
+            <ul>
+              <li>Less common; may occur with brain tumors, advanced AIDS, or known seizure disorders.</li>
+              <li>When oral antiepileptics can no longer be swallowed: rectal diazepam gel or sublingual lorazepam solution.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Refractory symptoms — palliative sedation</summary>
+            <ul>
+              <li>Used when symptoms are severe, refractory, and unbearable despite standard treatment.</li>
+              <li>Medications: benzodiazepines (midazolam), barbiturates, or short-acting anesthetics (propofol).</li>
+              <li><strong>Intent: relieve suffering by lowering consciousness — NOT to hasten death.</strong></li>
+              <li>Using appropriate symptom-management protocols at EOL does <strong>not</strong> hasten death.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>General comfort measures (skin, mouth, environment)</summary>
+            <ul>
+              <li><strong>Skin:</strong> keep clean, dry, moisturized; monitor incontinence; frequent repositioning</li>
+              <li><strong>Mouth:</strong> oral care every 2–4 hours; lip balm; analgesics to oral lesions if needed; artificial tears for eyes</li>
+              <li><strong>Environment:</strong> dim lighting, soothing music, minimal noise/odors, familiar photos/objects, comfortable clothing</li>
+              <li>Complementary therapies: massage, music therapy, therapeutic touch, guided imagery, aromatherapy — all reduce pain and anxiety</li>
+            </ul>
+          </details>
+        </div>
+      </section>
+
+      <!-- Death -->
+      <section class="card searchable" id="death">
+        <div class="section-header">
+          <div class="section-icon icon-indigo">🕊</div>
+          <h2>Approaching Death — Signs, Pathophysiology &amp; Family Teaching</h2>
+          <span class="badge badge-teal">Ch. 8</span>
+        </div>
+
+        <div class="subsection-title">Pathophysiology of dying</div>
+        <p style="color:var(--muted);font-size:.88rem;margin:0 0 12px">Death occurs when illness or trauma overwhelms the body's compensatory mechanisms. The final common pathway: poor perfusion → organ failure → dysrhythmia → cardiopulmonary arrest.</p>
+        <div class="grid-3">
+          <div class="mini"><h4>Cardiovascular failure</h4><p style="font-size:.87rem">Dysrhythmias, MI, cardiogenic shock → inadequate perfusion → tissue ischemia, anaerobic metabolism, acidosis, hyperkalemia</p></div>
+          <div class="mini"><h4>Respiratory failure</h4><p style="font-size:.87rem">PE, HF, pneumonia, lung disease, increased ICP → respiratory arrest; or cardiac arrest triggers respiratory arrest</p></div>
+          <div class="mini"><h4>Multiorgan dysfunction</h4><p style="font-size:.87rem">Toxic metabolites released → MODS → renal/liver failure → severe hypoxia/acidosis → ventricular fibrillation or asystole</p></div>
+        </div>
+
+        <div class="subsection-title">Physical signs — days to hours before death</div>
+        <div class="grid-2">
+          <div class="mini">
+            <h4>Last 48–72 hours</h4>
+            <ul>
+              <li>Increased sleeping / reduced LOC → lethargy → coma</li>
+              <li>No fluids or only sips; no appetite; inability to swallow</li>
+              <li>Little/no urine output; dark, concentrated urine; incontinence</li>
+              <li>Restlessness, confusion, disorientation</li>
+              <li>Periods of apnea; Cheyne-Stokes respirations</li>
+              <li>Coldness and mottling / cyanosis / purple discoloration of extremities</li>
+              <li>Weak, irregular, barely palpable pulse; BP dropping</li>
+              <li>Congestion, secretions → death rattle</li>
+              <li>Decreased muscle tone; sagging jaw</li>
+              <li>Vision and hearing changes</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Actual signs of death</h4>
+            <ul>
+              <li>Cessation of heartbeat and respirations</li>
+              <li>Pupils fixed and dilated</li>
+              <li>No response to verbal or tactile stimuli</li>
+              <li>Eyelids open without blinking</li>
+              <li>Jaw relaxed and slightly open</li>
+              <li>Body color waxen/gray pallor</li>
+              <li>Decreasing body temperature</li>
+              <li>Muscles and sphincters relax; urine or stool may be released</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="subsection-title">Family teaching — what to expect and what to do</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Sign</th><th>What's happening</th><th>What to tell family</th></tr></thead>
+            <tbody>
+              <tr><td>Cool extremities</td><td>Circulation decreasing</td><td>Use a blanket. <strong>Do NOT use electric blankets, heating pads, or hot water bottles.</strong></td></tr>
+              <tr><td>Increased sleeping</td><td>Metabolism is reduced</td><td>Sit quietly with the patient. Do not force wakefulness. Continue speaking normally.</td></tr>
+              <tr><td>Decreased food/fluids</td><td>Metabolic needs are lower</td><td>Do not force food or drink. Offer sips/ice chips if safe. Keep mouth moist.</td></tr>
+              <tr><td>Incontinence</td><td>Perineal muscle relaxation</td><td>Keep clean and dry. Catheter may be used for comfort.</td></tr>
+              <tr><td>Death rattle</td><td>Cannot clear secretions</td><td>Position on side. Gently clean mouth. Avoid suctioning.</td></tr>
+              <tr><td>Breathing changes</td><td>Slowed brain circulation</td><td>Elevate head of bed; side-lying may help.</td></tr>
+              <tr><td>Disorientation</td><td>Neurologic changes</td><td>Identify yourself. Reorient softly and truthfully.</td></tr>
+              <tr><td>Restlessness</td><td>Terminal agitation or unmet need</td><td>Quiet voice, dim lights, soothing music. Do not restrain. Medications available if needed.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="accordion" style="margin-top:16px">
+          <details>
+            <summary>Emotional signs &amp; near-death awareness</summary>
+            <ul>
+              <li><strong>Withdrawal:</strong> patient may pull away from surroundings and relationships — this is normal.</li>
+              <li><strong>Vision-like experiences:</strong> patients may speak to people not visible, describe journeys, or wave to deceased relatives. <strong>Do NOT automatically label as delirium.</strong> Affirm the experience; do not argue or redirect.</li>
+              <li><strong>Letting go:</strong> agitation or repetitive tasks may suggest unresolved concerns. Hearing loved ones say "It's okay to go" can bring peace.</li>
+              <li><strong>Saying goodbye:</strong> touching, hugging, crying, and expressions of love — "I love you," "Thank you," "I'm sorry," "I'll miss you" — are deeply comforting.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Culture &amp; spirituality at end of life — HOPE assessment</summary>
+            <ul>
+              <li><strong>H:</strong> sources of hope and strength</li>
+              <li><strong>O:</strong> organized religion</li>
+              <li><strong>P:</strong> personal spirituality and practices</li>
+              <li><strong>E:</strong> effects on care and end-of-life decisions</li>
+            </ul>
+            <p style="font-size:.86rem;margin-top:8px;color:var(--muted)">Some cultures prefer family-centered (not direct) communication about prognosis. Some religious practices require specific rituals before and after death. Always <strong>ask rather than assume.</strong></p>
+          </details>
+          <details>
+            <summary>Pronouncement of death — nursing process</summary>
+            <ol>
+              <li>Note the time respirations ceased.</li>
+              <li>Identify the patient correctly.</li>
+              <li>Confirm no response to verbal or tactile stimuli.</li>
+              <li>Auscultate absent heart sounds.</li>
+              <li>Palpate absent carotid pulse.</li>
+              <li>Confirm absence of respirations.</li>
+              <li>Document time and notifications.</li>
+              <li>Notify medical examiner if required by law.</li>
+              <li>Document whether autopsy is planned.</li>
+            </ol>
+            <p style="font-size:.85rem;color:var(--muted);margin-top:8px">State law and agency policy determine whether nurses may pronounce death independently.</p>
+          </details>
+        </div>
+        <div class="callout callout-teal">
+          <span class="callout-icon">📋</span>
+          <div>The nurse serves as consultant, collaborator, coach, and guide. <strong>Never predict an exact time of death</strong> — instead, explain the meaning of observed changes compassionately to prepare the family.</div>
+        </div>
+      </section>
+
+      <!-- Postmortem Care -->
+      <section class="card searchable" id="postmortem">
+        <div class="section-header">
+          <div class="section-icon icon-indigo">🕯</div>
+          <h2>Postmortem Care &amp; After-Death Responsibilities</h2>
+          <span class="badge badge-teal">Ch. 36 &amp; 8</span>
+        </div>
+        <div class="grid-2">
+          <div class="mini">
+            <h4>Principles of postmortem care</h4>
+            <ul>
+              <li>Same dignity and respect as for a living patient.</li>
+              <li>Complete promptly to minimize tissue changes.</li>
+              <li>Follow cultural and religious beliefs.</li>
+              <li>Know and follow agency policies.</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Organ &amp; tissue donation</h4>
+            <ul>
+              <li>Specially trained staff make the donation request — nurses provide support.</li>
+              <li>Clarify that <strong>brain death = death</strong>, even if machines preserve organ circulation.</li>
+              <li>Follow state law and agency policy.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="subsection-title">Autopsy — when required and nurse's role</div>
+        <p style="color:var(--muted);font-size:.88rem;margin:0 0 12px">Autopsy is a surgical examination of the body to determine cause/circumstances of death. May be required by law in: homicide, suicide, accidents, suspicious death, or death within 24 hours of admission.</p>
+        <ul>
+          <li>The provider usually requests permission; the nurse supports, answers questions, and explains that the body is not deformed.</li>
+          <li>If autopsy is planned, do not remove lines or tubes until cleared.</li>
+        </ul>
+
+        <div class="accordion">
+          <details>
+            <summary>Standard postmortem care steps</summary>
+            <ol>
+              <li>Confirm provider certified death.</li>
+              <li>Determine if autopsy is ordered.</li>
+              <li>Validate organ/tissue donation request status.</li>
+              <li>Identify patient correctly.</li>
+              <li>Hand hygiene, gloves, and appropriate PPE.</li>
+              <li>Elevate head of bed; collect ordered specimens.</li>
+              <li>Ask if family wants to participate or has special rituals/clothing requests.</li>
+              <li>Remove tubes/lines unless contraindicated by autopsy/donation.</li>
+              <li>Cleanse body; groom hair; close eyes; insert dentures if possible.</li>
+              <li>Straighten body; place pillow under head; place pads under hips/perineum.</li>
+              <li>Clean the environment; offer family privacy for viewing.</li>
+              <li>Manage belongings respectfully.</li>
+              <li>Tag and shroud body according to policy.</li>
+              <li>Document thoroughly.</li>
+              <li>Transport body respectfully.</li>
+            </ol>
+          </details>
+          <details>
+            <summary>Documentation after death — key charting elements</summary>
+            <ul>
+              <li>Date and time of death</li>
+              <li>Actions taken; who verified/certified death</li>
+              <li>Notifications made (family, provider, ME, etc.)</li>
+              <li>Organ/tissue donation request status</li>
+              <li>Body preparations performed</li>
+              <li>Lines/tubes left in place (if any) and reason</li>
+              <li>Personal belongings — inventory and disposition</li>
+              <li>ID tag placement; body transfer time and destination</li>
+              <li>Special family requests or circumstances</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Religious and cultural EOL practices — examples</summary>
+            <div class="grid-3" style="margin-top:10px">
+              <div class="mini"><h4>Christianity</h4><ul><li>Beliefs vary by denomination</li><li>Roman Catholics may receive Sacrament of the Sick</li><li>Beliefs about heaven/hell may influence expectations</li></ul></div>
+              <div class="mini"><h4>Judaism</h4><ul><li>Dying person should not be left alone</li><li>Body must be respected; burial ASAP</li><li>Embalming, cremation, and display generally not desired</li><li>Autopsy usually avoided unless required</li></ul></div>
+              <div class="mini"><h4>Islam</h4><ul><li>Body is sacred; autopsy only if legally required</li><li>Embalming and cremation forbidden</li><li>Body may be positioned toward Mecca</li><li>Religious rituals for washing/wrapping needed</li></ul></div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Ethics at EOL -->
+      <section class="card searchable" id="ethics">
+        <div class="section-header">
+          <div class="section-icon icon-rose">⚖️</div>
+          <h2>Ethics at End of Life</h2>
+          <span class="badge badge-teal">Ch. 8</span>
+        </div>
+        <div class="grid-2">
+          <div class="mini">
+            <h4>Voluntary Active Euthanasia (VAE)</h4>
+            <ul>
+              <li>Provider directly takes action to <em>intentionally cause</em> the patient's death.</li>
+              <li><strong>NOT supported</strong> by most U.S. professional nursing organizations.</li>
+              <li>Not legal in the United States.</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Medical Aid in Dying (MAID / PAD)</h4>
+            <ul>
+              <li>Legal in some countries and in 11 U.S. states.</li>
+              <li>Nurses do <strong>NOT</strong> administer MAID medication.</li>
+              <li>Nurses must: understand applicable law, provide accurate/objective information, allow open discussion without judgment, not impose personal values.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="subsection-title">Key ethical concepts at EOL</div>
+        <div class="accordion">
+          <details open>
+            <summary>Withholding / withdrawing life-sustaining treatment</summary>
+            <ul>
+              <li>Stopping or not starting interventions that no longer benefit the patient, are futile, burdensome, or harmful.</li>
+              <li><strong>Critical distinction:</strong> withdrawing treatment does NOT directly cause death — the underlying illness causes death.</li>
+              <li>This is ethically and legally supported when consistent with documented patient wishes or surrogate decisions.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Voluntary Stopping of Eating and Drinking (VSED)</summary>
+            <ul>
+              <li>When a competent patient consciously chooses to stop eating and drinking to hasten death.</li>
+              <li>Reasons: severe suffering, desire for control, wish to reduce caregiver burden.</li>
+              <li>Nurse must understand: ethical issues, informed consent requirements, and comfort-focused management of terminal dehydration.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Palliative sedation vs hastening death</summary>
+            <ul>
+              <li>Palliative sedation is used for <em>refractory, unbearable symptoms</em> — the intent is to relieve suffering, <strong>NOT to hasten death.</strong></li>
+              <li>Using appropriate EOL symptom protocols does not hasten death — this is a critical ethical and legal distinction.</li>
+              <li>ANA Code of Ethics: nurses have an ethical obligation to provide comfort; they are not responsible for death when providing appropriate symptom relief.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Dying Person's Bill of Rights — key items</summary>
+            <ul>
+              <li>To be treated as a living human being until death.</li>
+              <li>To maintain hope; to be cared for by people who maintain hope.</li>
+              <li>To express feelings about death without judgment.</li>
+              <li>To participate in decisions about care.</li>
+              <li>To not die alone; to be free from pain.</li>
+              <li>To hear the truth; to have family supported.</li>
+              <li>To die in peace and dignity; to retain individuality.</li>
+              <li>To engage in religious or spiritual experiences.</li>
+              <li>To have the body respected after death.</li>
+            </ul>
+          </details>
+        </div>
+        <div class="callout callout-teal">
+          <span class="callout-icon">⚖️</span>
+          <div>The ANA Code of Ethics and the Dying Person's Bill of Rights are key standards guiding ethical EOL nursing. Nurses are required to be <strong>objective and non-imposing</strong> when patients or families face difficult EOL decisions — personal values must not influence the care provided.</div>
+        </div>
+      </section>
+
+      <!-- Rapid review -->
+      <section class="card searchable" id="rapid">
+        <div class="section-header">
+          <div class="section-icon icon-amber">⚡</div>
+          <h2>Rapid Review — All Chapters</h2>
+          <span class="badge badge-amber">Exam prep</span>
+        </div>
+        <div class="grid-3">
+          <div class="mini">
+            <h4>Know this cold</h4>
+            <ul>
+              <li>All hospice is palliative — NOT vice versa.</li>
+              <li>Grief is individualized, cyclical, and NOT linear.</li>
+              <li>Dyspnea is subjective like pain — SpO₂ does NOT rule it out.</li>
+              <li>Hospice = ≤6 month prognosis + serious progressive illness.</li>
+              <li>Withdrawing treatment ≠ causing death — illness causes death.</li>
+              <li>Palliative sedation intent = relieve suffering, NOT hasten death.</li>
+              <li>DPOAHC ≠ financial POA; activates only when capacity is lost.</li>
+              <li>Terminal dehydration may promote comfort — IV fluids may worsen symptoms.</li>
+              <li>Primary prevention = before disease; secondary = early detection; tertiary = minimize disability.</li>
+              <li>Mandatory reporters: suspected abuse of adults 65+, children under 18, and dependent individuals.</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Priority nursing actions</h4>
+            <ul>
+              <li>Assess patient goals of care — always person-centered.</li>
+              <li>Relieve distressing symptoms (pain, dyspnea, agitation) first.</li>
+              <li>Use therapeutic presence and silence at EOL.</li>
+              <li>Refer early for SDOH barriers, caregiver burden, spiritual needs.</li>
+              <li>Use certified interpreter — never family or staff.</li>
+              <li>Start prophylactic bowel regimen with every opioid order.</li>
+              <li>Do NOT force food/fluid near EOL.</li>
+              <li>Match teaching interventions to the patient's stage of change.</li>
+              <li>Interview suspected abuse victims privately.</li>
+              <li>Screen bereaved clients with depression history for suicidal ideation.</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>Common exam traps</h4>
+            <ul>
+              <li>Giving unrealistic discharge teaching ignoring SDOH barriers.</li>
+              <li>Using family as interpreter.</li>
+              <li>Equating palliative care with "giving up" or hospice.</li>
+              <li>Imposing a grief timeline on patients or families.</li>
+              <li>Labeling near-death awareness as delirium and medicating it.</li>
+              <li>Suctioning for death rattle — avoid; it agitates and doesn't help.</li>
+              <li>Giving benzodiazepines as first-line for agitation in older adults.</li>
+              <li>Assuming normal SpO₂ means no dyspnea.</li>
+              <li>Pushing Action-stage strategies on a Precontemplation patient.</li>
+              <li>Confusing community health nursing (individual/family) with public health nursing (population).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Flashcards -->
+      <section class="card" id="flashcards">
+        <div class="section-header">
+          <div class="section-icon icon-teal">🃏</div>
+          <h2>Tap-to-Flip Flashcards</h2>
+        </div>
+        <div class="flash-grid">
+          <div class="flash"><div class="flashInner"><div class="face front">Palliative care</div><div class="face back">Holistic, symptom-focused care for any stage of serious illness — can begin at diagnosis, alongside curative treatment.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Hospice</div><div class="face back">End-of-life comfort care for serious progressive illness; typically ≤6 month prognosis; curative treatment stops.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Anticipatory grief</div><div class="face back">Grieving before the actual loss occurs — common with terminal illness, dementia, ALS. Can cause emotional exhaustion.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Disenfranchised grief</div><div class="face back">A loss not socially recognized or supported — e.g., ex-spouse, pet, suicide, terminated pregnancy, same-sex partner "not out."</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Ambiguous loss</div><div class="face back">Grief with no finality — either person is physically present but psychologically absent (dementia), or absent but psychologically present (missing person).</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Complicated grief</div><div class="face back">Prolonged, severe, disruptive grief lasting >1 year, affecting ~10–20% of grievers. Risk factors: suicide, sudden death, child loss, poor support.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Suffering</div><div class="face back">Severe distress threatening the person's sense of intactness and personhood — failure to respond to unmet needs intensifies it.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">SDOH</div><div class="face back">Conditions where people live, work, learn, and access care that shape health outcomes — economic stability, education, healthcare access, neighborhood, social context.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Health equity</div><div class="face back">The attainment of the highest level of health for all people — social justice in health. Health disparities are the measurable gaps showing how far we are from it.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">DPOAHC</div><div class="face back">Durable Power of Attorney for Health Care — names a surrogate decision-maker; activates ONLY when patient loses decision-making capacity. ≠ financial POA.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Primary prevention</div><div class="face back">Reduces incidence of disease BEFORE it occurs — immunizations, education, nutrition, exercise, occupational safety, environmental sanitation.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Secondary prevention</div><div class="face back">Early detection and treatment of disease — screenings (mammogram, colonoscopy), identifying new cases, early intervention to prevent complications.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Tertiary prevention</div><div class="face back">Minimizes effects of established, irreversible disease/disability — rehab, managing chronic disease, hospice and palliative care.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Health Belief Model</div><div class="face back">Explains behavior via perceived susceptibility, seriousness, benefits, barriers, and cues to action. Patients act when they perceive personal risk AND that action will help.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Transtheoretical Model (Stage 1–3)</div><div class="face back">Precontemplation ("no problem") → Contemplation (ambivalent, 6 months) → Preparation (planning, small changes). Relapse = part of learning, not failure.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Compassion fatigue</div><div class="face back">Combination of secondary traumatic stress (from patient/family suffering) + burnout (from chronic resource shortage). Signs: exhaustion, reduced empathy, poor judgment, hopelessness.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Medically underserved population</div><div class="face back">Groups more likely to develop health problems due to excess health risks, limited access, or dependence on others — e.g., people in poverty, homeless, immigrants, older adults, those with mental illness.</div></div></div>
+          <div class="flash"><div class="flashInner"><div class="face front">Mandatory reporting — nurse obligation</div><div class="face back">Nurses are mandatory reporters for suspected abuse of: adults 65+, children under 18, and dependent individuals (e.g., people with disabilities). Interview suspected victims PRIVATELY.</div></div></div>
+        </div>
+      </section>
+
+      <!-- Quiz -->
+      <section class="card" id="quiz">
+        <div class="section-header">
+          <div class="section-icon icon-indigo">✏️</div>
+          <h2>Self-Check Quiz <span style="font-size:.9rem;font-weight:500;color:var(--muted)">(50 questions)</span></h2>
+        </div>
+        <div class="quiz-filters">
+          <button class="filter-btn active" data-filter="all">All (50)</button>
+          <button class="filter-btn" data-filter="mc">MC (20)</button>
+          <button class="filter-btn" data-filter="sata">SATA (10)</button>
+          <button class="filter-btn" data-filter="matrix">Matrix (20)</button>
+        </div>
+        <div class="quiz-counter" id="quizCounter"></div>
+        <div id="quizArea"></div>
+        <div class="quiz-actions">
+          <button class="btn btn-teal" id="gradeBtn">Grade quiz</button>
+          <button class="btn btn-navy" id="resetQuizBtn">Reset</button>
+          <span id="quizResult"></span>
+        </div>
+      </section>
+
+      <!-- Study tracker -->
+      <section class="card" id="tracker">
+        <div class="section-header">
+          <div class="section-icon icon-teal">✅</div>
+          <h2>Study Tracker</h2>
+        </div>
+        <div id="checklist">
+          <label class="tracker-item"><input type="checkbox" data-key="c1"><span>I can explain palliative care vs hospice without mixing them up.</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c2"><span>I can identify normal, anticipatory, disenfranchised, ambiguous, and complicated grief.</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c3"><span>I know at least 4 nursing actions related to SDOH / health disparities.</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c4"><span>I can list signs of approaching death in the last 48 hours.</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c5"><span>I know why dyspnea is assessed like pain and how it may be treated (morphine, fan, positioning).</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c6"><span>I can name therapeutic statements and nontherapeutic statements for grief care.</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c7"><span>I remember end-of-life priorities: dignity, comfort, family support, symptom relief, and cultural respect.</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c8"><span>I can explain all 5 grief theories and their exam takeaways (Kübler-Ross, Bowlby, Worden, Rando, Dual Process).</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c9"><span>I know the 3 levels of prevention and can give an example of each.</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c10"><span>I understand the 5 stages of the Transtheoretical Model and how to match nursing interventions to each stage.</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c11"><span>I can distinguish community health nursing from public health nursing from community-based nursing.</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c12"><span>I know the 8 roles of the community health nurse and can give an example of each.</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c13"><span>I understand compassion fatigue — what it is, its effects, and how to prevent it.</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c14"><span>I can explain advance directives (DPOAHC, living will, DNR) and the nurse's role in advance care planning.</span></label>
+          <label class="tracker-item"><input type="checkbox" data-key="c15"><span>I know the ethical distinctions: palliative sedation ≠ hastening death; withdrawing treatment ≠ causing death; VAE ≠ MAID.</span></label>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="footer">HCC2 Study Guide &nbsp;·&nbsp; <span>Made as a single-file study guide for offline review.</span></div>
+</div>
+
+<script>
+  const body = document.body;
+  const themeBtn = document.getElementById('themeBtn');
+  const expandBtn = document.getElementById('expandBtn');
+  const searchBox = document.getElementById('searchBox');
+  const allDetails = [...document.querySelectorAll('details')];
+  const flashcards = [...document.querySelectorAll('.flash')];
+  const navLinks = [...document.querySelectorAll('.nav-scroll a')];
+  const checkboxes = [...document.querySelectorAll('#checklist input[type="checkbox"]')];
+  const progressText = document.getElementById('progressText');
+
+  // Theme
+  if(localStorage.getItem('hcc2-theme') === 'dark') { body.classList.add('dark'); themeBtn.textContent = '☀️ Light mode'; }
+  themeBtn.onclick = () => {
+    body.classList.toggle('dark');
+    const d = body.classList.contains('dark');
+    themeBtn.textContent = d ? '☀️ Light mode' : '🌙 Dark mode';
+    localStorage.setItem('hcc2-theme', d ? 'dark' : 'light');
+  };
+
+  // Expand/collapse
+  let expanded = false;
+  expandBtn.onclick = () => {
+    expanded = !expanded;
+    allDetails.forEach(d => d.open = expanded);
+    expandBtn.textContent = expanded ? '⊖ Collapse all' : '⊕ Expand all';
+  };
+
+  // Flashcards
+  flashcards.forEach(card => card.addEventListener('click', () => card.classList.toggle('flip')));
+
+  // Search
+  searchBox.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.searchable').forEach(sec => {
+      const text = sec.innerText.toLowerCase();
+      sec.classList.toggle('hidden', q && !text.includes(q));
+      sec.querySelectorAll('mark').forEach(m => { m.replaceWith(m.textContent); });
+      if(q && text.includes(q)){
+        const walker = document.createTreeWalker(sec, NodeFilter.SHOW_TEXT, null);
+        const nodes = [];
+        while(walker.nextNode()) nodes.push(walker.currentNode);
+        nodes.forEach(node => {
+          if(node.parentNode && !['SCRIPT','STYLE','MARK'].includes(node.parentNode.tagName)){
+            const val = node.nodeValue;
+            const idx = val.toLowerCase().indexOf(q);
+            if(idx >= 0){
+              const span = document.createElement('span');
+              span.innerHTML = val.substring(0,idx) + '<mark>' + val.substring(idx,idx+q.length) + '</mark>' + val.substring(idx+q.length);
+              node.parentNode.replaceChild(span, node);
+            }
+          }
+        });
+      }
+    });
+  });
+
+  // Active nav
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        navLinks.forEach(link => {
+          const isActive = link.getAttribute('href') === '#' + entry.target.id;
+          link.classList.toggle('active', isActive);
+          if(isActive) link.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+        });
+      }
+    });
+  }, {rootMargin: '-20% 0px -55% 0px', threshold: 0});
+  document.querySelectorAll('main section[id]').forEach(sec => observer.observe(sec));
+
+  // Checklist
+  function loadChecklist() {
+    checkboxes.forEach(cb => cb.checked = localStorage.getItem('study-'+cb.dataset.key) === '1');
+    updateProgress();
+  }
+  function updateProgress() {
+    const done = checkboxes.filter(c => c.checked).length;
+    const pct = Math.round(done / checkboxes.length * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    progressText.textContent = pct + '%';
+  }
+  checkboxes.forEach(cb => cb.addEventListener('change', () => {
+    localStorage.setItem('study-'+cb.dataset.key, cb.checked ? '1' : '0');
+    updateProgress();
+  }));
+  loadChecklist();
+
+  // ─── QUIZ ENGINE ──────────────────────────────────────────────────────────
+  const quizData = [
+    // ── MULTIPLE CHOICE Q1–Q20 ────────────────────────────────────────────
+    {type:'mc',cat:'Therapeutic Communication',
+     q:'A client receiving palliative care states, "I\'m afraid of being a burden to my family when I get worse." Which is the therapeutic response by the nurse?',
+     options:['Your family wants to care for you — don\'t worry about that.','Many people feel that way. Have you considered hospice to help take the burden off them?','That sounds like a heavy fear to carry. Can you tell me more about what that feels like?','You should talk to your doctor about your prognosis.'],
+     answer:2,why:'An open-ended, nonjudgmental invitation that acknowledges the feeling and invites the client to share is therapeutic. Options A and B minimize or redirect; D deflects to the provider.'},
+
+    {type:'mc',cat:'Clinical Decision Making',
+     q:'A nurse is caring for a client with advanced cancer receiving opioids for pain. The client reports new-onset breathlessness rated 7/10 with a SpO₂ of 95%. Which is the nurse\'s priority action?',
+     options:['Apply oxygen at 6 L/min via face mask','Administer the prescribed PRN morphine','Reassess SpO₂ every 15 minutes','Notify the provider that the SpO₂ is below normal'],
+     answer:1,why:'Dyspnea is subjective like pain. A SpO₂ of 95% does not negate the client\'s experience of breathlessness. Morphine is evidence-based for dyspnea in palliative care — even without pain.'},
+
+    {type:'mc',cat:'Prioritization — Rapid Action',
+     q:'Which finding in a client with terminal cancer on hospice requires the most rapid action by the nurse?',
+     options:['Sleeping 18 hours per day','Dark-colored, scant urine output','Severe uncontrolled pain rated 10/10','Decreased appetite over the past 3 days'],
+     answer:2,why:'Severe uncontrolled pain requires immediate intervention. Increased sleep, dark urine, and decreased appetite are expected findings in the actively dying process.'},
+
+    {type:'mc',cat:'Prioritization — Who to See First',
+     q:'Which client should the charge nurse see first?',
+     options:['A hospice client who has not had a bowel movement in 4 days and reports mild cramping','A palliative care client whose family is asking about advance directives','A grieving client who states "I feel like I can\'t go on" with a history of depression','A client with COPD on comfort care who has increased use of accessory muscles'],
+     answer:2,why:'"I can\'t go on" in a client with depression history represents a potential suicide risk requiring immediate safety assessment — priority over expected symptom management or teaching needs.'},
+
+    {type:'mc',cat:'Medication Management',
+     q:'The nurse is caring for an older adult with end-stage heart failure on comfort care. VS: BP 88/54, HR 58, RR 10. The nurse should hold which ordered medication and notify the health care provider?',
+     options:['Scheduled morphine sulfate 2 mg IV q4h','Metoprolol 25 mg PO daily','Ondansetron 4 mg IV PRN nausea','Lorazepam 0.5 mg IV PRN agitation'],
+     answer:1,why:'HR 58 and BP 88/54 — metoprolol (a beta blocker) would worsen bradycardia and hypotension. Morphine, lorazepam, and ondansetron are all standard comfort medications and should not be held.'},
+
+    {type:'mc',cat:'Therapeutic Communication',
+     q:'A family member states, "I keep thinking this is my fault because I didn\'t make her go to the doctor sooner." Which is the therapeutic response by the nurse?',
+     options:['"You shouldn\'t blame yourself — you did your best."','"The disease would have progressed regardless of when she sought care."','"It sounds like you\'re carrying a lot of guilt. Tell me more about what you\'re feeling."','"Focus on being here for her now — that\'s what matters."'],
+     answer:2,why:'Acknowledging the emotion without dismissing, deflecting, or offering false reassurance — then inviting the person to process — is the hallmark of therapeutic communication.'},
+
+    {type:'mc',cat:'SDOH — Discharge Planning',
+     q:'A nurse is discharging a client with a new diabetes diagnosis to a community without a grocery store. The client earns minimum wage and has no car. Which nursing action best addresses SDOH?',
+     options:['Provide a standard ADA diet handout','Refer the client to social work and identify local food assistance programs and transportation resources','Tell the client to follow a low-carbohydrate diet and weigh daily','Schedule a follow-up appointment for 2 weeks without addressing barriers'],
+     answer:1,why:'SDOH-informed care means tailoring discharge planning to actual barriers — not providing generic teaching that is unrealistic given the client\'s environment and resources.'},
+
+    {type:'mc',cat:'Palliative vs Hospice',
+     q:'A client with stage III heart failure asks, "My doctor mentioned palliative care — does that mean I\'m dying?" Which response by the nurse is most accurate?',
+     options:['"Palliative care does focus on comfort, so it\'s important to discuss your prognosis."','"Palliative care is end-of-life care, so your doctor likely thinks your heart failure is terminal."','"Palliative care can begin at any point in a serious illness and focuses on symptom relief and quality of life — it does not mean curative treatment has to stop."','"Hospice and palliative care are the same thing, so your doctor is recommending comfort care."'],
+     answer:2,why:'Palliative care can start at diagnosis and coexist with curative treatment. It is not synonymous with hospice or end-of-life care.'},
+
+    {type:'mc',cat:'Grief Identification',
+     q:'A client whose husband died by suicide 3 months ago refuses to leave her home, has lost 18 lbs, and states, "I\'ll never be okay without him." The nurse recognizes this as:',
+     options:['Anticipatory grief','Disenfranchised grief','Normal acute grief','Complicated grief'],
+     answer:3,why:'Persistent inability to function, significant weight loss, social withdrawal, and hopeless statements at 3 months post-loss are hallmarks of complicated (maladaptive) grief.'},
+
+    {type:'mc',cat:'Approaching Death — Family Teaching',
+     q:'The nurse is preparing a family for the imminent death of their loved one. Which statement by the nurse is most appropriate?',
+     options:['"The body will show no changes until the very moment of death."','"You may notice changes in breathing, coolness and color changes in the arms and legs, and longer periods of sleep — these are normal parts of the dying process."','"Hearing is the first sense to go, so you should avoid talking around the patient."','"If your loved one mentions seeing deceased relatives, notify the nurse immediately — this indicates delirium."'],
+     answer:1,why:'Educating families on expected signs (Cheyne-Stokes breathing, mottling, increased sleep) reduces fear. Hearing is believed to be the LAST sense to go. Near-death awareness should not automatically be labeled delirium.'},
+
+    {type:'mc',cat:'Delegation',
+     q:'The RN is caring for an unstable hospice client with terminal agitation and uncontrolled pain. Which task is appropriate to delegate to the UAP?',
+     options:['Assess the client\'s pain level using the FLACC scale','Determine whether lorazepam should be administered now','Provide oral care and reposition the client for comfort','Educate the family about signs of approaching death'],
+     answer:2,why:'Oral care and repositioning are within UAP scope. Assessment, clinical decision-making about medications, and family education are RN responsibilities.'},
+
+    {type:'mc',cat:'ISBAR Communication',
+     q:'An ED nurse is preparing a client for transfer to the palliative care unit following acute respiratory distress from end-stage COPD. Which data points are priority for the ISBAR report?',
+     options:['Client\'s date of birth and insurance information','Code status, current comfort medications, family present, goals of care, and current level of distress','Admitting physician\'s contact information and room assignment','The client\'s surgical history and childhood illnesses'],
+     answer:1,why:'ISBAR in a palliative transfer centers on goals of care, code status, current comfort medications, and symptom severity — not administrative or historical details.'},
+
+    {type:'mc',cat:'Grief Identification',
+     q:'A client lost his long-term same-sex partner. His workplace denied bereavement leave, and his family "doesn\'t understand the loss." The nurse recognizes this as:',
+     options:['Anticipatory grief','Complicated grief','Disenfranchised grief','Normal grief'],
+     answer:2,why:'Disenfranchised grief occurs when a loss is not openly acknowledged or validated by society — including unrecognized relationships, denial of bereavement leave, or lack of family support.'},
+
+    {type:'mc',cat:'Suffering',
+     q:'A client with terminal pancreatic cancer says, "I\'ve lost my job, my independence, and now my life. I feel like I\'m not a person anymore." This statement best reflects:',
+     options:['Complicated grief','Anticipatory grief','Suffering','Clinical depression'],
+     answer:2,why:'Suffering involves severe distress that threatens the person\'s sense of intactness and personhood — this is the defining concept, distinct from grief or depression, though they can coexist.'},
+
+    {type:'mc',cat:'Comfort Symptom Management',
+     q:'A hospice client on scheduled opioids for 5 days has not had a bowel movement. Which action is most appropriate?',
+     options:['Encourage fluid intake increase to 2–3 L/day','Administer a Fleet enema immediately','Consult the provider for a stimulant laxative bowel regimen, as opioid-induced constipation is expected','Reassure the client that decreased intake means less stool output is expected'],
+     answer:2,why:'Opioid-induced constipation is a predictable side effect requiring proactive prophylactic management with a stimulant laxative (e.g., senna). Simply increasing fluids is insufficient.'},
+
+    {type:'mc',cat:'Developmental Grief',
+     q:'An 8-year-old child keeps asking if her father is "coming back from heaven." The nurse recognizes this as:',
+     options:['A sign of complicated grief requiring psychiatric referral','Developmentally expected — children ages 6–9 are beginning to understand finality but may seek reassurance','Consistent with the under-3 stage where death is not understood at all','Evidence the child needs immediate professional counseling'],
+     answer:1,why:'Children ages 6–9 are beginning to understand the permanence of death but may still demonstrate magical thinking or seek reassurance. This is developmentally expected and not pathological.'},
+
+    {type:'mc',cat:'Hospice Eligibility',
+     q:'Which client best meets criteria for a hospice referral?',
+     options:['A 45-year-old with newly diagnosed leukemia starting induction chemotherapy','A 72-year-old with advanced Alzheimer\'s disease, recurrent aspiration pneumonias, weight loss, and a 4-month prognosis','A 60-year-old with heart failure who is NYHA Class II and responding well to diuretics','A 55-year-old with COPD requiring supplemental oxygen at home'],
+     answer:1,why:'Hospice requires a prognosis of ≤6 months if disease runs its expected course, along with a serious progressive illness and comfort-focused goals. Only Option B meets all criteria.'},
+
+    {type:'mc',cat:'Cultural Competence / Interpreter',
+     q:'A client with limited English is receiving discharge teaching for home hospice. Her adult daughter offers to translate. Which action by the nurse is most appropriate?',
+     options:['Allow the daughter to translate since she knows her mother best','Use simple words and have the daughter translate to save time','Use a professional medical interpreter to ensure accurate communication','Provide written materials in English and ask the daughter to explain them later'],
+     answer:2,why:'Using family as interpreter violates equitable care standards — it risks critical information being omitted or distorted and places the family in an inappropriate role. A certified interpreter is required.'},
+
+    {type:'mc',cat:'Terminal Restlessness',
+     q:'A hospice client in the final days of life becomes increasingly restless, pulling at linens, moaning, and calling out. The family asks, "Is she in pain?" Which response by the nurse is most accurate?',
+     options:['"This is pain — I\'ll increase her morphine right away."','"This is terminal agitation, which is different from pain. It may be caused by physiologic, emotional, or spiritual distress, and we have medications to promote comfort."','"This is a normal sign of death — there is nothing we can do."','"She is having a psychiatric episode — I\'ll consult psychiatry."'],
+     answer:1,why:'Terminal agitation is a distinct end-of-life syndrome — not simply pain. It can have multiple physiologic and emotional causes and is pharmacologically manageable. Accurate family education is essential.'},
+
+    {type:'mc',cat:'Near-Death Awareness',
+     q:'A family member calls and says, "My mother keeps talking about \'getting on a train\' and waving to people we can\'t see. Is she confused?" Which response by the nurse is most therapeutic?',
+     options:['"Yes — this is delirium. We\'ll reassess her medications."','"This is called near-death awareness. Many dying people have these experiences — rather than confusion, this may be part of her process, and you can simply be present with her."','"Try to redirect her and correct her when she says these things."','"She is hallucinating — we\'ll need to add a new medication."'],
+     answer:1,why:'Near-death awareness (visions, speaking of journeys or deceased relatives) should not automatically be labeled delirium or treated pharmacologically. Educating families helps normalize the experience and prevents unnecessary distress or interventions.'},
+
+    // ── SATA Q21–Q30 ──────────────────────────────────────────────────────
+    {type:'sata',cat:'Health Promotion — Palliative Care Teaching',
+     q:'A nurse is developing a teaching plan for a client with stage IV lung cancer starting palliative care at home. Which instructions should the nurse include? Select all that apply.',
+     options:['Palliative care does not prevent you from receiving treatments like radiation or chemotherapy.','You must stop all curative treatments to qualify for palliative care.','A palliative care team may include nurses, social workers, chaplains, and physicians.','You should report dyspnea because it is treated as a subjective symptom like pain.','Opioid medications are never used in palliative care unless the patient is in the final days of life.'],
+     answers:[0,2,3],why:'Palliative care can coexist with curative treatment (A ✓). The IDT is interdisciplinary (C ✓). Dyspnea is subjective (D ✓). B is FALSE — curative treatment does NOT have to stop. E is FALSE — opioids are routinely used in palliative care at any stage.'},
+
+    {type:'sata',cat:'Contributing Factors — Complicated Grief',
+     q:'Which factors does the nurse identify as potentially contributing to a complicated grief response? Select all that apply.',
+     options:['Death occurred suddenly without warning','Death resulted from suicide','The grieving client has strong spiritual beliefs','The client had a history of depression before the loss','Loss of a child','The client has multiple strong social supports'],
+     answers:[0,1,3,4],why:'Sudden death, suicide, prior mental illness, and loss of a child increase complicated grief risk. Strong spiritual beliefs and robust social supports are protective factors, not risk factors.'},
+
+    {type:'sata',cat:'SDOH Screening',
+     q:'A nurse is completing intake for a newly admitted client. Which assessments reflect appropriate SDOH screening? Select all that apply.',
+     options:['Asking whether the client has reliable transportation to follow-up appointments','Asking whether the client can afford prescribed medications','Assessing the client\'s neighborhood for food access','Asking about the client\'s most recent laboratory values','Asking whether the client has experienced housing instability in the past year','Assessing the client\'s literacy level and preferred language'],
+     answers:[0,1,2,4,5],why:'Transportation, medication affordability, food access, housing stability, and literacy/language are all direct SDOH domains. Laboratory values are clinical data, not SDOH screening.'},
+
+    {type:'sata',cat:'Appropriate Hospice Nursing Actions',
+     q:'Which nursing actions are appropriate when caring for a client on hospice? Select all that apply.',
+     options:['Discontinuing routine vital signs monitoring that does not affect comfort decisions','Initiating IV antibiotics for a suspected infection to prevent sepsis','Administering scheduled opioids for pain management','Providing mouth care and skin moisturizing','Encouraging the family to remain present and be involved in care','Pushing the client to eat full meals to maintain nutritional status'],
+     answers:[0,2,3,4],why:'Eliminating non-comfort vitals (A), opioids (C), hygiene (D), and family support (E) are all appropriate. IV antibiotics for curative intent (B) and forcing nutrition (F) conflict with comfort-focused goals.'},
+
+    {type:'sata',cat:'Therapeutic Communication — Grief',
+     q:'A nurse is supporting a family following the unexpected death of a loved one. Which actions by the nurse reflect therapeutic communication? Select all that apply.',
+     options:['Saying "I cannot imagine how difficult this is" and remaining present in the room','Saying "Everything happens for a reason."','Using silence and sitting with the family','Asking "What would be most helpful to you right now?"','Saying "At least they are in a better place now."','Normalizing the grief response as individual and non-linear'],
+     answers:[0,2,3,5],why:'Presence, silence, open-ended invitations, and normalizing grief are all therapeutic. "Everything happens for a reason" and "better place" are dismissive clichés that minimize the loss.'},
+
+    {type:'sata',cat:'Delegation — Hospice UAP',
+     q:'Which instructions should the RN give the UAP while caring for a stable hospice client on scheduled morphine and lorazepam? Select all that apply.',
+     options:['Report any change in level of consciousness or breathing pattern','Assess and document the client\'s pain level using the FLACC scale','Assist the client with repositioning every 2 hours for comfort','Provide oral hygiene every 2–4 hours','Administer the scheduled morphine if the nurse is occupied','Report if the family appears distressed or has questions'],
+     answers:[0,2,3,5],why:'UAP may observe and report changes, reposition, provide oral care, and report family distress. Assessment (B) and medication administration (E) are RN responsibilities.'},
+
+    {type:'sata',cat:'Signs of Approaching Death — Family Teaching',
+     q:'A hospice nurse is preparing a family for the expected death of their loved one. Which findings should the nurse explain as signs of approaching death? Select all that apply.',
+     options:['Periods of apnea alternating with rapid breathing (Cheyne-Stokes pattern)','Mottling and coolness of the extremities','Increase in urinary output','Decreased responsiveness and withdrawal','Accumulation of secretions causing gurgling sounds ("death rattle")','Sudden report of intense hunger and thirst'],
+     answers:[0,1,3,4],why:'Cheyne-Stokes breathing, mottling, decreased responsiveness, and the death rattle are all expected signs of approaching death. Urinary output decreases; sudden hunger is NOT expected.'},
+
+    {type:'sata',cat:'Factors Influencing Grief',
+     q:'The nurse is assessing a client\'s grief response. Which factors should the nurse assess as potentially influencing how this client grieves? Select all that apply.',
+     options:['The client\'s relationship to the deceased','Whether the death was expected or sudden','The client\'s age and developmental stage','The client\'s primary insurance provider','Cultural and spiritual beliefs','Previous history of loss or trauma'],
+     answers:[0,1,2,4,5],why:'Relationship, nature of death, developmental stage, cultural/spiritual beliefs, and prior loss history are all established grief-influencing factors. Insurance provider is not a grief variable.'},
+
+    {type:'sata',cat:'Appropriate Palliative Symptom Management',
+     q:'A client with end-stage cancer reports dyspnea, anxiety, and nausea. Which nursing actions are appropriate? Select all that apply.',
+     options:['Administer prescribed PRN morphine for dyspnea','Hold opioids because the respiratory rate is 14 breaths/min','Position the client in semi-Fowler\'s or upright position','Apply a fan directed toward the face to reduce air hunger','Administer prescribed PRN lorazepam for anxiety','Reassure the client that SpO₂ is normal, so dyspnea is not serious'],
+     answers:[0,2,3,4],why:'Morphine for dyspnea (A), upright positioning (C), fan therapy (D), and anxiolytics (E) are all evidence-based comfort interventions. Holding opioids for RR 14 (B) is inappropriate — dyspnea is subjective. Normal SpO₂ does NOT negate the experience of breathlessness (F incorrect).'},
+
+    {type:'sata',cat:'SDOH — Discharge Plan Needing Revision',
+     q:'A client being discharged with heart failure has no car, lives alone, and has a 4th-grade reading level. Which elements of the discharge teaching plan indicate a need for revision? Select all that apply.',
+     options:['Visual aids matched to a 4th-grade reading level for low-sodium diet','A referral to social work for transportation assistance','Instructions to pick up medications at a pharmacy 15 miles away with no transportation plan','Instructions to go to the ER if symptoms worsen — no mention of closer options or telehealth','Referral for home health nursing to continue teaching at home','Instructions to follow a 2-gram sodium diet without assessing food access barriers'],
+     answers:[2,3,5],why:'Instructions requiring travel without transportation (C), routing to ER without accessible alternatives (D), and dietary instructions without assessing food access (F) all fail to address SDOH barriers. The other options are appropriate SDOH-informed interventions.'},
+
+    // ── MATRIX Q31–Q50 ────────────────────────────────────────────────────
+    {type:'matrix',cat:'Expected vs Unexpected — Last 48 Hours of Life',
+     scenario:'The hospice nurse is assessing a client in the last 48 hours of life. For each finding, indicate whether it is Expected or Unexpected.',
+     colLabels:['Expected','Unexpected'],
+     rows:[
+      {text:'Decreased urine output that is dark and concentrated',answer:0},
+      {text:'Respiratory rate of 30 with periods of apnea (Cheyne-Stokes pattern)',answer:0},
+      {text:'Client requests a full meal and reports intense hunger',answer:1},
+      {text:'Mottling and cyanosis of the lower extremities',answer:0},
+      {text:'Client is fully oriented ×4 and actively initiating conversations about the future',answer:1},
+      {text:'Jaw relaxed with eyelids slightly open',answer:0},
+     ],why:'Expected findings in the final 48 hours: oliguria, Cheyne-Stokes breathing, mottling, jaw relaxation. Unexpected: hunger and full orientation are inconsistent with active dying and warrant reassessment.'},
+
+    {type:'matrix',cat:'Expected vs Unexpected — Grief at 3 Weeks Post-Loss',
+     scenario:'The nurse is evaluating a client 3 weeks after the sudden death of their spouse. For each finding, indicate whether it is Expected or Unexpected.',
+     colLabels:['Expected','Unexpected'],
+     rows:[
+      {text:'Client reports crying daily and missing the deceased',answer:0},
+      {text:'Client has fully returned to all normal activities with no difficulty',answer:1},
+      {text:'Client states "I keep thinking I hear his voice" (auditory illusion)',answer:0},
+      {text:'Client reports sleep disturbance and 5-lb weight loss',answer:0},
+      {text:'Client states "I have been planning to hurt myself"',answer:1},
+      {text:'Client expresses anger toward the medical team that cared for the deceased',answer:0},
+     ],why:'Crying, auditory illusions, sleep disturbance, and anger are all normal early grief. Complete resolution at 3 weeks is unusual and warrants assessment. Self-harm statements require immediate safety assessment — always Unexpected and urgent.'},
+
+    {type:'matrix',cat:'Expected vs Unexpected — Palliative Care Client with CHF',
+     scenario:'The nurse is monitoring a client receiving palliative care for end-stage CHF. Indicate whether each finding is Expected or Unexpected.',
+     colLabels:['Expected','Unexpected'],
+     rows:[
+      {text:'Client reports fatigue and reduced activity tolerance',answer:0},
+      {text:'Edema completely resolves and client tolerates full exercise without symptoms',answer:1},
+      {text:'Client requests a conversation about advance directives and goals of care',answer:0},
+      {text:'Client reports dyspnea at rest that is partially relieved by opioids',answer:0},
+      {text:'Client\'s pain is well-managed and they report adequate comfort',answer:0},
+      {text:'Client demands aggressive resuscitation after a previously documented DNR preference',answer:1},
+     ],why:'Fatigue, dyspnea, goals-of-care conversations, and manageable pain are expected in end-stage CHF. Full symptom resolution or reversal of a documented DNR are unexpected and require reassessment or a family meeting.'},
+
+    {type:'matrix',cat:'Expected vs Unexpected — After-Death Findings',
+     scenario:'The nurse is assessing a client who has just died. Indicate whether each finding is Expected or Unexpected.',
+     colLabels:['Expected','Unexpected'],
+     rows:[
+      {text:'Fixed and dilated pupils',answer:0},
+      {text:'Pupils respond to light and client blinks',answer:1},
+      {text:'Jaw relaxed and slightly open',answer:0},
+      {text:'Warm, pink skin with brisk capillary refill',answer:1},
+      {text:'Decreasing body temperature',answer:0},
+      {text:'No response to verbal or tactile stimuli',answer:0},
+     ],why:'Fixed dilated pupils, jaw relaxation, decreasing temperature, and no response to stimuli are actual signs of death. Responsive pupils, blinking, or warm pink skin indicate the patient has NOT died.'},
+
+    {type:'matrix',cat:'Expected vs Unexpected — Opioid Therapy in Hospice',
+     scenario:'The nurse is caring for a client on scheduled IV morphine for comfort in hospice. Indicate whether each finding is Expected or Unexpected.',
+     colLabels:['Expected','Unexpected'],
+     rows:[
+      {text:'Constipation requiring a stimulant laxative regimen',answer:0},
+      {text:'Nausea during the first several days of opioid therapy',answer:0},
+      {text:'RR of 6, unresponsive, with pinpoint pupils',answer:1},
+      {text:'Pain rating of 2/10 following the scheduled dose',answer:0},
+      {text:'Client reports reduction in dyspnea after morphine administration',answer:0},
+      {text:'Urine output suddenly increases to 200 mL/hr',answer:1},
+     ],why:'Constipation and initial nausea are expected opioid side effects. Reduced pain and dyspnea are desired outcomes. Severe respiratory depression with pinpoint pupils requires immediate reassessment for overdose. Sudden urinary increase is not an opioid effect.'},
+
+    {type:'matrix',cat:'Expected vs Unexpected — SDOH Outcomes Post-Discharge',
+     scenario:'The nurse reviews outcomes for a client with CHF and multiple SDOH barriers (no car, limited income, low literacy). No SDOH resources were arranged at discharge. Indicate Expected or Unexpected.',
+     colLabels:['Expected','Unexpected'],
+     rows:[
+      {text:'Client stops diuretic due to unaffordable cost',answer:0},
+      {text:'Client independently follows all dietary restrictions despite food insecurity and no resources',answer:1},
+      {text:'Client misses follow-up appointment due to lack of transportation',answer:0},
+      {text:'Client uses telehealth after nurse specifically arranged phone-based follow-up access',answer:1},
+      {text:'Client is readmitted within 30 days when no SDOH resources were arranged',answer:0},
+      {text:'Client encounters no barriers and understands all discharge instructions without support',answer:1},
+     ],why:'Medication non-adherence, missed appointments, and readmission are expected when SDOH barriers are unaddressed. Successful self-management without support, or telehealth adoption, require specific nurse-initiated SDOH interventions — they do not happen automatically.'},
+
+    {type:'matrix',cat:'Indicated vs Contraindicated — Final 48 Hours / DNR Client',
+     scenario:'A hospice client is in the final 48 hours of life with terminal agitation, dyspnea, and no urine output. The client has a DNR/DNI order. Indicate whether each nursing action is Indicated or Contraindicated.',
+     colLabels:['Indicated','Contraindicated'],
+     rows:[
+      {text:'Administer prescribed PRN lorazepam for terminal agitation',answer:0},
+      {text:'Initiate IV fluid resuscitation for oliguria',answer:1},
+      {text:'Provide oral care every 2–4 hours',answer:0},
+      {text:'Reposition the client every 2 hours for comfort',answer:0},
+      {text:'Call a rapid response for respiratory rate of 8 given the DNR status',answer:1},
+      {text:'Support family presence at the bedside and provide anticipatory guidance',answer:0},
+     ],why:'Comfort-focused care (lorazepam, oral care, repositioning, family support) is Indicated. IV fluids in multiorgan shutdown may increase discomfort and are Contraindicated. Rapid response activation contradicts the documented DNR order.'},
+
+    {type:'matrix',cat:'Indicated vs Contraindicated — Bereaved Client with SDOH Barriers',
+     scenario:'The nurse is developing a plan of care for a recently bereaved client with known depression, limited income, and no transportation. Indicate whether each action is Indicated or Contraindicated.',
+     colLabels:['Indicated','Contraindicated'],
+     rows:[
+      {text:'Screen for suicidal ideation given history of depression and acute loss',answer:0},
+      {text:'Provide standard discharge instructions without modifying for literacy or language barriers',answer:1},
+      {text:'Refer to social work for financial and transportation assistance',answer:0},
+      {text:'Tell the client their grief is taking too long and they need to move on',answer:1},
+      {text:'Normalize the grief response and encourage the client to share their feelings',answer:0},
+      {text:'Use a professional interpreter if the client has limited English proficiency',answer:0},
+     ],why:'Safety screening, SDOH referrals, therapeutic presence, normalizing grief, and certified interpretation are all Indicated. Generic instructions ignoring barriers and imposing grief timelines are both Contraindicated and non-therapeutic.'},
+
+    {type:'matrix',cat:'Effective vs Ineffective — Hospice Discharge Teaching',
+     scenario:'The nurse provides discharge teaching to a client transitioning to home hospice. For each client response, indicate whether the teaching was Effective or Ineffective.',
+     colLabels:['Effective','Ineffective'],
+     rows:[
+      {text:'"Hospice means I\'ve given up and can no longer improve."',answer:1},
+      {text:'"The hospice team can help manage my pain and symptoms at home."',answer:0},
+      {text:'"My spiritual advisor and chaplain can still visit through the hospice program."',answer:0},
+      {text:'"Hospice means I have to stop my blood pressure medication even if it helps me feel better."',answer:1},
+      {text:'"I should call the hospice nurse before going to the ER if I have new symptoms."',answer:0},
+      {text:'"My family will receive bereavement support after I die as part of the hospice program."',answer:0},
+     ],why:'Responses B, C, E, and F demonstrate correct understanding. "Given up" (A) and stopping comfort-contributing medications (D) reflect common misconceptions requiring additional teaching.'},
+
+    {type:'matrix',cat:'Effective vs Ineffective — Palliative Symptom Teaching',
+     scenario:'The nurse teaches a client about palliative care symptom management. For each client response, indicate Effective or Ineffective.',
+     colLabels:['Effective','Ineffective'],
+     rows:[
+      {text:'"If my oxygen level looks okay, I\'m fine and don\'t need to report breathlessness."',answer:1},
+      {text:'"My nurse said dyspnea is measured by how I feel, not just by my oxygen number."',answer:0},
+      {text:'"Morphine can be used to help with shortness of breath, not just pain."',answer:0},
+      {text:'"I should only take my pain medication after the pain becomes severe."',answer:1},
+      {text:'"Nausea from my opioids might improve on its own after a few days."',answer:0},
+      {text:'"I need to start a bowel regimen when I start taking opioids to prevent constipation."',answer:0},
+     ],why:'Normal SpO₂ does NOT rule out dyspnea (A = Ineffective). Waiting for severe pain (D) contradicts around-the-clock pain management principles. B, C, E, and F all reflect correct understanding.'},
+
+    {type:'matrix',cat:'Effective vs Ineffective — SDOH-Informed Discharge Teaching',
+     scenario:'The nurse evaluates discharge teaching for a client with limited English and no insurance. A certified interpreter was used. Indicate Effective or Ineffective for each response.',
+     colLabels:['Effective','Ineffective'],
+     rows:[
+      {text:'"I know I can go to the federally qualified health center near my home for follow-up."',answer:0},
+      {text:'"I have to skip my medications this month because I still cannot afford them."',answer:1},
+      {text:'"The social worker helped me apply for a patient assistance program for my medications."',answer:0},
+      {text:'"I will go to the emergency room every time I need a medication refill."',answer:1},
+      {text:'"I understand how to find affordable foods for my low-sodium diet at the local market."',answer:0},
+      {text:'"I will just stop eating since healthy food is too expensive."',answer:1},
+     ],why:'Knowledge of community resources (A, C) and actionable diet strategies (E) indicate effective teaching. Persistent medication non-adherence (B), ER misuse for refills (D), and food avoidance (F) indicate unresolved barriers requiring further intervention.'},
+
+    {type:'matrix',cat:'Effective vs Ineffective — Grief and Bereavement Family Teaching',
+     scenario:'The nurse provides bereavement education to a client\'s family following a death. Indicate Effective or Ineffective for each family statement.',
+     colLabels:['Effective','Ineffective'],
+     rows:[
+      {text:'"We know that grief is not a straight line and everyone in our family may grieve differently."',answer:0},
+      {text:'"If we are still sad after 2 weeks, something must be wrong with us."',answer:1},
+      {text:'"We understand it is normal to feel angry — even at the person who died."',answer:0},
+      {text:'"We know to contact a counselor if grief becomes overwhelming or we have thoughts of self-harm."',answer:0},
+      {text:'"Children under 5 understand death the same way adults do."',answer:1},
+      {text:'"We should hide our grief from the children in the family to protect them."',answer:1},
+     ],why:'Non-linear grief, anger as normal, and knowing when to seek help (A, C, D) are Effective. Rigid grief timelines (B), developmentally inaccurate beliefs (E), and grief suppression around children (F) require correction.'},
+
+    {type:'matrix',cat:'Effective vs Ineffective — Palliative vs Hospice Teaching',
+     scenario:'The nurse teaches a group of newly diagnosed cancer clients about palliative and hospice care. Indicate Effective or Ineffective for each client statement.',
+     colLabels:['Effective','Ineffective'],
+     rows:[
+      {text:'"Palliative care can start right now even though I am still receiving chemotherapy."',answer:0},
+      {text:'"Palliative care is only for people who have weeks to live."',answer:1},
+      {text:'"All hospice is palliative care, but not all palliative care is hospice."',answer:0},
+      {text:'"If I ask for palliative care, my doctor will think I have given up on treatment."',answer:1},
+      {text:'"Palliative care addresses physical, emotional, and spiritual needs — not just pain control."',answer:0},
+      {text:'"Hospice requires a prognosis of about 6 months or less if my disease follows its expected course."',answer:0},
+     ],why:'Early co-treatment (A), the hospice-within-palliative relationship (C), holistic scope (E), and hospice criteria (F) reflect correct understanding. "End-of-life only" (B) and "giving up" (D) are common misconceptions requiring correction.'},
+  ];
+
+  // ── Filter logic ─────────────────────────────────────────────────────────
+  let activeFilter = 'all';
+  let filteredData = [...quizData];
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeFilter = btn.dataset.filter;
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filteredData = activeFilter === 'all' ? quizData : quizData.filter(q => q.type === activeFilter);
+      document.getElementById('quizResult').textContent = '';
+      renderQuiz();
+    });
+  });
+
+  // ── Render ────────────────────────────────────────────────────────────────
+  function renderQuiz() {
+    const qa = document.getElementById('quizArea');
+    qa.innerHTML = '';
+    document.getElementById('quizCounter').textContent = `Showing ${filteredData.length} question${filteredData.length!==1?'s':''}`;
+    filteredData.forEach((item, i) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'quiz-item';
+      const typeLabel = item.type==='mc'?'Multiple Choice':item.type==='sata'?'SATA — Select All That Apply':'Matrix';
+      const typeClass = item.type==='mc'?'badge-mc':item.type==='sata'?'badge-sata':'badge-mat';
+      let html = `<span class="quiz-type-badge ${typeClass}">${typeLabel}</span>
+        <div style="font-size:.72rem;font-weight:600;color:var(--muted);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase">${item.cat}</div>`;
+      if(item.scenario) html += `<div class="quiz-scenario">${item.scenario}</div>`;
+      if(item.q) html += `<div class="quiz-q"><span class="qnum">${i+1}</span>${item.q}</div>`;
+      if(item.type==='mc'){
+        html += item.options.map((opt,idx)=>`<label class="opt-label"><input type="radio" name="q${i}" value="${idx}" style="flex-shrink:0;margin-top:2px;accent-color:var(--teal)"> ${opt}</label>`).join('');
+      } else if(item.type==='sata'){
+        html += `<div class="sata-hint">⚠ Select all that apply — there may be more than one correct answer.</div>`;
+        html += item.options.map((opt,idx)=>`<label class="opt-label"><input type="checkbox" name="q${i}" value="${idx}" style="flex-shrink:0;margin-top:2px;accent-color:var(--teal)"> ${opt}</label>`).join('');
+      } else if(item.type==='matrix'){
+        html += `<div style="overflow-x:auto;border-radius:12px;border:1px solid var(--line);margin-top:8px"><table class="matrix-table"><thead><tr><th>Statement</th>${item.colLabels.map(l=>`<th class="radio-cell">${l}</th>`).join('')}</tr></thead><tbody>`;
+        item.rows.forEach((row,ri)=>{
+          html += `<tr data-row="${ri}"><td>${row.text}</td>`;
+          item.colLabels.forEach((_,ci)=>{html+=`<td class="radio-cell"><label><input type="radio" name="mq${i}_r${ri}" value="${ci}" style="accent-color:var(--teal)"> ${item.colLabels[ci]}</label></td>`;});
+          html += `</tr>`;
+        });
+        html += `</tbody></table></div>`;
+      }
+      html += `<div class="rationale hidden feedback"></div>`;
+      wrap.innerHTML = html;
+      qa.appendChild(wrap);
+    });
+  }
+
+  // ── Grade ─────────────────────────────────────────────────────────────────
+  document.getElementById('gradeBtn').onclick = () => {
+    const qa = document.getElementById('quizArea');
+    let totalPts=0, earnedPts=0;
+    [...qa.children].forEach((qDiv,i)=>{
+      const item = filteredData[i];
+      const fb = qDiv.querySelector('.feedback');
+      fb.classList.remove('hidden');
+      if(item.type==='mc'){
+        const chosen = qDiv.querySelector('input[type=radio]:checked');
+        const labels = [...qDiv.querySelectorAll('.opt-label')];
+        labels.forEach(l=>l.classList.remove('correct','incorrect'));
+        labels[item.answer].classList.add('correct');
+        totalPts++;
+        if(chosen && Number(chosen.value)===item.answer){ earnedPts++; }
+        else if(chosen){ labels[Number(chosen.value)].classList.add('incorrect'); }
+      } else if(item.type==='sata'){
+        const checked = [...qDiv.querySelectorAll('input[type=checkbox]:checked')].map(c=>Number(c.value));
+        const labels = [...qDiv.querySelectorAll('.opt-label')];
+        labels.forEach(l=>l.classList.remove('correct','incorrect'));
+        item.answers.forEach(a=>labels[a].classList.add('correct'));
+        checked.filter(v=>!item.answers.includes(v)).forEach(v=>labels[v].classList.add('incorrect'));
+        totalPts++;
+        if(JSON.stringify([...checked].sort((a,b)=>a-b))===JSON.stringify([...item.answers].sort((a,b)=>a-b))) earnedPts++;
+      } else if(item.type==='matrix'){
+        item.rows.forEach((row,ri)=>{
+          const chosen = qDiv.querySelector(`input[name="mq${i}_r${ri}"]:checked`);
+          const tr = qDiv.querySelector(`tr[data-row="${ri}"]`);
+          tr.classList.remove('row-correct','row-incorrect');
+          totalPts++;
+          if(chosen && Number(chosen.value)===row.answer){ tr.classList.add('row-correct'); earnedPts++; }
+          else { tr.classList.add('row-incorrect'); }
+        });
+      }
+      fb.innerHTML = `<strong>💡 Rationale:</strong> ${item.why}`;
+    });
+    const pct = Math.round(earnedPts/totalPts*100);
+    const emoji = pct>=90?'🌟':pct>=80?'✅':pct>=70?'📚':'⚠️';
+    document.getElementById('quizResult').textContent = `${emoji} ${earnedPts}/${totalPts} pts — ${pct}%`;
+  };
+
+  // ── Reset ─────────────────────────────────────────────────────────────────
+  document.getElementById('resetQuizBtn').onclick = () => {
+    const qa = document.getElementById('quizArea');
+    qa.querySelectorAll('input').forEach(i=>i.checked=false);
+    qa.querySelectorAll('.opt-label').forEach(l=>l.classList.remove('correct','incorrect'));
+    qa.querySelectorAll('.feedback').forEach(f=>{f.classList.add('hidden');f.textContent='';});
+    qa.querySelectorAll('tr[data-row]').forEach(tr=>tr.classList.remove('row-correct','row-incorrect'));
+    document.getElementById('quizResult').textContent='';
+  };
+
+  renderQuiz();
+
+  // ── Scroll-triggered card reveal ──────────────────────────────────────────
+  const cardFadeObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 40);
+        cardFadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.04, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.card').forEach(c => cardFadeObserver.observe(c));
+
+  // ── Mini card stagger ─────────────────────────────────────────────────────
+  const miniStaggerObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.mini').forEach((m, i) => {
+          m.style.opacity = '0';
+          m.style.transform = 'translateY(14px)';
+          m.style.transition = `opacity .4s ease ${i*90}ms, transform .4s ease ${i*90}ms`;
+          setTimeout(() => { m.style.opacity='1'; m.style.transform='translateY(0)'; }, 80 + i*90);
+        });
+        miniStaggerObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.card').forEach(c => miniStaggerObserver.observe(c));
+</script>
+</body>
+</html>

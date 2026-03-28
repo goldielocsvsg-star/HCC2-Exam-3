@@ -1,0 +1,2360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HCC2 Cognition Study Guide — Delirium & Dementia</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink-deep: #c2185b;
+  --pink-mid: #e91e8c;
+  --pink-soft: #f48fb1;
+  --pink-pale: #fce4ec;
+  --blue-deep: #1565c0;
+  --blue-mid: #2979ff;
+  --blue-soft: #90caf9;
+  --blue-pale: #e3f2fd;
+  --lavender: #ce93d8;
+  --lavender-pale: #f3e5f5;
+  --teal: #26c6da;
+  --teal-pale: #e0f7fa;
+  --coral: #ff7043;
+  --gold: #ffca28;
+  --green: #66bb6a;
+  --green-pale: #e8f5e9;
+  --white: #ffffff;
+  --off-white: #fafafa;
+  --text-dark: #1a1a2e;
+  --text-mid: #37474f;
+  --text-light: #607d8b;
+  --shadow-sm: 0 2px 8px rgba(194,24,91,0.12);
+  --shadow-md: 0 4px 20px rgba(41,121,255,0.15);
+  --shadow-lg: 0 8px 40px rgba(194,24,91,0.2);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+/* ── DARK MODE VARIABLES ── */
+[data-theme="dark"] {
+  --pink-deep: #f06292;
+  --pink-mid: #f48fb1;
+  --pink-soft: #ad1457;
+  --pink-pale: #1a0a10;
+  --blue-deep: #64b5f6;
+  --blue-mid: #82b1ff;
+  --blue-soft: #1565c0;
+  --blue-pale: #0a1628;
+  --lavender: #ce93d8;
+  --lavender-pale: #120a1a;
+  --teal: #4dd0e1;
+  --teal-pale: #0a1e22;
+  --coral: #ff8a65;
+  --gold: #ffd54f;
+  --green: #81c784;
+  --green-pale: #0a1a0a;
+  --white: #1e1e2e;
+  --off-white: #181825;
+  --text-dark: #e8e8f0;
+  --text-mid: #b0b8c8;
+  --text-light: #7a8898;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.5);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.6);
+  --body-bg: linear-gradient(135deg, #0d0010 0%, #000d1a 50%, #0a0015 100%);
+  --card-bg: #1e1e2e;
+  --card-border: rgba(255,255,255,0.07);
+  --tab-bg: #16161e;
+  --tab-text: #7a8898;
+  --table-alt: rgba(255,255,255,0.03);
+  --info-table-th: linear-gradient(135deg,#1a0a10,#0a1628);
+  --divider-color: rgba(255,255,255,0.08);
+  --drug-card-bg: linear-gradient(135deg,#1e1e2e 60%,#1a0a14 100%);
+  --drug-card-border: #4a1030;
+  --drug-section-bg: rgba(255,255,255,0.04);
+  --case-body-bg: #1e1e2e;
+  --case-body-border: rgba(255,255,255,0.07);
+  --stage-early-bg: linear-gradient(135deg,#0a1a0a,#0d1f0d);
+  --stage-mid-bg: linear-gradient(135deg,#1a1400,#1f1a00);
+  --stage-late-bg: linear-gradient(135deg,#1a0808,#1a0a10);
+  --nclex-bg: linear-gradient(135deg,#0a1628,#0d1035);
+  --nclex-border: #1565c0;
+  --memory-bg: linear-gradient(135deg,#0a1628,#1a0a10);
+  --memory-border: #4a1030;
+  --priority-bg: linear-gradient(135deg,#3a0030 0%,#1a0030 100%);
+  --obj-bg: #1e1e2e;
+  --obj-border-pink: #ad1457;
+  --obj-border-blue: #1565c0;
+  --obj-border-purple: #6a1b9a;
+  --obj-border-green: #2e7d32;
+  --vital-chip-bg: #0a1628;
+  --vital-chip-border: #1565c0;
+  --vital-chip-abnormal-bg: #1a0808;
+  --vital-chip-abnormal-border: #c62828;
+  --alert-red-bg: #1a0808; --alert-red-border: #e53935; --alert-red-text: #ef9a9a;
+  --alert-pink-bg: #1a0a10; --alert-pink-border: #f48fb1; --alert-pink-text: #f48fb1;
+  --alert-blue-bg: #0a1628; --alert-blue-border: #82b1ff; --alert-blue-text: #90caf9;
+  --alert-green-bg: #0a1a0a; --alert-green-border: #81c784; --alert-green-text: #a5d6a7;
+  --alert-gold-bg: #1a1400; --alert-gold-border: #ffd54f; --alert-gold-text: #ffe082;
+  --alert-purple-bg: #120a1a; --alert-purple-border: #ce93d8; --alert-purple-text: #e1bee7;
+  --comp-table-label-bg: #252535;
+  --hero-chip-bg: rgba(255,255,255,0.1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--body-bg, linear-gradient(135deg, #fce4ec 0%, #e3f2fd 50%, #f3e5f5 100%));
+  min-height: 100vh;
+  color: var(--text-dark);
+  line-height: 1.7;
+  transition: background 0.4s, color 0.3s;
+}
+
+/* ── DARK MODE TOGGLE ── */
+.theme-toggle {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  z-index: 999;
+  background: linear-gradient(135deg, #880e4f, #1565c0);
+  border: none; cursor: pointer;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: #fff;
+}
+.theme-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(0,0,0,0.4); }
+
+/* ── DARK: body & layout ── */
+[data-theme="dark"] body {
+  background: var(--body-bg);
+}
+[data-theme="dark"] .tab-bar {
+  background: var(--tab-bg);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+[data-theme="dark"] .tab-btn { color: var(--tab-text); }
+[data-theme="dark"] .tab-btn:hover { color: var(--pink-deep); }
+[data-theme="dark"] .tab-btn.active { color: var(--pink-deep); border-bottom-color: var(--pink-deep); }
+
+/* ── DARK: cards ── */
+[data-theme="dark"] .card {
+  background: var(--card-bg);
+  border-color: var(--card-border);
+}
+[data-theme="dark"] .card-pink { border-top-color: var(--pink-mid); }
+[data-theme="dark"] .card-blue { border-top-color: var(--blue-mid); }
+[data-theme="dark"] .card-purple { border-top-color: #ce93d8; }
+[data-theme="dark"] .card-teal { border-top-color: var(--teal); }
+[data-theme="dark"] .card-coral { border-top-color: var(--coral); }
+[data-theme="dark"] .card-green { border-top-color: var(--green); }
+[data-theme="dark"] .card-gold { border-top-color: var(--gold); }
+[data-theme="dark"] .card[style*="border-top: 4px solid #e53935"] { border-top-color: #ef5350 !important; background: #1a0808 !important; }
+
+/* ── DARK: alerts ── */
+[data-theme="dark"] .alert-red { background: var(--alert-red-bg); border-left-color: var(--alert-red-border); color: var(--alert-red-text); }
+[data-theme="dark"] .alert-pink { background: var(--alert-pink-bg); border-left-color: var(--alert-pink-border); color: var(--alert-pink-text); }
+[data-theme="dark"] .alert-blue { background: var(--alert-blue-bg); border-left-color: var(--alert-blue-border); color: var(--alert-blue-text); }
+[data-theme="dark"] .alert-green { background: var(--alert-green-bg); border-left-color: var(--alert-green-border); color: var(--alert-green-text); }
+[data-theme="dark"] .alert-gold { background: var(--alert-gold-bg); border-left-color: var(--alert-gold-border); color: var(--alert-gold-text); }
+[data-theme="dark"] .alert-purple { background: var(--alert-purple-bg); border-left-color: var(--alert-purple-border); color: var(--alert-purple-text); }
+
+/* ── DARK: tables ── */
+[data-theme="dark"] .comp-table { box-shadow: var(--shadow-sm); }
+[data-theme="dark"] .comp-table td { border-bottom-color: rgba(255,255,255,0.06); color: var(--text-dark); }
+[data-theme="dark"] .comp-table tr:nth-child(even) td { background: var(--table-alt); }
+[data-theme="dark"] .th-label { background: var(--comp-table-label-bg); color: var(--text-mid); }
+[data-theme="dark"] .info-table td, [data-theme="dark"] .info-table th { border-color: rgba(255,255,255,0.08); color: var(--text-dark); }
+[data-theme="dark"] .info-table th { background: var(--info-table-th); }
+[data-theme="dark"] .comp-table td.feature { color: var(--text-mid); }
+
+/* ── DARK: drug cards ── */
+[data-theme="dark"] .drug-card {
+  background: var(--drug-card-bg);
+  border-color: var(--drug-card-border);
+}
+[data-theme="dark"] .drug-card[style*="background:linear-gradient(135deg,#fff"] {
+  background: linear-gradient(135deg, #1e1e2e 60%, #0a1628 100%) !important;
+  border-color: #1565c0 !important;
+}
+[data-theme="dark"] .drug-section { background: var(--drug-section-bg); }
+
+/* ── DARK: stages ── */
+[data-theme="dark"] .stage-early { background: var(--stage-early-bg); border-top-color: #81c784; }
+[data-theme="dark"] .stage-mid { background: var(--stage-mid-bg); border-top-color: #ffd54f; }
+[data-theme="dark"] .stage-late { background: var(--stage-late-bg); border-top-color: #ff8a65; }
+[data-theme="dark"] .stage-early .stage-label { color: #81c784; }
+[data-theme="dark"] .stage-mid .stage-label { color: #ffd54f; }
+[data-theme="dark"] .stage-late .stage-label { color: #ff8a65; }
+
+/* ── DARK: nclex boxes ── */
+[data-theme="dark"] .nclex-box {
+  background: var(--nclex-bg);
+  border-color: var(--nclex-border);
+}
+[data-theme="dark"] .nclex-box h4 { color: var(--blue-mid); }
+[data-theme="dark"] .nclex-q { color: var(--text-dark); }
+[data-theme="dark"] .nclex-a { color: var(--text-mid); }
+
+/* ── DARK: memory aid ── */
+[data-theme="dark"] .memory-aid {
+  background: var(--memory-bg);
+  border-color: var(--memory-border);
+}
+[data-theme="dark"] .memory-aid h4 { color: var(--blue-mid); }
+[data-theme="dark"] .acronym-row span { color: var(--text-mid); }
+
+/* ── DARK: priority box ── */
+[data-theme="dark"] .priority-box {
+  background: var(--priority-bg);
+}
+
+/* ── DARK: obj items ── */
+[data-theme="dark"] .obj-item { background: var(--obj-bg); color: var(--text-mid); border-left-color: var(--obj-border-pink); }
+[data-theme="dark"] .obj-item.blue { border-left-color: var(--obj-border-blue); }
+[data-theme="dark"] .obj-item.purple { border-left-color: var(--obj-border-purple); }
+[data-theme="dark"] .obj-item.green { border-left-color: var(--obj-border-green); }
+
+/* ── DARK: vital chips ── */
+[data-theme="dark"] .vital-chip { background: var(--vital-chip-bg); border-color: var(--vital-chip-border); color: var(--blue-mid); }
+[data-theme="dark"] .vital-chip.abnormal { background: var(--vital-chip-abnormal-bg); border-color: var(--vital-chip-abnormal-border); color: #ef9a9a; }
+
+/* ── DARK: case study ── */
+[data-theme="dark"] .case-body { background: var(--case-body-bg); border-color: var(--case-body-border); }
+[data-theme="dark"] .case-section-label { color: var(--text-light); }
+
+/* ── DARK: chips ── */
+[data-theme="dark"] .chip-pink { background: #3a0a20; color: #f48fb1; }
+[data-theme="dark"] .chip-blue { background: #0a1628; color: #82b1ff; }
+[data-theme="dark"] .chip-green { background: #0a1a0a; color: #81c784; }
+[data-theme="dark"] .chip-red { background: #1a0808; color: #ef9a9a; }
+[data-theme="dark"] .chip-gold { background: #1a1400; color: #ffd54f; }
+[data-theme="dark"] .chip-purple { background: #120a1a; color: #ce93d8; }
+
+/* ── DARK: inline colored divs ── */
+[data-theme="dark"] .hero-chip { background: var(--hero-chip-bg); }
+
+/* ── DARK: inline style overrides for small color boxes ── */
+[data-theme="dark"] [style*="background:#fce4ec"] { background: #1a0a10 !important; }
+[data-theme="dark"] [style*="background:#e3f2fd"] { background: #0a1628 !important; }
+[data-theme="dark"] [style*="background:var(--lavender-pale)"] { background: #120a1a !important; }
+[data-theme="dark"] [style*="background:#e8f5e9"] { background: #0a1a0a !important; }
+[data-theme="dark"] [style*="background:linear-gradient(135deg,#fff 0%,#fce4ec"] { background: linear-gradient(135deg,#1e1e2e 0%,#1a0a10 100%) !important; }
+[data-theme="dark"] [style*="background:linear-gradient(135deg,#fce4ec 0%,#f3e5f5"] { background: linear-gradient(135deg,#1a0a10 0%,#120a1a 100%) !important; }
+[data-theme="dark"] [style*="background:linear-gradient(135deg,#e3f2fd,#e8eaf6)"] { background: linear-gradient(135deg,#0a1628,#0d1035) !important; }
+[data-theme="dark"] [style*="background:linear-gradient(135deg,#fff 60%,#fce4ec"] { background: linear-gradient(135deg,#1e1e2e 60%,#1a0a10 100%) !important; }
+[data-theme="dark"] [style*="background:#fff"] { background: var(--card-bg) !important; }
+[data-theme="dark"] [style*="background:rgba(255,255,255,0.7)"] { background: rgba(255,255,255,0.06) !important; }
+[data-theme="dark"] [style*="background:rgba(255,255,255,0.15)"] { background: rgba(255,255,255,0.08) !important; }
+[data-theme="dark"] [style*="background:#f5f5f5"] { background: #252535 !important; }
+[data-theme="dark"] [style*="background:#fffde7"] { background: #1a1400 !important; }
+[data-theme="dark"] [style*="background:#ffebee"] { background: #1a0808 !important; }
+[data-theme="dark"] [style*="background:#fff1f1"] { background: #1a0808 !important; }
+[data-theme="dark"] [style*="background:#fff0f6"] { background: #1a0a10 !important; }
+[data-theme="dark"] [style*="color:#1b5e20"] { color: #a5d6a7 !important; }
+[data-theme="dark"] [style*="color:#0d47a1"] { color: #90caf9 !important; }
+[data-theme="dark"] [style*="color:#b71c1c"] { color: #ef9a9a !important; }
+[data-theme="dark"] [style*="color:#f57f17"] { color: #ffe082 !important; }
+[data-theme="dark"] [style*="color:#4a148c"] { color: #e1bee7 !important; }
+[data-theme="dark"] [style*="color:#880e4f"] { color: #f48fb1 !important; }
+[data-theme="dark"] [style*="color:#2e7d32"] { color: #81c784 !important; }
+[data-theme="dark"] [style*="color:#c62828"] { color: #ef9a9a !important; }
+[data-theme="dark"] [style*="color:#f57f17"] { color: #ffd54f !important; }
+[data-theme="dark"] [style*="color:var(--text-mid)"] { color: var(--text-mid) !important; }
+[data-theme="dark"] [style*="color:var(--text-light)"] { color: var(--text-light) !important; }
+[data-theme="dark"] .divider { background: linear-gradient(90deg,transparent,rgba(255,255,255,0.1),rgba(255,255,255,0.1),transparent); }
+[data-theme="dark"] .footer { color: var(--text-light); }
+[data-theme="dark"] [style*="background:linear-gradient(135deg, #e8f5e9, #f1f8e9)"] { background: var(--stage-early-bg) !important; }
+[data-theme="dark"] [style*="background:linear-gradient(135deg, #fff8e1, #fff3e0)"] { background: var(--stage-mid-bg) !important; }
+[data-theme="dark"] [style*="background:linear-gradient(135deg, #ffebee, #fce4ec)"] { background: var(--stage-late-bg) !important; }
+
+/* ── HERO HEADER ── */
+.hero {
+  background: linear-gradient(135deg, #880e4f 0%, #1565c0 50%, #6a1b9a 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(233,30,140,0.3) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 30%, rgba(41,121,255,0.3) 0%, transparent 60%);
+}
+.hero-inner {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; gap: 32px;
+  max-width: 1100px; margin: 0 auto;
+  padding: 36px 40px;
+}
+.brain-svg { flex-shrink: 0; width: 130px; height: 130px; animation: float 4s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+.hero-text h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  color: #fff;
+  line-height: 1.15;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.hero-text h1 span { color: #ffd6e7; font-style: italic; }
+.hero-subtitle {
+  margin-top: 10px;
+  font-size: 1rem; color: rgba(255,255,255,0.85);
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 4px 12px; border-radius: 20px;
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.03em;
+  color: #fff;
+}
+
+/* ── TABS ── */
+.tab-bar {
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  position: sticky; top: 0; z-index: 100;
+  overflow-x: auto;
+}
+.tab-bar::-webkit-scrollbar { height: 3px; }
+.tab-bar::-webkit-scrollbar-thumb { background: var(--pink-soft); border-radius: 3px; }
+.tab-list {
+  display: flex; white-space: nowrap;
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 20px;
+}
+.tab-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.82rem; font-weight: 800;
+  color: var(--text-light);
+  padding: 14px 16px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.25s; letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.tab-btn:hover { color: var(--pink-deep); }
+.tab-btn.active {
+  color: var(--pink-deep);
+  border-bottom-color: var(--pink-deep);
+}
+
+/* ── MAIN CONTENT ── */
+.content-wrap { max-width: 1100px; margin: 0 auto; padding: 36px 24px 60px; }
+.tab-panel { display: none; animation: fadeUp 0.35s ease; }
+.tab-panel.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── SECTION HEADINGS ── */
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.9rem;
+  background: linear-gradient(135deg, var(--pink-deep), var(--blue-deep));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 6px;
+}
+.section-sub { color: var(--text-light); font-size: 0.95rem; margin-bottom: 28px; }
+
+/* ── GRID LAYOUTS ── */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-bottom: 24px; }
+
+/* ── CARDS ── */
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.card-title {
+  font-size: 0.75rem; font-weight: 900; letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 7px;
+}
+.card-title .icon { font-size: 1.1rem; }
+
+/* Card color variants */
+.card-pink { border-top: 4px solid var(--pink-mid); }
+.card-blue { border-top: 4px solid var(--blue-mid); }
+.card-purple { border-top: 4px solid #9c27b0; }
+.card-teal { border-top: 4px solid var(--teal); }
+.card-coral { border-top: 4px solid var(--coral); }
+.card-green { border-top: 4px solid var(--green); }
+.card-gold { border-top: 4px solid var(--gold); }
+
+/* ── ALERT BOXES ── */
+.alert {
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin: 16px 0;
+  display: flex; gap: 14px; align-items: flex-start;
+  font-size: 0.92rem;
+}
+.alert-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 1px; }
+.alert-body { flex: 1; }
+.alert-body strong { display: block; margin-bottom: 4px; font-size: 0.9rem; }
+.alert-red { background: #fff1f1; border-left: 4px solid #e53935; color: #b71c1c; }
+.alert-pink { background: #fff0f6; border-left: 4px solid var(--pink-mid); color: #880e4f; }
+.alert-blue { background: #e8f4fd; border-left: 4px solid var(--blue-mid); color: #0d47a1; }
+.alert-green { background: var(--green-pale); border-left: 4px solid var(--green); color: #1b5e20; }
+.alert-gold { background: #fffde7; border-left: 4px solid var(--gold); color: #f57f17; }
+.alert-purple { background: var(--lavender-pale); border-left: 4px solid #9c27b0; color: #4a148c; }
+
+/* ── LISTS ── */
+ul.styled { list-style: none; padding: 0; }
+ul.styled li {
+  padding: 6px 0 6px 22px;
+  position: relative; font-size: 0.92rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+ul.styled li:last-child { border-bottom: none; }
+ul.styled li::before {
+  content: '✦';
+  position: absolute; left: 0; top: 7px;
+  font-size: 0.65rem; color: var(--pink-mid);
+}
+ul.styled.blue li::before { color: var(--blue-mid); }
+ul.styled.green li::before { content: '✔'; color: var(--green); font-size: 0.7rem; }
+ul.styled.red li::before { content: '✖'; color: #e53935; font-size: 0.7rem; }
+
+/* ── COMPARISON TABLE ── */
+.comp-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 20px 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+.comp-table th { padding: 13px 16px; font-weight: 800; text-align: left; font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.comp-table td { padding: 11px 16px; border-bottom: 1px solid rgba(0,0,0,0.06); vertical-align: top; }
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table tr:nth-child(even) td { background: rgba(0,0,0,0.018); }
+.th-pink { background: linear-gradient(135deg, #c2185b, #e91e8c); color: #fff; }
+.th-blue { background: linear-gradient(135deg, #1565c0, #2979ff); color: #fff; }
+.th-label { background: #f5f5f5; color: var(--text-mid); font-weight: 800; }
+.comp-table td.feature { font-weight: 700; color: var(--text-mid); font-size: 0.85rem; }
+
+/* ── DRUG CARD ── */
+.drug-card {
+  background: linear-gradient(135deg, #fff 60%, #fce4ec 100%);
+  border: 2px solid var(--pink-soft);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 18px;
+}
+.drug-name { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--pink-deep); }
+.drug-class { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--blue-mid); margin-bottom: 12px; }
+.drug-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 14px; }
+.drug-section { background: rgba(255,255,255,0.7); border-radius: var(--radius-sm); padding: 12px; }
+.drug-section-title { font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+.drug-section-title.mechanism { color: var(--blue-deep); }
+.drug-section-title.effects { color: var(--green); }
+.drug-section-title.se { color: var(--coral); }
+.drug-section-title.nursing { color: var(--pink-deep); }
+.drug-section-title.caution { color: #e53935; }
+
+/* ── PRIORITY BOX ── */
+.priority-box {
+  background: linear-gradient(135deg, #880e4f 0%, #6a1b9a 100%);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin: 22px 0;
+  position: relative; overflow: hidden;
+}
+.priority-box::after {
+  content: '⭐';
+  position: absolute; right: 20px; top: 16px;
+  font-size: 2.5rem; opacity: 0.2;
+}
+.priority-box h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.priority-box ul.styled li { color: rgba(255,255,255,0.9); border-bottom-color: rgba(255,255,255,0.15); }
+.priority-box ul.styled li::before { color: #ffd6e7; }
+
+/* ── MEMORY AID ── */
+.memory-aid {
+  background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+  border: 2px dashed var(--pink-soft);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 18px 0;
+}
+.memory-aid h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 900; color: var(--blue-deep); margin-bottom: 10px; }
+.acronym-letter {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.7rem; color: var(--pink-deep);
+  display: inline-block; width: 36px; text-align: center;
+}
+.acronym-row { display: flex; align-items: center; gap: 12px; padding: 5px 0; font-size: 0.92rem; }
+.acronym-row span { color: var(--text-mid); }
+
+/* ── STAGE TIMELINE ── */
+.stage-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 20px 0; }
+.stage-box { border-radius: var(--radius); padding: 18px 20px; }
+.stage-early { background: linear-gradient(135deg, #e8f5e9, #f1f8e9); border-top: 4px solid #66bb6a; }
+.stage-mid { background: linear-gradient(135deg, #fff8e1, #fff3e0); border-top: 4px solid var(--gold); }
+.stage-late { background: linear-gradient(135deg, #ffebee, #fce4ec); border-top: 4px solid var(--coral); }
+.stage-label { font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.stage-early .stage-label { color: #2e7d32; }
+.stage-mid .stage-label { color: #f57f17; }
+.stage-late .stage-label { color: #c62828; }
+
+/* ── NCLEX BOX ── */
+.nclex-box {
+  background: linear-gradient(135deg, #e3f2fd, #e8eaf6);
+  border: 2px solid var(--blue-soft);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  margin: 18px 0;
+}
+.nclex-box h4 { font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.07em; color: var(--blue-deep); margin-bottom: 10px; }
+.nclex-q { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; font-style: italic; }
+.nclex-a { font-size: 0.88rem; color: var(--text-mid); }
+.nclex-a strong { color: var(--green); }
+
+/* ── DIVIDER ── */
+.divider { height: 2px; background: linear-gradient(90deg, transparent, var(--pink-soft), var(--blue-soft), transparent); margin: 28px 0; border: none; }
+
+/* ── HIGHLIGHT CHIP ── */
+.chip {
+  display: inline-block; border-radius: 20px;
+  padding: 3px 12px; font-size: 0.78rem; font-weight: 800;
+  margin: 2px; letter-spacing: 0.03em;
+}
+.chip-pink { background: #fce4ec; color: var(--pink-deep); }
+.chip-blue { background: #e3f2fd; color: var(--blue-deep); }
+.chip-green { background: var(--green-pale); color: #2e7d32; }
+.chip-red { background: #ffebee; color: #c62828; }
+.chip-gold { background: #fffde7; color: #f57f17; }
+.chip-purple { background: var(--lavender-pale); color: #6a1b9a; }
+
+/* ── INLINE TABLE ── */
+.info-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin: 14px 0; }
+.info-table td, .info-table th { padding: 9px 14px; border: 1px solid rgba(0,0,0,0.08); vertical-align: top; }
+.info-table th { background: linear-gradient(135deg, var(--pink-pale), var(--blue-pale)); font-weight: 800; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* ── CASE STUDY ── */
+.case-header {
+  background: linear-gradient(135deg, #1565c0, #0d47a1);
+  color: #fff; border-radius: var(--radius) var(--radius) 0 0;
+  padding: 16px 22px;
+}
+.case-header h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; }
+.case-body { background: #fff; border-radius: 0 0 var(--radius) var(--radius); padding: 20px 22px; border: 1px solid rgba(0,0,0,0.07); border-top: none; margin-bottom: 24px; }
+.case-section { margin-bottom: 14px; }
+.case-section-label { font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-light); margin-bottom: 5px; }
+.case-vitals { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+.vital-chip {
+  background: #e3f2fd; border: 1px solid #90caf9;
+  border-radius: 8px; padding: 5px 12px;
+  font-size: 0.82rem; font-weight: 700; color: var(--blue-deep);
+}
+.vital-chip.abnormal { background: #fff1f1; border-color: #ef9a9a; color: #c62828; }
+
+/* ── OBJECTIVES LIST ── */
+.obj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.obj-item {
+  background: #fff; border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  border-left: 4px solid var(--pink-mid);
+  font-size: 0.875rem; font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s;
+}
+.obj-item:hover { transform: translateX(4px); }
+.obj-item.blue { border-left-color: var(--blue-mid); }
+.obj-item.purple { border-left-color: #9c27b0; }
+.obj-item.green { border-left-color: var(--green); }
+
+/* ── INTERACTIVE QUESTIONS ── */
+.iq-block {
+  background: #fff;
+  border: 1.5px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 18px;
+  transition: box-shadow 0.2s;
+}
+.iq-block:hover { box-shadow: var(--shadow-sm); }
+.iq-prompt {
+  font-size: 0.925rem; font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 14px; line-height: 1.5;
+  display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px;
+}
+.iq-tag {
+  display: inline-block; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--pink-deep), var(--pink-mid));
+  color: #fff; border-radius: 20px;
+  padding: 3px 11px; font-size: 0.72rem; font-weight: 900;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  margin-top: 1px;
+}
+.iq-tag-sata {
+  background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+}
+.iq-tag-purple {
+  background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+}
+.iq-tag-sata-purple {
+  background: linear-gradient(135deg, #4a148c, #7b1fa2);
+}
+.iq-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.iq-opt {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: #fafafa;
+  border: 2px solid rgba(0,0,0,0.09);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  cursor: pointer;
+  font-size: 0.875rem; font-weight: 600; color: var(--text-dark);
+  transition: border-color 0.18s, background 0.18s, transform 0.12s;
+  user-select: none;
+}
+.iq-opt:hover { border-color: var(--pink-soft); background: #fff0f5; transform: translateX(2px); }
+.iq-opt.selected { border-color: var(--pink-mid); background: #fff0f8; }
+.iq-opt.correct  { border-color: #43a047 !important; background: #f1f8f1 !important; color: #1b5e20; }
+.iq-opt.incorrect{ border-color: #e53935 !important; background: #fff1f1 !important; color: #b71c1c; }
+.iq-opt.missed   { border-color: #ff9800 !important; background: #fff8e1 !important; color: #e65100; }
+.iq-opt.disabled { cursor: default; pointer-events: none; }
+.iq-letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 26px; height: 26px;
+  background: rgba(0,0,0,0.07);
+  border-radius: 50%; font-size: 0.78rem; font-weight: 900;
+  flex-shrink: 0; transition: background 0.18s;
+}
+.iq-opt.selected .iq-letter { background: var(--pink-mid); color: #fff; }
+.iq-opt.correct .iq-letter  { background: #43a047; color: #fff; }
+.iq-opt.incorrect .iq-letter{ background: #e53935; color: #fff; }
+.iq-opt.missed .iq-letter   { background: #ff9800; color: #fff; }
+.iq-submit {
+  background: linear-gradient(135deg, var(--pink-deep), var(--pink-mid));
+  color: #fff; border: none; cursor: pointer;
+  padding: 10px 24px; border-radius: 24px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem; font-weight: 800; letter-spacing: 0.04em;
+  transition: opacity 0.2s, transform 0.15s;
+  box-shadow: 0 3px 10px rgba(194,24,91,0.25);
+}
+.iq-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+.iq-submit:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+.iq-submit-purple {
+  background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+  box-shadow: 0 3px 10px rgba(106,27,154,0.25);
+}
+.iq-result {
+  margin-top: 12px; font-size: 0.85rem; font-weight: 800;
+  min-height: 0; transition: all 0.3s;
+}
+.iq-result.pass { color: #2e7d32; }
+.iq-result.partial { color: #e65100; }
+.iq-result.fail { color: #c62828; }
+.iq-rationale {
+  display: none;
+  margin-top: 14px;
+  background: linear-gradient(135deg, #f8f9ff, #f0fff4);
+  border-left: 4px solid #43a047;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 16px;
+  font-size: 0.875rem; color: var(--text-mid); line-height: 1.7;
+  animation: fadeUp 0.3s ease;
+}
+.iq-rationale.show { display: block; }
+.iq-retry {
+  display: inline-block; margin-top: 12px;
+  background: none; border: 2px solid #43a047;
+  color: #2e7d32; border-radius: 20px;
+  padding: 5px 16px; font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem; font-weight: 800; cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.iq-retry:hover { background: #43a047; color: #fff; }
+[data-theme="dark"] .iq-retry { border-color: #81c784; color: #a5d6a7; }
+[data-theme="dark"] .iq-retry:hover { background: #2e7d32; color: #fff; }
+
+/* DARK MODE — interactive questions */
+[data-theme="dark"] .iq-block { background: #1e1e2e; border-color: rgba(255,255,255,0.08); }
+[data-theme="dark"] .iq-opt { background: #252535; border-color: rgba(255,255,255,0.1); color: var(--text-dark); }
+[data-theme="dark"] .iq-opt:hover { border-color: var(--pink-soft); background: #2e1a28; }
+[data-theme="dark"] .iq-opt.selected { border-color: var(--pink-mid); background: #2e1020; }
+[data-theme="dark"] .iq-opt.correct  { background: #0d1f0d !important; color: #a5d6a7; }
+[data-theme="dark"] .iq-opt.incorrect{ background: #1a0808 !important; color: #ef9a9a; }
+[data-theme="dark"] .iq-opt.missed   { background: #1a1000 !important; color: #ffe082; }
+[data-theme="dark"] .iq-opt.missed .iq-letter { background: #ff9800; }
+[data-theme="dark"] .iq-letter { background: rgba(255,255,255,0.1); }
+[data-theme="dark"] .iq-rationale { background: linear-gradient(135deg,#0d1f0d,#0a1628); color: var(--text-mid); border-left-color: #43a047; }
+
+/* ── FOOTER ── */
+.footer { text-align: center; padding: 20px; color: var(--text-light); font-size: 0.78rem; }
+
+/* ══ INTERACTIVE QUESTION BLOCKS ══ */
+.iq-block {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-sm);
+}
+.iq-prompt {
+  font-size: 0.925rem; font-weight: 700; color: var(--text-dark);
+  margin-bottom: 14px; line-height: 1.5;
+  display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px;
+}
+.iq-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--pink-deep), var(--pink-mid));
+  color: #fff; font-size: 0.68rem; font-weight: 900;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 20px; flex-shrink: 0; margin-top: 2px;
+}
+.iq-tag-sata { background: linear-gradient(135deg, #0d47a1, var(--blue-mid)); }
+.iq-tag-purple { background: linear-gradient(135deg, #6a1b9a, #9c27b0); }
+.iq-tag-sata-purple { background: linear-gradient(135deg, #4a148c, #7b1fa2); }
+.iq-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.iq-opt {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 11px 14px;
+  border: 2px solid rgba(0,0,0,0.09);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 0.18s, background 0.18s, transform 0.12s;
+  font-size: 0.875rem; line-height: 1.45;
+  user-select: none; background: #fafafa;
+}
+.iq-opt:hover:not(.locked) { border-color: var(--pink-soft); background: var(--pink-pale); transform: translateX(2px); }
+.iq-opt.selected { border-color: var(--blue-mid); background: var(--blue-pale); }
+.iq-opt.correct  { border-color: var(--green) !important; background: var(--green-pale) !important; }
+.iq-opt.incorrect{ border-color: #e53935 !important; background: #fff1f1 !important; }
+.iq-opt.missed   { border-color: #fb8c00 !important; background: #fff8e1 !important; }
+.iq-opt.locked   { cursor: default; }
+.iq-letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(0,0,0,0.07); font-weight: 900; font-size: 0.78rem;
+  flex-shrink: 0; margin-top: 1px; transition: background 0.18s, color 0.18s;
+}
+.iq-opt.selected .iq-letter  { background: var(--blue-mid); color: #fff; }
+.iq-opt.correct  .iq-letter  { background: var(--green);    color: #fff; }
+.iq-opt.incorrect .iq-letter { background: #e53935;          color: #fff; }
+.iq-opt.missed   .iq-letter  { background: #fb8c00;          color: #fff; }
+.iq-status { margin-left: auto; font-size: 0.85rem; font-weight: 900; flex-shrink: 0; }
+.iq-submit {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: linear-gradient(135deg, var(--pink-deep), var(--pink-mid));
+  color: #fff; border: none; border-radius: 30px;
+  padding: 9px 22px;
+  font-family: 'Nunito', sans-serif; font-size: 0.85rem; font-weight: 800;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 3px 12px rgba(194,24,91,0.3);
+  letter-spacing: 0.02em; margin-bottom: 14px;
+}
+.iq-submit:hover:not(:disabled) { opacity:.9; transform:translateY(-2px); box-shadow:0 5px 18px rgba(194,24,91,0.4); }
+.iq-submit:disabled { opacity:.45; cursor:not-allowed; transform:none; box-shadow:none; }
+.iq-submit-purple { background: linear-gradient(135deg,#6a1b9a,#9c27b0); box-shadow:0 3px 12px rgba(106,27,154,0.35); }
+.iq-submit-purple:hover:not(:disabled) { box-shadow:0 5px 18px rgba(106,27,154,0.45); }
+.iq-result { font-size:0.88rem; font-weight:800; margin-bottom:6px; min-height:0; }
+.iq-result.pass    { color:#2e7d32; }
+.iq-result.partial { color:#e65100; }
+.iq-result.fail    { color:#c62828; }
+.iq-rationale {
+  display: none;
+  background: linear-gradient(135deg, #f8f9ff, #f0fff4);
+  border-left: 4px solid var(--green);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 16px; font-size: 0.865rem; line-height: 1.65;
+  color: var(--text-dark); animation: fadeUp 0.3s ease;
+}
+.iq-rationale.show { display: block; }
+.iq-retry {
+  display: inline-block; margin-top: 10px; font-size: 0.78rem;
+  font-weight: 800; color: var(--blue-mid); cursor: pointer;
+  text-decoration: underline; letter-spacing: 0.02em;
+}
+.iq-retry:hover { color: var(--pink-mid); }
+/* dark overrides */
+[data-theme="dark"] .iq-block { background: var(--card-bg); border-color: var(--card-border); }
+[data-theme="dark"] .iq-opt { background: #252535; border-color: rgba(255,255,255,0.1); color: var(--text-dark); }
+[data-theme="dark"] .iq-opt:hover:not(.locked) { border-color: var(--pink-soft); background: #3a0a20; }
+[data-theme="dark"] .iq-opt.selected  { border-color: var(--blue-mid); background: #0a1628; }
+[data-theme="dark"] .iq-opt.correct   { border-color: var(--green) !important; background: #0a1a0a !important; }
+[data-theme="dark"] .iq-opt.incorrect { border-color: #ef5350 !important; background: #1a0808 !important; }
+[data-theme="dark"] .iq-opt.missed    { border-color: #ffb74d !important; background: #1a1000 !important; }
+[data-theme="dark"] .iq-letter { background: rgba(255,255,255,0.1); color: var(--text-dark); }
+[data-theme="dark"] .iq-rationale { background: linear-gradient(135deg,#0d0f1e,#0a1a0a); border-left-color: var(--green); color: var(--text-dark); }
+@media (max-width: 700px) {
+  .hero-inner { flex-direction: column; text-align: center; padding: 24px 20px; }
+  .brain-svg { width: 80px; height: 80px; }
+  .stage-row { grid-template-columns: 1fr; }
+  .drug-grid { grid-template-columns: 1fr; }
+  .content-wrap { padding: 20px 14px 50px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── DARK MODE TOGGLE ── -->
+<button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle dark/light mode" aria-label="Toggle dark mode">🌙</button>
+
+<!-- ═══════════════════════════════════ HERO ═══════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-inner">
+    <svg class="brain-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ff80ab" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#82b1ff" stop-opacity="0.1"/>
+        </radialGradient>
+      </defs>
+      <circle cx="100" cy="100" r="95" fill="url(#bg)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+      <!-- brain outline -->
+      <path d="M72 68 C62 52, 44 50, 38 64 C32 78, 40 90, 50 95 C42 102, 36 114, 42 126 C48 138, 62 140, 72 134 C76 148, 88 158, 100 156 C112 158, 124 148, 128 134 C138 140, 152 138, 158 126 C164 114, 158 102, 150 95 C160 90, 168 78, 162 64 C156 50, 138 52, 128 68 C120 56, 110 50, 100 50 C90 50, 80 56, 72 68Z" fill="rgba(255,182,193,0.6)" stroke="#ff80ab" stroke-width="2"/>
+      <!-- folds -->
+      <path d="M100 50 Q100 80 100 110 Q100 130 100 156" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
+      <path d="M70 70 Q80 90, 90 80 Q100 70, 110 80 Q120 90, 130 70" stroke="#ff80ab" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M55 95 Q70 110, 85 100 Q100 90, 115 100 Q130 110, 145 95" stroke="#82b1ff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M60 120 Q75 132, 90 122 Q100 115, 110 122 Q125 132, 140 120" stroke="#ce93d8" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <!-- sparkles -->
+      <circle cx="55" cy="65" r="4" fill="#ff80ab" opacity="0.8"/>
+      <circle cx="145" cy="65" r="3" fill="#82b1ff" opacity="0.8"/>
+      <circle cx="100" cy="45" r="5" fill="#fff" opacity="0.6"/>
+      <circle cx="45" cy="115" r="3" fill="#ce93d8" opacity="0.7"/>
+      <circle cx="155" cy="115" r="3" fill="#ff80ab" opacity="0.7"/>
+    </svg>
+    <div class="hero-text">
+      <h1>Concept: <span>Cognition</span></h1>
+      <h1 style="font-size:clamp(1.2rem,2.5vw,1.7rem);color:rgba(255,255,255,0.9);margin-top:4px;">Delirium & Dementia — Complete Study Guide</h1>
+      <div class="hero-subtitle">
+        <span class="badge">🏫 HCC2 / Prof. Bryan</span>
+        <span class="badge">🧠 Neurocognitive Disorders</span>
+        <span class="badge">💊 Pharmacology Included</span>
+        <span class="badge">📋 NCLEX-Focused</span>
+        <span class="badge">🌸 Spring 2026</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════ TAB BAR ═══════════════════════════════ -->
+<nav class="tab-bar">
+  <div class="tab-list">
+    <button class="tab-btn active" onclick="showTab('overview',this)">🎯 Overview</button>
+    <button class="tab-btn" onclick="showTab('delirium',this)">⚡ Delirium</button>
+    <button class="tab-btn" onclick="showTab('dementia',this)">🧩 Dementia</button>
+    <button class="tab-btn" onclick="showTab('pathophys',this)">🔬 Pathophysiology</button>
+    <button class="tab-btn" onclick="showTab('pharm',this)">💊 Pharmacology</button>
+    <button class="tab-btn" onclick="showTab('nursing',this)">🩺 Nursing Care</button>
+    <button class="tab-btn" onclick="showTab('cases',this)">📋 Cases & NCLEX</button>
+    <button class="tab-btn" onclick="showTab('quickref',this)">⚡ Quick Ref</button>
+  </div>
+</nav>
+
+<main class="content-wrap">
+
+<!-- ════════════════════ TAB 1: OVERVIEW ════════════════════ -->
+<section class="tab-panel active" id="tab-overview">
+  <h2 class="section-title">Overview & Learning Objectives</h2>
+  <p class="section-sub">What you need to know, why it matters, and how it connects to nursing practice.</p>
+
+  <div class="grid-2">
+    <div class="card card-pink">
+      <div class="card-title" style="color:var(--pink-deep)"><span class="icon">🧠</span> What is Cognition?</div>
+      <p style="font-size:0.92rem;margin-bottom:12px;">Cognition = <strong>the act of thinking through the knowledge and understanding that is acquired.</strong> It represents a fundamental human feature that distinguishes <em>living</em> from merely <em>existing</em>.</p>
+      <p style="font-size:0.875rem;color:var(--text-mid)">When cognition is impaired, the impact radiates across <em>every</em> dimension of a person's life:</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">
+        <span class="chip chip-pink">🧠 Psychological</span>
+        <span class="chip chip-blue">💪 Physical</span>
+        <span class="chip chip-purple">👥 Social</span>
+        <span class="chip chip-gold">✨ Spiritual</span>
+      </div>
+    </div>
+
+    <div class="card card-blue">
+      <div class="card-title" style="color:var(--blue-deep)"><span class="icon">📖</span> Neurocognitive Disorders</div>
+      <p style="font-size:0.92rem;margin-bottom:12px;"><strong>Neurocognitive disorders</strong> = alterations in cognitive functioning due to underlying <strong>physiological changes caused by brain pathology</strong>.</p>
+      <div style="margin-top:12px;">
+        <div style="padding:10px 14px;background:var(--pink-pale);border-radius:var(--radius-sm);margin-bottom:8px;font-size:0.875rem;">
+          <strong>⚡ Delirium</strong> — Acute, reversible, sudden onset
+        </div>
+        <div style="padding:10px 14px;background:var(--blue-pale);border-radius:var(--radius-sm);font-size:0.875rem;">
+          <strong>🧩 Dementia</strong> — Chronic, progressive, slow onset
+        </div>
+      </div>
+      <p style="font-size:0.78rem;color:var(--text-light);margin-top:10px;">DSM-V renames dementia → <strong>Neurocognitive Disorder</strong> (mild or major)</p>
+    </div>
+  </div>
+
+  <div class="alert alert-gold">
+    <span class="alert-icon">⚠️</span>
+    <div class="alert-body">
+      <strong>Critical Distinction You Must Know</strong>
+      Delirium and dementia can look similar but are NOT the same. Delirium is ACUTE and often REVERSIBLE. Dementia is CHRONIC and PROGRESSIVE. <strong>You must distinguish between them</strong> — confusing the two can lead to missed treatments, permanent brain damage, or inappropriate care.
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--pink-deep);margin-bottom:16px;">📚 Module Learning Objectives</h3>
+  <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:18px;"><em>These objectives are adapted from NCSBN's NCLEX Test Plan and form the basis of your exam preparation.</em></p>
+  
+  <h4 style="font-size:0.8rem;font-weight:900;text-transform:uppercase;letter-spacing:0.07em;color:var(--pink-deep);margin-bottom:10px;">Mental Health Concepts</h4>
+  <div class="obj-grid" style="margin-bottom:20px;">
+    <div class="obj-item">Identify signs and symptoms of impaired cognition (e.g., memory loss, poor hygiene)</div>
+    <div class="obj-item">Recognize signs and symptoms of acute and chronic mental illness (e.g., dementia)</div>
+    <div class="obj-item">Assess client adherence to treatment plan</div>
+    <div class="obj-item">Assess client for alterations in mood, judgment, cognition, and reasoning</div>
+    <div class="obj-item">Provide care and education for acute and chronic psychosocial health issues</div>
+    <div class="obj-item">Evaluate client's abnormal response to the aging process (e.g., depression)</div>
+  </div>
+
+  <h4 style="font-size:0.8rem;font-weight:900;text-transform:uppercase;letter-spacing:0.07em;color:var(--blue-deep);margin-bottom:10px;">Crisis Intervention (Delirium)</h4>
+  <div class="obj-grid" style="margin-bottom:20px;">
+    <div class="obj-item blue">Assess the potential for violence and use safety precautions</div>
+    <div class="obj-item blue">Identify the client in crisis; use crisis intervention techniques</div>
+    <div class="obj-item blue">Apply knowledge of client psychopathology to crisis intervention</div>
+    <div class="obj-item blue">Guide the client to resources for recovery from crisis</div>
+  </div>
+
+  <h4 style="font-size:0.8rem;font-weight:900;text-transform:uppercase;letter-spacing:0.07em;color:#9c27b0;margin-bottom:10px;">Pharmacological Therapies</h4>
+  <div class="obj-grid">
+    <div class="obj-item purple">Identify contraindications to medication administration</div>
+    <div class="obj-item purple">Identify actual and potential medication incompatibilities</div>
+    <div class="obj-item purple">Assess for actual or potential side effects and adverse effects</div>
+    <div class="obj-item purple">Provide client education on medication side effects and interactions</div>
+    <div class="obj-item purple">Monitor for anticipated drug-drug interactions</div>
+    <div class="obj-item purple">Notify provider of contraindications, side effects, and adverse effects</div>
+  </div>
+</section>
+
+<!-- ════════════════════ TAB 2: DELIRIUM ════════════════════ -->
+<section class="tab-panel" id="tab-delirium">
+  <h2 class="section-title">Delirium — Acute Confusion</h2>
+  <p class="section-sub">Acute, often reversible cognitive disturbance. Treat the cause → resolve the symptoms.</p>
+
+  <div class="card card-pink" style="margin-bottom:24px;">
+    <div class="card-title" style="color:var(--pink-deep)"><span class="icon">⚡</span> Core Definition</div>
+    <p style="font-size:0.95rem;"><strong>Delirium</strong> = acute cognitive disturbance that is often <strong>reversible</strong>, with <strong>acute onset</strong>. It is a <em>constellation of symptoms</em>, not a single disorder. Without treatment, delirium can cause <strong>permanent brain damage</strong>.</p>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <h3 style="font-size:1.1rem;font-weight:800;color:var(--pink-deep);margin-bottom:14px;">⚡ Signs & Symptoms</h3>
+      <div class="card card-pink">
+        <ul class="styled">
+          <li>Inability to direct, focus, sustain, and <strong>shift attention</strong></li>
+          <li><strong>Abrupt onset</strong> with fluctuating clinical features (periods of lucidity)</li>
+          <li>Disorganized thinking</li>
+          <li>Disorientation (often to time and place)</li>
+          <li>Anxiety and agitation</li>
+          <li>Poor memory</li>
+          <li>Hallucinations (at times)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:1.1rem;font-weight:800;color:var(--blue-deep);margin-bottom:14px;">🔑 Causes (PINCH ME)</h3>
+      <div class="memory-aid">
+        <h4>Memory Aid: PINCH ME</h4>
+        <div class="acronym-row"><span class="acronym-letter">P</span><span>Pain</span></div>
+        <div class="acronym-row"><span class="acronym-letter">I</span><span>Infection</span></div>
+        <div class="acronym-row"><span class="acronym-letter">N</span><span>Nutrition (poor/inadequate)</span></div>
+        <div class="acronym-row"><span class="acronym-letter">C</span><span>Constipation & Urinary Retention</span></div>
+        <div class="acronym-row"><span class="acronym-letter">H</span><span>Hydration (dehydration)</span></div>
+        <div class="acronym-row"><span class="acronym-letter">M</span><span>Medications & Substances</span></div>
+        <div class="acronym-row"><span class="acronym-letter">E</span><span>Environmental Triggers</span></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--pink-deep);margin-bottom:16px;">Medical Conditions That Cause Delirium</h3>
+  <div class="grid-3">
+    <div class="card card-coral">
+      <div class="card-title" style="color:var(--coral)"><span class="icon">🦠</span> Infectious / Systemic</div>
+      <ul class="styled">
+        <li>Infection — systemic sepsis</li>
+        <li>Hepatic disease</li>
+        <li>Renal disease</li>
+      </ul>
+    </div>
+    <div class="card card-blue">
+      <div class="card-title" style="color:var(--blue-deep)"><span class="icon">⚗️</span> Metabolic / Nutritional</div>
+      <ul class="styled blue">
+        <li>Metabolic disorders (hypoxia, glucose)</li>
+        <li>Fluid & electrolyte imbalance</li>
+        <li>Thiamine deficiency</li>
+        <li>Dehydration</li>
+      </ul>
+    </div>
+    <div class="card card-purple">
+      <div class="card-title" style="color:#9c27b0"><span class="icon">💊</span> Medications</div>
+      <ul class="styled">
+        <li>Analgesics, anticonvulsants</li>
+        <li>Neuroleptics</li>
+        <li>Sedatives/hypnotics</li>
+        <li>Substance withdrawal (alcohol, sedatives)</li>
+        <li>Substance intoxication</li>
+        <li><strong>Geriatric polypharmacy</strong></li>
+      </ul>
+    </div>
+    <div class="card card-teal">
+      <div class="card-title" style="color:var(--teal)"><span class="icon">🧠</span> Neurological</div>
+      <ul class="styled">
+        <li>Head trauma</li>
+        <li>Seizure activity</li>
+        <li>Post-op complications</li>
+      </ul>
+    </div>
+    <div class="card card-gold">
+      <div class="card-title" style="color:#f57f17"><span class="icon">🏥</span> Environmental / Other</div>
+      <ul class="styled">
+        <li>Immobilization</li>
+        <li>Sleep deprivation</li>
+        <li>Sensory impairment (hearing, vision)</li>
+        <li>Restraint use</li>
+        <li>Environmental noise, lack of orienting material</li>
+        <li>45% of elderly develop delirium after hip fracture</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--blue-deep);margin-bottom:16px;">🔬 Delirium Assessment</h3>
+  <div class="grid-2">
+    <div class="card card-blue">
+      <div class="card-title" style="color:var(--blue-deep)"><span class="icon">📊</span> Assessment Components</div>
+      <ul class="styled blue">
+        <li>Mental, neurological, physical examination</li>
+        <li><strong>Determine client's baseline mental status</strong> (ask a family member)</li>
+        <li>Review medications — drug interactions, polypharmacy</li>
+        <li>Toxicity screening</li>
+        <li>Laboratory values</li>
+        <li>Urinalysis</li>
+        <li>Diagnostic imaging (X-ray, CT, MRI)</li>
+      </ul>
+    </div>
+    <div>
+      <div class="alert alert-blue">
+        <span class="alert-icon">💡</span>
+        <div class="alert-body">
+          <strong>Clinical Insight: Know the Baseline</strong>
+          Always establish the patient's <em>baseline</em> cognitive status before assuming current behavior is new or abnormal. A family member is your best resource for this. A sudden change from baseline = investigate!
+        </div>
+      </div>
+      <div class="alert alert-red">
+        <span class="alert-icon">🚨</span>
+        <div class="alert-body">
+          <strong>Untreated Delirium = Permanent Brain Damage</strong>
+          Delirium is a medical emergency. Treat the underlying cause immediately. Symptoms are <em>fully reversible</em> when treated appropriately — but only if caught in time.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--pink-deep);margin-bottom:16px;">🩺 Nursing Interventions for Delirium</h3>
+  
+  <div class="grid-3">
+    <div class="card card-green">
+      <div class="card-title" style="color:#2e7d32"><span class="icon">🛡️</span> Ensure Safe Environment</div>
+      <ul class="styled green">
+        <li>Free from fall hazards</li>
+        <li>IV lines out of sight, nontangled</li>
+        <li>Keep belongings near (eyeglasses, call light)</li>
+        <li>Adequate lighting</li>
+        <li>Bed alarm; bed in low position</li>
+        <li><strong>Avoid restraints</strong> — worsen agitation!</li>
+        <li>Approach slowly, from the front</li>
+      </ul>
+    </div>
+    <div class="card card-blue">
+      <div class="card-title" style="color:var(--blue-deep)"><span class="icon">🤝</span> Support & Supervision</div>
+      <ul class="styled blue">
+        <li>Monitor neuro status & VS frequently</li>
+        <li>Calm, reassuring approach — simple sentences</li>
+        <li>ADLs: food, water, toileting</li>
+        <li>Family or caregiver/sitter present</li>
+        <li>Encourage familiar objects from home</li>
+        <li>Maintain daily routine</li>
+        <li>Low stimulation environment</li>
+        <li>Reorient gently and realistically</li>
+        <li>Encourage normal sleep-wake cycle</li>
+      </ul>
+    </div>
+    <div class="card card-coral">
+      <div class="card-title" style="color:var(--coral)"><span class="icon">🔍</span> Address Underlying Cause</div>
+      <ul class="styled">
+        <li>Identify and treat infection, metabolic imbalances</li>
+        <li>Review and adjust medications</li>
+        <li>Ensure adequate hydration and nutrition (easy-to-eat foods)</li>
+        <li>PRN medication for severe anxiety with caution — benzos used cautiously</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="priority-box">
+    <h3>🚫 Critical Medication Safety — Delirium & Benzos</h3>
+    <p style="font-size:0.9rem;opacity:0.95;margin-bottom:10px;">Benzodiazepines (e.g., lorazepam) can cause <strong>reverse effects in the elderly</strong> — meaning they may paradoxically worsen agitation, confusion, and behavioral symptoms rather than calming them. In the elderly with delirium:</p>
+    <ul class="styled">
+      <li>Benzos are used with <strong>extreme caution</strong> and only for severe anxiety/agitation</li>
+      <li>Benzos are NOT first-line treatment for delirium</li>
+      <li>Nonpharmacologic approaches are ALWAYS attempted first</li>
+      <li>A recently prescribed benzo (like lorazepam) may actually be <em>contributing</em> to the delirium</li>
+    </ul>
+  </div>
+
+  <div class="alert alert-pink">
+    <span class="alert-icon">✨</span>
+    <div class="alert-body">
+      <strong>Communication Approach for Delirium</strong>
+      Approach patient <strong>slowly from the front</strong>. Address by <strong>name only</strong> — NOT "Honey," "Sweetie," or "Buddy." Use simple, direct statements. Well-lit environment. Low stimulation. Provide a clock and calendar in the room for reorientation.
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ TAB 3: DEMENTIA ════════════════════ -->
+<section class="tab-panel" id="tab-dementia">
+  <h2 class="section-title">Dementia — Alzheimer's Disease</h2>
+  <p class="section-sub">Chronic, progressive, irreversible — but manageable with the right nursing care.</p>
+
+  <div class="card card-purple" style="margin-bottom:24px;">
+    <div class="card-title" style="color:#9c27b0"><span class="icon">🧩</span> Core Definition</div>
+    <p style="font-size:0.95rem;"><strong>Dementia</strong> = deterioration and global impairment of cognitive functioning that is <strong>chronic, usually progressive but slow</strong>. Alzheimer's disease (AD) is the most common cause of dementia.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;">
+      <span class="chip chip-purple">No Known Cure</span>
+      <span class="chip chip-red">Irreversible</span>
+      <span class="chip chip-blue">Progressive</span>
+      <span class="chip chip-pink">Diagnosis of Exclusion</span>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <h3 style="font-size:1.1rem;font-weight:800;color:var(--pink-deep);margin-bottom:12px;">📊 Alzheimer's Statistics</h3>
+      <div class="card card-pink">
+        <ul class="styled">
+          <li>6th leading cause of death in the US (2016, CDC)</li>
+          <li>5.8 million cases in the US</li>
+          <li>1 in 3 seniors dies with Alzheimer's or another dementia</li>
+          <li>Expected to rise to 14 million in US by 2050</li>
+          <li>Over 16 million Americans provide unpaid care to people with AD</li>
+          <li>1 in 8 people under age 65 have AD (Alzheimer's Association)</li>
+          <li>Symptoms usually appear after age 60; average duration: <strong>8 years</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:1.1rem;font-weight:800;color:var(--blue-deep);margin-bottom:12px;">⚠️ Risk Factors</h3>
+      <div class="card card-blue">
+        <ul class="styled blue">
+          <li>Increasing age (most symptoms appear after 60)</li>
+          <li>Genetic factors</li>
+          <li>Cardiovascular disease (diet, exercise modifiable)</li>
+          <li>Head injury and traumatic brain injury</li>
+          <li>Other types of dementia: vascular, AIDS-related, chronic substance abuse, degenerative neuro disorders, post-ICU</li>
+        </ul>
+      </div>
+      <div class="alert alert-green">
+        <span class="alert-icon">🛡️</span>
+        <div class="alert-body">
+          <strong>Prevention Strategies</strong>
+          Good nutrition (↓ inflammation, oxidative stress, lower glucose and cholesterol), folic acid/B-6/B-12 to reduce homocysteine, social relationships, intellectual stimulation, exercise, and reducing head trauma risk (helmets, seat belts).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--blue-deep);margin-bottom:16px;">🔍 Diagnosis of Exclusion</h3>
+  <p style="font-size:0.9rem;color:var(--text-mid);margin-bottom:16px;">DSM-V replaces the term "dementia" with <strong>neurocognitive disorder</strong> (mild or major). Diagnosis requires:</p>
+  <div class="card card-blue">
+    <ul class="styled blue">
+      <li><strong>Memory impairment PLUS one of:</strong> Aphasia, Apraxia, Agnosia, or Disturbance in executive functioning</li>
+      <li>Significant cognitive decline from baseline in: complex attention, executive function, learning and memory, language, perceptual-motor skills, or social cognition</li>
+      <li>Deficits interfere with independence in everyday activities</li>
+      <li>Does NOT occur exclusively in the context of delirium</li>
+      <li>NOT explained by other mental disorders (pseudodementia)</li>
+    </ul>
+  </div>
+
+  <div class="alert alert-purple">
+    <span class="alert-icon">🎭</span>
+    <div class="alert-body">
+      <strong>Pseudodementia</strong>
+      Depression in the elderly can MIMIC dementia — this is called <em>pseudodementia</em>. Watch for: memory loss, ↓ thinking/learning, fatigue, irritability, somatic complaints, changes in appetite/sleep. Key: treat the underlying depression, and cognitive symptoms may resolve!
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--pink-deep);margin-bottom:16px;">📈 Stages of Alzheimer's Disease</h3>
+  <p style="font-size:0.87rem;color:var(--text-light);margin-bottom:16px;"><em>Text uses 7 stages, but progression is essentially: Early → Middle → End stage</em></p>
+  
+  <div class="stage-row">
+    <div class="stage-box stage-early">
+      <div class="stage-label">🌱 Early Stage (Mild)</div>
+      <ul class="styled green" style="font-size:0.85rem;">
+        <li>Memory loss (recent)</li>
+        <li>Disorientation</li>
+        <li>Cannot learn new information</li>
+        <li>Limited problem solving</li>
+        <li>Trouble with in-depth conversation; forgets common words</li>
+        <li>Personality changes: listless, apathetic, sudden temper</li>
+        <li>Easily fatigued</li>
+        <li>Wants familiar people, places, things</li>
+        <li><strong>Still able to care for self — no supervision needed yet</strong></li>
+        <li>Family may not realize something is wrong</li>
+      </ul>
+    </div>
+    <div class="stage-box stage-mid">
+      <div class="stage-label">⚠️ Middle Stage (Moderate)</div>
+      <ul class="styled" style="font-size:0.85rem;">
+        <li>Unstable emotions: anger, paranoia</li>
+        <li>Emotional disinhibition</li>
+        <li>Trouble eating; childlike behavior</li>
+        <li><strong>Cannot perform self-care without assistance</strong></li>
+        <li>Internalized, insensitive to others</li>
+        <li>Pacing and agitation</li>
+        <li>Bowel and bladder incontinence</li>
+        <li>Wandering</li>
+        <li>Visual hallucinations and delusions</li>
+        <li>Difficulty recognizing family/friends</li>
+        <li>Meaningless words/actions (rummaging)</li>
+        <li>Catastrophic reactions; Sundowning syndrome</li>
+      </ul>
+    </div>
+    <div class="stage-box stage-late">
+      <div class="stage-label">🔴 End Stage (Severe)</div>
+      <ul class="styled red" style="font-size:0.85rem;">
+        <li>Global memory loss (long-term AND short-term)</li>
+        <li>Significant weight loss; needs help eating</li>
+        <li>Verbal communication limited to guttural sounds or mutism</li>
+        <li>Total loss of voluntary bowel and bladder control</li>
+        <li>Bedridden (fetal position)</li>
+        <li>Profound neurological loss (seizures)</li>
+        <li>Contractures, pressure ulcers, systemic infections</li>
+        <li><strong>Death from: heart failure, pneumonia, kidney failure, starvation</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--pink-deep);margin-bottom:16px;">🎯 Symptoms and Sequelae — Know These Terms!</h3>
+  <div class="grid-2">
+    <div class="card card-pink">
+      <table class="info-table">
+        <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Confabulation</strong></td><td>Creating false memories without intent to deceive; fills memory gaps</td></tr>
+          <tr><td><strong>Aphasia</strong></td><td>Impairment in speech/language</td></tr>
+          <tr><td><strong>Apraxia</strong></td><td>Impairment in purposeful movement</td></tr>
+          <tr><td><strong>Agnosia</strong></td><td>Cannot recognize familiar objects/people</td></tr>
+          <tr><td><strong>Agraphia</strong></td><td>Inability to write</td></tr>
+          <tr><td><strong>Hyperorality</strong></td><td>Putting objects in the mouth; oral fixation</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card card-blue">
+      <table class="info-table">
+        <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Disinhibition</strong></td><td>Lack of self-control; socially inappropriate behaviors</td></tr>
+          <tr><td><strong>Wandering</strong></td><td>Aimless, potentially dangerous movement</td></tr>
+          <tr><td><strong>Sundowning Syndrome</strong></td><td>Worsening confusion, agitation in late afternoon/evening</td></tr>
+          <tr><td><strong>Catastrophic Reactions</strong></td><td>Extreme emotional responses — screaming, crying, striking out</td></tr>
+          <tr><td><strong>Pseudodementia</strong></td><td>Dementia-like presentation caused by depression</td></tr>
+          <tr><td><strong>Validation Therapy</strong></td><td>Entering patient's reality rather than correcting it</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--blue-deep);margin-bottom:16px;">🔧 Screening & Assessment Tools</h3>
+  <div class="card card-blue">
+    <ul class="styled blue">
+      <li><strong>Mini-Mental Status Exam (MMSE)</strong> — Used for screening and to determine progression</li>
+      <li><strong>Functional Dementia Scale</strong> — Looks at self-care, extent of memory loss, mood changes, danger to self/others</li>
+      <li><strong>Functional Assessment Screening Tool</strong></li>
+      <li><strong>Global Deterioration Scale</strong></li>
+      <li><strong>Blessed Dementia Scale</strong></li>
+    </ul>
+    <p style="font-size:0.85rem;color:var(--text-light);margin-top:12px;">Assessment should also include: current level of cognitive/daily functioning, safety and security, medication review, background and personality, education and teaching, support and resources.</p>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--pink-deep);margin-bottom:16px;">🎯 Goals of Care for Alzheimer's</h3>
+  <div class="grid-3">
+    <div class="card card-pink">
+      <div style="text-align:center;font-size:2rem;margin-bottom:8px;">🌸</div>
+      <div style="text-align:center;font-weight:900;font-size:1rem;color:var(--pink-deep);margin-bottom:8px;">Protect Dignity</div>
+      <p style="font-size:0.85rem;text-align:center;">Treat the person as a whole adult. The disease causes the behavior — not the person.</p>
+    </div>
+    <div class="card card-blue">
+      <div style="text-align:center;font-size:2rem;margin-bottom:8px;">💪</div>
+      <div style="text-align:center;font-weight:900;font-size:1rem;color:var(--blue-deep);margin-bottom:8px;">Preserve Function</div>
+      <p style="font-size:0.85rem;text-align:center;">Assist at the highest level of functional ability. Doing tasks "for" the patient accelerates decline.</p>
+    </div>
+    <div class="card card-green">
+      <div style="text-align:center;font-size:2rem;margin-bottom:8px;">✨</div>
+      <div style="text-align:center;font-weight:900;font-size:1rem;color:#2e7d32;margin-bottom:8px;">Promote Quality of Life</div>
+      <p style="font-size:0.85rem;text-align:center;">Meaningful relationships, joy, reduced anxiety, feelings of self-worth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ TAB 4: PATHOPHYSIOLOGY ════════════════════ -->
+<section class="tab-panel" id="tab-pathophys">
+  <h2 class="section-title">Pathophysiology</h2>
+  <p class="section-sub">Understanding the "why" behind what you see in the patient.</p>
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--pink-deep);margin-bottom:16px;">🧠 Neurobiology of Alzheimer's Disease</h3>
+  <p style="font-size:0.9rem;color:var(--text-mid);margin-bottom:18px;">Two essential neurotransmitters implicated in Alzheimer's disease are <strong>acetylcholine</strong> and <strong>glutamate</strong>.</p>
+
+  <div class="grid-2">
+    <div class="card card-pink">
+      <div class="card-title" style="color:var(--pink-deep)"><span class="icon">🔗</span> Acetylcholine Pathway</div>
+      <p style="font-size:0.875rem;margin-bottom:10px;"><strong>Acetylcholine</strong> is involved with learning, memory, and mood.</p>
+      <div style="background:#fce4ec;border-radius:var(--radius-sm);padding:12px;font-size:0.85rem;margin-bottom:8px;">
+        <strong>In Alzheimer's:</strong> As disease progresses, the brain produces LESS acetylcholine. What little remains is rapidly destroyed by the enzyme <strong>acetylcholinesterase (AChE)</strong>.
+      </div>
+      <div style="background:#e8f5e9;border-radius:var(--radius-sm);padding:12px;font-size:0.85rem;">
+        <strong>Treatment logic:</strong> Cholinesterase inhibitors keep the AChE enzyme from breaking down acetylcholine → increasing the level and duration of action of the neurotransmitter.
+      </div>
+    </div>
+    <div class="card card-blue">
+      <div class="card-title" style="color:var(--blue-deep)"><span class="icon">⚡</span> Glutamate Pathway</div>
+      <p style="font-size:0.875rem;margin-bottom:10px;"><strong>Glutamate</strong> is involved with cell signaling, learning, and memory.</p>
+      <div style="background:#e3f2fd;border-radius:var(--radius-sm);padding:12px;font-size:0.85rem;margin-bottom:8px;">
+        <strong>In Alzheimer's:</strong> Glutamate binds to NMDA receptors and allows calcium to enter the cell. <strong>Excess glutamate and chronic overexposure to calcium leads to damaged cells.</strong>
+      </div>
+      <div style="background:#e8f5e9;border-radius:var(--radius-sm);padding:12px;font-size:0.85rem;">
+        <strong>Treatment logic:</strong> NMDA antagonists (memantine) block NMDA receptors → reduce excess calcium influx → less neurotoxicity.
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--blue-deep);margin-bottom:16px;">🔬 Structural Brain Changes in Alzheimer's</h3>
+  <div class="grid-3">
+    <div class="card card-pink">
+      <div class="card-title" style="color:var(--pink-deep)"><span class="icon">🪨</span> Amyloid Plaques</div>
+      <p style="font-size:0.875rem;">Sticky clumps found <strong>between nerve cells</strong> that may cause or result from the disease. They block communication at synapses, activate immune cells, trigger inflammation, and devour healthy microtubules and disabled cells.</p>
+    </div>
+    <div class="card card-blue">
+      <div class="card-title" style="color:var(--blue-deep)"><span class="icon">🧵</span> Neurofibrillary Tangles</div>
+      <p style="font-size:0.875rem;">Abnormal collections of <strong>protein threads inside nerve cells</strong>, composed mainly of a protein called <strong>tau</strong>. Tangles disrupt the transport of food molecules, cell parts, and other key elements → cell death.</p>
+    </div>
+    <div class="card card-purple">
+      <div class="card-title" style="color:#9c27b0"><span class="icon">🧠</span> Brain Atrophy</div>
+      <p style="font-size:0.875rem;">The <strong>cerebral cortex shrinks up</strong>, damaging areas involved in thinking, planning, and remembering. The <strong>hippocampus</strong> (essential for memory) undergoes severe shrinkage. Ventricles (fluid-filled spaces) grow larger.</p>
+    </div>
+  </div>
+
+  <div class="alert alert-blue">
+    <span class="alert-icon">💡</span>
+    <div class="alert-body">
+      <strong>The Connection: Pathophysiology → Medications → Nursing Care</strong>
+      Understanding what is happening in the brain tells you WHY the patient behaves the way they do AND why certain medications work (or don't). Cholinesterase inhibitors help because acetylcholine is depleted. NMDA antagonists help because glutamate overexcites damaged neurons. Neither cures the disease — they slow progression.
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--pink-deep);margin-bottom:16px;">🌊 Pathophysiology: Behavioral Symptoms Have Physical Causes</h3>
+  <p style="font-size:0.9rem;color:var(--text-mid);margin-bottom:16px;">The behavioral symptoms you see in dementia/delirium are not random — they are rooted in physical processes in the brain and body.</p>
+  
+  <div class="card" style="background:linear-gradient(135deg,#fce4ec,#e3f2fd);">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th class="th-label">Behavior Seen</th>
+          <th class="th-pink">Physical/Pathological Cause</th>
+          <th class="th-blue">Nursing Response</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="feature">Agitation/Screaming</td><td>Overstimulation; pain; unmet need; inability to communicate</td><td>Low-stim environment; assess for pain; communicate through senses</td></tr>
+        <tr><td class="feature">Wandering</td><td>Anxiety; disorientation; energy; prior habit</td><td>Safe environment; door locks; Safe Return Program</td></tr>
+        <tr><td class="feature">Sundowning</td><td>Circadian disruption; fatigue; reduced light cues</td><td>Structured routine; adequate daytime light; avoid napping</td></tr>
+        <tr><td class="feature">Catastrophic Reactions</td><td>Overwhelmed by environment or demands</td><td>Remove triggers; calm environment; reduce demands</td></tr>
+        <tr><td class="feature">Refusing Care/Tasks</td><td>Forgotten the task; routine interrupted; fear</td><td>Redirect; simplify; never force; explore reasons</td></tr>
+        <tr><td class="feature">Hallucinations</td><td>Neuronal death in perceptual areas; amyloid plaques</td><td>Do not argue; validate feelings; ensure safety</td></tr>
+        <tr><td class="feature">Incontinence</td><td>Lost voluntary control of sphincters</td><td>Scheduled toileting; skin integrity; dignity-focused care</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="priority-box" style="margin-top:20px;">
+    <h3>🔑 Critical Nursing Insight: Behavior = Communication</h3>
+    <p style="font-size:0.9rem;opacity:0.95;margin-bottom:10px;">When a patient with cognitive impairment is agitated, wandering, screaming, or refusing care — <strong>they are NOT being mean-spirited.</strong> They are attempting to express feelings and needs they cannot verbalize. Ask yourself:</p>
+    <ul class="styled">
+      <li>Is there pain, discomfort, or a physical need unmet?</li>
+      <li>Is the environment overwhelming (noise, light, strangers)?</li>
+      <li>Has routine been disrupted?</li>
+      <li>Is there a medication contributing to the behavior?</li>
+      <li>Is this new behavior — meaning possible superimposed delirium?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════ TAB 5: PHARMACOLOGY ════════════════════ -->
+<section class="tab-panel" id="tab-pharm">
+  <h2 class="section-title">Pharmacology of Cognition Disorders</h2>
+  <p class="section-sub">Medications for Alzheimer's, dementia-related behavioral symptoms, and delirium management.</p>
+
+  <!-- CHOLINESTERASE INHIBITORS -->
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--pink-deep);margin-bottom:16px;">CLASS 1: Cholinesterase Inhibitors (CEIs)</h3>
+  
+  <div class="drug-card">
+    <div class="drug-name">Donepezil (Aricept)</div>
+    <div class="drug-class">Cholinesterase Inhibitor — Drug of Choice for All Stages</div>
+    <div class="drug-grid">
+      <div class="drug-section">
+        <div class="drug-section-title mechanism">⚙️ Mechanism</div>
+        <p style="font-size:0.85rem;">Inhibits acetylcholinesterase (AChE) enzyme from inactivating acetylcholine → increases available ACh at synapses → improves cholinergic transmission involved in memory and cognition.</p>
+      </div>
+      <div class="drug-section">
+        <div class="drug-section-title effects">✅ Therapeutic Effects</div>
+        <ul class="styled green" style="font-size:0.82rem;">
+          <li>Helps slow deterioration in cognitive functioning</li>
+          <li>Only marginally effective overall</li>
+          <li><em>Minimal benefits after one year</em></li>
+        </ul>
+      </div>
+      <div class="drug-section">
+        <div class="drug-section-title se">⚠️ Side Effects</div>
+        <ul class="styled" style="font-size:0.82rem;">
+          <li><strong>GI effects most common:</strong> nausea, vomiting, diarrhea</li>
+          <li>Risk of side effects doubles in people over age 85</li>
+          <li>Anorexia, weight loss</li>
+        </ul>
+      </div>
+      <div class="drug-section">
+        <div class="drug-section-title nursing">💊 Nursing Notes</div>
+        <ul class="styled" style="font-size:0.82rem;">
+          <li>ODT tablet melts on tongue — follow with water</li>
+          <li>Lower starting dose: 5 mg/day</li>
+          <li>Approved for all stages of Alzheimer's</li>
+          <li>Monitor GI side effects; assess weight</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="drug-card" style="background:linear-gradient(135deg,#fff 60%,#e3f2fd 100%);border-color:var(--blue-soft);">
+    <div class="drug-name" style="color:var(--blue-deep);">Rivastigmine (Exelon) & Galantamine (Razadyne)</div>
+    <div class="drug-class" style="color:var(--pink-mid);">Cholinesterase Inhibitors — Additional Agents</div>
+    <div class="drug-grid">
+      <div class="drug-section">
+        <div class="drug-section-title mechanism">⚙️ Mechanism</div>
+        <p style="font-size:0.85rem;">Same class as donepezil — inhibit AChE to preserve acetylcholine. Rivastigmine: mild to moderate stage. Galantamine: mild to moderate stage. Rivastigmine also available as transdermal patch (Exelon Patch).</p>
+      </div>
+      <div class="drug-section">
+        <div class="drug-section-title nursing">💊 Nursing Notes</div>
+        <ul class="styled" style="font-size:0.82rem;">
+          <li>Common GI side effects (same class)</li>
+          <li>Exelon patch: rotate site, monitor skin integrity</li>
+          <li>Temporary improvement only; does not halt progression</li>
+          <li>Benefits are modest; reassess continuously</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- NMDA ANTAGONIST -->
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--blue-deep);margin-bottom:16px;">CLASS 2: NMDA Receptor Antagonist</h3>
+  
+  <div class="drug-card" style="background:linear-gradient(135deg,#fff 60%,#e3f2fd 100%);border-color:var(--blue-soft);">
+    <div class="drug-name" style="color:var(--blue-deep);">Memantine (Namenda)</div>
+    <div class="drug-class">NMDA Receptor Antagonist — Moderate to Severe Alzheimer's Only</div>
+    <div class="drug-grid">
+      <div class="drug-section">
+        <div class="drug-section-title mechanism">⚙️ Mechanism</div>
+        <p style="font-size:0.85rem;">Blocks the effects of <strong>excess glutamate</strong> at NMDA receptors, which restores signal transmission. Reduces neurotoxicity caused by excess calcium influx from overactive NMDA receptors.</p>
+      </div>
+      <div class="drug-section">
+        <div class="drug-section-title effects">✅ Therapeutic Effects</div>
+        <ul class="styled green" style="font-size:0.82rem;">
+          <li>If started during moderate (not end) stage, may temporarily delay disease progression</li>
+          <li>Can be used with cholinesterase inhibitors (complementary)</li>
+          <li>Typically added AFTER trying CEIs first</li>
+        </ul>
+      </div>
+      <div class="drug-section">
+        <div class="drug-section-title se">⚠️ Side Effects</div>
+        <ul class="styled" style="font-size:0.82rem;">
+          <li>Dizziness</li>
+          <li>Headaches</li>
+          <li>Confusion (ironically)</li>
+        </ul>
+      </div>
+      <div class="drug-section">
+        <div class="drug-section-title caution">🚨 Cautions</div>
+        <ul class="styled red" style="font-size:0.82rem;">
+          <li><strong>Should NOT be used for mild dementia</strong></li>
+          <li>Use only for moderate to severe stages</li>
+          <li>Not a cure — slows progression temporarily</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FDA TABLE -->
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-title" style="color:var(--blue-deep)"><span class="icon">📋</span> FDA-Approved Drugs for Alzheimer's Disease — Quick Reference</div>
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th class="th-label">Generic Name</th>
+          <th class="th-pink">Brand</th>
+          <th class="th-blue">Classification</th>
+          <th style="background:linear-gradient(135deg,#6a1b9a,#9c27b0);color:#fff;padding:13px 16px;font-weight:800;font-size:0.8rem;letter-spacing:0.04em;text-transform:uppercase;">Stage Approved For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Galantamine</td><td>Razadyne</td><td>Cholinesterase inhibitor</td><td>Mild to moderate</td></tr>
+        <tr><td><strong>Donepezil</strong></td><td>Aricept</td><td>Cholinesterase inhibitor</td><td><strong>All stages</strong></td></tr>
+        <tr><td>Rivastigmine (patch)</td><td>Exelon / Exelon Patch</td><td>Cholinesterase inhibitor</td><td>Mild to moderate / All stages (patch)</td></tr>
+        <tr><td><strong>Memantine</strong></td><td>Namenda</td><td>NMDA antagonist</td><td><strong>Moderate to severe only</strong></td></tr>
+        <tr><td>Donepezil + Memantine</td><td>Namzaric</td><td>CEI + NMDA antagonist combo</td><td>Moderate to severe</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <!-- BEHAVIORAL MEDS -->
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--coral);margin-bottom:16px;">CLASS 3: Behavioral / Symptom-Management Medications</h3>
+  
+  <div class="alert alert-red">
+    <span class="alert-icon">🚨</span>
+    <div class="alert-body">
+      <strong>CRITICAL: Antipsychotics in Dementia — Know This for NCLEX & Practice</strong>
+      <strong>DO NOT administer haloperidol (Haldol) in clients with dementia-related psychosis</strong> — there is an increased incidence of death. Antipsychotics are NOT FDA-approved for dementia-related behavioral symptoms and carry a black box warning for increased mortality in elderly patients with dementia. If antipsychotics must be considered: Risperdal (risperidone) is better than Haldol; Seroquel (quetiapine) is slightly better than Risperdal.
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card card-coral">
+      <div class="card-title" style="color:var(--coral)"><span class="icon">⚠️</span> Use With Caution</div>
+      <ul class="styled">
+        <li><strong>Antipsychotics</strong> — NOT approved; use with extreme caution only if nonpharmacological fails; Seroquel &gt; Risperdal &gt; Haldol (safety hierarchy)</li>
+        <li><strong>Antidepressants</strong> — Can treat comorbid depression/anxiety</li>
+        <li><strong>Anticonvulsants</strong> — Sometimes used for behavioral symptoms</li>
+      </ul>
+    </div>
+    <div class="card card-red" style="border-top:4px solid #e53935;">
+      <div class="card-title" style="color:#c62828"><span class="icon">🚫</span> Avoid / Contraindicated</div>
+      <ul class="styled red">
+        <li><strong>Benzodiazepines (e.g., lorazepam, clorazepate)</strong> — Avoid in elderly with dementia; worsen confusion and disorientation; can paradoxically increase agitation</li>
+        <li><strong>Haldol (haloperidol)</strong> — Increased mortality in dementia-related psychosis</li>
+        <li>Some sleeping pills — may have reverse effects in the elderly</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="priority-box" style="margin-top:20px;">
+    <h3>💊 Nursing Pharmacology Priorities — Ask These Questions</h3>
+    <ul class="styled">
+      <li><strong>Is the medication helping or harming?</strong> Assess cognition, behavior, and function before and after medication changes</li>
+      <li><strong>Does the benefit outweigh the risk?</strong> CEIs are only marginally effective; double-check risk in patients over 85</li>
+      <li><strong>Is any current medication CAUSING the cognitive symptoms?</strong> Review all meds for anticholinergic effects, sedatives, benzos</li>
+      <li><strong>Is this medication appropriate for the stage?</strong> Memantine = moderate-severe only; do NOT start in mild dementia</li>
+      <li><strong>Nonpharmacologic always first</strong> for agitation — communication, environment, reassurance before reaching for meds</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════ TAB 6: NURSING CARE ════════════════════ -->
+<section class="tab-panel" id="tab-nursing">
+  <h2 class="section-title">Nursing Care & Clinical Management</h2>
+  <p class="section-sub">Safety, communication, family support, and holistic patient-centered care.</p>
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--pink-deep);margin-bottom:16px;">🌟 The 4 C's of Dementia Care</h3>
+  <div class="grid-2" style="margin-bottom:24px;">
+    <div style="background:linear-gradient(135deg,#fff 0%,#fce4ec 100%);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm);">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div style="text-align:center;padding:16px;background:#fff;border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);">
+          <div style="font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--pink-deep);">C</div>
+          <div style="font-weight:800;font-size:0.9rem;color:var(--pink-deep);">Calm</div>
+          <p style="font-size:0.78rem;color:var(--text-light);margin-top:4px;">Slow voice, gentle approach, low stimulation</p>
+        </div>
+        <div style="text-align:center;padding:16px;background:#fff;border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);">
+          <div style="font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--blue-deep);">C</div>
+          <div style="font-weight:800;font-size:0.9rem;color:var(--blue-deep);">Clear</div>
+          <p style="font-size:0.78rem;color:var(--text-light);margin-top:4px;">Simple, direct statements; no complex instructions</p>
+        </div>
+        <div style="text-align:center;padding:16px;background:#fff;border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);">
+          <div style="font-family:'DM Serif Display',serif;font-size:2.5rem;color:#9c27b0;">C</div>
+          <div style="font-weight:800;font-size:0.9rem;color:#9c27b0;">Consistent</div>
+          <p style="font-size:0.78rem;color:var(--text-light);margin-top:4px;">Structured routine; same approach every time</p>
+        </div>
+        <div style="text-align:center;padding:16px;background:#fff;border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);">
+          <div style="font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--green);">C</div>
+          <div style="font-weight:800;font-size:0.9rem;color:var(--green);">Caring</div>
+          <p style="font-size:0.78rem;color:var(--text-light);margin-top:4px;">Dignity, empathy, creativity, and flexibility</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="alert alert-blue" style="margin-top:0;">
+        <span class="alert-icon">🧠</span>
+        <div class="alert-body">
+          <strong>Core Principle</strong>
+          "Remember the <strong>disease</strong> causes the behavior." Always treat the person as an adult. Use creativity and flexibility. Recognize that the patient's experience of reality may be different from yours — and that's okay.
+        </div>
+      </div>
+      <div class="alert alert-green">
+        <span class="alert-icon">✅</span>
+        <div class="alert-body">
+          <strong>Functional Independence</strong>
+          Assist participation in ADLs at the <em>highest level of functional ability</em>. Doing everything "for" the patient may seem kind but actually accelerates functional decline. Let them try — even if it takes longer.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--blue-deep);margin-bottom:16px;">🗣️ Communication Techniques</h3>
+  <div class="grid-2">
+    <div class="card card-green">
+      <div class="card-title" style="color:#2e7d32"><span class="icon">✅</span> DO These Things</div>
+      <ul class="styled green">
+        <li>Address the patient <strong>by name only</strong> (not "Honey," "Sweetie," "Buddy")</li>
+        <li>Approach <strong>slowly and from the front</strong> — never from behind</li>
+        <li>Simplify speech — short, clear, direct statements</li>
+        <li>Use gestures, visual and verbal clues</li>
+        <li>Speak in a <strong>normal tone of voice</strong></li>
+        <li>Observe facial expression and body language</li>
+        <li>Explore reasons for behavior</li>
+        <li>Remember refusal may mean forgotten task or interrupted routine</li>
+        <li>Provide structure and routine daily</li>
+        <li>Use creativity and flexibility</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:4px solid #e53935;">
+      <div class="card-title" style="color:#c62828"><span class="icon">🚫</span> AVOID These Things</div>
+      <ul class="styled red">
+        <li>Do NOT argue or confront</li>
+        <li>Do NOT quiz the patient</li>
+        <li>Do NOT approach from behind while speaking</li>
+        <li>Do NOT over-stimulate</li>
+        <li>Do NOT tell the person they're "not trying hard enough"</li>
+        <li>Do NOT use commands</li>
+        <li>Do NOT ask "why" questions</li>
+        <li>Do NOT use condescending names or baby talk</li>
+        <li>Disregard unkind personal comments — the disease speaks, not the person</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--coral);margin-bottom:16px;">🛡️ Safety Priorities</h3>
+  <div class="priority-box">
+    <h3>🚨 SAFETY IS ALWAYS PRIORITY #1</h3>
+    <ul class="styled">
+      <li><strong>Fall prevention:</strong> clear clutter, remove area rugs, night lights in bathroom/bedroom/hallway, bed alarm, low bed position</li>
+      <li><strong>Wandering prevention:</strong> door locks that cannot be easily opened, Safe Return Program enrollment</li>
+      <li><strong>Medication safety:</strong> supervise medication administration — do NOT allow self-management in moderate/severe stage</li>
+      <li><strong>Avoid restraints</strong> — worsen agitation and can cause injury</li>
+      <li><strong>Environmental safety:</strong> well-lit, hazard-free, low stimulation</li>
+      <li><strong>IV lines:</strong> out of sight, nontangled (for hospitalized patients)</li>
+      <li><strong>Nutrition:</strong> ensure adequate food and fluid intake — check weight</li>
+      <li><strong>Skin integrity:</strong> pressure ulcer prevention in late stages</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:#9c27b0;margin-bottom:16px;">🎭 Validation Therapy vs. Reality Orientation</h3>
+  <div class="grid-2">
+    <div class="card card-purple">
+      <div class="card-title" style="color:#9c27b0"><span class="icon">🎭</span> Validation Therapy</div>
+      <p style="font-size:0.875rem;margin-bottom:10px;"><em>Enter the patient's reality rather than correcting it.</em> Used when reorientation to the present would be <strong>cruel and result in further agitation</strong>.</p>
+      <p style="font-size:0.8rem;font-weight:800;color:#6a1b9a;margin-bottom:8px;">Goals:</p>
+      <ul class="styled" style="font-size:0.85rem;">
+        <li>Help people resolve unfinished business</li>
+        <li>Help people die in peace</li>
+        <li>Reduce anxiety; increase self-worth</li>
+        <li>Prevent withdrawal and vegetation</li>
+        <li>Provide joy for the caregiver</li>
+        <li>Can lead to increased communication and behavior change</li>
+      </ul>
+    </div>
+    <div class="card card-blue">
+      <div class="card-title" style="color:var(--blue-deep)"><span class="icon">🕐</span> When to Use Which</div>
+      <div style="padding:12px;background:#e3f2fd;border-radius:var(--radius-sm);margin-bottom:10px;font-size:0.875rem;">
+        <strong>Use Reality Orientation when:</strong> Patient is delirious and needs reorientation. The goal is to safely ground them in time/place. Always gentle and reassuring.
+      </div>
+      <div style="padding:12px;background:var(--lavender-pale);border-radius:var(--radius-sm);font-size:0.875rem;">
+        <strong>Use Validation Therapy when:</strong> Patient is in mid/late dementia. Correcting them about deceased loved ones or past realities causes distress and agitation with no benefit. Enter their world.
+      </div>
+      <div class="alert alert-gold" style="margin-top:10px;">
+        <span class="alert-icon">💡</span>
+        <div class="alert-body"><strong>Example:</strong> A patient insists she needs to pick up her children from school (children are grown adults). Correcting her would cause grief and agitation. Instead: "Tell me about your children." This validates her and reduces anxiety.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--pink-deep);margin-bottom:16px;">💕 Caring for the Caregiver</h3>
+  <div class="card" style="background:linear-gradient(135deg,#fce4ec 0%,#f3e5f5 100%);border:none;">
+    <p style="font-size:0.9rem;margin-bottom:16px;color:var(--text-mid);">Caregiver burden is <strong>real, common, and emotionally challenging</strong>. Support groups, respite care, and community resources can provide relief <em>without removing caregiving responsibilities</em>.</p>
+    <div class="grid-2">
+      <div>
+        <p style="font-size:0.8rem;font-weight:900;text-transform:uppercase;letter-spacing:0.06em;color:var(--pink-deep);margin-bottom:10px;">Resources to Offer</p>
+        <ul class="styled">
+          <li>Therapeutic communication — elicit caregiver concerns</li>
+          <li>Respite care (temporary relief from caregiving)</li>
+          <li>Community resources and support groups</li>
+          <li>Financial and legal affairs guidance</li>
+          <li>Address guilt over nursing home placement</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-size:0.8rem;font-weight:900;text-transform:uppercase;letter-spacing:0.06em;color:#9c27b0;margin-bottom:10px;">Best Nurse Responses</p>
+        <ul class="styled">
+          <li>"I understand. Have you considered respite care or a support group?"</li>
+          <li>Acknowledge emotional difficulty without judgment</li>
+          <li>Validate caregiver's feelings of being overwhelmed</li>
+          <li>Connect to Alzheimer's Association: alz.org</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--blue-deep);margin-bottom:16px;">📚 Patient & Family Education</h3>
+  <div class="card card-blue">
+    <ul class="styled blue">
+      <li>There is <strong>no cure</strong> for Alzheimer's — medications slow progression, not reverse it</li>
+      <li>Donepezil (CEI) does NOT stop the disease — it temporarily slows cognitive decline</li>
+      <li>Behavioral symptoms are caused by the <strong>disease process in the brain</strong> — not intentional behavior</li>
+      <li>Establish a structured, predictable daily routine — this reduces confusion and anxiety</li>
+      <li>Safe Return Program: enroll the patient; ID bracelet for wandering safety</li>
+      <li>Modify home environment: remove clutter, install night lights, secure exits</li>
+      <li>Avoid triggers you know cause agitation</li>
+      <li>When to call the provider: sudden worsening of confusion (may indicate delirium), new falls, medication side effects</li>
+      <li>Caregiver self-care is NOT selfish — it is essential to sustaining care quality</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════ TAB 7: CASES & NCLEX ════════════════════ -->
+<section class="tab-panel" id="tab-cases">
+  <h2 class="section-title">Clinical Cases & NCLEX Reasoning</h2>
+  <p class="section-sub">Read each scenario, select your answer(s), then hit <strong>Check Answer</strong> to see rationale.</p>
+
+  <!-- ── CASE 1 ── -->
+  <div class="case-header">
+    <h3>📋 Case Study 1: Mrs. Smith — Delirium</h3>
+    <p style="font-size:0.82rem;opacity:0.85;margin-top:4px;">83-year-old female | Pneumonia + Dehydration</p>
+  </div>
+  <div class="case-body">
+    <div class="case-section">
+      <div class="case-section-label">Clinical Scenario</div>
+      <p style="font-size:0.875rem;">Mrs. Smith is an 83-year-old woman admitted from a skilled nursing facility for pneumonia and dehydration. Her daughter reports increasing confusion over the past two days. She is disoriented to time and place, frequently attempting to get out of bed despite weakness. Speech is incoherent at times; she appears agitated, picking at her sheets. PMH: hypertension, osteoarthritis, mild cognitive impairment. Current meds: lisinopril, acetaminophen, <strong>lorazepam (recently prescribed for anxiety)</strong>.</p>
+    </div>
+    <div class="case-section">
+      <div class="case-section-label">Vital Signs & Assessment</div>
+      <div class="case-vitals">
+        <span class="vital-chip abnormal">T 101.3°F ↑</span>
+        <span class="vital-chip abnormal">HR 102 bpm ↑</span>
+        <span class="vital-chip">BP 130/78 mmHg</span>
+        <span class="vital-chip abnormal">RR 24 ↑</span>
+        <span class="vital-chip abnormal">SpO₂ 94% on 2L NC ↓</span>
+      </div>
+      <p style="font-size:0.85rem;margin-top:8px;"><strong>Neuro:</strong> Disoriented to time/place, unable to follow complex commands, fluctuating attention, restless, hallucinations</p>
+      <p style="font-size:0.85rem;"><strong>Labs:</strong> WBC 14,500 (↑ elevated), Na⁺ 130 mEq/L (↓ low), BUN 28 mg/dL (↑ elevated), Cr 1.4</p>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">NCLEX Questions</div>
+
+      <!-- Q1 single -->
+      <div class="iq-block" id="iq-c1q1">
+        <div class="iq-prompt"><span class="iq-tag">Q1 · Single Answer</span>Which factor most likely contributed to Mrs. Smith's delirium?</div>
+        <div class="iq-options">
+          <label class="iq-opt" data-val="A"><span class="iq-letter">A</span><span>Hypertension</span></label>
+          <label class="iq-opt" data-val="B"><span class="iq-letter">B</span><span>Pneumonia and dehydration</span></label>
+          <label class="iq-opt" data-val="C"><span class="iq-letter">C</span><span>Mild cognitive impairment</span></label>
+          <label class="iq-opt" data-val="D"><span class="iq-letter">D</span><span>Acetaminophen</span></label>
+        </div>
+        <button class="iq-submit" onclick="checkSingle('c1q1',['B'])">Check Answer</button>
+        <div class="iq-result" id="iq-c1q1-result"></div>
+        <div class="iq-rationale" id="iq-c1q1-rat">
+          <strong>✅ Correct: B — Pneumonia and dehydration.</strong> Infection and dehydration are the most common acute causes of delirium in older adults. They trigger metabolic imbalances that disrupt brain function. Note: the recent lorazepam prescription is also a contributing red flag — benzos can cause paradoxical confusion in the elderly.
+        </div>
+      </div>
+
+      <!-- Q2 SATA -->
+      <div class="iq-block" id="iq-c1q2">
+        <div class="iq-prompt"><span class="iq-tag iq-tag-sata">SATA</span>Which nursing interventions are most appropriate to ensure Mrs. Smith's safety? <em>Select all that apply.</em></div>
+        <div class="iq-options iq-sata">
+          <label class="iq-opt" data-val="A"><span class="iq-letter">A</span><span>Apply soft wrist restraints</span></label>
+          <label class="iq-opt" data-val="B"><span class="iq-letter">B</span><span>Keep the room dark and quiet</span></label>
+          <label class="iq-opt" data-val="C"><span class="iq-letter">C</span><span>Assign a sitter or have a family member stay</span></label>
+          <label class="iq-opt" data-val="D"><span class="iq-letter">D</span><span>Administer lorazepam as prescribed</span></label>
+          <label class="iq-opt" data-val="E"><span class="iq-letter">E</span><span>Encourage grandchildren to visit</span></label>
+          <label class="iq-opt" data-val="F"><span class="iq-letter">F</span><span>Provide teaching on pneumonia vaccines</span></label>
+          <label class="iq-opt" data-val="G"><span class="iq-letter">G</span><span>Turn on her favorite game show</span></label>
+          <label class="iq-opt" data-val="H"><span class="iq-letter">H</span><span>Encourage rest and napping</span></label>
+          <label class="iq-opt" data-val="I"><span class="iq-letter">I</span><span>Keep call light within reach</span></label>
+          <label class="iq-opt" data-val="J"><span class="iq-letter">J</span><span>Administer azithromycin as prescribed</span></label>
+        </div>
+        <button class="iq-submit" onclick="checkSATA('c1q2',['C','I','J'])">Check Answer</button>
+        <div class="iq-result" id="iq-c1q2-result"></div>
+        <div class="iq-rationale" id="iq-c1q2-rat">
+          <strong>✅ Correct: C, I, J</strong><br>
+          ✅ <strong>C</strong> — A sitter or family member provides supervision and prevents falls.<br>
+          ✅ <strong>I</strong> — Call light within reach supports patient safety and autonomy.<br>
+          ✅ <strong>J</strong> — Treating the infection (azithromycin) addresses the underlying cause of delirium.<br>
+          ❌ <strong>A</strong> — Restraints worsen agitation and increase fall/injury risk.<br>
+          ❌ <strong>B</strong> — Adequate lighting is needed; darkness worsens disorientation.<br>
+          ❌ <strong>D</strong> — Lorazepam (benzo) can cause paradoxical agitation and worsen confusion in elderly patients.<br>
+          ❌ <strong>E/G</strong> — Visitors and stimulating media increase overstimulation for a delirious patient.<br>
+          ❌ <strong>H</strong> — Daytime napping disrupts the sleep-wake cycle and worsens delirium.
+        </div>
+      </div>
+
+      <!-- Q3 SATA -->
+      <div class="iq-block" id="iq-c1q3">
+        <div class="iq-prompt"><span class="iq-tag iq-tag-sata">SATA</span>Which actions should the nurse take to help reorient Mrs. Smith? <em>Select all that apply.</em></div>
+        <div class="iq-options iq-sata">
+          <label class="iq-opt" data-val="A"><span class="iq-letter">A</span><span>Place a clock and calendar in the room</span></label>
+          <label class="iq-opt" data-val="B"><span class="iq-letter">B</span><span>Frequently remind her of the date, time, and location</span></label>
+          <label class="iq-opt" data-val="C"><span class="iq-letter">C</span><span>Minimize all interactions to reduce stimulation</span></label>
+          <label class="iq-opt" data-val="D"><span class="iq-letter">D</span><span>Use endearing terms such as "honey" and "sweetie"</span></label>
+          <label class="iq-opt" data-val="E"><span class="iq-letter">E</span><span>Ask questions such as where she was born and grew up</span></label>
+          <label class="iq-opt" data-val="F"><span class="iq-letter">F</span><span>Always state your name when approaching</span></label>
+        </div>
+        <button class="iq-submit" onclick="checkSATA('c1q3',['A','B','F'])">Check Answer</button>
+        <div class="iq-result" id="iq-c1q3-result"></div>
+        <div class="iq-rationale" id="iq-c1q3-rat">
+          <strong>✅ Correct: A, B, F</strong><br>
+          ✅ <strong>A</strong> — Environmental cues (clock, calendar) provide continuous passive reorientation.<br>
+          ✅ <strong>B</strong> — Verbal reminders of date/time/place directly address disorientation.<br>
+          ✅ <strong>F</strong> — Always identifying yourself reduces fear and confusion.<br>
+          ❌ <strong>C</strong> — Minimizing all interactions removes needed supervision and support.<br>
+          ❌ <strong>D</strong> — Never use pet names — always address the patient by their name.<br>
+          ❌ <strong>E</strong> — Quizzing the patient is frustrating and not therapeutic; this is NOT reorientation.
+        </div>
+      </div>
+
+      <!-- Q4 single -->
+      <div class="iq-block" id="iq-c1q4">
+        <div class="iq-prompt"><span class="iq-tag">Q4 · Single Answer</span>Which statement by Mrs. Smith's daughter indicates a need for further teaching about delirium?</div>
+        <div class="iq-options">
+          <label class="iq-opt" data-val="A"><span class="iq-letter">A</span><span>"I should encourage mom to drink fluids to prevent dehydration."</span></label>
+          <label class="iq-opt" data-val="B"><span class="iq-letter">B</span><span>"Delirium is a temporary condition that we can manage."</span></label>
+          <label class="iq-opt" data-val="C"><span class="iq-letter">C</span><span>"Since she has mild cognitive impairment, she will never recover from this."</span></label>
+          <label class="iq-opt" data-val="D"><span class="iq-letter">D</span><span>"I will bring familiar photos and objects from home to help her feel comfortable."</span></label>
+        </div>
+        <button class="iq-submit" onclick="checkSingle('c1q4',['C'])">Check Answer</button>
+        <div class="iq-result" id="iq-c1q4-result"></div>
+        <div class="iq-rationale" id="iq-c1q4-rat">
+          <strong>✅ Correct: C — This statement needs correction.</strong> Delirium is often fully reversible if the underlying cause is treated — even in patients with pre-existing mild cognitive impairment. The daughter's belief that recovery is impossible is a dangerous misconception that could lead to therapeutic nihilism. The nurse must clarify that treating the infection and dehydration can fully resolve the delirium.
+        </div>
+      </div>
+
+      <div class="alert alert-gold" style="margin-top:6px;">
+        <span class="alert-icon">⚡</span>
+        <div class="alert-body">
+          <strong>Case 1 Recap:</strong> Delirium = acute and reversible. Causes: infection, dehydration, meds, metabolic imbalances. Priority = treat the underlying cause. Avoid benzos and restraints. Reorient gently. Ensure a safe, calm, adequately lit environment.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CASE 2 ── -->
+  <div class="case-header" style="background:linear-gradient(135deg,#6a1b9a,#9c27b0);">
+    <h3>📋 Case Study 2: Mr. Smith — Alzheimer's Disease</h3>
+    <p style="font-size:0.82rem;opacity:0.85;margin-top:4px;">76-year-old male | Mild Alzheimer's, Progressing</p>
+  </div>
+  <div class="case-body">
+    <div class="case-section">
+      <div class="case-section-label">Clinical Scenario</div>
+      <p style="font-size:0.875rem;">Mr. Smith is a 76-year-old retired teacher brought to primary care by his wife. She reports forgetfulness of recent conversations, struggling to make coffee, misplacing objects, and getting lost in his own neighborhood. He has become easily frustrated and withdrawn in social settings. Diagnosis: Mild Alzheimer's, one year ago, progressing. PMH: T2DM, hyperlipidemia. Meds: metformin, atorvastatin, donepezil (Aricept).</p>
+    </div>
+    <div class="case-section">
+      <div class="case-section-label">Assessment Findings</div>
+      <p style="font-size:0.85rem;"><strong>General:</strong> Well-nourished, appropriately dressed but overdressed for the occasion</p>
+      <p style="font-size:0.85rem;"><strong>Neuro:</strong> Alert but confused about day of week, cannot recall 3 recent events, difficulty following multi-step instructions</p>
+      <p style="font-size:0.85rem;"><strong>Behavioral:</strong> Anxious, looks to wife for reassurance, hesitant to speak</p>
+      <p style="font-size:0.85rem;"><strong>Functional:</strong> Basic self-care intact but needs reminders for meds, hygiene, appointments</p>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">NCLEX Questions</div>
+
+      <!-- Q1 single -->
+      <div class="iq-block" id="iq-c2q1">
+        <div class="iq-prompt"><span class="iq-tag iq-tag-purple">Q1 · Single Answer</span>Which early sign of Alzheimer's disease is Mr. Smith exhibiting?</div>
+        <div class="iq-options">
+          <label class="iq-opt" data-val="A"><span class="iq-letter">A</span><span>Forgetting old memories but recalling recent events</span></label>
+          <label class="iq-opt" data-val="B"><span class="iq-letter">B</span><span>Misplacing objects and struggling with familiar tasks</span></label>
+          <label class="iq-opt" data-val="C"><span class="iq-letter">C</span><span>Sudden confusion that comes and goes within a few hours</span></label>
+          <label class="iq-opt" data-val="D"><span class="iq-letter">D</span><span>Uncontrolled muscle movements and tremors</span></label>
+        </div>
+        <button class="iq-submit iq-submit-purple" onclick="checkSingle('c2q1',['B'])">Check Answer</button>
+        <div class="iq-result" id="iq-c2q1-result"></div>
+        <div class="iq-rationale" id="iq-c2q1-rat">
+          <strong>✅ Correct: B — Misplacing objects and struggling with familiar tasks.</strong> Early Alzheimer's presents with memory loss affecting daily life, difficulty with problem-solving, and trouble completing familiar tasks. A — Alzheimer's loses recent memory first, not old. C — Sudden fluctuating confusion describes delirium, not dementia. D — Tremors and movement disorders are characteristic of Parkinson's disease.
+        </div>
+      </div>
+
+      <!-- Q2 SATA -->
+      <div class="iq-block" id="iq-c2q2">
+        <div class="iq-prompt"><span class="iq-tag iq-tag-sata-purple">SATA</span>Which nursing interventions would best support Mr. Smith's cognitive function and independence? <em>Select all that apply.</em></div>
+        <div class="iq-options iq-sata">
+          <label class="iq-opt" data-val="A"><span class="iq-letter">A</span><span>Establish a structured daily routine</span></label>
+          <label class="iq-opt" data-val="B"><span class="iq-letter">B</span><span>Encourage regular physical and mental exercise</span></label>
+          <label class="iq-opt" data-val="C"><span class="iq-letter">C</span><span>Allow him to complete tasks without any assistance even if he struggles</span></label>
+          <label class="iq-opt" data-val="D"><span class="iq-letter">D</span><span>Use written reminders, labels, and calendars to aid memory</span></label>
+          <label class="iq-opt" data-val="E"><span class="iq-letter">E</span><span>Provide a stimulating, constantly changing environment</span></label>
+          <label class="iq-opt" data-val="F"><span class="iq-letter">F</span><span>Enroll in the Safe Return Program</span></label>
+        </div>
+        <button class="iq-submit iq-submit-purple" onclick="checkSATA('c2q2',['A','B','D','F'])">Check Answer</button>
+        <div class="iq-result" id="iq-c2q2-result"></div>
+        <div class="iq-rationale" id="iq-c2q2-rat">
+          <strong>✅ Correct: A, B, D, F</strong><br>
+          ✅ <strong>A</strong> — Structured routine reduces confusion and anxiety in AD.<br>
+          ✅ <strong>B</strong> — Physical and mental exercise can help slow cognitive decline.<br>
+          ✅ <strong>D</strong> — Written cues and memory aids support independence and reduce frustration.<br>
+          ✅ <strong>F</strong> — Safe Return Program provides identification and safe return if wandering occurs.<br>
+          ❌ <strong>C</strong> — "Any assistance" ignores safety needs; assist at highest level of functional ability, but not zero assistance.<br>
+          ❌ <strong>E</strong> — A constantly changing environment worsens confusion; routine and familiarity are therapeutic.
+        </div>
+      </div>
+
+      <!-- Q3 single -->
+      <div class="iq-block" id="iq-c2q3">
+        <div class="iq-prompt"><span class="iq-tag iq-tag-purple">Q3 · Single Answer</span>Mrs. Smith asks if there are medications that can cure Alzheimer's disease. What is the best nurse response?</div>
+        <div class="iq-options">
+          <label class="iq-opt" data-val="A"><span class="iq-letter">A</span><span>"Yes, medication like donepezil will completely stop the disease from progressing."</span></label>
+          <label class="iq-opt" data-val="B"><span class="iq-letter">B</span><span>"There is no cure, but some medications can slow the progression and help with symptoms."</span></label>
+          <label class="iq-opt" data-val="C"><span class="iq-letter">C</span><span>"Alzheimer's can be reversed if treatment starts early."</span></label>
+          <label class="iq-opt" data-val="D"><span class="iq-letter">D</span><span>"There is no treatment available so focusing on emotional support is most important."</span></label>
+        </div>
+        <button class="iq-submit iq-submit-purple" onclick="checkSingle('c2q3',['B'])">Check Answer</button>
+        <div class="iq-result" id="iq-c2q3-result"></div>
+        <div class="iq-rationale" id="iq-c2q3-rat">
+          <strong>✅ Correct: B</strong> — Alzheimer's disease is irreversible with no known cure. Cholinesterase inhibitors like donepezil can temporarily slow progression and are only marginally effective. They do NOT stop or reverse the disease. Option A gives false hope. Option C is false — irreversible. Option D is inaccurate — treatments do exist.
+        </div>
+      </div>
+
+      <!-- Q4 single -->
+      <div class="iq-block" id="iq-c2q4">
+        <div class="iq-prompt"><span class="iq-tag iq-tag-purple">Q4 · Single Answer</span>Mrs. Smith says, "I feel guilty about thinking of getting help. I promised to care for him myself, but I'm so overwhelmed." What is the best nursing response?</div>
+        <div class="iq-options">
+          <label class="iq-opt" data-val="A"><span class="iq-letter">A</span><span>"You should hire full-time help immediately to reduce your stress."</span></label>
+          <label class="iq-opt" data-val="B"><span class="iq-letter">B</span><span>"I understand. Have you considered respite care or a support group?"</span></label>
+          <label class="iq-opt" data-val="C"><span class="iq-letter">C</span><span>"Caregiving is hard, but this is what you signed up for."</span></label>
+          <label class="iq-opt" data-val="D"><span class="iq-letter">D</span><span>"If he were in your position, he wouldn't feel guilty about it."</span></label>
+        </div>
+        <button class="iq-submit iq-submit-purple" onclick="checkSingle('c2q4',['B'])">Check Answer</button>
+        <div class="iq-result" id="iq-c2q4-result"></div>
+        <div class="iq-rationale" id="iq-c2q4-rat">
+          <strong>✅ Correct: B</strong> — This response acknowledges caregiver burden with empathy and offers concrete, practical resources (respite care, support groups) without dismissing her feelings or removing her caregiving role. A — Prescriptive, dismisses emotional context. C — Harmful and non-therapeutic. D — Deflects and compares, which is not therapeutic communication.
+        </div>
+      </div>
+
+      <!-- Q5 SATA -->
+      <div class="iq-block" id="iq-c2q5">
+        <div class="iq-prompt"><span class="iq-tag iq-tag-sata-purple">SATA</span>Which safety measures are most important for Mr. Smith at this stage? <em>Select all that apply.</em></div>
+        <div class="iq-options iq-sata">
+          <label class="iq-opt" data-val="A"><span class="iq-letter">A</span><span>Remove clutter and remove small area rugs</span></label>
+          <label class="iq-opt" data-val="B"><span class="iq-letter">B</span><span>Encourage him to go on long walks by himself</span></label>
+          <label class="iq-opt" data-val="C"><span class="iq-letter">C</span><span>Allow him to manage his own medications independently</span></label>
+          <label class="iq-opt" data-val="D"><span class="iq-letter">D</span><span>Ensure that door locks cannot be easily opened</span></label>
+          <label class="iq-opt" data-val="E"><span class="iq-letter">E</span><span>Install night lights in the bathroom, bedroom, and hallway</span></label>
+          <label class="iq-opt" data-val="F"><span class="iq-letter">F</span><span>Use lorazepam (Ativan) as needed for memory impairment</span></label>
+        </div>
+        <button class="iq-submit iq-submit-purple" onclick="checkSATA('c2q5',['A','D','E'])">Check Answer</button>
+        <div class="iq-result" id="iq-c2q5-result"></div>
+        <div class="iq-rationale" id="iq-c2q5-rat">
+          <strong>✅ Correct: A, D, E</strong><br>
+          ✅ <strong>A</strong> — Removing clutter and area rugs prevents falls in cognitively impaired patients.<br>
+          ✅ <strong>D</strong> — Difficult-to-open locks prevent wandering and getting lost outside.<br>
+          ✅ <strong>E</strong> — Night lights prevent nighttime falls during episodes of confusion.<br>
+          ❌ <strong>B</strong> — Unsupervised walks are unsafe given wandering risk; he already got lost in his own neighborhood.<br>
+          ❌ <strong>C</strong> — Independent med management is unsafe; he already needs reminders — errors could cause harm.<br>
+          ❌ <strong>F</strong> — Lorazepam is a benzodiazepine; it worsens confusion and disorientation in dementia patients and does NOT treat memory impairment.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NCLEX Tips -->
+  <div class="priority-box" style="margin-top:10px;">
+    <h3>🧠 Clinical Reasoning Patterns — NCLEX Tips</h3>
+    <ul class="styled">
+      <li><strong>Sudden change from baseline in dementia patient = investigate for DELIRIUM first</strong> — assess vitals, labs, meds, infection markers</li>
+      <li><strong>Benzodiazepines in elderly with delirium = almost always wrong</strong> on NCLEX unless specifically justified for severe alcohol withdrawal</li>
+      <li><strong>Restraints = almost always wrong</strong> — worsen agitation and increase fall/injury risk</li>
+      <li><strong>Treat the underlying cause</strong> = always the priority in delirium before any pharmacological symptom management</li>
+      <li><strong>Caregiver teaching error questions:</strong> Look for statements suggesting irreversibility of delirium, use of inappropriate meds, or unsafe independence</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════ TAB 8: QUICK REF ════════════════════ -->
+<section class="tab-panel" id="tab-quickref">
+  <h2 class="section-title">Quick Reference</h2>
+  <p class="section-sub">Side-by-side comparisons, memory aids, and must-know clinical facts at a glance.</p>
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--pink-deep);margin-bottom:16px;">⚡ Delirium vs. Dementia — The Most Important Comparison</h3>
+  <div class="card" style="overflow-x:auto;padding:0;">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th class="th-label">Feature</th>
+          <th class="th-pink">⚡ Delirium</th>
+          <th class="th-blue">🧩 Dementia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="feature">Onset</td><td>⚡ <strong>Abrupt</strong> (hours to days)</td><td>🐢 <strong>Gradual</strong> (months to years)</td></tr>
+        <tr><td class="feature">Duration</td><td>Hours to weeks (if treated)</td><td>Months to years (lifelong)</td></tr>
+        <tr><td class="feature">Reversibility</td><td>✅ <strong>Reversible</strong> — treat the cause</td><td>❌ <strong>Irreversible</strong> — no cure</td></tr>
+        <tr><td class="feature">Cause</td><td>Medical condition, meds, dehydration, infection</td><td>Brain pathology (Alzheimer's, vascular, etc.)</td></tr>
+        <tr><td class="feature">Consciousness</td><td>Fluctuating levels; periods of lucidity</td><td>Alert in early stages; deteriorates slowly</td></tr>
+        <tr><td class="feature">Attention</td><td>Severely impaired — cannot focus or sustain</td><td>Less affected in early stages</td></tr>
+        <tr><td class="feature">Memory</td><td>Impaired; acute change from baseline</td><td>Progressive; short-term first, then long-term</td></tr>
+        <tr><td class="feature">Hallucinations</td><td>Common (especially visual)</td><td>Middle and late stages</td></tr>
+        <tr><td class="feature">Key Nursing Priority</td><td><strong>Identify and treat underlying cause STAT</strong></td><td><strong>Safety, dignity, functional preservation</strong></td></tr>
+        <tr><td class="feature">Medication Approach</td><td>Treat cause; avoid benzos; no antipsychotics first-line</td><td>CEIs (donepezil); NMDA (memantine mod-severe); avoid Haldol</td></tr>
+        <tr><td class="feature">Communication</td><td>Simple, calm, reorientation</td><td>Simple, no arguing; validation therapy as needed</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--blue-deep);margin-bottom:16px;">💊 Pharmacology Quick Reference</h3>
+  <div class="card" style="overflow-x:auto;padding:0;margin-bottom:24px;">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th class="th-label">Drug</th>
+          <th class="th-pink">Class / MOA</th>
+          <th class="th-blue">Stage / Use</th>
+          <th style="background:#e8f5e9;color:#2e7d32;padding:13px 16px;font-weight:800;font-size:0.8rem;letter-spacing:0.04em;text-transform:uppercase;">Key SE / Cautions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Donepezil (Aricept)</strong></td><td>CEI — inhibits AChE</td><td>All stages (drug of choice)</td><td>GI side effects; risk doubles >85</td></tr>
+        <tr><td>Rivastigmine (Exelon)</td><td>CEI — inhibits AChE</td><td>Mild to moderate</td><td>GI; skin irritation with patch</td></tr>
+        <tr><td>Galantamine (Razadyne)</td><td>CEI — inhibits AChE</td><td>Mild to moderate</td><td>GI effects</td></tr>
+        <tr><td><strong>Memantine (Namenda)</strong></td><td>NMDA antagonist — blocks excess glutamate</td><td>Moderate to severe <em>only</em></td><td>Dizziness, headache; NOT for mild AD</td></tr>
+        <tr><td><strong>Namzaric</strong></td><td>CEI + NMDA combo</td><td>Moderate to severe</td><td>Combined SEs of both classes</td></tr>
+        <tr style="background:#fff1f1;"><td><strong>Haloperidol (Haldol)</strong></td><td>Antipsychotic</td><td>⚠️ AVOID in dementia</td><td>🚨 INCREASED MORTALITY in dementia-related psychosis</td></tr>
+        <tr><td>Risperidone (Risperdal)</td><td>Atypical antipsychotic</td><td>Use with extreme caution; better than Haldol</td><td>Still carries black box warning for dementia</td></tr>
+        <tr><td>Quetiapine (Seroquel)</td><td>Atypical antipsychotic</td><td>Use with extreme caution; slightly better than Risperdal</td><td>Still carries black box warning for dementia</td></tr>
+        <tr style="background:#fff1f1;"><td><strong>Benzodiazepines (lorazepam, etc.)</strong></td><td>CNS depressants</td><td>⚠️ AVOID in elderly/dementia</td><td>🚨 Paradoxical agitation; worsen confusion; reverse effects in elderly</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--pink-deep);margin-bottom:16px;">🚨 Must-Know Safety Rules</h3>
+  <div class="grid-2">
+    <div>
+      <div class="alert alert-red">
+        <span class="alert-icon">🚫</span>
+        <div class="alert-body">
+          <strong>Never Do These:</strong>
+          Never use Haldol in dementia-related psychosis. Never apply restraints without justification. Never use benzos as first-line for delirium. Never start memantine in mild AD. Never allow wandering patients unsupervised outdoors.
+        </div>
+      </div>
+      <div class="alert alert-green">
+        <span class="alert-icon">✅</span>
+        <div class="alert-body">
+          <strong>Always Do These:</strong>
+          Always approach from the front. Always use patient's name. Always treat underlying cause in delirium. Always establish routine in dementia. Always ask: what unmet need is this behavior expressing?
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="alert alert-gold">
+        <span class="alert-icon">⭐</span>
+        <div class="alert-body">
+          <strong>Top NCLEX Triggers:</strong>
+          1) Sudden change in dementia patient → assess for delirium. 2) Benzo for elderly confused patient → question/hold. 3) Haldol for dementia psychosis → contraindicated. 4) Restraints for agitation → wrong answer. 5) Memantine for mild AD → wrong stage.
+        </div>
+      </div>
+      <div class="alert alert-purple">
+        <span class="alert-icon">💡</span>
+        <div class="alert-body">
+          <strong>Pseudodementia Rule:</strong>
+          When you see memory loss, cognitive changes, withdrawal, and fatigue in an older adult — consider depression (pseudodementia). Treat the depression → cognitive symptoms may resolve.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--blue-deep);margin-bottom:16px;">🧠 Vocabulary Rapid Review</h3>
+  <div class="card card-blue" style="padding:0;overflow:hidden;">
+    <table class="info-table" style="margin:0;">
+      <thead><tr><th>Term</th><th>One-Line Definition</th><th>Stage / Context</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Confabulation</strong></td><td>Making up memories to fill gaps (not intentional lying)</td><td>Any stage of dementia</td></tr>
+        <tr><td><strong>Aphasia</strong></td><td>Impaired speech or language</td><td>Early → worsens</td></tr>
+        <tr><td><strong>Apraxia</strong></td><td>Impaired purposeful movement</td><td>Middle → late</td></tr>
+        <tr><td><strong>Agnosia</strong></td><td>Cannot recognize familiar objects or people</td><td>Middle → late</td></tr>
+        <tr><td><strong>Agraphia</strong></td><td>Cannot write</td><td>Middle stage</td></tr>
+        <tr><td><strong>Hyperorality</strong></td><td>Putting things in mouth; oral fixation</td><td>Middle stage</td></tr>
+        <tr><td><strong>Disinhibition</strong></td><td>Loss of social control; inappropriate behavior</td><td>Middle stage</td></tr>
+        <tr><td><strong>Sundowning</strong></td><td>Worsening confusion/agitation in evening</td><td>Middle stage</td></tr>
+        <tr><td><strong>Catastrophic Reaction</strong></td><td>Extreme emotional outburst (screaming, striking)</td><td>Middle → late</td></tr>
+        <tr><td><strong>Pseudodementia</strong></td><td>Depression mimicking dementia in elderly</td><td>Any age; reversible</td></tr>
+        <tr><td><strong>Validation Therapy</strong></td><td>Meeting the patient in their reality instead of correcting it</td><td>Middle → late dementia</td></tr>
+        <tr><td><strong>Polypharmacy</strong></td><td>Use of multiple medications simultaneously; high in geriatric patients → delirium risk</td><td>Delirium prevention</td></tr>
+        <tr><td><strong>AChE / CEI</strong></td><td>Acetylcholinesterase enzyme / Cholinesterase inhibitors (block it)</td><td>Alzheimer's pharmacology</td></tr>
+        <tr><td><strong>NMDA Antagonist</strong></td><td>Memantine — blocks excess glutamate; restores signal transmission</td><td>Mod-severe AD</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--pink-deep);margin-bottom:16px;">🩺 Priority Nursing Actions by Scenario</h3>
+  <div class="grid-2">
+    <div class="card card-pink">
+      <div class="card-title" style="color:var(--pink-deep)"><span class="icon">⚡</span> Acute Confusion in Elderly Patient</div>
+      <p style="font-size:0.82rem;font-weight:800;margin-bottom:8px;">Priority order:</p>
+      <ol style="font-size:0.875rem;padding-left:20px;line-height:2;">
+        <li>Assess vitals, neuro status, pain</li>
+        <li>Determine baseline mental status (ask family)</li>
+        <li>Review all medications — any new or high-risk drugs?</li>
+        <li>Obtain labs (BMP, CBC, UA)</li>
+        <li>Ensure safe environment (sitter, call light, bed alarm)</li>
+        <li>Calm, reassuring communication</li>
+        <li>Treat underlying cause when identified</li>
+        <li>Hold benzos; avoid restraints; avoid Haldol</li>
+      </ol>
+    </div>
+    <div class="card card-blue">
+      <div class="card-title" style="color:var(--blue-deep)"><span class="icon">🧩</span> Patient with Known Dementia, Worsening</div>
+      <p style="font-size:0.82rem;font-weight:800;margin-bottom:8px;">Priority order:</p>
+      <ol style="font-size:0.875rem;padding-left:20px;line-height:2;">
+        <li>Rule out superimposed DELIRIUM (sudden change = new cause)</li>
+        <li>Assess for infection, dehydration, medication issues</li>
+        <li>Review and adjust medications with provider</li>
+        <li>Implement safety measures (falls, wandering)</li>
+        <li>Use validation therapy if agitated by reality correction</li>
+        <li>Support family/caregiver with resources</li>
+        <li>Maintain structured daily routine</li>
+        <li>Promote highest functional ability in ADLs</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="memory-aid" style="margin-top:8px;">
+    <h4>🌟 One-Liner Summary: The Big Picture</h4>
+    <p style="font-size:0.92rem;color:var(--text-dark);line-height:1.8;">
+      <strong>Delirium</strong> = acute, reversible, treat the cause NOW or permanent damage occurs. <strong>Dementia</strong> = chronic, progressive, no cure — protect dignity, preserve function, promote quality of life. <strong>Both</strong> require a safe environment, calm communication, nonpharmacological interventions first, and careful attention to medications that may harm more than help. <strong>The nurse's role</strong> is to be the patient's advocate, interpreter, and protector — in their most vulnerable cognitive state.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p>📚 HCC2 — Concept: Cognition | Prof. Bryan, RN MSN MPH | Spring 2026 | @SophiaLaEstudiante</p>
+  <p style="margin-top:4px;font-size:0.7rem;">Study guide created from course materials. Always prioritize your instructor's lecture content and course textbook.</p>
+</footer>
+
+<script>
+// ── TAB NAVIGATION ──
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: document.querySelector('.tab-bar').offsetTop - 10, behavior: 'smooth'});
+}
+
+// ── DARK MODE ──
+function toggleTheme() {
+  const html = document.documentElement;
+  const btn  = document.getElementById('themeBtn');
+  const dark = html.getAttribute('data-theme') === 'dark';
+  if (dark) {
+    html.removeAttribute('data-theme');
+    btn.textContent = '🌙';
+    localStorage.setItem('cognition-theme', 'light');
+  } else {
+    html.setAttribute('data-theme', 'dark');
+    btn.textContent = '☀️';
+    localStorage.setItem('cognition-theme', 'dark');
+  }
+}
+// Restore saved theme immediately
+(function() {
+  if (localStorage.getItem('cognition-theme') === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    // update button text once DOM is ready
+    var iv = setInterval(function() {
+      var btn = document.getElementById('themeBtn');
+      if (btn) { btn.textContent = '☀️'; clearInterval(iv); }
+    }, 50);
+  }
+})();
+
+// ── QUIZ: option click via event delegation (works even in hidden tabs) ──
+document.addEventListener('click', function(e) {
+  var opt = e.target.closest('.iq-opt');
+  if (!opt || opt.classList.contains('locked')) return;
+  var block  = opt.closest('.iq-block');
+  var isSATA = !!opt.closest('.iq-sata');
+  if (isSATA) {
+    opt.classList.toggle('selected');
+  } else {
+    block.querySelectorAll('.iq-opt').forEach(function(o) { o.classList.remove('selected'); });
+    opt.classList.add('selected');
+  }
+});
+
+// ── QUIZ: check single-answer ──
+function checkSingle(id, correctArr) {
+  var block  = document.getElementById('iq-' + id);
+  var opts   = block.querySelectorAll('.iq-opt');
+  var resEl  = document.getElementById('iq-' + id + '-result');
+  var ratEl  = document.getElementById('iq-' + id + '-rat');
+  var btn    = block.querySelector('.iq-submit');
+  var chosen = block.querySelector('.iq-opt.selected');
+
+  if (!chosen) {
+    resEl.textContent = '⚠️ Please select an answer first.';
+    resEl.className = 'iq-result partial';
+    return;
+  }
+
+  // lock
+  btn.disabled = true;
+  opts.forEach(function(o) {
+    o.classList.add('locked');
+    var v = o.getAttribute('data-val');
+    if (correctArr.indexOf(v) > -1)       o.classList.add('correct');
+    else if (o.classList.contains('selected')) o.classList.add('incorrect');
+  });
+
+  var isRight = correctArr.indexOf(chosen.getAttribute('data-val')) > -1;
+  resEl.textContent = isRight ? '🎉 Correct! Great clinical thinking!' : '❌ Not quite — review the rationale below.';
+  resEl.className   = 'iq-result ' + (isRight ? 'pass' : 'fail');
+  ratEl.classList.add('show');
+  addRetry(id);
+}
+
+// ── QUIZ: check SATA ──
+function checkSATA(id, correctArr) {
+  var block  = document.getElementById('iq-' + id);
+  var opts   = block.querySelectorAll('.iq-opt');
+  var resEl  = document.getElementById('iq-' + id + '-result');
+  var ratEl  = document.getElementById('iq-' + id + '-rat');
+  var btn    = block.querySelector('.iq-submit');
+
+  var selected = [];
+  opts.forEach(function(o) { if (o.classList.contains('selected')) selected.push(o.getAttribute('data-val')); });
+
+  if (!selected.length) {
+    resEl.textContent = '⚠️ Please select at least one answer.';
+    resEl.className = 'iq-result partial';
+    return;
+  }
+
+  // lock and color
+  btn.disabled = true;
+  var numRight = 0;
+  opts.forEach(function(o) {
+    o.classList.add('locked');
+    var v = o.getAttribute('data-val');
+    var isC = correctArr.indexOf(v) > -1;
+    var isSel = o.classList.contains('selected');
+    if (isC && isSel)   { o.classList.add('correct');   numRight++; }
+    else if (!isC && isSel) { o.classList.add('incorrect'); }
+    else if (isC && !isSel) { o.classList.add('missed');    }
+  });
+
+  var numWrong  = selected.filter(function(v){ return correctArr.indexOf(v) < 0; }).length;
+  var numMissed = correctArr.filter(function(v){ return selected.indexOf(v) < 0; }).length;
+  var total     = correctArr.length;
+
+  if (numWrong === 0 && numMissed === 0) {
+    resEl.textContent = '🎉 Perfect! All ' + total + ' correct answers selected.';
+    resEl.className   = 'iq-result pass';
+  } else if (numRight > 0 && numWrong === 0) {
+    resEl.textContent = '⚠️ Partial — ' + numRight + '/' + total + ' correct, missed ' + numMissed + '. Check orange options.';
+    resEl.className   = 'iq-result partial';
+  } else if (numRight > 0) {
+    resEl.textContent = '⚠️ Partial — ' + numRight + ' right, ' + numWrong + ' wrong, ' + numMissed + ' missed.';
+    resEl.className   = 'iq-result partial';
+  } else {
+    resEl.textContent = '❌ None correct — review the rationale carefully.';
+    resEl.className   = 'iq-result fail';
+  }
+  ratEl.classList.add('show');
+  addRetry(id);
+}
+
+// ── QUIZ: add retry button ──
+function addRetry(id) {
+  var ratEl = document.getElementById('iq-' + id + '-rat');
+  if (ratEl.querySelector('.iq-retry')) return;
+  var r = document.createElement('button');
+  r.className   = 'iq-retry';
+  r.textContent = '↩ Try Again';
+  r.onclick     = function() { resetBlock(id); };
+  ratEl.appendChild(r);
+}
+
+// ── QUIZ: reset question ──
+function resetBlock(id) {
+  var block = document.getElementById('iq-' + id);
+  block.querySelectorAll('.iq-opt').forEach(function(o) {
+    o.className = 'iq-opt'; // wipe all state classes at once
+  });
+  var btn = block.querySelector('.iq-submit');
+  if (btn) btn.disabled = false;
+  var resEl = document.getElementById('iq-' + id + '-result');
+  if (resEl) { resEl.textContent = ''; resEl.className = 'iq-result'; }
+  var ratEl = document.getElementById('iq-' + id + '-rat');
+  if (ratEl) {
+    ratEl.classList.remove('show');
+    var r = ratEl.querySelector('.iq-retry');
+    if (r) r.remove();
+  }
+}
+</script>
+</body>
+</html>
